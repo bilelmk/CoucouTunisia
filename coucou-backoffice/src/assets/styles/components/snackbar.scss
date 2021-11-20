@@ -1,0 +1,11 @@
+@import "src/assets/styles/variables";
+
+.fail {
+  background: $ej-danger;
+  color: aliceblue;
+}
+
+.success {
+  background: $ej-success;
+  color: aliceblue;
+}

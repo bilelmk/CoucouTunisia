@@ -1,0 +1,21 @@
+add 
+POST localhost:3005/admins/add
+{
+    "firstname" : "Bilel" ,
+    "lastname" : "Mekrazi" ,
+    "username" : "bilelmk" ,
+    "password" : "bilel123" 
+}
+
+par def active true role admin
+
+***********************************************************
+
+signin
+localhost:3005/admins/signin
+{
+    "username" : "bilelmk" ,
+    "password" : "bilel123" 
+}
+
+***********************************************************

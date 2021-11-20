@@ -1,0 +1,36 @@
+@import "src/assets/styles/variables";
+
+table {
+  min-width: 100%;
+  margin-top: 30px;
+  box-shadow: none !important;
+
+  .cell-text {
+    color: $ej-dark;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    font-size: 13px;
+  }
+
+  mat-row {
+    padding: 4px 0;
+    &:hover {
+      background-color: #f8f8f8;
+    }
+  }
+
+  mat-cell {
+    justify-content: center;
+  }
+
+  mat-header-cell {
+    display:flex;
+    justify-content:center;
+    color: #4a4a4a !important;
+    padding: 8px 0;
+    text-align: end;
+    font-size: 14px;
+  }
+}
+

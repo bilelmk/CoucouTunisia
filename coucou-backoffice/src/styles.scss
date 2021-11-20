@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+
+//html, body { height: 100%; }
+//body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// custom scss
+@import "assets/styles/components/toolbar";
+@import "assets/styles/components/snackbar";
+@import "assets/styles/components/dialog";
+@import "assets/styles/components/card";
+@import "assets/styles/components/table";
+@import "assets/styles/components/icons";
+@import "assets/styles/components/inputs";
+@import "assets/styles/components/buttons";
+@import "assets/styles/components/time-picker";
+
+@import "assets/styles/pages/login";
+@import "assets/styles/pages/generic";
+
+@import "assets/styles/animations.scss" ;
+@import "assets/styles/utilities.scss" ;
+
+.row {
+  margin: 0 !important;
+}
+
+.mat-drawer-container {
+  background-color: #fff;
+}
+
+html, body {
+  height: 100% !important;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
+  background-color: #fff !important;
+}

@@ -1,0 +1,15 @@
+.timepicker-overlay {
+  z-index: 10000000 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 10000000 !important;
+}
+
+//.timepicker-dial__control timepicker-dial__item {
+//  outline: none !important;
+//}
+
+input:focus-visible {
+  outline: none;
+}

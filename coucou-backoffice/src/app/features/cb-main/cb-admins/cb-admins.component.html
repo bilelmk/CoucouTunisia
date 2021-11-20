@@ -1,0 +1,92 @@
+<div class="page" *ngIf="!loading">
+
+  <div class="row mt-3 mb-3 justify-content-between align-items-center">
+    <div class="scale-in-center">
+      <p class="title">
+        <span class="material-icons title-icon">people</span>
+        Liste des admins
+      </p>
+    </div>
+    <div>
+      <input #key class="search" (input)="applyFilter(key.value)">
+      <button class="square-btn ml-2 scale-in-center"  (click)="openAddDialog()">
+        <i class="material-icons icon-blue" >
+          add
+        </i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row scale-in-center"  *ngIf="admins?.length > 0">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="username" >
+        <mat-header-cell *matHeaderCellDef >Nom d'utilisateur</mat-header-cell>
+        <mat-cell *matCellDef="let admin" >
+          <p class="cell-text"  > {{admin.username}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="firstname" >
+        <mat-header-cell *matHeaderCellDef >Nom</mat-header-cell>
+        <mat-cell *matCellDef="let admin" >
+          <p class="cell-text"  > {{admin.firstname}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastname">
+        <mat-header-cell *matHeaderCellDef >Prénom</mat-header-cell>
+        <mat-cell *matCellDef="let admin" >
+          <p class="cell-text" > {{admin.lastname}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <mat-header-cell *matHeaderCellDef >Active</mat-header-cell>
+        <mat-cell class="cell-text" *matCellDef="let admin">
+          <div class="cell-text">
+            <mat-icon *ngIf="!admin.active" class="icon-danger">remove_circle</mat-icon>
+            <mat-icon  *ngIf="admin.active" class="icon-success">check_circle</mat-icon>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell class="cell-text" *matCellDef="let admin">
+          <div class="cell-btn" (click)="toggleActiveStatus(admin)">
+            <mat-icon>flaky</mat-icon>
+          </div>
+          <div class="cell-btn" (click)="openUpdateDialog(admin)" >
+            <mat-icon>mode_edit</mat-icon>
+          </div>
+<!--          <div class="cell-btn" (click)="openDeleteDialog(admin)">-->
+<!--            <mat-icon>delete</mat-icon>-->
+<!--          </div>-->
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row class="text-center" *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row class="contact" *matRowDef="let type; columns: displayedColumns;" ></mat-row>
+    </table>
+    <mat-paginator class="full-width" [pageSizeOptions]="[ 10]"></mat-paginator>
+  </div>
+
+  <div class="row justify-content-center align-items-center scale-in-center" style=" height: 70vh !important;"
+       *ngIf="admins?.length == 0 && error" >
+    <div class="col-12 row justify-content-center align-items-center" *ngIf="admins?.length == 0 && !error"  >
+      <img  src="assets/img/no-record.png" >
+      <div class="col-12 text-center" >
+        <p >No record found</p>
+      </div>
+    </div>
+    <div class="col-12 row justify-content-center align-items-center" *ngIf="error"  >
+      <img  src="assets/img/error.png" >
+      <div class="col-12 text-center" >
+        <p>Server error</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
