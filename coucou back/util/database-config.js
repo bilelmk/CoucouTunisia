@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize') ;
 
-const sequelize = new Sequelize('coucou-app' , 'root' , '' , {
-    dialect : 'mysql',
+const sequelize = new Sequelize('coucou-app' , 'postgres' , 'admin' , {
+    dialect : 'postgres',
     host : 'localhost'
 }) ;
 
