@@ -2,8 +2,6 @@ const express = require("express");
 const clientService = require("../services/client.service")
 const router = express.Router();
 
-const sms = require("../util/sms")
-
 router.route('/signup')
     .post((req, res, next) => {
         clientService.signup(req, res, next);
@@ -34,5 +32,19 @@ router.route('/reset-password')
         clientService.resetPassowrd(req, res, next);
 })
 
+router.route('/')
+    .post( (req, res, next) => {
+            clientService.getMany(req, res, next);
+    })
+    .get((req, res, next) => {
+            clientService.getOne(req, res, next);
+    })
+    // .put((req, res, next) => {
+    //         clientService.update(req, res, next);
+// })
+router.route('/lower')
+    .get((req, res, next) => {
+        clientService.getAllLower(req, res, next);
+    })
 
 module.exports = router;

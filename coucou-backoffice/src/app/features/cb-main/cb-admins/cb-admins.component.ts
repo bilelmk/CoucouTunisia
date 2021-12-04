@@ -5,9 +5,9 @@ import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Admin } from '../../../core/models/admin';
 import { AdminsService } from '../../../core/services/http/admins.service';
-import { CbAdminsAddComponent } from './cb-admins-add/cb-admins-add.component';
-import { CbAdminsUpdateComponent } from './cb-admins-update/cb-admins-update.component';
-
+import { CbAdminsModalComponent } from './cb-admins-modal/cb-admins-modal.component';
+import { AlertService } from '../../../core/services/in-app/alert.service';
+import { Helpers } from '../../../shared/helpers/helpers';
 
 @Component({
   selector: 'app-cb-admins',
@@ -17,7 +17,7 @@ import { CbAdminsUpdateComponent } from './cb-admins-update/cb-admins-update.com
 export class CbAdminsComponent implements OnInit {
 
   public dataSource = new MatTableDataSource<Admin>();
-  displayedColumns = ['firstname', 'lastname' , 'username' , 'active' , 'buttons' ];
+  displayedColumns = ['firstname', 'lastname' , 'username' , 'role' , 'active' , 'buttons' ];
   admins : Admin[] = [] ;
 
   error = false ;
@@ -29,7 +29,8 @@ export class CbAdminsComponent implements OnInit {
 
   constructor(private adminsService: AdminsService ,
               private spinnerService: SpinnerService ,
-              private dialog: MatDialog ) { }
+              private dialog: MatDialog,
+              private alertService: AlertService) { }
 
   ngOnInit() {
     this.loading = true ;
@@ -49,39 +50,26 @@ export class CbAdminsComponent implements OnInit {
     )
   }
 
-  openAddDialog() {
-    const dialogRef = this.dialog.open( CbAdminsAddComponent, {
-      panelClass: 'custom-dialog-container' , width: '600px' , data : { array : this.admins , edit: false}
+  openModal(isEditMode , item) {
+    const dialogRef = this.dialog.open( CbAdminsModalComponent, {
+      panelClass: 'custom-dialog-container' ,
+      width: '600px' ,
+      data : { item: item , array : this.admins , edit: isEditMode}
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        console.log(this.admins)
         this.dataSource = new MatTableDataSource<Admin>(this.admins);
       }
     );
   }
 
-  openUpdateDialog(admin: Admin) {
-    const dialogRef = this.dialog.open( CbAdminsAddComponent, {
-      panelClass: 'custom-dialog-container' , width: '600px' , data : { admin : admin ,edit: true}
-    });
-    // dialogRef.afterClosed().subscribe(
-    //   res => {
-    //     this.dataSource = new MatTableDataSource<Admin>(this.admins);
-    //   }
-    // );
+  delete(admin: Admin) {
+    this.alertService.showAlert(
+      () => {
+        Helpers.deleteFromArray(admin , this.admins)
+      }, "voulez-vous vraiment supprimer"
+    )
   }
-
-  // openDeleteDialog(admin: Admin) {
-  //   const dialogRef = this.dialog.open( EjAdminAdminsDeleteComponent, {
-  //     panelClass: 'custom-dialog-container' , width: '600px' , data : { array : this.admins , record :admin}
-  //   });
-  //   dialogRef.afterClosed().subscribe(
-  //     res => {
-  //       this.dataSource = new MatTableDataSource<Admin>(this.admins);
-  //     }
-  //   );
-  // }
 
   toggleActiveStatus(admin: Admin) {
     if(admin.active == true) {
@@ -120,4 +108,5 @@ export class CbAdminsComponent implements OnInit {
     )
     this.dataSource.data = toFilterList;
   }
+
 }

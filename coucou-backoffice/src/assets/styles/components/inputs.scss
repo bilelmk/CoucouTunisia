@@ -1,10 +1,10 @@
 @import "src/assets/styles/variables";
 
 .ej-input {
-  color: $ej-grey;
+  color: $cb-grey;
   outline: none;
   height: 50px;
-  background: $ej-white;
+  background: $cb-white;
   font-size: 14px;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -13,13 +13,13 @@
   border-radius: 4px;
   display: inline-block;
   vertical-align: middle;
-  border: 1px solid $ej-grey;
+  border: 1px solid $cb-grey;
   text-transform: inherit;
   transition: 0.4s;
   font-family: "Sans Open" ,  Arial, Helvetica, sans-serif !important;;
 
   &:focus {
-    border: 1px solid $ej-navy;
+    border: 1px solid $cb-navy;
   }
 }
 

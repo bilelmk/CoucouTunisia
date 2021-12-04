@@ -41,6 +41,22 @@ const routes: Routes = [
       {
         path: 'notifications',
         loadChildren: () => import('./cb-notifications/cb-notifications.module').then(m => m.CbNotificationsModule)
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./cb-statistiques/cb-statistiques.module').then(m => m.CbStatistiquesModule)
+      },
+      {
+        path: 'parking',
+        loadChildren: () => import('./cb-parking/cb-parking.module').then(m => m.CbParkingModule)
+      },
+      {
+        path: 'permissions',
+        loadChildren: () => import('./cb-permissions/cb-permissions.module').then(m => m.CbPermissionsModule)
+      },
+      {
+        path: 'roles',
+        loadChildren: () => import('./cb-roles/cb-roles.module').then(m => m.CbRolesModule)
       }
     ]
   }

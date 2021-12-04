@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Client } from '../../../core/models/client';
+import { PageEvent } from '@angular/material/paginator';
+import { ClientsService } from '../../../core/services/http/clients.service';
+import { SpinnerService } from '../../../core/services/in-app/spinner.service';
+import { SearchClientRequest } from '../../../core/dtos/search-client-request';
 
 @Component({
   selector: 'app-cb-clients',
@@ -7,9 +12,88 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CbClientsComponent implements OnInit {
 
-  constructor() { }
+  public dataSource: Client[];
+  displayedColumns = ['firstName', 'lastName' , 'phone', 'active' , 'buttons' ];
+  clients : Client[] = [] ;
 
-  ngOnInit(): void {
+  error = false ;
+  loading = false ;
+
+  limit = 10 ;
+  offset = 0 ;
+  key = "" ;
+
+  recordsNumber ;
+  pageEvent: PageEvent ;
+
+  constructor(private clientsService: ClientsService ,
+              private spinnerService: SpinnerService ) { }
+
+  ngOnInit() {
+    this.getRecords()
+  }
+
+  onPaginationChange(event){
+    this.offset = this.limit * event.pageIndex
+    this.getRecords()
+  }
+
+  getRecords(){
+    this.loading = true ;
+    this.spinnerService.activate()
+    let searchClientRequest = new SearchClientRequest(this.offset, this.limit, this.key)
+    this.clientsService.getAll(searchClientRequest).subscribe(
+      (res :any) => {
+        this.loading = false ;
+        this.recordsNumber = res.data.count ;
+        this.clients = res.data.rows ;
+        this.dataSource = this.clients
+        this.spinnerService.deactivate()
+      },
+      error => {
+        this.loading = false ;
+        this.error = true ;
+        this.spinnerService.deactivate()
+      }
+    )
+  }
+
+  search(key){
+    this.offset = 0 ;
+    this.key = key.value
+    this.getRecords()
+  }
+
+  toggleActiveStatus(client) {
+  //   if(admin.active == true) {
+  //     this.spinnerService.activate()
+  //     this.adminsService.block(admin.id).subscribe(
+  //       res => {
+  //         admin.active = false ;
+  //         this.spinnerService.deactivate()
+  //       },
+  //       error => {
+  //         this.spinnerService.deactivate()
+  //         console.log(error)
+  //       }
+  //     )
+  //   } else if(admin.active == false) {
+  //     this.spinnerService.activate()
+  //     this.adminsService.deblock(admin.id).subscribe(
+  //       res => {
+  //         admin.active = true ;
+  //         this.spinnerService.deactivate()
+  //       },
+  //       error => {
+  //         this.spinnerService.deactivate()
+  //         console.log(error)
+  //       }
+  //     )
+  //   }
+  }
+
+  openDetailsDialog(client: any) {
+
   }
 
 }
