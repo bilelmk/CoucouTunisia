@@ -3,8 +3,8 @@
     {
       "username": "bilelmek",
       "password": "123456",
-      "firstName": "Bilel",
-      "lastName": "Mekrazi",
+      "firstname": "Bilel",
+      "lastname": "Mekrazi",
       "role": "SUPER",
       "active": true
     }
