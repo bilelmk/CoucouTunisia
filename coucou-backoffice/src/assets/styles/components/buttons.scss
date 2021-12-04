@@ -52,5 +52,23 @@ button {
   color : $cb-navy;
   border-radius: 10%;
   transition: 0.4s;
+}
 
+.select-btn {
+  padding: 6px;
+  background-color: #dbe2ef;
+  color : $cb-navy;
+  border: none;
+  transition: 0.4s ;
+  outline: none !important;
+  i {
+    transition: 0.5s ;
+  }
+
+  &:hover {
+    background-color: $cb-navy;
+    mat-icon {
+      color : #f9f7f7 ;
+    }
+  }
 }

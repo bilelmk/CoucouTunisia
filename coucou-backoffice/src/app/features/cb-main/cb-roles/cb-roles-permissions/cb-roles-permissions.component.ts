@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from '../../../../core/services/in-app/snackbar.service';
 import { RoleService } from '../../../../core/services/http/role.service';
@@ -51,4 +51,7 @@ export class CbRolesPermissionsComponent implements OnInit {
     }
   }
 
+  save() {
+
+  }
 }
