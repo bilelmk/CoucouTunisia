@@ -1,0 +1,47 @@
+<div class="dialog-container">
+
+  <p class="dialog-title" >Ajouter un menu</p>
+
+  <div class="row mt-4">
+
+    <form [formGroup]="form" class="full-width">
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input  formControlName="name" matInput type="text" required>
+        </mat-form-field>
+      </div>
+    </form>
+
+    <div class="col-12">
+      <ckeditor  [editor]="Editor" [config]="config" (change)="updateValue($event)" ></ckeditor>
+    </div>
+  </div>
+
+  <div class="col-6 dialog-image-preview" *ngIf="croppedImage == null" >
+    <img class="img-fluid" src="./assets/img/fichier.png" (click)="filePicker.click()"/>
+    <input type="file" #filePicker (change)="onPickImage($event)">
+  </div>
+
+  <div class="col-6" [ngClass]="croppedImage ? '' : 'hide'">
+    <div class="image-preview">
+      <image-cropper
+        imageQuality="10"
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="5 / 3"
+        (imageCropped)="imageCropped($event)"
+      >
+      </image-cropper>
+    </div>
+  </div>
+
+  <div class="col-12" >
+    <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid" >
+      Ajouter
+    </button>
+  </div>
+
+  <!--  [data]="data.user.description"-->
+
+</div>

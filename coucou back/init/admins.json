@@ -1,0 +1,12 @@
+{
+  "admins": [
+    {
+      "username": "bilelmek",
+      "password": "123456",
+      "firstName": "Bilel",
+      "lastName": "Mekrazi",
+      "role": "SUPER",
+      "active": true
+    }
+  ]
+}

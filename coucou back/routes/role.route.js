@@ -16,6 +16,14 @@ router.route('/:id')
     })
     .delete((req, res, next) => {
         roleService.delete(req, res, next, req.params.id);
+})
+
+router.route('/permissions/:id')
+    .post((req, res, next) => {
+        roleService.addPermissions(req, res, next);
     })
+    .delete((req, res, next) => {
+        roleService.updatePermissions(req, res, next);
+})
 
 module.exports = router;

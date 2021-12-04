@@ -9,6 +9,8 @@ const messagingRoutes = require("./routes/messaging.route");
 const permissionRoutes = require("./routes/permission.route");
 const roleRoutes = require("./routes/role.route");
 
+const init = require("./init/init");
+
 const app = express();
 
  sequelize
@@ -43,6 +45,8 @@ app.use("/api/restaurants", restaurantRoutes) ;
 app.use("/api/admins", adminRoutes);
 app.use("/api/permissions", permissionRoutes);
 app.use("/api/roles", roleRoutes);
+
+// init() ;
 
 // app.use((req, res, next) => {
 //     res.sendFile(path.join(__dirname, "react app", "index.html"));
