@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CbAdminsComponent } from './cb-admins.component';
-import { CbAdminsAddComponent } from './cb-admins-add/cb-admins-add.component';
-import { CbAdminsUpdateComponent } from './cb-admins-update/cb-admins-update.component';
 import { RouterModule, Routes } from '@angular/router';
-import {MatDialogModule} from '@angular/material/dialog';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatTableModule} from '@angular/material/table';
-import {MatIconModule} from '@angular/material/icon';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { CbAdminsModalComponent } from './cb-admins-modal/cb-admins-modal.component';
+import {SharedModule} from '../../../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -22,8 +22,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CbAdminsComponent,
-    CbAdminsAddComponent,
-    CbAdminsUpdateComponent
+    CbAdminsModalComponent,
   ],
   imports: [
     CommonModule,
@@ -34,11 +33,11 @@ const routes: Routes = [
     MatInputModule,
     MatTableModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    SharedModule
   ],
   entryComponents: [
-    CbAdminsAddComponent,
-    CbAdminsUpdateComponent
+    CbAdminsModalComponent
   ]
 })
 export class CbAdminsModule { }

@@ -4,6 +4,8 @@ const helpers = require("../helpers/helpers");
 const Client = require("../models/client.model");
 const PhoneConfirmationCode = require("../models/phone-confirmation-code.model");
 const smsUtil = require("../util/sms")
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 exports.signup = async (req, res, next) => {
     let client = await Client.findOne({where: {phone: req.body.phone}})
@@ -124,4 +126,52 @@ exports.sendResetPasswordCode = async (req, res, next) => {
 
 exports.resetPassowrd = async (req, res, next) => {
     // todo
+}
+
+exports.getMany = ( req, res, next ) => {
+    let key = "%" + req.body.key + "%"
+    Client.findAndCountAll({
+        limit: req.body.limit ,
+        offset: req.body.offset ,
+        where: {
+            [Op.or] : [
+                {phone: {[Op.like]: key}},
+                {firstName: {[Op.like]: key}},
+                {lastName: {[Op.like]: key}},
+            ]
+        }
+    }).then(data => {
+        return res.status(200).json({
+            data
+        });
+    }).catch(err => {
+        return res.status(500).json({
+            message: "no row found"
+        });
+    });
+}
+
+exports.getOne = ( req, res, next ) => {
+    // Client.findOne({ where: { id: req.userData.userId }})
+    //     .then(data => {
+    //         return res.status(200).json({
+    //             data
+    //         });
+    //     }).catch(err => {
+    //     return res.status(500).json({
+    //         message: "no row found"
+    //     });
+    // });
+}
+
+exports.getAllLower = (req, res, next) => {
+    Client.findAll({attributes: ['id', 'firstName' , 'lastName' , 'phone']}).then(data => {
+        return res.status(200).json({
+            data
+        });
+    }).catch(err => {
+        return res.status(500).json({
+            message: "no row found"
+        });
+    });
 }

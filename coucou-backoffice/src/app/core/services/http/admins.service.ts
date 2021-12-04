@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Admin } from '../../models/admin';
@@ -9,7 +8,7 @@ import { Admin } from '../../models/admin';
 })
 export class AdminsService {
 
-  URL = environment.url + "admins" ;
+  URL = "/api/admins" ;
 
   constructor(private http: HttpClient) { }
 

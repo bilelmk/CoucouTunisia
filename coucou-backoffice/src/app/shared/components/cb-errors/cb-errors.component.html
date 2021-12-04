@@ -1,0 +1,14 @@
+<div class="row justify-content-center align-items-center scale-in-center error"  *ngIf="array?.length == 0 || error" >
+  <div class="col-12 row justify-content-center align-items-center" *ngIf="array?.length == 0 && !error" >
+    <img  src="../../../../assets/img/no-record.png" >
+    <div class="col-12 text-center" >
+      <p>No record found</p>
+    </div>
+  </div>
+  <div class="col-12 row justify-content-center align-items-center" *ngIf="error"  >
+    <img  src="../../../../assets/img/error.png" >
+    <div class="col-12 text-center" >
+      <p>Server error</p>
+    </div>
+  </div>
+</div>

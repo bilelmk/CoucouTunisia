@@ -10,16 +10,16 @@ const storage = multer.diskStorage({
         if (isValid) {
             error = null;
         }
-        cb(error, "data");
+        cb(error, "upload/");
     },
     filename: (req, file, cb) => {
-        const name = file.originalname
-            .toLowerCase()
-            .split(" ")
-            .join("-");
+        // const name = file.originalname
+        //     .toLowerCase()
+        //     .split(" ")
+        //     .join("-");
         const ext = MIME_TYPE_MAP[file.mimetype];
         cb(null, uuid.v1() + "." + ext);
     }
 });
 
-module.exports = multer({storage: storage}).single("content")
+module.exports = multer({storage: storage}).fields([{ name: 'image', maxCount: 1 }, { name: 'menuImages' },{name:'roomImages'}])

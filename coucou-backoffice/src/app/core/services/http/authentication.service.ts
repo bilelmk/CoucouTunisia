@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Admin } from '../../models/admin';
-import { environment } from '../../../../environments/environment';
 import { LoginRequest } from '../../dtos/login-request';
 
 @Injectable({
@@ -12,7 +11,7 @@ import { LoginRequest } from '../../dtos/login-request';
 })
 export class AuthenticationService {
 
-  URL = environment.url + "admins" ;
+  URL = "/api/admins" ;
 
   constructor(private sessionStorageService: SessionStorageService ,
               private router: Router ,

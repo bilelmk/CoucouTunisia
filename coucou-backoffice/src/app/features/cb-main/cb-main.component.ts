@@ -11,6 +11,18 @@ export class CbMainComponent implements OnInit {
     {
       route : "admins" ,
       name : "Admin List" ,
+      icon : "manage_accounts" ,
+      role: "SUPER" ,
+      authorities : ['RESTAURANT']
+    },
+    {
+      route : "permissions" ,
+      name : "Permission List" ,
+      icon : "lock"
+    },
+    {
+      route : "roles" ,
+      name : "Roles List" ,
       icon : "admin_panel_settings"
     },
     {
@@ -24,14 +36,14 @@ export class CbMainComponent implements OnInit {
       icon : "restaurant"
     },
     {
-      route : "messaging" ,
-      name : "Messaging Service" ,
-      icon : "chat"
-    },
-    {
       route : "reservations" ,
       name : "Reservation" ,
       icon : "edit_calendar"
+    },
+    {
+      route : "messaging" ,
+      name : "Messaging Service" ,
+      icon : "chat"
     },
     {
       route : "emails" ,
@@ -44,12 +56,12 @@ export class CbMainComponent implements OnInit {
       icon : "notifications"
     },
     {
-      route : "notifications" ,
-      name : "Dashboard" ,
+      route : "dashboard" ,
+      name : "Statistiques" ,
       icon : "equalizer"
     },
     {
-      route : "notifications" ,
+      route : "parking" ,
       name : "Parking" ,
       icon : "commute"
     },

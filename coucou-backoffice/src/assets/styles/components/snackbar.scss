@@ -1,11 +1,13 @@
 @import "src/assets/styles/variables";
 
 .fail {
-  background: $ej-danger;
-  color: aliceblue;
+  background: $cb-danger;
+  color: $cb-white;
+  text-align: center;
 }
 
 .success {
-  background: $ej-success;
-  color: aliceblue;
+  background: $cb-success;
+  color: $cb-white;
+  text-align: center;
 }

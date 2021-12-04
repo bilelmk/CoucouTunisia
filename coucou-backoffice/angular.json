@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "coucou-backoffice"
+  "defaultProject": "coucou-backoffice",
+  "cli": {
+    "analytics": "e857557c-9dec-4f8d-b4ed-eac47082ab13"
+  }
 }

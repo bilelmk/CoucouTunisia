@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.config.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -27,6 +27,7 @@
     "ngx-material-timepicker": "^5.5.3",
     "ngx-spinner": "^10.0.1",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^8.12.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

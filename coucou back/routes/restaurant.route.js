@@ -1,5 +1,6 @@
 const express = require("express");
-const Restaurant = require("../models/restaurant.model");
+const restaurantService=require("../services/restaurant.service");
+const upload = require("../util/upload");
 const router = express.Router();
 
 
@@ -18,18 +19,9 @@ router.route('/')
         )
     })
 
-    .post((req, res, next) => {
-        Restaurant.create(req.body ,{include: ["rooms" , "images"]} ).then(
-            restaurant => {
-                res.statusCode = 200 ;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(restaurant);
-            },
-            err => next(err)
-        ).catch(
-            err => next(err)
-        )
-
+    .post(upload,(req, res, next) => {
+        console.log('router restaurant is here');
+        restaurantService.add(req,res,next)
     })
 
 // .delete((req, res, next) => {

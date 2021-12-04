@@ -121,6 +121,27 @@ exports.getAll = ( req, res , next ) => {
     })
 }
 
+exports.update = ( req, res , next ) => {
+    Admin.update({ firstname: req.body.firstname ,
+                   lastname: req.body.lastname,
+                   username: req.body.username },
+                 { where: { id: req.body.firstname }})
+    .then(result => {
+        if(result[0] === 1){
+            return res.status(200).json({
+                message: "success"
+            });
+        }
+        return res.status(404).json({
+            message: "not found"
+        });
+    }).catch(err => {
+        return res.status(500).json({
+            message: "server error"
+        });
+    })
+}
+
 exports.block = ( req, res , next , id ) => {
     Admin.update({ active: false }, {where: { id: id }}).then(result => {
         if(result[0] === 1){

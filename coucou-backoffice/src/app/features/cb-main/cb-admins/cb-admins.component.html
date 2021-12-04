@@ -1,6 +1,6 @@
 <div class="page" *ngIf="!loading">
 
-  <div class="row mt-3 mb-3 justify-content-between align-items-center">
+  <div class="row mt-2 mb-2 justify-content-between align-items-center">
     <div class="scale-in-center">
       <p class="title">
         <span class="material-icons title-icon">people</span>
@@ -9,7 +9,7 @@
     </div>
     <div>
       <input #key class="search" (input)="applyFilter(key.value)">
-      <button class="square-btn ml-2 scale-in-center"  (click)="openAddDialog()">
+      <button class="square-btn ml-2 scale-in-center"  (click)="openModal(false , null)">
         <i class="material-icons icon-blue" >
           add
         </i>
@@ -41,6 +41,13 @@
         </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef >Role</mat-header-cell>
+        <mat-cell *matCellDef="let admin" >
+          <p class="cell-text" > {{admin.role}} </p>
+        </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="active">
         <mat-header-cell *matHeaderCellDef >Active</mat-header-cell>
         <mat-cell class="cell-text" *matCellDef="let admin">
@@ -57,7 +64,7 @@
           <div class="cell-btn" (click)="toggleActiveStatus(admin)">
             <mat-icon>flaky</mat-icon>
           </div>
-          <div class="cell-btn" (click)="openUpdateDialog(admin)" >
+          <div class="cell-btn" (click)="openModal(true , admin)" >
             <mat-icon>mode_edit</mat-icon>
           </div>
 <!--          <div class="cell-btn" (click)="openDeleteDialog(admin)">-->
@@ -69,24 +76,10 @@
       <mat-header-row class="text-center" *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row class="contact" *matRowDef="let type; columns: displayedColumns;" ></mat-row>
     </table>
-    <mat-paginator class="full-width" [pageSizeOptions]="[ 10]"></mat-paginator>
+    <mat-paginator class="full-width" [pageSizeOptions]="[10]"></mat-paginator>
   </div>
 
-  <div class="row justify-content-center align-items-center scale-in-center" style=" height: 70vh !important;"
-       *ngIf="admins?.length == 0 && error" >
-    <div class="col-12 row justify-content-center align-items-center" *ngIf="admins?.length == 0 && !error"  >
-      <img  src="assets/img/no-record.png" >
-      <div class="col-12 text-center" >
-        <p >No record found</p>
-      </div>
-    </div>
-    <div class="col-12 row justify-content-center align-items-center" *ngIf="error"  >
-      <img  src="assets/img/error.png" >
-      <div class="col-12 text-center" >
-        <p>Server error</p>
-      </div>
-    </div>
-  </div>
+  <app-cb-errors [array]="admins" [error]="error"></app-cb-errors>
 
 </div>
 
