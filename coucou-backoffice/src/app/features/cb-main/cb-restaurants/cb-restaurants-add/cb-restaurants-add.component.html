@@ -7,11 +7,72 @@
     <mat-tab-group mat-align-tabs="center">
 
       <mat-tab label="Informations et images">
-        Informations et images
+        <div class="col-12 row no-margin justify-content-center mt-5">
+
+          <div class="col-12 col-md-6">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Nom</mat-label>
+              <input  formControlName="name" matInput type="text" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Description</mat-label>
+              <input  formControlName="description" matInput type="text" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Numéro du télépone</mat-label>
+              <input  formControlName="phone" matInput type="number" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input  formControlName="email" matInput type="email" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Site Web</mat-label>
+              <input  formControlName="webSite" matInput type="text" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Responsable</mat-label>
+              <input  formControlName="responsable" matInput type="text" required>
+            </mat-form-field>
+          </div>
+
+          <div class="col-6 dialog-image-preview" *ngIf="croppedImage == null" >
+            <img class="img-fluid" src="./assets/img/fichier.png" (click)="filePicker.click()"/>
+            <input type="file" #filePicker (change)="onPickImage($event)">
+          </div>
+
+          <div class="col-6" [ngClass]="croppedImage ? '' : 'hide'">
+            <div class="image-preview">
+              <image-cropper
+                imageQuality="10"
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="5 / 3"
+                (imageCropped)="imageCropped($event)"
+              >
+              </image-cropper>
+            </div>
+          </div>
+
+        </div>
       </mat-tab>
 
       <mat-tab label="Planning">
-
         <div class="col-12 row no-padding no-margin justify-content-center mt-5">
           <div class="col-2 full-width pt-3" >
             <mat-slide-toggle formControlName="monday" (change)="handleDayChange('monday' ,$event)">Lundi</mat-slide-toggle>
@@ -156,7 +217,16 @@
       </mat-tab>
 
       <mat-tab label="Menu">
-        Menu
+        <button (click)="addMenu()">Ajouter menu</button>
+      </mat-tab>
+
+      <mat-tab label="Rooms">
+        <button (click)="addRoom()">Ajouter room</button>
+      </mat-tab>
+
+      <mat-tab label="Gallerie">
+        <button (click)="addImage()">Ajouter image</button>
+        <button (click)="addRestaurant()">Ajouter image</button>
       </mat-tab>
 
     </mat-tab-group>

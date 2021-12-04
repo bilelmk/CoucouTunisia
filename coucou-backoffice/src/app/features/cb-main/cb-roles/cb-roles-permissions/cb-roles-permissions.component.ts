@@ -52,6 +52,12 @@ export class CbRolesPermissionsComponent implements OnInit {
   }
 
   save() {
-
+    this.roleService.updatePermissions(this.data.id , []).subscribe(
+      res => {
+        console.log(res)
+      },error => {
+        console.log(error)
+      }
+    )
   }
 }

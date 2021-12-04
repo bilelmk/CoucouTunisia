@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Role } from '../../models/role';
+import {Permission} from '../../models/permission';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,14 @@ export class RoleService {
 
   delete(id: number) {
     return this.http.delete(this.URL + "/" + id);
+  }
+
+  // addPermissions(id: number, permissions: Permission[]) {
+  //   return this.http.post(this.URL + "/permissions/" + id , permissions)
+  // }
+
+  updatePermissions(id: number, permissions: Permission[]) {
+    return this.http.put(this.URL + "/permissions/" + id , permissions)
   }
 
 }
