@@ -7,16 +7,7 @@ const router = express.Router();
 router.route('/')
     // .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
     .get((req,res,next) => {
-        Restaurant.findAll({include: ["rooms" , "images"]}).then(
-            restaurants => {
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(restaurants);
-            },
-            err => next(err)
-        ).catch(
-            err => next(err)
-        )
+        restaurantService.getAll(req,res,next)
     })
 
     .post(upload,(req, res, next) => {
