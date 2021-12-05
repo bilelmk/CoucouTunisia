@@ -8,6 +8,7 @@ import { Helpers } from '../../../../shared/helpers/helpers';
 import { CbRestaurantsAddMenuComponent } from './cb-restaurants-add-menu/cb-restaurants-add-menu.component';
 import { CbRestaurantsAddRoomComponent } from './cb-restaurants-add-room/cb-restaurants-add-room.component';
 import { CbRestaurantsAddImageComponent } from './cb-restaurants-add-image/cb-restaurants-add-image.component';
+import {RestaurantService} from '../../../../core/services/http/restaurant.service';
 
 @Component({
   selector: 'app-cb-restaurants-add',
@@ -31,7 +32,7 @@ export class CbRestaurantsAddComponent implements OnInit {
               public dialog: MatDialog,
               public matDialogRef: MatDialogRef<CbRestaurantsAddComponent>,
               private snackbarService: SnackbarService ,
-              private resta: RestaurantService) {
+              private restaurantService: RestaurantService) {
     this.addForm = new FormGroup({
 
       name: new FormControl("", Validators.required),
