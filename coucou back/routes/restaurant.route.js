@@ -11,8 +11,15 @@ router.route('/')
     })
 
     .post(upload,(req, res, next) => {
-        console.log('router restaurant is here');
         restaurantService.add(req,res,next)
+    })
+
+router.route('/:id')
+    .get((req,res,next)=>{
+        restaurantService.getRestaurantById(req,res,next)
+    })
+    .put((req,res,next)=>{
+        restaurantService.updateRestaurant(req,res,next)
     })
 
 // .delete((req, res, next) => {

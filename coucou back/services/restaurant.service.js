@@ -1,18 +1,21 @@
 const Restaurant = require('../models/restaurant.model')
 
 exports.add = async (req, res, next) => {
-    req.body.restaurant=JSON.parse(req.body.restaurant)
-    console.log(req.files)
-   const restaurant = await Restaurant.findOne({ where: { phone: req.body.restaurant.phone } })
-   if (restaurant) res.status(400).json({ message: 'phone exist!' })
-   req.body.restaurant.image = req.files.image[0].filename
+  req.body.restaurant = JSON.parse(req.body.restaurant)
 
-   req.body.restaurant.menus =  req.body.restaurant.menus.map((element, index) => {
+  const restaurant = await Restaurant.findOne({ where: { phone: req.body.restaurant.phone.toString() } })
+  if (restaurant) res.status(400).json({ message: 'phone exist!' })
+
+  req.body.restaurant.image = req.files.image[0].filename
+
+  req.body.restaurant.menus = req.body.restaurant.menus ? req.body.restaurant.menus.map((element, index) => {
     return { ...element, image: req.files.menuImages[index].filename }
-   })
-   req.body.restaurant.rooms =  req.body.restaurant.rooms.map((element, index) => {
-     return { ...element, image: req.files.roomImages[index].filename }
-   })
+  }) : []
+
+  req.body.restaurant.rooms = req.body.restaurant.rooms ? req.body.restaurant.rooms.map((element, index) => {
+    return { ...element, image: req.files.roomImages[index].filename }
+  }) : []
+
   Restaurant.create(req.body.restaurant, { include: ['rooms', 'planning', 'menus'] })
     .then((restaurent) => {
       res.status(201).json({
@@ -26,18 +29,57 @@ exports.add = async (req, res, next) => {
       })
     })
 }
-exports.getAll= (req,res,next)=>{
-  Restaurant.findAll().then(
+exports.getAll = (req, res, next) => {
+  let key = "%" + req.body.key + "%"
+  page = req.query.page ? parseInt(req.query.page) : 1
+
+  perpage = req.query.perPage ? parseInt(req.query.perPage) : 10
+
+  const offset = (page * perpage) - perpage
+
+  Restaurant.findAll({
+    limit: perpage,
+    offset: offset,
+    where: {
+      [Op.or]: [
+        { name: { [Op.like]: key } },
+        { description: { [Op.like]: key } },
+        { email: { [Op.like]: key } },
+      ]
+    }
+  }).then(
     restaurants => {
-        res.status(200).json({
-          restaurant:restaurants
-        })
-       
+      res.status(200).json({
+        restaurant: restaurants
+      })
+
     },
-    err => next(err)
-).catch(
+  ).catch(err => {
     res.status(400).json({
-      message:'error'
+      message: 'error'
     })
-)
+  })
+}
+exports.getRestaurantById = (req, res, next) => {
+  Restaurant.findOne({
+    where: {
+      id: req.params.id
+    },
+    include: ['rooms', 'planning', 'menus']
+  }).then(restaurant => res.status(200).json({
+    restaurant: restaurant
+  })).catch(err => res.status(400).json({
+    message: 'bad request'
+  }))
+}
+exports.updateRestaurant=(req,res,next)=>{
+  Restaurant.update(req.body,{where: {id: req.params.id}}).then((restaurant)=>{
+    res.status(200).json({
+      restaurant:restaurant
+    })
+  }).catch(err=>{
+    res.status(400).json({
+      message:'bad request'
+    })
+  })
 }
