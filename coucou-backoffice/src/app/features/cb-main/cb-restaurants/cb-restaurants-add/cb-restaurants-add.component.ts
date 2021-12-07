@@ -17,7 +17,8 @@ import { RestaurantService } from '../../../../core/services/http/restaurant.ser
 })
 export class CbRestaurantsAddComponent implements OnInit {
 
-  addForm: FormGroup;
+  informationsForm: FormGroup;
+  planningForm: FormGroup;
 
   imageChangedEvent: any = '';
   croppedImage: any = null;
@@ -33,53 +34,42 @@ export class CbRestaurantsAddComponent implements OnInit {
               public matDialogRef: MatDialogRef<CbRestaurantsAddComponent>,
               private snackbarService: SnackbarService ,
               private restaurantService: RestaurantService) {
-    this.addForm = new FormGroup({
-
+    this.informationsForm = new FormGroup({
       name: new FormControl("", Validators.required),
-      description:  new FormControl("", Validators.required),
-      phone:  new FormControl("", Validators.required),
-      email: new FormControl("", Validators.required) ,
-      webSite:  new FormControl("", Validators.required),
-      responsable: new FormControl("", Validators.required) ,
-
-      monday :  new FormControl("", Validators.required),
-      mondayOpen:  new FormControl({value: '', disabled: false}, Validators.required),
-      mondayClose:  new FormControl({value: '', disabled: false}, Validators.required),
-      tuesday:  new FormControl("", Validators.required),
-      tuesdayOpen:  new FormControl({value: '', disabled: false}, Validators.required),
-      tuesdayClose:  new FormControl({value: '', disabled: false}, Validators.required),
-      wednesday:  new FormControl("", Validators.required),
-      wednesdayOpen:  new FormControl({value: '', disabled: false}, Validators.required),
-      wednesdayClose:  new FormControl({value: '', disabled: false}, Validators.required),
-      thursday:  new FormControl("", Validators.required),
-      thursdayOpen:  new FormControl({value: '', disabled: false}, Validators.required),
-      thursdayClose:  new FormControl({value: '', disabled: false}, Validators.required),
-      friday:  new FormControl("", Validators.required),
-      fridayOpen:  new FormControl({value: '', disabled: false}, Validators.required),
-      fridayClose:  new FormControl({value: '', disabled: false}, Validators.required),
-      saturday:  new FormControl("", Validators.required),
-      saturdayOpen:  new FormControl({value: '', disabled: false}, Validators.required),
-      saturdayClose:  new FormControl({value: '', disabled: false}, Validators.required),
-      sunday:  new FormControl("", Validators.required),
-      sundayOpen:  new FormControl({value: '', disabled: false}, Validators.required),
-      sundayClose:  new FormControl({value: '', disabled: false}, Validators.required),
-
+      description: new FormControl("", Validators.required),
+      phone: new FormControl("", Validators.required),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      webSite: new FormControl("", [Validators.required,
+        Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
+      responsable: new FormControl("", Validators.required),
+    })
+    this.planningForm = new FormGroup({
+      monday :  new FormControl(""),
+      mondayOpen:  new FormControl({value: '', disabled: true}),
+      mondayClose:  new FormControl({value: '', disabled: true}),
+      tuesday:  new FormControl(""),
+      tuesdayOpen:  new FormControl({value: '', disabled: true}),
+      tuesdayClose:  new FormControl({value: '', disabled: true}),
+      wednesday:  new FormControl(""),
+      wednesdayOpen:  new FormControl({value: '', disabled: true}),
+      wednesdayClose:  new FormControl({value: '', disabled: true}),
+      thursday:  new FormControl(""),
+      thursdayOpen:  new FormControl({value: '', disabled: true}),
+      thursdayClose:  new FormControl({value: '', disabled: true}),
+      friday:  new FormControl(""),
+      fridayOpen:  new FormControl({value: '', disabled: true}),
+      fridayClose:  new FormControl({value: '', disabled: true}),
+      saturday:  new FormControl(""),
+      saturdayOpen:  new FormControl({value: '', disabled: true}),
+      saturdayClose:  new FormControl({value: '', disabled: true}),
+      sunday:  new FormControl(""),
+      sundayOpen:  new FormControl({value: '', disabled: true}),
+      sundayClose:  new FormControl({value: '', disabled: true}),
     });
   }
 
   ngOnInit(): void {
     this.formData = new FormData() ;
-  }
-
-  handleDayChange(day: string , event) {
-    if(!event.checked) {
-      this.addForm.get(day + "Open").disable()
-      this.addForm.get(day + "Close").disable()
-    }
-    else {
-      this.addForm.get(day + "Open").enable()
-      this.addForm.get(day + "Close").enable()
-    }
   }
 
   onPickImage(event : any){
@@ -96,11 +86,24 @@ export class CbRestaurantsAddComponent implements OnInit {
     this.formData.append('image' ,   fileToReturn ) ;
   }
 
-  cancel() {
-    this.imageChangedEvent = '';
-    this.croppedImage = null;
-    this.formData = new FormData();
+  // cancel() {
+  //   this.imageChangedEvent = '';
+  //   this.croppedImage = null;
+  //   this.formData = new FormData();
+  // }
+
+  handleDayChange(day: string , event) {
+    if(!event.checked) {
+      this.planningForm.get(day + "Open").disable()
+      this.planningForm.get(day + "Close").disable()
+    }
+    else {
+      this.planningForm.get(day + "Open").enable()
+      this.planningForm.get(day + "Close").enable()
+    }
   }
+
+
 
   addMenu() {
     const dialogRef = this.dialog.open( CbRestaurantsAddMenuComponent, {
@@ -113,9 +116,8 @@ export class CbRestaurantsAddComponent implements OnInit {
             description: res.description ,
             name: res.name
           })
+          this.formData.append('menuImages' , res.image )
         }
-        this.formData.append('menuImages' , res.image )
-        // this.dataSource = new MatTableDataSource<Admin>(this.admins);
       }
     );
   }
@@ -135,8 +137,8 @@ export class CbRestaurantsAddComponent implements OnInit {
             packPrice: res.description ,
             packChildrenPrice: res.name
           })
+          this.formData.append('roomImages' , res.image )
         }
-        this.formData.append('roomImages' , res.image )
       }
     );
   }
@@ -153,40 +155,39 @@ export class CbRestaurantsAddComponent implements OnInit {
 
   addRestaurant() {
     let restaurant = {
-      name: this.addForm.value.name ,
-      description:  this.addForm.value.description ,
-      phone:  this.addForm.value.phone,
-      email: this.addForm.value.email,
-      webSite: this.addForm.value.webSite ,
-      responsable: this.addForm.value.responsable ,
+      name: this.informationsForm.value.name ,
+      description:  this.informationsForm.value.description ,
+      phone:  this.informationsForm.value.phone,
+      email: this.informationsForm.value.email,
+      webSite: this.informationsForm.value.webSite ,
+      responsable: this.informationsForm.value.responsable ,
       planning : {
-        monday :  this.addForm.value.monday ,
-        mondayOpen:  this.addForm.value.mondayOpen ,
-        mondayClose:  this.addForm.value.mondayClose ,
-        tuesday: this.addForm.value.tuesday ,
-        tuesdayOpen:  this.addForm.value.tuesdayOpen ,
-        tuesdayClose:  this.addForm.value.tuesdayClose ,
-        wednesday:  this.addForm.value.wednesday ,
-        wednesdayOpen:  this.addForm.value.wednesdayOpen ,
-        wednesdayClose: this.addForm.value.wednesdayClose ,
-        thursday:  this.addForm.value.thursday ,
-        thursdayOpen:  this.addForm.value.thursdayOpen ,
-        thursdayClose:  this.addForm.value.thursdayClose ,
-        friday:  this.addForm.value.friday ,
-        fridayOpen: this.addForm.value.fridayOpen ,
-        fridayClose:  this.addForm.value.fridayClose ,
-        saturday:  this.addForm.value.saturday ,
-        saturdayOpen: this.addForm.value.saturdayOpen ,
-        saturdayClose: this.addForm.value.saturdayClose ,
-        sunday:  this.addForm.value.sunday ,
-        sundayOpen:  this.addForm.value.sundayOpen ,
-        sundayClose:  this.addForm.value.sundayClose ,
+        monday :  this.planningForm.value.monday ,
+        mondayOpen:  this.planningForm.value.mondayOpen ,
+        mondayClose:  this.planningForm.value.mondayClose ,
+        tuesday: this.planningForm.value.tuesday ,
+        tuesdayOpen:  this.planningForm.value.tuesdayOpen ,
+        tuesdayClose:  this.planningForm.value.tuesdayClose ,
+        wednesday:  this.planningForm.value.wednesday ,
+        wednesdayOpen:  this.planningForm.value.wednesdayOpen ,
+        wednesdayClose: this.planningForm.value.wednesdayClose ,
+        thursday:  this.planningForm.value.thursday ,
+        thursdayOpen:  this.planningForm.value.thursdayOpen ,
+        thursdayClose:  this.planningForm.value.thursdayClose ,
+        friday:  this.planningForm.value.friday ,
+        fridayOpen: this.planningForm.value.fridayOpen ,
+        fridayClose:  this.planningForm.value.fridayClose ,
+        saturday:  this.planningForm.value.saturday ,
+        saturdayOpen: this.planningForm.value.saturdayOpen ,
+        saturdayClose: this.planningForm.value.saturdayClose ,
+        sunday:  this.planningForm.value.sunday ,
+        sundayOpen:  this.planningForm.value.sundayOpen ,
+        sundayClose:  this.planningForm.value.sundayClose ,
       },
       image:'',
       rooms: this.rooms,
       menus: this.menus
     }
-    //const blob = new Blob([JSON.stringify(restaurant)], {type: 'application/json'});
     this.formData.append('restaurant', JSON.stringify(restaurant));
     this.restaurantService.add(this.formData).subscribe(
       res => {
@@ -199,4 +200,11 @@ export class CbRestaurantsAddComponent implements OnInit {
   }
 
 
+  saveInformation() {
+
+  }
+
+  savePlanning() {
+
+  }
 }

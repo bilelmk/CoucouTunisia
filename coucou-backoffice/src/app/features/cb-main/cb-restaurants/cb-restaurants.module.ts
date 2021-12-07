@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CbRestaurantsAddComponent } from './cb-restaurants-add/cb-restaurants-add.component';
-import { CbRestaurantsUpdateComponent } from './cb-restaurants-update/cb-restaurants-update.component';
 import { CbRestaurantsComponent } from './cb-restaurants.component';
 import { RouterModule, Routes } from '@angular/router';
-import { CbRestaurantsPlanningComponent } from './cb-restaurants-planning/cb-restaurants-planning.component';
+import { CbRestaurantsPlanningComponent } from './cb-restaurants-main/cb-restaurants-planning/cb-restaurants-planning.component';
 import { CbRestaurantsMainComponent } from './cb-restaurants-main/cb-restaurants-main.component';
-import { CbRestaurantsImagesComponent } from './cb-restaurants-images/cb-restaurants-images.component';
-import { CbRestaurantsMenuComponent } from './cb-restaurants-menu/cb-restaurants-menu.component';
+import { CbRestaurantsImagesComponent } from './cb-restaurants-main/cb-restaurants-images/cb-restaurants-images.component';
+import { CbRestaurantsMenuComponent } from './cb-restaurants-main/cb-restaurants-menu/cb-restaurants-menu.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,12 +18,51 @@ import { CbRestaurantsAddMenuComponent } from './cb-restaurants-add/cb-restauran
 import { CbRestaurantsAddRoomComponent } from './cb-restaurants-add/cb-restaurants-add-room/cb-restaurants-add-room.component';
 import { CbRestaurantsAddImageComponent } from './cb-restaurants-add/cb-restaurants-add-image/cb-restaurants-add-image.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { SharedModule } from '../../../shared/shared.module';
+import { CbRestaurantsAvisComponent } from './cb-restaurants-main/cb-restaurants-avis/cb-restaurants-avis.component';
+import { CbRestaurantsInformationsComponent } from './cb-restaurants-main/cb-restaurants-informations/cb-restaurants-informations.component';
+import { CbRestaurantsRoomsComponent } from './cb-restaurants-main/cb-restaurants-rooms/cb-restaurants-rooms.component';
+import { CbRestaurantsClientsComponent } from './cb-restaurants-main/cb-restaurants-clients/cb-restaurants-clients.component';
 
 const routes: Routes = [
   {
     path: '',
     component: CbRestaurantsComponent
   },
+  {
+    path: ':id',
+    component: CbRestaurantsMainComponent,
+    children: [
+      {
+        path: 'informations',
+        component: CbRestaurantsInformationsComponent,
+      },
+      {
+        path: 'menus',
+        component: CbRestaurantsMenuComponent,
+      },
+      {
+        path: 'images',
+        component: CbRestaurantsImagesComponent,
+      },
+      {
+        path: 'planning',
+        component: CbRestaurantsPlanningComponent,
+      },
+      {
+        path: 'avis',
+        component: CbRestaurantsAvisComponent,
+      },
+      {
+        path: 'rooms',
+        component: CbRestaurantsRoomsComponent,
+      },
+      {
+        path: 'clients',
+        component: CbRestaurantsClientsComponent,
+      },
+    ]
+  }
 ];
 
 @NgModule({
@@ -37,7 +75,11 @@ const routes: Routes = [
     CbRestaurantsAddComponent,
     CbRestaurantsAddMenuComponent,
     CbRestaurantsAddRoomComponent,
-    CbRestaurantsAddImageComponent
+    CbRestaurantsAddImageComponent,
+    CbRestaurantsAvisComponent,
+    CbRestaurantsInformationsComponent,
+    CbRestaurantsRoomsComponent,
+    CbRestaurantsClientsComponent,
   ],
   imports: [
     CommonModule,
@@ -49,11 +91,11 @@ const routes: Routes = [
     MatInputModule,
     MatSlideToggleModule,
     ImageCropperModule,
-    CKEditorModule
+    CKEditorModule,
+    SharedModule
   ],
   entryComponents: [
     CbRestaurantsAddComponent,
-    CbRestaurantsUpdateComponent,
     CbRestaurantsAddMenuComponent,
     CbRestaurantsAddRoomComponent,
     CbRestaurantsAddImageComponent

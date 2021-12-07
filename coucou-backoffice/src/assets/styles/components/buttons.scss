@@ -55,20 +55,21 @@ button {
 }
 
 .select-btn {
-  padding: 6px;
-  background-color: #dbe2ef;
-  color : $cb-navy;
+  border-radius: 2px;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background-color: $cb-blue;
+  color : $cb-white;
   border: none;
   transition: 0.4s ;
   outline: none !important;
-  i {
-    transition: 0.5s ;
+  mat-icon {
+    width: 15px;
+    height: 15px;
+    font-size: 15px;
   }
-
   &:hover {
     background-color: $cb-navy;
-    mat-icon {
-      color : #f9f7f7 ;
-    }
   }
 }

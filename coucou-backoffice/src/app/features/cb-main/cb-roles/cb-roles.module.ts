@@ -8,8 +8,12 @@ import { SharedModule } from '../../../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CbRolesPermissionsComponent } from './cb-roles-permissions/cb-roles-permissions.component';
-import {MatListModule} from '@angular/material/list';
-import {MatButtonModule} from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { CbRolesModalComponent } from './cb-roles-modal/cb-roles-modal.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 const routes: Routes = [
   {
@@ -21,7 +25,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CbRolesComponent,
-    CbRolesPermissionsComponent
+    CbRolesPermissionsComponent,
+    CbRolesModalComponent
   ],
   imports: [
     CommonModule,
@@ -32,10 +37,14 @@ const routes: Routes = [
     MatIconModule,
     MatDialogModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   entryComponents: [
-    CbRolesPermissionsComponent
+    CbRolesPermissionsComponent,
+    CbRolesModalComponent
   ]
 })
 export class CbRolesModule { }

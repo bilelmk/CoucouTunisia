@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-cb-second-sidebar',
@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CbSecondSidebarComponent implements OnInit {
 
-  constructor() { }
+  @Input() routes: any;
 
-  ngOnInit(): void {
+  opened: boolean;
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.toggleMenu();
+  }
+
+  constructor() {}
+
+  ngOnInit() {
+    this.toggleMenu();
+  }
+
+  toggleMenu() {
+    this.opened = window.innerWidth > 990;
   }
 
 }
