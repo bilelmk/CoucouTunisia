@@ -7,13 +7,13 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 })
 export class CbSidebarComponent implements OnInit {
 
-  events: string[] = [];
   opened: boolean;
+  events: string[] = [];
 
   @Input() routes: any;
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize() {
     this.toggleMenu() ;
   }
 
@@ -27,9 +27,6 @@ export class CbSidebarComponent implements OnInit {
     this.opened = window.innerWidth > 990;
   }
 
-  logout() {
-    // this.authService.logout()
-  }
 }
 
 

@@ -5,6 +5,7 @@ import { CbSidebarComponent } from './components/cb-sidebar/cb-sidebar.component
 import { CbNavbarComponent } from './components/cb-navbar/cb-navbar.component';
 import { RouterModule } from '@angular/router';
 import { CbErrorsComponent } from './components/cb-errors/cb-errors.component';
+import { CbSecondSidebarComponent } from './components/cb-second-sidebar/cb-second-sidebar.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -17,7 +18,8 @@ import { MatListModule } from '@angular/material/list';
     CbCopyrightComponent,
     CbSidebarComponent,
     CbNavbarComponent,
-    CbErrorsComponent
+    CbErrorsComponent,
+    CbSecondSidebarComponent
   ],
   imports: [
     CommonModule,
@@ -32,13 +34,13 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-
   ],
   exports: [
     CbCopyrightComponent,
     CbSidebarComponent,
     CbNavbarComponent,
-    CbErrorsComponent
+    CbErrorsComponent,
+    CbSecondSidebarComponent
   ],
 })
 export class SharedModule { }

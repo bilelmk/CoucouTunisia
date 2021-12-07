@@ -2,7 +2,7 @@
 
   <p class="dialog-title">Liste des permissions</p>
 
-  <div class="row p-3 pt-1 pb-5 justify-content-center">
+  <div class="row pl-3 pr-3 pb-3 justify-content-center">
 
     <div class="col-5 mr-3 no-padding select-list-container">
       <div class="row justify-content-end">
@@ -10,7 +10,7 @@
           <mat-icon>keyboard_double_arrow_right</mat-icon>
         </button>
       </div>
-      <mat-selection-list #permissionsRef class="select-list no-padding" >
+      <mat-selection-list #permissionsRef class="select-list no-padding mt-1" >
         <mat-list-option *ngFor="let permission of permissions" [value]="permission">
           {{permission.name}}
         </mat-list-option>
@@ -24,7 +24,7 @@
           <mat-icon>keyboard_double_arrow_left</mat-icon>
         </button>
       </div>
-      <mat-selection-list #rolePermissionsRef class="select-list no-padding">
+      <mat-selection-list #rolePermissionsRef class="select-list no-padding mt-1">
         <mat-list-option *ngFor="let permission of rolePermissions" [value]="permission">
           {{permission.name}}
         </mat-list-option>
@@ -33,9 +33,11 @@
 
   </div>
 
-  <div class="col-12" >
-    <button class="full-width submit-btn" (click)="save()" >
-      Ajouter
-    </button>
+  <div class="row" >
+    <div class="col-12">
+      <button class="full-width submit-btn" (click)="save()" >
+        Ajouter
+      </button>
+    </div>
   </div>
 </div>

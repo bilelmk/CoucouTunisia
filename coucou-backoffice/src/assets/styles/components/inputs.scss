@@ -36,3 +36,7 @@
   outline: none;
 }
 
+input[type="file"] {
+  visibility: hidden !important;
+}
+

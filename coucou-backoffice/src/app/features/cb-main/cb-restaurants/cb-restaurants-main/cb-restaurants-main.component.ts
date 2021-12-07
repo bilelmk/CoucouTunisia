@@ -7,6 +7,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CbRestaurantsMainComponent implements OnInit {
 
+  routes = [
+    {
+      route : "informations" ,
+      name : "Général" ,
+    },
+    {
+      route : "clients" ,
+      name : "Clients" ,
+    },
+    {
+      route : "images" ,
+      name : "Mes Images" ,
+    },
+    {
+      route : "planning" ,
+      name : "planning" ,
+    },
+    {
+      route : "avis" ,
+      name : "Avis",
+    },
+    {
+      route : "menus" ,
+      name : "Menus" ,
+    },
+    {
+      route : "rooms" ,
+      name : "Rooms" ,
+    },
+
+  ]
   constructor() { }
 
   ngOnInit(): void {
