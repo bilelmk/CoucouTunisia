@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CbRestaurantsAddComponent } from './cb-restaurants-add/cb-restaurants-add.component';
+import { RestaurantService } from '../../../core/services/http/restaurant.service';
 
 @Component({
   selector: 'app-cb-restaurants',
@@ -11,9 +12,12 @@ import { CbRestaurantsAddComponent } from './cb-restaurants-add/cb-restaurants-a
 export class CbRestaurantsComponent implements OnInit {
 
   constructor( private spinnerService: SpinnerService ,
-               private dialog: MatDialog ) { }
+               private dialog: MatDialog ,
+               private restaurantService: RestaurantService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.restaurantService.get
+  }
 
   openAddModal() {
     const dialogRef = this.dialog.open( CbRestaurantsAddComponent, {

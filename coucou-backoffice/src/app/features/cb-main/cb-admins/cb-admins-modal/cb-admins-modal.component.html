@@ -8,38 +8,65 @@
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Nom</mat-label>
         <input  formControlName="firstname" matInput type="text" required>
+        <mat-error *ngIf="!form.hasError('required')">
+          Ce champ est obligatoire
+        </mat-error>
       </mat-form-field>
     </div>
 
-    <div class="col-12">
+    <div class="col-12 mt-1">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Prénom</mat-label>
         <input  formControlName="lastname" matInput type="text" required>
+        <mat-error *ngIf="!form.hasError('required')">
+          Ce champ est obligatoire
+        </mat-error>
       </mat-form-field>
     </div>
 
-    <div class="col-12">
+    <div class="col-12 mt-1">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Nom d'utilisateur</mat-label>
         <input  formControlName="username" matInput type="text" required>
+        <mat-error *ngIf="!form.hasError('required')">
+          Ce champ est obligatoire
+        </mat-error>
       </mat-form-field>
     </div>
 
-    <div class="col-12">
+    <div class="col-12 mt-1">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Mot de passe</mat-label>
         <input  formControlName="password" matInput type="password" required>
+        <mat-error *ngIf="!form.hasError('required')">
+          Ce champ est obligatoire
+        </mat-error>
       </mat-form-field>
     </div>
 
-    <div class="col-12">
+    <div class="col-12 mt-1">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Confimer le mot de passe</mat-label>
         <input  formControlName="confirm" matInput type="password" required>
+        <mat-error *ngIf="!form.hasError('required')">
+          Ce champ est obligatoire
+        </mat-error>
       </mat-form-field>
     </div>
 
-    <div class="col-12" >
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="roleId" >
+          <mat-option *ngFor="let role of roles" value="{{role.id}}">{{role.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!form.hasError('required')">
+          Ce champ est obligatoire
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1" >
       <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid" *ngIf="!data.edit">
         Ajouter
       </button>

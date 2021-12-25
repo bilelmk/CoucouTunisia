@@ -46,7 +46,7 @@ app.use("/api/admins", adminRoutes);
 app.use("/api/permissions", permissionRoutes);
 app.use("/api/roles", roleRoutes);
 
-// init() ;
+init() ;
 
 // app.use((req, res, next) => {
 //     res.sendFile(path.join(__dirname, "react app", "index.html"));

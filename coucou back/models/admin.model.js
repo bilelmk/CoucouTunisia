@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize') ;
 const sequelize = require('../util/database-config') ;
-const Restaurant = require('./restaurant.model') ;
+const Role = require('./role.model') ;
 
 const Admin = sequelize.define('admin' , {
     id: {
@@ -26,10 +26,10 @@ const Admin = sequelize.define('admin' , {
         type : Sequelize.STRING ,
         allowNull : false ,
     },
-    role: {
-        type : Sequelize.ENUM('ADMIN', 'SUPER') ,
-        allowNull : false ,
-    },
+    // role: {
+    //     type : Sequelize.ENUM('ADMIN', 'SUPER') ,
+    //     allowNull : false ,
+    // },
     active: {
         type : Sequelize.BOOLEAN ,
         allowNull : false ,
@@ -37,6 +37,6 @@ const Admin = sequelize.define('admin' , {
 });
 
 //Admin.hasOne(Restaurant ,{ as : "restaurant" });
-//Restaurant.belongsTo(Admin);
+Admin.belongsTo(Role);
 
 module.exports = Admin ;

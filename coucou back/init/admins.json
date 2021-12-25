@@ -5,7 +5,7 @@
       "password": "123456",
       "firstname": "Bilel",
       "lastname": "Mekrazi",
-      "role": "SUPER",
+      "roleId": 1,
       "active": true
     }
   ]

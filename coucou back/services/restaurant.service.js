@@ -1,8 +1,7 @@
 const Restaurant = require('../models/restaurant.model')
 
 exports.add = async (req, res, next) => {
-    req.body.restaurant=JSON.parse(req.body.restaurant)
-    console.log(req.files)
+    req.body.restaurant = JSON.parse(req.body.restaurant)
    const restaurant = await Restaurant.findOne({ where: { phone: req.body.restaurant.phone } })
    if (restaurant) res.status(400).json({ message: 'phone exist!' })
    req.body.restaurant.image = req.files.image[0].filename
@@ -19,7 +18,6 @@ exports.add = async (req, res, next) => {
         message: 'done!'
       })
     }).catch(err => {
-      console.log('error', err)
       res.status(400).json({
         message: 'error',
         error: err

@@ -29,12 +29,8 @@ export class RoleService {
     return this.http.delete(this.URL + "/" + id);
   }
 
-  // addPermissions(id: number, permissions: Permission[]) {
-  //   return this.http.post(this.URL + "/permissions/" + id , permissions)
-  // }
-
-  updatePermissions(id: number, permissions: Permission[]) {
-    return this.http.put(this.URL + "/permissions/" + id , permissions)
+  updatePermissions(id: number, permissionIds: number[]) {
+    return this.http.put(this.URL + "/permissions/" + id , permissionIds)
   }
 
 }

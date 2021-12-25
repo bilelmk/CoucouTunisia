@@ -60,3 +60,21 @@ exports.update = async (req, res , next , id) => {
     })
 }
 
+exports.addPermissions = async (req, res, next , id) => {
+    let role = await Role.findByPk(id) ;
+    if(role){
+        role.setPermissions(req.body).then(result => {
+                return res.status(200).json(
+                    result
+                );
+        }).catch(err => {
+            return res.status(500).json({
+                message: err
+            });
+        })
+    } else {
+        return res.status(404).json({
+            message: "not found !"
+        });
+    }
+}

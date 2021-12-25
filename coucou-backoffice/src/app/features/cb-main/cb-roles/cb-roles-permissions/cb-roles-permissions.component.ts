@@ -29,7 +29,11 @@ export class CbRolesPermissionsComponent implements OnInit {
   ngOnInit(): void {
     this.permissionService.getAll().subscribe(
       res => {
-        this.permissions = res ;
+        this.permissions = res
+        for(let permission of this.data.item.permissions) {
+          Helpers.addToArray(permission , this.rolePermissions)
+          Helpers.deleteFromArray(permission , this.permissions)
+        }
       },
       error => {
         console.log(error)
@@ -52,9 +56,13 @@ export class CbRolesPermissionsComponent implements OnInit {
   }
 
   save() {
-    this.roleService.updatePermissions(this.data.id , []).subscribe(
+    let permissions = this.rolePermissions.map(permission => {
+      return permission.id
+    })
+    this.roleService.updatePermissions(this.data.item.id , permissions).subscribe(
       res => {
-        console.log(res)
+        this.data.item.permissions = res
+        this.matDialogRef.close();
       },error => {
         console.log(error)
       }

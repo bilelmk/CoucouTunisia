@@ -36,7 +36,11 @@
       <ng-container matColumnDef="permissions" >
         <mat-header-cell *matHeaderCellDef >Permissions</mat-header-cell>
         <mat-cell *matCellDef="let role" >
-          <p class="cell-text"  > -- </p>
+          <p class="cell-text">
+              <span *ngFor="let permission of role?.permissions">
+                {{permission.name}}
+              </span>
+          </p>
         </mat-cell>
       </ng-container>
 
