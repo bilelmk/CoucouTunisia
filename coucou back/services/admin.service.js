@@ -33,9 +33,9 @@ exports.signin = async ( req, res , next ) => {
         }
     }
     else {
-            res.status(401).json({
-                message: "wrong username"
-            });
+        res.status(401).json({
+            message: "wrong username"
+        });
     }
 }
 

@@ -5,6 +5,7 @@ import { SpinnerService } from '../../core/services/in-app/spinner.service';
 import { SessionStorageService } from '../../core/services/in-app/session-storage.service';
 import { AuthenticationService } from '../../core/services/http/authentication.service';
 import { SnackbarService } from '../../core/services/in-app/snackbar.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cb-login',
@@ -14,17 +15,22 @@ import { SnackbarService } from '../../core/services/in-app/snackbar.service';
 export class CbLoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  error : string = null ;
+  errors ;
 
   constructor(private formBuilder: FormBuilder ,
               private router: Router ,
               private spinnerService: SpinnerService ,
               private authenticationService: AuthenticationService ,
               private sessionStorageService: SessionStorageService ,
-              private snackbarService: SnackbarService) {}
+              private snackbarService: SnackbarService ,
+              private http: HttpClient) {}
 
-  ngOnInit(): void
-  {
+  ngOnInit(): void {
+    this.http.get('assets/other/errors.json').subscribe((data : any) => {
+      this.errors = data;
+      console.log(this.errors)
+    });
+
     this.loginForm = this.formBuilder.group({
       username   : ['', [Validators.required]],
       password: ['', Validators.required]
@@ -45,7 +51,15 @@ export class CbLoginComponent implements OnInit {
         this.router.navigate(['/main'])
       },
       error => {
-        this.snackbarService.openSnackBar(error.error.message , 'fail')
+        if(error.error.message == "wrong password") {
+          this.snackbarService.openSnackBar(error.error.message , 'Mot de passe incorrect')
+        }
+        if(error.error.message == "account deactivated") {
+          this.snackbarService.openSnackBar(error.error.message , 'Votre compte a été bloqué, vous pouvez contacter l\'administration')
+        }
+        if(error.error.message == "wrong username") {
+          this.snackbarService.openSnackBar(error.error.message , 'Nom d\'utilisateur incorrect')
+        }
         this.spinnerService.deactivate()
 
       }
