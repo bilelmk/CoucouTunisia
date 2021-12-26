@@ -40,10 +40,9 @@ export class CbRolesComponent implements OnInit {
     this.spinnerService.activate()
     this.roleService.getAll().subscribe(
       res => {
-        console.log(res)
         this.loading = false ;
         this.roles = res ;
-        this.dataSource = new MatTableDataSource<Role>(res);
+        this.dataSource.data = res;
         this.spinnerService.deactivate()
       },
       error => {
@@ -62,7 +61,7 @@ export class CbRolesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        this.dataSource = new MatTableDataSource<Role>(this.roles);
+        this.dataSource.data = this.roles;
       }
     );
   }
@@ -76,7 +75,7 @@ export class CbRolesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        // this.dataSource = new MatTableDataSource<Role>(this.roles);
+        this.dataSource.data = this.roles;
       }
     );
   }
@@ -88,7 +87,7 @@ export class CbRolesComponent implements OnInit {
           res => {
             this.snackbarService.openSnackBar('Role supprimé avec succès','success') ;
             Helpers.deleteFromArray(role , this.roles)
-            this.dataSource = new MatTableDataSource<Role>(this.roles);
+            this.dataSource.data = this.roles;
           },error => {
             this.snackbarService.openSnackBar('Erreur lors de la suppression', 'fail');
             console.log(error)

@@ -5,6 +5,7 @@ import { Permission } from '../../../../core/models/permission';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Helpers } from '../../../../shared/helpers/helpers';
 import { RoleService } from '../../../../core/services/http/role.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cb-roles-modal',
@@ -15,14 +16,20 @@ export class CbRolesModalComponent implements OnInit {
 
   form: FormGroup;
   permissions: Permission[] = [] ;
+  errors ;
 
   constructor(public dialog: MatDialog,
               public matDialogRef: MatDialogRef<CbRolesModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any ,
               private snackbarService: SnackbarService ,
-              private roleService: RoleService) { }
+              private roleService: RoleService,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get('assets/other/errors.json').subscribe((data : any) => {
+      this.errors = data;
+    });
+
     if(!this.data.isEditMode) {
       this.form = new FormGroup({
         description: new FormControl(""),

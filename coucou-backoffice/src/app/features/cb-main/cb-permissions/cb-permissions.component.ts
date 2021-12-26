@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -25,7 +25,9 @@ export class CbPermissionsComponent implements OnInit {
   loading = false ;
 
   @ViewChild(MatPaginator , {static: false}) set paginator(pager:MatPaginator) {
-    if (pager) this.dataSource.paginator = pager;
+    if (pager) {
+      this.dataSource.paginator = pager;
+    }
   }
 
   constructor(private spinnerService: SpinnerService ,
@@ -41,7 +43,7 @@ export class CbPermissionsComponent implements OnInit {
       res => {
         this.loading = false ;
         this.permissions = res ;
-        this.dataSource = new MatTableDataSource<Permission>(res);
+        this.dataSource.data = res
         this.spinnerService.deactivate()
       },
       error => {
@@ -60,7 +62,7 @@ export class CbPermissionsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        this.dataSource = new MatTableDataSource<Permission>(this.permissions);
+        this.dataSource.data = this.permissions
       }
     );
   }
@@ -72,7 +74,7 @@ export class CbPermissionsComponent implements OnInit {
           res => {
             this.snackbarService.openSnackBar('Permission supprimé avec succès','success') ;
             Helpers.deleteFromArray(permission , this.permissions)
-            this.dataSource = new MatTableDataSource<Permission>(this.permissions);
+            this.dataSource.data = this.permissions
           },error => {
             this.snackbarService.openSnackBar('Erreur lors de la suppression', 'fail');
             console.log(error)

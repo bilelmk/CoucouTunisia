@@ -61,7 +61,7 @@ export class CbRolesPermissionsComponent implements OnInit {
     })
     this.roleService.updatePermissions(this.data.item.id , permissions).subscribe(
       res => {
-        this.data.item.permissions = res
+        this.data.item.permissions = this.rolePermissions
         this.matDialogRef.close();
       },error => {
         console.log(error)
