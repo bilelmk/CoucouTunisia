@@ -57,7 +57,6 @@ export class CbAdminsModalComponent implements OnInit {
     )
   }
 
-
   add() {
     this.spinnerService.activate();
     this.adminService.add(this.form.value).subscribe(

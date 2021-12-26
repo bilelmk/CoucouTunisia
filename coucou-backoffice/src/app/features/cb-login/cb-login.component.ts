@@ -47,21 +47,21 @@ export class CbLoginComponent implements OnInit {
       res => {
         this.sessionStorageService.save(res.token) ;
         this.spinnerService.deactivate() ;
+        sessionStorage.setItem('permissions' , JSON.stringify(res.admin.role.permissions))
         this.snackbarService.openSnackBar("Connecté avec succès" , 'success')
         this.router.navigate(['/main'])
       },
       error => {
+        this.spinnerService.deactivate()
         if(error.error.message == "wrong password") {
-          this.snackbarService.openSnackBar(error.error.message , 'Mot de passe incorrect')
+          this.snackbarService.openSnackBar("Mot de passe incorrect" , 'fail')
         }
         if(error.error.message == "account deactivated") {
-          this.snackbarService.openSnackBar(error.error.message , 'Votre compte a été bloqué, vous pouvez contacter l\'administration')
+          this.snackbarService.openSnackBar("Votre compte a été bloqué, vous pouvez contacter l'administration", 'fail')
         }
         if(error.error.message == "wrong username") {
-          this.snackbarService.openSnackBar(error.error.message , 'Nom d\'utilisateur incorrect')
+          this.snackbarService.openSnackBar("Nom d'utilisateur incorrect", 'fail')
         }
-        this.spinnerService.deactivate()
-
       }
     )
   }

@@ -36,7 +36,7 @@ const Admin = sequelize.define('admin' , {
     },
 });
 
-//Admin.hasOne(Restaurant ,{ as : "restaurant" });
+Role.hasOne(Admin);
 Admin.belongsTo(Role);
 
 module.exports = Admin ;

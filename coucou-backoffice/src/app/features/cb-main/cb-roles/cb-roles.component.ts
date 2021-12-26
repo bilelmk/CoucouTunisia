@@ -40,6 +40,7 @@ export class CbRolesComponent implements OnInit {
     this.spinnerService.activate()
     this.roleService.getAll().subscribe(
       res => {
+        console.log(res)
         this.loading = false ;
         this.roles = res ;
         this.dataSource = new MatTableDataSource<Role>(res);

@@ -1,10 +1,14 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 const Admin = require("../models/admin.model");
+const Role = require("../models/role.model");
+const Permission = require("../models/permission.model");
 
 exports.signin = async ( req, res , next ) => {
-    let admin = await Admin.findOne( {where: { username: req.body.username }}) ;
+    let admin = await Admin.findOne(
+        { include: [{ model : Role , include: {model : Permission}}]},
+        {where: { username: req.body.username }}
+    ) ;
     if(admin){
         let checkPassword = await bcrypt.compare(req.body.password, admin.password) ;
         if(!checkPassword){
@@ -22,7 +26,8 @@ exports.signin = async ( req, res , next ) => {
                 );
                 res.status(200).json({
                     token: token,
-                    expiresIn: 18000
+                    expiresIn: 18000 ,
+                    admin: admin
                 });
             }
             else {
@@ -41,60 +46,26 @@ exports.signin = async ( req, res , next ) => {
 
 exports.add = async ( req, res , next ) => {
     let admin = await Admin.findOne({ where: { username: req.body.username }})
+    let role = await Role.findByPk(req.body.roleId)
+    if(!role) res.status(405).json({message: "role not found"});
     if(!admin) {
-        bcrypt.hash(req.body.password, 10).then(hash => {
+        let hash = await bcrypt.hash(req.body.password, 10)
+        if(hash){
             req.body.password = hash
-            req.body.role = 'ADMIN'
             req.body.active = true
-            Admin.create(req.body).then(result => {
-                res.status(200).json(
-                    result
-                );
-            }).catch(err => {
-                res.status(500).json({
-                    message: "server error"
-                });
-            });
-        })
-    }
-    else {
-        return res.status(405).json({
-            message: "existing email"
-        });
-    }
-}
-
-exports.login = ( req, res , next ) => {
-    let fetchedUser;
-    Admin.findOne( {where: { username: req.body.username }}).then(user => {
-        fetchedUser = user.dataValues ;
-        return bcrypt.compare(req.body.password, fetchedUser.password);
-    }).then(result => {
-        if (!result) {
-            return res.status(401).json({
-                message: "wrong password"
-            });
+            let savedAdmin = await Admin.create(req.body)
+            if(savedAdmin){
+                let result = {
+                    ...savedAdmin.dataValues ,
+                    role : role
+                }
+                return res.status(200).json(result);
+            }
+            else res.status(500).json({message: "server error"});
         }
-        if (fetchedUser.active === false) {
-            return res.status(401).json({
-                message: "blocked account"
-            });
-        }
-        const token = jwt.sign(
-            { username: fetchedUser.username, userId: fetchedUser.id },
-            "secret_this_should_be_longer",
-            { expiresIn: "1h" }
-        );
-        res.status(200).json({
-            token: token,
-            expiresIn: 3600
-        });
-    })
-    .catch(err => {
-        return res.status(401).json({
-            message: "wrong email"
-        });
-    });
+        else res.status(500).json({message: "server error"});
+    }
+    else res.status(405).json({message: "existing email"});
 }
 
 exports.delete = ( req, res , next , adminId) => {
@@ -125,7 +96,7 @@ exports.update = ( req, res , next ) => {
     Admin.update({ firstname: req.body.firstname ,
                    lastname: req.body.lastname,
                    username: req.body.username },
-                 { where: { id: req.body.firstname }})
+                 { where: { id: req.body.id }})
     .then(result => {
         if(result[0] === 1){
             return res.status(200).json({
