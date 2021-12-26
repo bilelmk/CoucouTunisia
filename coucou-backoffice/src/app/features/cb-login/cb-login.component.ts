@@ -28,7 +28,6 @@ export class CbLoginComponent implements OnInit {
   ngOnInit(): void {
     this.http.get('assets/other/errors.json').subscribe((data : any) => {
       this.errors = data;
-      console.log(this.errors)
     });
 
     this.loginForm = this.formBuilder.group({

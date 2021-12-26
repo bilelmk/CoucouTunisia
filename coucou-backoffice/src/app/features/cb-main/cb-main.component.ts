@@ -69,7 +69,7 @@ export class CbMainComponent implements OnInit {
       route : "notifications" ,
       name : "Notification Service" ,
       icon : "notifications",
-      permission: "NOTIFICATIONS"
+      permission: "NOTIFICATION"
     },
     {
       type: "route",
@@ -97,7 +97,6 @@ export class CbMainComponent implements OnInit {
 
   ngOnInit(): void {
     let permissions = JSON.parse(sessionStorage.getItem('permissions' ))
-    console.log(JSON.parse(sessionStorage.getItem('permissions' )))
     this.routes = this.routes.filter(object => {
       return object.type == 'button' || this.isPermissionExist(object.permission , permissions )
     })

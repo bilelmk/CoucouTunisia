@@ -9,7 +9,7 @@ const Permission = sequelize.define('permission' , {
         primaryKey : true
     },
     name: {
-        type : Sequelize.ENUM('MAILING', 'MESSAGING' , 'NOTIFICATION' , 'PUB') ,
+        type : Sequelize.STRING ,
         allowNull : false ,
         unique: true
     },

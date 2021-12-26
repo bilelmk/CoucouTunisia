@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { SnackbarService } from '../../../../core/services/in-app/snackbar.service';
 import { PermissionService } from '../../../../core/services/http/permission.service';
 import { Helpers } from '../../../../shared/helpers/helpers';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cb-permissions-modal',
@@ -13,15 +14,20 @@ import { Helpers } from '../../../../shared/helpers/helpers';
 export class CbPermissionsModalComponent implements OnInit {
 
   form: FormGroup;
-  permissions: String[] = ['MAILING', 'MESSAGING' , 'NOTIFICATION' , 'PUB']
+  errors;
 
   constructor(public dialog: MatDialog,
               public matDialogRef: MatDialogRef<CbPermissionsModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any ,
               private snackbarService: SnackbarService ,
-              private permissionService: PermissionService) { }
+              private permissionService: PermissionService,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get('assets/other/errors.json').subscribe((data : any) => {
+      this.errors = data;
+    });
+
     if(!this.data.isEditMode) {
       this.form = new FormGroup({
         name: new FormControl("", Validators.required),
@@ -36,7 +42,7 @@ export class CbPermissionsModalComponent implements OnInit {
     }
   }
 
-  add()  {
+  add() {
     this.permissionService.add(this.form.value).subscribe(
       (res) => {
         Helpers.addToArray(res , this.data.array)
