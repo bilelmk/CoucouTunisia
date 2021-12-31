@@ -20,6 +20,10 @@ export class AdminsService {
     return this.http.post<Admin>(this.URL , admin);
   }
 
+  update(admin: Admin, id: number): Observable<Admin> {
+    return this.http.put<Admin>(this.URL + "/" + id , admin);
+  }
+
   delete(id: number) {
     return this.http.delete(this.URL + "/" + id);
   }

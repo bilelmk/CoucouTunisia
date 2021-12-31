@@ -7,7 +7,7 @@ const Permission = require("../models/permission.model");
 exports.signin = async ( req, res , next ) => {
     let admin = await Admin.findOne(
         { include: [{ model : Role , include: {model : Permission}}]},
-        {where: { username: req.body.username }}
+        { where: { username: req.body.username }}
     ) ;
     if(admin){
         let checkPassword = await bcrypt.compare(req.body.password, admin.password) ;
@@ -70,80 +70,55 @@ exports.add = async ( req, res , next ) => {
 
 exports.delete = ( req, res , next , adminId) => {
     Admin.destroy({ where: { id: adminId }}).then(result => {
-        return res.status(200).json(
-            result
-        );
+        return res.status(200).json(result);
     }).catch(err => {
-        return res.status(404).json({
-            message: err
-        });
+        return res.status(404).json({message: err});
     })
 }
 
 exports.getAll = ( req, res , next ) => {
     Admin.findAll().then(result =>{
-        return res.status(200).json(
-            result
-        );
+        return res.status(200).json(result);
     }).catch(err => {
-        return res.status(404).json({
-            message: "no records"
-        });
+        return res.status(404).json({message: "no records"});
     })
 }
 
-exports.update = ( req, res , next ) => {
+exports.update = ( req, res , next , id ) => {
     Admin.update({ firstname: req.body.firstname ,
                    lastname: req.body.lastname,
-                   username: req.body.username },
-                 { where: { id: req.body.id }})
+                   username: req.body.username ,
+                   roleId: req.body.roleId},
+                 { where: { id: id }})
     .then(result => {
         if(result[0] === 1){
-            return res.status(200).json({
-                message: "success"
-            });
+            return res.status(200).json(result);
         }
-        return res.status(404).json({
-            message: "not found"
-        });
+        return res.status(404).json({message: "not found"});
     }).catch(err => {
-        return res.status(500).json({
-            message: "server error"
-        });
+        return res.status(500).json({message: "server error"});
     })
 }
 
 exports.block = ( req, res , next , id ) => {
     Admin.update({ active: false }, {where: { id: id }}).then(result => {
         if(result[0] === 1){
-            return res.status(200).json({
-                message: "success"
-            });
+            return res.status(200).json({message: "success"});
         }
-        return res.status(404).json({
-            message: "not found"
-        });
+        return res.status(404).json({message: "not found"});
     }).catch(err => {
-        return res.status(500).json({
-            message: "server error"
-        });
+        return res.status(500).json({message: "server error"});
     })
 }
 
 exports.deblock = ( req, res , next , id ) => {
     Admin.update({ active: true }, {where: { id: id }}).then(result => {
         if(result[0] === 1){
-            return res.status(200).json({
-                message: "success"
-            });
+            return res.status(200).json({message: "success"});
         }
-        return res.status(404).json({
-            message: "not found"
-        });
+        return res.status(404).json({message: "not found"});
     }).catch(err => {
-        return res.status(500).json({
-            message: "server error"
-        });
+        return res.status(500).json({message: "server error"});
     })
 }
 

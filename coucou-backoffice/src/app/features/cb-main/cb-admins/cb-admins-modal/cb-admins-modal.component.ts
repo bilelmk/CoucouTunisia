@@ -6,6 +6,7 @@ import { SnackbarService } from '../../../../core/services/in-app/snackbar.servi
 import { AdminsService } from '../../../../core/services/http/admins.service';
 import { RoleService } from '../../../../core/services/http/role.service';
 import { Role } from '../../../../core/models/role';
+import {Helpers} from '../../../../shared/helpers/helpers';
 
 @Component({
   selector: 'app-cb-admins-modal',
@@ -24,7 +25,7 @@ export class CbAdminsModalComponent implements OnInit {
               private adminService: AdminsService,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private roleService: RoleService ) {
-    if(!this.data.edit) {
+    if(!this.data.isEditMode) {
       this.form = new FormGroup({
         firstname: new FormControl("", Validators.required),
         lastname:  new FormControl("", Validators.required),
@@ -38,8 +39,6 @@ export class CbAdminsModalComponent implements OnInit {
       this.form = new FormGroup({
         firstname: new FormControl(data.item.firstname, Validators.required),
         lastname:  new FormControl(data.item.lastname, Validators.required),
-        password: new FormControl(data.item.password, Validators.required),
-        confirm: new FormControl(data.item.password, Validators.required),
         username: new FormControl(data.item.username, Validators.required),
         roleId: new FormControl(data.item.username, Validators.required),
       });
@@ -61,10 +60,7 @@ export class CbAdminsModalComponent implements OnInit {
     this.spinnerService.activate();
     this.adminService.add(this.form.value).subscribe(
       (res) => {
-        if (!this.data.array) {
-          this.data = [];
-        }
-        this.data.array.push(res)
+        Helpers.addToArray(res , this.data.array)
         this.snackbarService.openSnackBar('Administrateur ajouté avec succès', 'green-snackbar');
         this.spinnerService.deactivate();
         this.matDialogRef.close();
@@ -78,6 +74,15 @@ export class CbAdminsModalComponent implements OnInit {
   }
 
   update() {
-
+    this.adminService.update(this.form.value , this.data.item.id).subscribe(
+      res => {
+        Helpers.updateFields(this.form.value ,this.data.item )
+        this.snackbarService.openSnackBar('Administrateur modifier avec succès', 'success');
+        this.matDialogRef.close();
+      },
+      error => {
+          this.snackbarService.openSnackBar("Erreur lors de la modification de l'administrateur",'fail');
+      }
+    )
   }
 }

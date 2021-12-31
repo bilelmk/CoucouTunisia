@@ -9,6 +9,7 @@ import { CbRestaurantsAddMenuComponent } from './cb-restaurants-add-menu/cb-rest
 import { CbRestaurantsAddRoomComponent } from './cb-restaurants-add-room/cb-restaurants-add-room.component';
 import { CbRestaurantsAddImageComponent } from './cb-restaurants-add-image/cb-restaurants-add-image.component';
 import { RestaurantService } from '../../../../core/services/http/restaurant.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-cb-restaurants-add',
@@ -28,6 +29,18 @@ export class CbRestaurantsAddComponent implements OnInit {
   restaurants ;
   menus = [] ;
   rooms = [] ;
+
+  map ;
+  marker ;
+  smallIcon = new L.Icon({
+    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png',
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
+    iconSize:    [25, 41],
+    iconAnchor:  [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    shadowSize:  [41, 41]
+  });
 
   constructor(private spinnerService: SpinnerService,
               public dialog: MatDialog,
@@ -85,12 +98,6 @@ export class CbRestaurantsAddComponent implements OnInit {
     )
     this.formData.append('image' ,   fileToReturn ) ;
   }
-
-  // cancel() {
-  //   this.imageChangedEvent = '';
-  //   this.croppedImage = null;
-  //   this.formData = new FormData();
-  // }
 
   handleDayChange(day: string , event) {
     if(!event.checked) {
@@ -207,4 +214,39 @@ export class CbRestaurantsAddComponent implements OnInit {
   savePlanning() {
 
   }
+
+  changeTab(event: number) {
+    // if selected tab is localisation of index 5 create the map
+    if(event == 5 && !this.map) {
+      setTimeout(()=> {this.createMap()},500)
+    }
+  }
+
+  createMap() {
+    let coordinate = {
+      lat: 36.786967,
+      lng: 10.184326,
+    }
+
+    const zoomLevel = 10;
+    this.map = L.map('map', {
+      center: [coordinate.lat, coordinate.lng],
+      zoom: zoomLevel
+    });
+    const mainLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      minZoom: 0,
+      maxZoom: 20,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    mainLayer.addTo(this.map);
+
+    this.map.addEventListener('click' , (e) => this.setMarkerCoordinate(e))
+    this.marker = L.marker([coordinate.lat, coordinate.lng], { icon: this.smallIcon });
+    this.marker.addTo(this.map)
+  }
+
+  setMarkerCoordinate(event :any){
+    this.marker.setLatLng([event.latlng.lat, event.latlng.lng])
+  }
+
 }

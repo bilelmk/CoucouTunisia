@@ -14,6 +14,9 @@ router.route('/:id')
     .delete((req, res, next) => {
         adminService.delete(req, res, next , req.params.id ) ;
     })
+    .put((req, res, next) => {
+        adminService.update(req, res, next , req.params.id ) ;
+    })
 
 router.route('/signin')
     .post((req, res, next) => {

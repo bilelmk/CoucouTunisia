@@ -51,6 +51,7 @@ export class CbPermissionsModalComponent implements OnInit {
       },
       err => {
         this.snackbarService.openSnackBar('Erreur lors de l\'ajout de permission', 'fail');
+        console.log(err)
       }
     );
   }

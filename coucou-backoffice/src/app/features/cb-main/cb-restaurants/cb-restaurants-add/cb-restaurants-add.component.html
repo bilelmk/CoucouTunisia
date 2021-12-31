@@ -1,7 +1,7 @@
 <div class="dialog-container">
   <p class="dialog-title">Ajouter un restaurant</p>
 
-    <mat-tab-group mat-align-tabs="center">
+    <mat-tab-group mat-align-tabs="center" (selectedIndexChange)="changeTab($event)">
 
       <mat-tab label="Informations et images">
         <form [formGroup]="informationsForm">
@@ -255,9 +255,14 @@
               </i>
             </button>
           </div>
-<!--          <div *ngFor="let room of rooms">-->
-<!--            <p>{{room.name}}</p>-->
-<!--          </div>-->
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Localisation">
+        <div class="map-container col-12 mt-5">
+          <div class="map-frame">
+            <div id="map"></div>
+          </div>
         </div>
         <div class="col-12 mt-3">
           <button class="submit-btn full-width" (click)="addRestaurant()" >
@@ -271,3 +276,4 @@
 <!--  </form>-->
 
 </div>
+

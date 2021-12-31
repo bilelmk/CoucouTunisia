@@ -1,6 +1,8 @@
 <div class="dialog-container">
 
-  <p class="dialog-title" >Ajouter un admin</p>
+  <p class="dialog-title" *ngIf="!data.isEditMode">Ajouter un admin</p>
+  <p class="dialog-title" *ngIf="data.isEditMode" >Modifié l'admin</p>
+
 
   <form [formGroup]="form" class="row justify-content-center align-items-center scale-in-center p-4 pt-3">
 
@@ -34,7 +36,7 @@
       </mat-form-field>
     </div>
 
-    <div class="col-12 mt-1">
+    <div class="col-12 mt-1" *ngIf="!data.isEditMode">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Mot de passe</mat-label>
         <input  formControlName="password" matInput type="password" required>
@@ -44,7 +46,7 @@
       </mat-form-field>
     </div>
 
-    <div class="col-12 mt-1">
+    <div class="col-12 mt-1" *ngIf="!data.isEditMode">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Confimer le mot de passe</mat-label>
         <input  formControlName="confirm" matInput type="password" required>
@@ -67,10 +69,10 @@
     </div>
 
     <div class="col-12 mt-1" >
-      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid" *ngIf="!data.edit">
+      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid" *ngIf="!data.isEditMode">
         Ajouter
       </button>
-      <button class="submit-btn full-width" (click)="update()" [disabled]="!form.valid" *ngIf="data.edit">
+      <button class="submit-btn full-width" (click)="update()" [disabled]="!form.valid" *ngIf="data.isEditMode">
         Sauvgarder
       </button>
     </div>

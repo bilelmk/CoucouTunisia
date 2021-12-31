@@ -39,7 +39,7 @@ export class CbAdminsComponent implements OnInit {
       res => {
         this.loading = false ;
         this.admins = res ;
-        this.dataSource = new MatTableDataSource<Admin>(res);
+        this.dataSource.data = res;
         this.spinnerService.deactivate()
       },
       error => {
@@ -54,11 +54,11 @@ export class CbAdminsComponent implements OnInit {
     const dialogRef = this.dialog.open( CbAdminsModalComponent, {
       panelClass: 'custom-dialog-container' ,
       width: '600px' ,
-      data : { item: item , array : this.admins , edit: isEditMode}
+      data : { item: item , array : this.admins , isEditMode: isEditMode}
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        this.dataSource = new MatTableDataSource<Admin>(this.admins);
+        this.dataSource.data = this.admins;
       }
     );
   }
