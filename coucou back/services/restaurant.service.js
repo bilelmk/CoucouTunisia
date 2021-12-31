@@ -24,18 +24,11 @@ exports.add = async (req, res, next) => {
       })
     })
 }
-exports.getAll= (req,res,next)=>{
-  Restaurant.findAll().then(
-    restaurants => {
-        res.status(200).json({
-          restaurant:restaurants
-        })
-       
-    },
-    err => next(err)
-).catch(
-    res.status(400).json({
-      message:'error'
+
+exports.getAll = ( req, res , next ) => {
+    Restaurant.findAll({include: ['rooms', 'planning', 'menus']} ).then(result =>{
+        return res.status(200).json(result);
+    }).catch(err => {
+        return res.status(404).json({message: "no records"});
     })
-)
 }

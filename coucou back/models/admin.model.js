@@ -26,10 +26,6 @@ const Admin = sequelize.define('admin' , {
         type : Sequelize.STRING ,
         allowNull : false ,
     },
-    // role: {
-    //     type : Sequelize.ENUM('ADMIN', 'SUPER') ,
-    //     allowNull : false ,
-    // },
     active: {
         type : Sequelize.BOOLEAN ,
         allowNull : false ,

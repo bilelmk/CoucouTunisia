@@ -41,10 +41,7 @@ const Client = sequelize.define('client' , {
     }
 });
 
-// Client.hasOne(PhoneConfirmationCode);
 Client.belongsTo(PhoneConfirmationCode );
 
-// Client.hasOne(B); // A HasOne B
-// A.belongsTo(Client);
 
 module.exports = Client ;

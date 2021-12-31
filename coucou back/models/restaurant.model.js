@@ -44,15 +44,15 @@ const Restaurant = sequelize.define('restaurant', {
         allowNull: false,
     },
     // logitude : {
-    //     type : Sequelize.BOOLEAN ,
+    //     type : Sequelize.FLOAT ,
     // },
     // latitude : {
-    //     type : Sequelize.BOOLEAN ,
+    //     type : Sequelize.FLOAT ,
     // }
 });
 
 // Restaurant.hasMany(Image , { as: "images" });
-// Image.belongsTo(Restaurant) 
+// Image.belongsTo(Restaurant)
 
 Restaurant.hasMany(Room, { as: "rooms" })
 

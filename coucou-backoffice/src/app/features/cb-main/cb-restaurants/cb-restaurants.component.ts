@@ -3,6 +3,8 @@ import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CbRestaurantsAddComponent } from './cb-restaurants-add/cb-restaurants-add.component';
 import { RestaurantService } from '../../../core/services/http/restaurant.service';
+import { Restaurant } from '../../../core/models/restaurant';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cb-restaurants',
@@ -11,12 +13,32 @@ import { RestaurantService } from '../../../core/services/http/restaurant.servic
 })
 export class CbRestaurantsComponent implements OnInit {
 
+  error = false ;
+  loading = false ;
+  restaurants: Restaurant[] = [] ;
+
   constructor( private spinnerService: SpinnerService ,
                private dialog: MatDialog ,
-               private restaurantService: RestaurantService) { }
+               private restaurantService: RestaurantService ,
+               private router: Router ,
+               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.restaurantService.get
+    this.loading = true ;
+    this.spinnerService.activate() ;
+    this.restaurantService.getAll().subscribe(
+      res => {
+        console.log(res)
+        this.loading = false ;
+        this.restaurants = res ;
+        this.spinnerService.deactivate() ;
+      },
+      error => {
+        this.loading = false ;
+        this.error = true ;
+        this.spinnerService.deactivate() ;
+      }
+    )
   }
 
   openAddModal() {
@@ -29,5 +51,9 @@ export class CbRestaurantsComponent implements OnInit {
         // this.dataSource = new MatTableDataSource<Admin>(this.admins);
       }
     );
+  }
+
+  getRestaurantDetails(id: number) {
+    this.router.navigate([id] , {relativeTo : this.route})
   }
 }

@@ -15,4 +15,8 @@ export class RestaurantService {
     return this.http.post<any>(this.URL , restaurant);
   }
 
+  getAll():Observable<any> {
+    return this.http.get<any>(this.URL)
+  }
+
 }

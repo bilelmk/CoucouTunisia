@@ -15,7 +15,6 @@ const Permission = sequelize.define('permission' , {
     },
     description: {
         type : Sequelize.STRING ,
-        allowNull : false ,
     }
 });
 

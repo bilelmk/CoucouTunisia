@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const sequelize = require("./util/database-config");
+const path = require("path");
 
 const restaurantRoutes = require("./routes/restaurant.route");
 const clientRoutes = require("./routes/client.route");
@@ -38,7 +39,8 @@ app.use((req, res, next) => {
 });
 // app.use('/',(req,res)=> res.send('hhhhhh'))
 // app.use("/", express.static(path.join(__dirname, "public/app")));
-// app.use("/data", express.static(path.join(__dirname, "public/images")));
+app.use("/api/images", express.static(path.join(__dirname, "upload")));
+
 app.use("/api/messaging", messagingRoutes) ;
 app.use("/api/clients", clientRoutes) ;
 app.use("/api/restaurants", restaurantRoutes) ;

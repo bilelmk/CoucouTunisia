@@ -23,7 +23,7 @@ import { CbRestaurantsAvisComponent } from './cb-restaurants-main/cb-restaurants
 import { CbRestaurantsInformationsComponent } from './cb-restaurants-main/cb-restaurants-informations/cb-restaurants-informations.component';
 import { CbRestaurantsRoomsComponent } from './cb-restaurants-main/cb-restaurants-rooms/cb-restaurants-rooms.component';
 import { CbRestaurantsClientsComponent } from './cb-restaurants-main/cb-restaurants-clients/cb-restaurants-clients.component';
-import { CbRestaurantsAddLocationComponent } from './cb-restaurants-add/cb-restaurants-add-location/cb-restaurants-add-location.component';
+import {MatCardModule} from '@angular/material/card';
 
 const routes: Routes = [
   {
@@ -34,6 +34,10 @@ const routes: Routes = [
     path: ':id',
     component: CbRestaurantsMainComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'informations',
+      },
       {
         path: 'informations',
         component: CbRestaurantsInformationsComponent,
@@ -81,7 +85,6 @@ const routes: Routes = [
     CbRestaurantsInformationsComponent,
     CbRestaurantsRoomsComponent,
     CbRestaurantsClientsComponent,
-    CbRestaurantsAddLocationComponent
   ],
   imports: [
     CommonModule,
@@ -94,14 +97,14 @@ const routes: Routes = [
     MatSlideToggleModule,
     ImageCropperModule,
     CKEditorModule,
-    SharedModule
+    SharedModule,
+    MatCardModule
   ],
   entryComponents: [
     CbRestaurantsAddComponent,
     CbRestaurantsAddMenuComponent,
     CbRestaurantsAddRoomComponent,
     CbRestaurantsAddImageComponent,
-    CbRestaurantsAddLocationComponent
   ]
 })
 export class CbRestaurantsModule { }
