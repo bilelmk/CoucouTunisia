@@ -37,8 +37,19 @@
         <mat-header-cell *matHeaderCellDef >Permissions</mat-header-cell>
         <mat-cell *matCellDef="let role" >
           <p class="cell-text">
-              <span *ngFor="let permission of role?.permissions">
+              <span class="cell-chips" *ngFor="let permission of role?.permissions">
                 {{permission.name}}
+              </span>
+          </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="restaurants" >
+        <mat-header-cell *matHeaderCellDef >Restaurants</mat-header-cell>
+        <mat-cell *matCellDef="let role" >
+          <p class="cell-text">
+              <span class="cell-chips" *ngFor="let restaurant of role?.restaurants">
+                {{restaurant.name}}
               </span>
           </p>
         </mat-cell>
@@ -56,12 +67,15 @@
           <div class="cell-btn" (click)="openPermissionModal(role)" >
             <mat-icon>lock</mat-icon>
           </div>
+          <div class="cell-btn" (click)="openRestaurantsModal(role)" >
+            <mat-icon>restaurant</mat-icon>
+          </div>
         </mat-cell>
       </ng-container>
       <mat-header-row class="text-center" *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row class="contact" *matRowDef="let type; columns: displayedColumns;" ></mat-row>
     </table>
-    <mat-paginator class="full-width" [pageSizeOptions]="[10]"></mat-paginator>
+    <mat-paginator class="full-width" [pageSizeOptions]="[5]"></mat-paginator>
   </div>
 
   <app-cb-errors [array]="roles" [error]="error"></app-cb-errors>

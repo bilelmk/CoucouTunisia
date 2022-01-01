@@ -56,10 +56,10 @@ export class CbRolesPermissionsComponent implements OnInit {
   }
 
   save() {
-    let permissions = this.rolePermissions.map(permission => {
+    let ids = this.rolePermissions.map(permission => {
       return permission.id
     })
-    this.roleService.updatePermissions(this.data.item.id , permissions).subscribe(
+    this.roleService.updatePermissions(this.data.item.id , ids).subscribe(
       res => {
         this.data.item.permissions = this.rolePermissions
         this.matDialogRef.close();

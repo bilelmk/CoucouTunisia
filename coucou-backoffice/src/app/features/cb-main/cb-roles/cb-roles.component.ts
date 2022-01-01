@@ -9,7 +9,8 @@ import { SnackbarService } from '../../../core/services/in-app/snackbar.service'
 import { CbRolesModalComponent } from './cb-roles-modal/cb-roles-modal.component';
 import { RoleService } from '../../../core/services/http/role.service';
 import { Helpers } from '../../../shared/helpers/helpers';
-import {CbRolesPermissionsComponent} from './cb-roles-permissions/cb-roles-permissions.component';
+import { CbRolesPermissionsComponent } from './cb-roles-permissions/cb-roles-permissions.component';
+import { CbRolesRestaurantsComponent } from './cb-roles-restaurants/cb-roles-restaurants.component';
 
 @Component({
   selector: 'app-cb-roles',
@@ -19,7 +20,7 @@ import {CbRolesPermissionsComponent} from './cb-roles-permissions/cb-roles-permi
 export class CbRolesComponent implements OnInit {
 
   public dataSource = new MatTableDataSource<Role>();
-  displayedColumns = ['name' , 'description' , 'permissions' , 'buttons' ];
+  displayedColumns = ['name' , 'description' , 'permissions' , 'restaurants' , 'buttons' ];
   roles : Role[] = [] ;
 
   error = false ;
@@ -68,6 +69,20 @@ export class CbRolesComponent implements OnInit {
 
   openPermissionModal(item) {
     const dialogRef = this.dialog.open( CbRolesPermissionsComponent, {
+      panelClass: 'custom-dialog-container' ,
+      width: '600px' ,
+      height: '450px' ,
+      data : { item: item }
+    });
+    dialogRef.afterClosed().subscribe(
+      res => {
+        this.dataSource.data = this.roles;
+      }
+    );
+  }
+
+  openRestaurantsModal(item) {
+    const dialogRef = this.dialog.open( CbRolesRestaurantsComponent, {
       panelClass: 'custom-dialog-container' ,
       width: '600px' ,
       height: '450px' ,

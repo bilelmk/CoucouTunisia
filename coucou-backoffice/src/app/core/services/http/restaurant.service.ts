@@ -19,4 +19,8 @@ export class RestaurantService {
     return this.http.get<any>(this.URL)
   }
 
+  getAllLite():Observable<any> {
+    return this.http.get<any>(this.URL + "/lite")
+  }
+
 }

@@ -9,12 +9,16 @@ router.route('/')
     .get((req,res,next) => {
         restaurantService.getAll(req,res,next)
     })
-
     .post(upload,(req, res, next) => {
         console.log('router restaurant is here');
         restaurantService.add(req,res,next)
     })
 
+
+router.route('/lite')
+    .get((req,res,next) => {
+        restaurantService.getAllLite(req,res,next)
+    })
 // .delete((req, res, next) => {
 //     Favorites.findOneAndRemove({user :req.user._id})
 //         .then((resp) => {

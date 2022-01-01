@@ -13,6 +13,16 @@ table {
     font-size: 13px;
   }
 
+  .cell-chips {
+    font-size: 11px;
+    background-color: $cb-blue;
+    color: $cb-white;
+    padding: 5px;
+    border-radius: 15px;
+    line-height: 25px;
+    margin: 5px;
+  }
+
   mat-row {
     padding: 3px 0;
     &:hover {

@@ -32,3 +32,11 @@ exports.getAll = ( req, res , next ) => {
         return res.status(404).json({message: "no records"});
     })
 }
+
+exports.getAllLite = ( req, res , next ) => {
+    Restaurant.findAll().then(result =>{
+        return res.status(200).json(result);
+    }).catch(err => {
+        return res.status(404).json({message: "no records"});
+    })
+}

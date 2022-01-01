@@ -1,6 +1,6 @@
 <div class="dialog-container">
 
-  <p class="dialog-title">Liste des permissions</p>
+  <p class="dialog-title">Liste des restaurants</p>
 
   <div class="row pl-3 pr-3 pb-3 justify-content-center">
 
@@ -10,9 +10,9 @@
           <mat-icon>keyboard_double_arrow_right</mat-icon>
         </button>
       </div>
-      <mat-selection-list #permissionsRef class="select-list no-padding mt-1" >
-        <mat-list-option *ngFor="let permission of permissions" [value]="permission">
-          {{permission.name}}
+      <mat-selection-list #restaurantsRef class="select-list no-padding mt-1" >
+        <mat-list-option *ngFor="let restaurant of restaurants" [value]="restaurant">
+          {{restaurant.name}}
         </mat-list-option>
       </mat-selection-list>
     </div>
@@ -24,9 +24,9 @@
           <mat-icon>keyboard_double_arrow_left</mat-icon>
         </button>
       </div>
-      <mat-selection-list #rolePermissionsRef class="select-list no-padding mt-1">
-        <mat-list-option *ngFor="let permission of rolePermissions" [value]="permission">
-          {{permission.name}}
+      <mat-selection-list #roleRestaurantsRef class="select-list no-padding mt-1">
+        <mat-list-option *ngFor="let restaurant of roleRestaurants" [value]="restaurant">
+          {{restaurant.name}}
         </mat-list-option>
       </mat-selection-list>
     </div>

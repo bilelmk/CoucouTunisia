@@ -11,9 +11,11 @@ import { CbRolesPermissionsComponent } from './cb-roles-permissions/cb-roles-per
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { CbRolesModalComponent } from './cb-roles-modal/cb-roles-modal.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { CbRolesRestaurantsComponent } from './cb-roles-restaurants/cb-roles-restaurants.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 const routes: Routes = [
   {
@@ -26,7 +28,8 @@ const routes: Routes = [
   declarations: [
     CbRolesComponent,
     CbRolesPermissionsComponent,
-    CbRolesModalComponent
+    CbRolesModalComponent,
+    CbRolesRestaurantsComponent
   ],
   imports: [
     CommonModule,
@@ -40,11 +43,13 @@ const routes: Routes = [
     MatButtonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatChipsModule
   ],
   entryComponents: [
     CbRolesPermissionsComponent,
-    CbRolesModalComponent
+    CbRolesModalComponent,
+    CbRolesRestaurantsComponent
   ]
 })
 export class CbRolesModule { }

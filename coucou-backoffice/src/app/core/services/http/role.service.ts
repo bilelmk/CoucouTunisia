@@ -33,5 +33,9 @@ export class RoleService {
     return this.http.put(this.URL + "/permissions/" + id , permissionIds)
   }
 
+  updateRestaurants(id: number, restaurantIds: number[]) {
+    return this.http.put(this.URL + "/restaurants/" + id , restaurantIds)
+  }
+
 }
 

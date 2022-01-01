@@ -20,8 +20,12 @@ router.route('/:id')
 
 router.route('/permissions/:id')
     .put((req, res, next) => {
-        roleService.addPermissions(req, res, next ,req.params.id);
+        roleService.setPermissions(req, res, next ,req.params.id);
 })
 
+router.route('/restaurants/:id')
+    .put((req, res, next) => {
+        roleService.setRestaurants(req, res, next ,req.params.id);
+})
 
 module.exports = router;

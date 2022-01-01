@@ -1,7 +1,7 @@
 const Role = require("../models/role.model");
 
 exports.getAll = ( req, res , next ) => {
-    Role.findAll({include: ["permissions"]}).then(result =>{
+    Role.findAll({include: ["permissions" , "restaurants"]}).then(result =>{
         return res.status(200).json(result);
     }).catch(err => {
         return res.status(404).json({
@@ -22,16 +22,8 @@ exports.add = ( req, res , next ) => {
 
 exports.delete = ( req, res , next , id) => {
     Role.destroy({ where: { id: id }}).then(result => {
-        if(result) {
-            return res.status(200).json(
-                result
-            );
-        }
-        else {
-            return res.status(404).json({
-                message: "not found"
-            });
-        }
+        if(result) return res.status(200).json(result);
+        else return res.status(404).json({message: "not found"});
     }).catch(err => {
         return res.status(404).json({
             message: err
@@ -60,13 +52,32 @@ exports.update = async (req, res , next , id) => {
     })
 }
 
-exports.addPermissions = async (req, res, next , id) => {
+exports.setPermissions = async (req, res, next , id) => {
     let role = await Role.findByPk(id) ;
     if(role){
         role.setPermissions(req.body).then(result => {
                 return res.status(200).json(
                     result
                 );
+        }).catch(err => {
+            return res.status(500).json({
+                message: err
+            });
+        })
+    } else {
+        return res.status(404).json({
+            message: "not found !"
+        });
+    }
+}
+
+exports.setRestaurants = async (req, res, next , id) => {
+    let role = await Role.findByPk(id) ;
+    if(role){
+        role.setRestaurants(req.body).then(result => {
+            return res.status(200).json(
+                result
+            );
         }).catch(err => {
             return res.status(500).json({
                 message: err
