@@ -6,42 +6,26 @@ const Permission = require("../models/permission.model");
 
 exports.signin = async ( req, res , next ) => {
     let admin = await Admin.findOne(
-        { include: [{ model : Role , include: {model : Permission}}]},
-        { where: { username: req.body.username }}
-    ) ;
+        { include: [{ model : Role , include: {model : Permission}}],
+         where: { username: req.body.username }}
+    );
     if(admin){
         let checkPassword = await bcrypt.compare(req.body.password, admin.password) ;
-        if(!checkPassword){
-            res.status(401).json({
-                message: "wrong password"
-            });
-        }
+        if(!checkPassword)res.status(401).json({message: "wrong password"});
         else {
             let active = await admin.active ;
-            if(active){
+            if(active) {
                 const token = await jwt.sign(
                     { username: admin.username, id: admin.id , role: admin.role},
                     "secret_this_should_be_longer",
                     { expiresIn: "5h" }
                 );
-                res.status(200).json({
-                    token: token,
-                    expiresIn: 18000 ,
-                    admin: admin
-                });
+                return res.status(200).json({token: token, expiresIn: 18000 , admin: admin});
             }
-            else {
-                res.status(401).json({
-                    message: "account deactivated" ,
-                });
-            }
+            else return res.status(401).json({message: "account deactivated" ,});
         }
     }
-    else {
-        res.status(401).json({
-            message: "wrong username"
-        });
-    }
+    else res.status(401).json({message: "wrong username"});
 }
 
 exports.add = async ( req, res , next ) => {
@@ -61,11 +45,11 @@ exports.add = async ( req, res , next ) => {
                 }
                 return res.status(200).json(result);
             }
-            else res.status(500).json({message: "server error"});
+            else return res.status(500).json({message: "server error"});
         }
-        else res.status(500).json({message: "server error"});
+        else return res.status(500).json({message: "server error"});
     }
-    else res.status(405).json({message: "existing email"});
+    else return res.status(405).json({message: "existing email"});
 }
 
 exports.delete = ( req, res , next , adminId) => {
@@ -77,7 +61,7 @@ exports.delete = ( req, res , next , adminId) => {
 }
 
 exports.getAll = ( req, res , next ) => {
-    Admin.findAll().then(result =>{
+    Admin.findAll({include : ["role"]}).then(result =>{
         return res.status(200).json(result);
     }).catch(err => {
         return res.status(404).json({message: "no records"});

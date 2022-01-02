@@ -6,7 +6,7 @@ import { SnackbarService } from '../../../../core/services/in-app/snackbar.servi
 import { AdminsService } from '../../../../core/services/http/admins.service';
 import { RoleService } from '../../../../core/services/http/role.service';
 import { Role } from '../../../../core/models/role';
-import {Helpers} from '../../../../shared/helpers/helpers';
+import { Helpers } from '../../../../shared/helpers/helpers';
 
 @Component({
   selector: 'app-cb-admins-modal',
@@ -40,7 +40,7 @@ export class CbAdminsModalComponent implements OnInit {
         firstname: new FormControl(data.item.firstname, Validators.required),
         lastname:  new FormControl(data.item.lastname, Validators.required),
         username: new FormControl(data.item.username, Validators.required),
-        roleId: new FormControl(data.item.username, Validators.required),
+        roleId: new FormControl(data.item.role, Validators.required),
       });
     }
   }
@@ -58,22 +58,24 @@ export class CbAdminsModalComponent implements OnInit {
 
   add() {
     this.spinnerService.activate();
+    this.form.value.roleId = this.form.value.roleId.id
     this.adminService.add(this.form.value).subscribe(
       (res) => {
         Helpers.addToArray(res , this.data.array)
-        this.snackbarService.openSnackBar('Administrateur ajouté avec succès', 'green-snackbar');
+        this.snackbarService.openSnackBar('Administrateur ajouté avec succès', 'success');
         this.spinnerService.deactivate();
         this.matDialogRef.close();
       },
       err => {
         console.log(err)
-        this.snackbarService.openSnackBar('Erreur lors de l\'ajout de l\'administrateur', 'red-snackbar');
+        this.snackbarService.openSnackBar('Erreur lors de l\'ajout de l\'administrateur', 'fail');
         this.spinnerService.deactivate();
       }
     );
   }
 
   update() {
+    this.form.value.roleId = this.form.value.roleId.id
     this.adminService.update(this.form.value , this.data.item.id).subscribe(
       res => {
         Helpers.updateFields(this.form.value ,this.data.item )
@@ -85,4 +87,9 @@ export class CbAdminsModalComponent implements OnInit {
       }
     )
   }
+
+  compareFn( optionOne, optionTwo ) : boolean {
+    return optionOne.id === optionTwo.id;
+  }
+
 }

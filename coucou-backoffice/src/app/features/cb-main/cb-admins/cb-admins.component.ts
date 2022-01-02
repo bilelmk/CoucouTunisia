@@ -63,17 +63,17 @@ export class CbAdminsComponent implements OnInit {
     );
   }
 
-  delete(admin: Admin) {
-    this.alertService.showAlert(
-      () => {
-        Helpers.deleteFromArray(admin , this.admins)
-      }, "voulez-vous vraiment supprimer"
-    )
-  }
+  // delete(admin: Admin) {
+  //   this.alertService.showAlert(
+  //     () => {
+  //       Helpers.deleteFromArray(admin , this.admins)
+  //     }, "voulez-vous vraiment supprimer"
+  //   )
+  // }
 
   toggleActiveStatus(admin: Admin) {
+    this.spinnerService.activate()
     if(admin.active == true) {
-      this.spinnerService.activate()
       this.adminsService.block(admin.id).subscribe(
         res => {
           admin.active = false ;
@@ -85,7 +85,6 @@ export class CbAdminsComponent implements OnInit {
         }
       )
     } else if(admin.active == false) {
-      this.spinnerService.activate()
       this.adminsService.deblock(admin.id).subscribe(
         res => {
           admin.active = true ;
@@ -103,7 +102,9 @@ export class CbAdminsComponent implements OnInit {
     let toFilterList = [...this.admins]
     toFilterList = toFilterList.filter(
       admin => {
-        return admin.username.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1;
+        return admin.username.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1
+          || admin.firstname.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1
+          || admin.lastname.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1;
       }
     )
     this.dataSource.data = toFilterList;

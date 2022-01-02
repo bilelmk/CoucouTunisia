@@ -3,7 +3,6 @@
   <p class="dialog-title" *ngIf="!data.isEditMode">Ajouter un admin</p>
   <p class="dialog-title" *ngIf="data.isEditMode" >Modifié l'admin</p>
 
-
   <form [formGroup]="form" class="row justify-content-center align-items-center scale-in-center p-4 pt-3">
 
     <div class="col-12">
@@ -59,8 +58,8 @@
     <div class="col-12 mt-1">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Role</mat-label>
-        <mat-select formControlName="roleId" >
-          <mat-option *ngFor="let role of roles" value="{{role.id}}">{{role.name}}</mat-option>
+        <mat-select formControlName="roleId" [compareWith]="compareFn" >
+          <mat-option *ngFor="let role of roles" [value]="role" >{{role.name}}</mat-option>
         </mat-select>
         <mat-error *ngIf="!form.hasError('required')">
           Ce champ est obligatoire

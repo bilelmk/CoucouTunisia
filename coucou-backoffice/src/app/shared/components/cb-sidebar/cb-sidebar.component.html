@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+  <mat-sidenav #sidenav [mode]="mode" [(opened)]="opened" (opened)="events.push('open!')"
                (closed)="events.push('close!')">
 
     <div class="sidenav">

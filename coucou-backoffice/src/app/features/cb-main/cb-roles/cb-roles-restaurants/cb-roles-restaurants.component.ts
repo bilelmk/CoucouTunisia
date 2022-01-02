@@ -30,9 +30,11 @@ export class CbRolesRestaurantsComponent implements OnInit {
     this.restaurantService.getAllLite().subscribe(
       res => {
         this.restaurants = res
-        for(let restaurant of this.data.item.restaurants) {
-          Helpers.addToArray(restaurant , this.roleRestaurants)
-          Helpers.deleteFromArray(restaurant , this.restaurants)
+        if(this.data.item.restaurants) {
+          for (let restaurant of this.data.item.restaurants) {
+            Helpers.addToArray(restaurant, this.roleRestaurants)
+            Helpers.deleteFromArray(restaurant, this.restaurants)
+          }
         }
       },
       error => {

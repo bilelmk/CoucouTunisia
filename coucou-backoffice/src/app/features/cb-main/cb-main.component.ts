@@ -112,6 +112,7 @@ export class CbMainComponent implements OnInit {
   }
 
   logout() {
+    console.log("test")
     // this.authenticationService.logout()
   }
 }

@@ -9,22 +9,31 @@ export class CbSidebarComponent implements OnInit {
 
   opened: boolean;
   events: string[] = [];
+  mode: string ;
 
   @Input() routes: any;
 
   @HostListener('window:resize', ['$event'])
+
   onResize() {
     this.toggleMenu() ;
+    this.toggleMode() ;
   }
 
   constructor() {}
 
   ngOnInit() {
     this.toggleMenu() ;
+    this.toggleMode() ;
   }
 
   toggleMenu(){
-    this.opened = window.innerWidth > 990;
+    this.opened = window.innerWidth > 990 ;
+  }
+
+  toggleMode() {
+    if(window.innerWidth > 990) this.mode = 'side' ;
+    else this.mode = 'over'
   }
 
 }

@@ -30,9 +30,11 @@ export class CbRolesPermissionsComponent implements OnInit {
     this.permissionService.getAll().subscribe(
       res => {
         this.permissions = res
-        for(let permission of this.data.item.permissions) {
-          Helpers.addToArray(permission , this.rolePermissions)
-          Helpers.deleteFromArray(permission , this.permissions)
+        if(this.data.item.permissions) {
+          for(let permission of this.data.item.permissions) {
+            Helpers.addToArray(permission , this.rolePermissions)
+            Helpers.deleteFromArray(permission , this.permissions)
+          }
         }
       },
       error => {

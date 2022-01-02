@@ -75,7 +75,7 @@
       <mat-header-row class="text-center" *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row class="contact" *matRowDef="let type; columns: displayedColumns;" ></mat-row>
     </table>
-    <mat-paginator class="full-width" [pageSizeOptions]="[5]"></mat-paginator>
+    <mat-paginator class="full-width" [pageSizeOptions]="[10]"></mat-paginator>
   </div>
 
   <app-cb-errors [array]="roles" [error]="error"></app-cb-errors>
