@@ -1,0 +1,12 @@
+ion-button {
+  text-transform: none !important;
+  font-family: Roboto-Medium ,serif !important;
+}
+
+.btn-primary {
+  --background : var(--vanity-secondary);
+}
+
+.btn-secondary {
+  --background : var(--vanity-primary) ;
+}

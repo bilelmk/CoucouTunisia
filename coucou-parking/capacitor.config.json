@@ -1,0 +1,13 @@
+{
+  "appId": "mss.vanity-software.vanity-mobile",
+  "appName": "vanity-mobile",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

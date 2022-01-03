@@ -1,0 +1,30 @@
+.menu-container {
+  min-height: calc(100% - 131px) ;
+  background-color: var(--cb-secondary) !important;
+}
+
+.menu-header {
+  background-color: var(--cb-secondary) !important;
+  border-bottom: 1px solid var(--cb-light-contrast);
+}
+
+ion-item{
+  --padding-start : 30px ;
+  --background :  var(--cb-secondary) ;
+  --color: var(--cb-light) ;
+  --color-focused: var(--cb-light) ;
+
+  ion-icon {
+    color: #fff !important;
+  }
+
+  ion-label {
+    font-family: Poppins-Light, serif !important;
+    font-size: 13px;
+  }
+
+}
+
+ion-menu.md ion-item.selected {
+  --background:  var(--cb-primary) ;
+}

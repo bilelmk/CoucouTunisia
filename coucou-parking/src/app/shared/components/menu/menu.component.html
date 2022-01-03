@@ -1,0 +1,39 @@
+<ion-split-pane contentId="main" >
+
+  <ion-menu side="start" menuId="profile" contentId="main"  type="overlay">
+    <ion-content>
+
+      <div class="menu-header">
+        <ion-row  class="no-margin ion-padding ion-justify-content-center ion-align-items-center" >
+          <ion-col  class="ion-margin-top" size="9">
+            <img src="assets/images/menu-logo.png" alt="logo white" />
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <ion-list lines="none" class="menu-container">
+
+        <ion-menu-toggle menu="profile" >
+          <ion-item routerLink="/main/qr" routerLinkActive="selected" detail="false">
+            <ion-icon slot="start" name="qr-code-outline"></ion-icon>
+            <ion-label>Scanner</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle menu="profile" >
+          <ion-item routerLink="/main/reservation" routerLinkActive="selected" detail="false">
+            <ion-icon slot="start" name="calendar-outline"></ion-icon>
+            <ion-label>Réservations</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <div id="main" class="full-width">
+    <ng-content></ng-content>
+    <ng-content></ng-content>
+  </div>
+
+</ion-split-pane>
