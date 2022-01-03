@@ -17,5 +17,5 @@ $RECYCLE.BIN/
 log.txt
 npm-debug.log*
 
-/coucou-push-test
-/design
+coucou-push-test/
+design/
