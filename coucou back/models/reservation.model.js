@@ -1,5 +1,8 @@
 const Sequelize = require('sequelize') ;
 const sequelize = require('../util/database-config') ;
+const Restaurant = require('./restaurant.model') ;
+const Room = require('./room.model') ;
+const Client = require('./client.model') ;
 
 const Reservation = sequelize.define('reservation' , {
     id: {
@@ -47,7 +50,20 @@ const Reservation = sequelize.define('reservation' , {
     babeNumber: {
         type : Sequelize.INTEGER ,
         allowNull : false ,
+    },
+    price: {
+        type : Sequelize.FLOAT ,
+        allowNull : false ,
     }
 });
+
+Restaurant.hasOne(Reservation);
+Reservation.belongsTo(Restaurant);
+
+Room.hasOne(Reservation);
+Reservation.belongsTo(Room);
+
+Client.hasOne(Reservation);
+Reservation.belongsTo(Client);
 
 module.exports = Reservation ;

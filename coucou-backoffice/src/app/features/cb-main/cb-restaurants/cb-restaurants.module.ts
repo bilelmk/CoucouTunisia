@@ -23,7 +23,8 @@ import { CbRestaurantsAvisComponent } from './cb-restaurants-main/cb-restaurants
 import { CbRestaurantsInformationsComponent } from './cb-restaurants-main/cb-restaurants-informations/cb-restaurants-informations.component';
 import { CbRestaurantsRoomsComponent } from './cb-restaurants-main/cb-restaurants-rooms/cb-restaurants-rooms.component';
 import { CbRestaurantsClientsComponent } from './cb-restaurants-main/cb-restaurants-clients/cb-restaurants-clients.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import {CbRestaurantsReservationsComponent} from './cb-restaurants-main/cb-restaurants-reservations/cb-restaurants-reservations.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
         path: 'clients',
         component: CbRestaurantsClientsComponent,
       },
+      {
+        path: 'reservations',
+        component: CbRestaurantsReservationsComponent,
+      },
     ]
   }
 ];
@@ -85,6 +90,7 @@ const routes: Routes = [
     CbRestaurantsInformationsComponent,
     CbRestaurantsRoomsComponent,
     CbRestaurantsClientsComponent,
+    CbRestaurantsReservationsComponent
   ],
   imports: [
     CommonModule,

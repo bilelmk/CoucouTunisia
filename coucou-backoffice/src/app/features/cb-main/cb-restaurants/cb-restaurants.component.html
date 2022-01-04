@@ -1,14 +1,14 @@
 <div class="page" *ngIf="!loading">
 
   <div class="row mt-3 mb-3 justify-content-between align-items-center">
-    <div class="scale-in-center">
+    <div>
       <p class="title">
         <span class="material-icons title-icon">restaurant</span>
         Restaurants
       </p>
     </div>
     <div>
-      <button class="square-btn ml-2 scale-in-center"  (click)="openAddModal()">
+      <button class="square-btn ml-2"  (click)="openAddModal()">
         <i class="material-icons icon-blue" >
           add
         </i>
@@ -16,13 +16,14 @@
     </div>
   </div>
 
-  <div class="row scale-in-center"  *ngIf="restaurants?.length > 0">
+  <div class="row"  *ngIf="restaurants?.length > 0">
     <div *ngFor="let item of restaurants" class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
       <mat-card >
-        <img mat-card-image (click)="getRestaurantDetails(item.id)" class="pointer"
+        <img mat-card-image (click)="getRestaurantDetails(item.id)" class="pointer img-fluid no-margin"
              [src]="item.image ? 'http://localhost:3006/api/images/' + item.image : '/assets/img/no-record.png' ">
-        <mat-card-content class="card-container">
+        <mat-card-content class="p-3">
           <h2>{{item.name}}</h2>
+          <p>{{item.description}}</p>
         </mat-card-content>
       </mat-card>
     </div>

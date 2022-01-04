@@ -3,7 +3,7 @@
     <name>Vanity</name>
     <description>Mobile application for vanity software.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Mss Vanity Team</author>
-    <content original-src="index.html" src="http://localhost:8101" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

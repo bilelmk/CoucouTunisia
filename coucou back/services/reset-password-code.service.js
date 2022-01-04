@@ -1,4 +1,3 @@
-
 const PhoneConfirmationCode = require("../models/phone-confirmation-code.model");
 
 exports.create = async ( code ) => {

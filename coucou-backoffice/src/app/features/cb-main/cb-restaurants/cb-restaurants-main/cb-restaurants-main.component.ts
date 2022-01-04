@@ -36,6 +36,10 @@ export class CbRestaurantsMainComponent implements OnInit {
       route : "rooms" ,
       name : "Rooms" ,
     },
+    {
+      route : "reservations" ,
+      name : "Réservations" ,
+    },
 
   ]
   constructor() { }

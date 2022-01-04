@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
-import {ImageCroppedEvent} from 'ngx-image-cropper';
-import {Helpers} from '../../../../../shared/helpers/helpers';
-import {MatDialogRef} from '@angular/material/dialog';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { Helpers } from '../../../../../shared/helpers/helpers';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cb-restaurants-add-menu',

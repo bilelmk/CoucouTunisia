@@ -57,6 +57,14 @@ const routes: Routes = [
       {
         path: 'roles',
         loadChildren: () => import('./cb-roles/cb-roles.module').then(m => m.CbRolesModule)
+      },
+      {
+        path: 'coupons',
+        loadChildren: () => import('./cb-coupon/cb-coupon.module').then(m => m.CbCouponModule)
+      },
+      {
+        path: 'importation',
+        loadChildren: () => import('./cb-importation/cb-importation.module').then(m => m.CbImportationModule)
       }
     ]
   }
