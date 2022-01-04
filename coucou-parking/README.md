@@ -1,4 +1,4 @@
-# Vanity mobile application
+# Coucou Parking Application
 
 This project was generated with Ionic CLI.
 
@@ -6,15 +6,10 @@ This project was generated with Ionic CLI.
 
 Install the Ionic CLI globally : > npm install -g ionic
 
-Clone the repo
-
-Go to the app directory : > cd vanityapp
-
 Install dependencies  : > npm install
 
 Run in the browser : > ionic serve
 
-build ( with Capacitor ) : <br> 
-                        > ng build <br>
-                        > ionic capacitor add android <br>
-                        > ionic capacitor copy android
+Run in emulator : > ionic cordova run android -l 
+
+Run in device : > ionic cordova run android -l --device
