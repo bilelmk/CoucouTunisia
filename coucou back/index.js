@@ -12,18 +12,18 @@ const roleRoutes = require("./routes/role.route");
 const reservationRoutes = require("./routes/reservation.route");
 const couponRoutes = require("./routes/coupon.route");
 
+const cron = require("./crons/cron");
+
 const init = require("./init/init");
 
 const app = express();
 
- sequelize
-    .sync()
-  .then(res => {
-       console.log(res);
-     })
-   .catch(err => {
-        console.log(err);
-    });
+sequelize.sync().then(res => {
+   console.log(res);
+ })
+ .catch(err => {
+    console.log(err);
+});
 
 app.use(bodyParser.json());
 
@@ -40,8 +40,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/api/images", express.static(path.join(__dirname, "upload")));
+cron.runCrons() ;
 
+app.use("/api/images", express.static(path.join(__dirname, "upload")));
 app.use("/api/messaging", messagingRoutes) ;
 app.use("/api/clients", clientRoutes) ;
 app.use("/api/restaurants", restaurantRoutes) ;

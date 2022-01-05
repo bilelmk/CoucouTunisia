@@ -29,9 +29,9 @@
     <div class="col-12 mt-1">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Réduction en %</mat-label>
-        <input  formControlName="reduction"  matInput type="number" required>
+        <input  formControlName="reduction" matInput>
         <mat-error *ngIf="!form.hasError('required')">
-          Ce champ est obligatoire
+          Ce champ est obligatoire et il faut compris entre 1 et 100
         </mat-error>
       </mat-form-field>
     </div>

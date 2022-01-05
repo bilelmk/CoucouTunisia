@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import { RestaurantService } from '../../../../core/services/http/restaurant.service';
 import { CouponsService } from '../../../../core/services/http/coupons.service';
 import * as moment from 'moment';
@@ -19,7 +19,7 @@ export class CbCouponsModalComponent implements OnInit {
     this.form = new FormGroup({
       number: new FormControl("", Validators.required),
       expirationDate:  new FormControl("", Validators.required),
-      reduction: new FormControl(0, Validators.required),
+      reduction: new FormControl(0, [Validators.required, Validators.pattern(/^[1-9][0-9]?$|^100$/)]),
       general: new FormControl(false, Validators.required),
       restaurantId: new FormControl(null),
     });

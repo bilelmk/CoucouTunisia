@@ -1,5 +1,6 @@
 const Coupon = require("../models/coupon.model");
 const codesGenerator = require('voucher-code-generator');
+const moment = require('moment');
 
 exports.getAll = ( req, res , next ) => {
     Coupon.findAll({include: ["restaurant"]}).then(result =>{
@@ -31,16 +32,17 @@ exports.generate = async ( req, res , next ) => {
         return res.status(500).json(err);
     })
 }
-//
-// exports.delete = ( req, res , next , id) => {
-//     Permission.destroy({ where: { id: id }}).then(result => {
-//         if(result) return res.status(200).json(result);
-//         else return res.status(404).json({message: "not found"});
-//     }).catch(err => {
-//         return res.status(404).json({ message: "server error" });
-//     })
-// }
-//
+
+exports.deleteExpiredCoupon = () => {
+    const date = moment().format(("DD-MM-YYYY"));
+    Coupon.destroy({ where: { expirationDate: date }}).then(result => {
+        if(result) console.log(result);
+        else console.log("no record");
+    }).catch(err => {
+        console.log(err);
+    })
+}
+
 // exports.update = async (req, res , next , id) => {
 //     Permission.update({ name: req.body.name , description: req.body.description}, { where: { id: id }
 //     }).then(result => {
