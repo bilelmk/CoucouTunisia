@@ -10,6 +10,7 @@ export class CbSidebarComponent implements OnInit {
   opened: boolean;
   events: string[] = [];
   mode: string ;
+  admin ;
 
   @Input() routes: any;
 
@@ -23,6 +24,7 @@ export class CbSidebarComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    this.admin = JSON.parse(sessionStorage.getItem('admin'))
     this.toggleMenu() ;
     this.toggleMode() ;
   }

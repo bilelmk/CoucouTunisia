@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 export class SpinnerService {
 
   private showSpinner = new Subject();
+
   getData() {
     return this.showSpinner;
   }

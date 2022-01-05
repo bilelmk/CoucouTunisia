@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SpinnerService } from '../../core/services/in-app/spinner.service';
-import { SessionStorageService } from '../../core/services/in-app/session-storage.service';
-import { AuthenticationService } from '../../core/services/http/authentication.service';
 import { SnackbarService } from '../../core/services/in-app/snackbar.service';
 import { HttpClient } from '@angular/common/http';
+import {AdminsService} from '../../core/services/http/admins.service';
 
 @Component({
   selector: 'app-cb-login',
@@ -20,9 +19,8 @@ export class CbLoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder ,
               private router: Router ,
               private spinnerService: SpinnerService ,
-              private authenticationService: AuthenticationService ,
-              private sessionStorageService: SessionStorageService ,
               private snackbarService: SnackbarService ,
+              private adminsService: AdminsService ,
               private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -42,11 +40,14 @@ export class CbLoginComponent implements OnInit {
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
     }
-    this.authenticationService.login(authRequest).subscribe(
+    this.adminsService.login(authRequest).subscribe(
       res => {
-        this.sessionStorageService.save(res.token) ;
-        this.spinnerService.deactivate() ;
+        // save data in browser
         sessionStorage.setItem('permissions' , JSON.stringify(res.admin.role.permissions))
+        sessionStorage.setItem('token' , res.token) ;
+        sessionStorage.setItem('admin' , JSON.stringify({firstname : res.admin.firstname , lastname : res.admin.lastname }));
+
+        this.spinnerService.deactivate() ;
         this.snackbarService.openSnackBar("Connecté avec succès" , 'success')
         this.router.navigate(['/main'])
       },

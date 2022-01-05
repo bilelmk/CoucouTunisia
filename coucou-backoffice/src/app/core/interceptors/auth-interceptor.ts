@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SessionStorageService } from '../services/in-app/session-storage.service';
 
 import {
   HttpInterceptor,
@@ -12,10 +11,10 @@ import {
 })
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private sessionStorageService: SessionStorageService) {}
+  constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    const authToken = this.sessionStorageService.getToken();
+    const authToken = sessionStorage.getItem('token') ;
     const authRequest = req.clone({
       headers: req.headers.set("Authorization", "Bearer " + authToken)
     });
