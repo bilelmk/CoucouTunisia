@@ -1,1 +1,83 @@
-<p>cb-coupon works!</p>
+<div class="page" *ngIf="!loading" >
+
+  <div class="row mt-2 mb-2 justify-content-between align-items-center">
+    <p class="title">
+      <span class="material-icons title-icon">percent</span>
+      Liste des coupons
+    </p>
+    <div class="row align-items-center">
+<!--      <input #key class="search" (input)="applyFilter(key.value)">-->
+      <button class="square-btn ml-2"  (click)="openModal()">
+        <i class="material-icons icon-blue" >
+          autorenew
+        </i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row"  *ngIf="coupons?.length > 0">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="code" >
+        <mat-header-cell *matHeaderCellDef >Code de coupon</mat-header-cell>
+        <mat-cell *matCellDef="let coupon" >
+          <p class="cell-text"  > {{coupon.code}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="reduction" >
+        <mat-header-cell *matHeaderCellDef >Réduction</mat-header-cell>
+        <mat-cell *matCellDef="let coupon" >
+          <p class="cell-text"  > {{coupon.reduction}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="expirationDate">
+        <mat-header-cell *matHeaderCellDef >Date d'expiration</mat-header-cell>
+        <mat-cell *matCellDef="let coupon" >
+          <p class="cell-text" > {{coupon.expirationDate}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="general">
+        <mat-header-cell *matHeaderCellDef >General</mat-header-cell>
+        <mat-cell class="cell-text" *matCellDef="let coupon">
+          <div class="cell-text">
+            <mat-icon *ngIf="!coupon.general" class="icon-danger">remove_circle</mat-icon>
+            <mat-icon  *ngIf="coupon.general" class="icon-success">check_circle</mat-icon>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="restaurant">
+        <mat-header-cell *matHeaderCellDef >Restaurant</mat-header-cell>
+        <mat-cell *matCellDef="let coupon" >
+          <p class="cell-text" > {{coupon.restaurant ? coupon.restaurant.name : "--"}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell class="cell-text" *matCellDef="let admin">
+<!--          <div class="cell-btn" (click)="toggleActiveStatus(admin)">-->
+<!--            <mat-icon>flaky</mat-icon>-->
+<!--          </div>-->
+<!--          <div class="cell-btn" (click)="openModal(true , admin)" >-->
+<!--            <mat-icon>mode_edit</mat-icon>-->
+<!--          </div>-->
+          <!--          <div class="cell-btn" (click)="openDeleteDialog(admin)">-->
+          <!--            <mat-icon>delete</mat-icon>-->
+          <!--          </div>-->
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row class="text-center" *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row class="contact" *matRowDef="let type; columns: displayedColumns;" ></mat-row>
+    </table>
+    <mat-paginator class="full-width" [pageSizeOptions]="[10]"></mat-paginator>
+  </div>
+
+  <app-cb-errors [array]="coupons" [error]="error"></app-cb-errors>
+
+</div>
+

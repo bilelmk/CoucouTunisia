@@ -1,19 +1,35 @@
 const Coupon = require("../models/coupon.model");
+const codesGenerator = require('voucher-code-generator');
 
 exports.getAll = ( req, res , next ) => {
-//     Permission.findAll().then(result =>{
-//         return res.status(200).json(result);
-//     }).catch(err => {
-//         return res.status(404).json({message: "no records"});
-//     })
+    Coupon.findAll({include: ["restaurant"]}).then(result =>{
+        return res.status(200).json(result);
+    }).catch(err => {
+        return res.status(404).json(err);
+    })
 }
 
-exports.add = ( req, res , next ) => {
-//     Permission.create(req.body).then(result => {
-//         return res.status(200).json(result);
-//     }).catch(err => {
-//         return res.status(500).json({message: "server error"});
-//     })
+exports.generate = async ( req, res , next ) => {
+    let coupons = []
+    let codes = await codesGenerator.generate({
+        length: 6,
+        count: req.body.number ,
+    });
+    for(let i=0; i< req.body.number ; i++){
+        let coupon = {
+            code: codes[i],
+            reduction: req.body.reduction ,
+            expirationDate: req.body.expirationDate,
+            general: req.body.general,
+            restaurantId: req.body.restaurantId,
+        }
+        coupons.push(coupon)
+    }
+    Coupon.bulkCreate(coupons).then(result => {
+        return res.status(200).json(result);
+    }).catch(err => {
+        return res.status(500).json(err);
+    })
 }
 //
 // exports.delete = ( req, res , next , id) => {

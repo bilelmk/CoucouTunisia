@@ -7,7 +7,6 @@ import { Admin } from '../../../core/models/admin';
 import { AdminsService } from '../../../core/services/http/admins.service';
 import { CbAdminsModalComponent } from './cb-admins-modal/cb-admins-modal.component';
 import { AlertService } from '../../../core/services/in-app/alert.service';
-import { Helpers } from '../../../shared/helpers/helpers';
 
 @Component({
   selector: 'app-cb-admins',

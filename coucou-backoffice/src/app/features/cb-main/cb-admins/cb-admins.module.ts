@@ -10,8 +10,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CbAdminsModalComponent } from './cb-admins-modal/cb-admins-modal.component';
-import {SharedModule} from '../../../shared/shared.module';
-import {MatSelectModule} from '@angular/material/select';
+import { SharedModule } from '../../../shared/shared.module';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   {

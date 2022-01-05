@@ -78,12 +78,20 @@ export class CbMainComponent implements OnInit {
       icon : "equalizer",
       permission: "DASHBOARD"
     },
+    // {
+    //   type: "route",
+    //   route : "parking" ,
+    //   name : "Parking" ,
+    //   icon : "commute",
+    //   permission: "PARKING"
+    // },
+
     {
       type: "route",
-      route : "parking" ,
-      name : "Parking" ,
-      icon : "commute",
-      permission: "PARKING"
+      route : "coupons" ,
+      name : "Coupons" ,
+      icon : "percent",
+      permission: "ADMIN"
     },
     {
       type: "button",

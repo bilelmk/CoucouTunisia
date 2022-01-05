@@ -22,7 +22,7 @@ const Coupon = sequelize.define('coupon' , {
         allowNull : false ,
     },
     general: {
-        type : Sequelize.STRING ,
+        type : Sequelize.BOOLEAN ,
         allowNull : false ,
     }
 });
