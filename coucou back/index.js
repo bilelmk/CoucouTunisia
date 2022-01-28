@@ -16,6 +16,9 @@ const app = express();
  sequelize
     .sync()
   .then(res => {
+      console.log('====================================');
+      console.log('yofkdfds');
+      console.log('====================================');
        console.log(res);
      })
    .catch(err => {
@@ -23,7 +26,9 @@ const app = express();
     });
 
 app.use(bodyParser.json());
-
+app.get('/',(req,res,next)=>{
+    res.send('yooooo')
+})
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(

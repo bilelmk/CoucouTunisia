@@ -1,5 +1,6 @@
 const Restaurant = require('../models/restaurant.model')
-
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 exports.add = async (req, res, next) => {
   req.body.restaurant = JSON.parse(req.body.restaurant)
 
@@ -30,7 +31,7 @@ exports.add = async (req, res, next) => {
     })
 }
 exports.getAll = (req, res, next) => {
-  let key = "%" + req.body.key + "%"
+  let key =req.body.key? "%" + req.body.key + "%":'%%'
   page = req.query.page ? parseInt(req.query.page) : 1
 
   perpage = req.query.perPage ? parseInt(req.query.perPage) : 10
