@@ -29,6 +29,7 @@ export class CbRestaurantsAddComponent implements OnInit {
   restaurants ;
   menus = [] ;
   rooms = [] ;
+  images = [] ;
 
   map ;
   marker ;
@@ -48,34 +49,34 @@ export class CbRestaurantsAddComponent implements OnInit {
               private snackbarService: SnackbarService ,
               private restaurantService: RestaurantService) {
     this.informationsForm = new FormGroup({
-      name: new FormControl("", Validators.required),
-      description: new FormControl("", Validators.required),
-      phone: new FormControl("", Validators.required),
-      email: new FormControl("", [Validators.required, Validators.email]),
-      webSite: new FormControl("", [Validators.required,
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      phone: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      webSite: new FormControl('', [Validators.required,
         Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
-      responsable: new FormControl("", Validators.required),
-    })
+      responsable: new FormControl('', Validators.required),
+    });
     this.planningForm = new FormGroup({
-      monday :  new FormControl(""),
+      monday :  new FormControl(''),
       mondayOpen:  new FormControl({value: '', disabled: true}),
       mondayClose:  new FormControl({value: '', disabled: true}),
-      tuesday:  new FormControl(""),
+      tuesday:  new FormControl(''),
       tuesdayOpen:  new FormControl({value: '', disabled: true}),
       tuesdayClose:  new FormControl({value: '', disabled: true}),
-      wednesday:  new FormControl(""),
+      wednesday:  new FormControl(''),
       wednesdayOpen:  new FormControl({value: '', disabled: true}),
       wednesdayClose:  new FormControl({value: '', disabled: true}),
-      thursday:  new FormControl(""),
+      thursday:  new FormControl(''),
       thursdayOpen:  new FormControl({value: '', disabled: true}),
       thursdayClose:  new FormControl({value: '', disabled: true}),
-      friday:  new FormControl(""),
+      friday:  new FormControl(''),
       fridayOpen:  new FormControl({value: '', disabled: true}),
       fridayClose:  new FormControl({value: '', disabled: true}),
-      saturday:  new FormControl(""),
+      saturday:  new FormControl(''),
       saturdayOpen:  new FormControl({value: '', disabled: true}),
       saturdayClose:  new FormControl({value: '', disabled: true}),
-      sunday:  new FormControl(""),
+      sunday:  new FormControl(''),
       sundayOpen:  new FormControl({value: '', disabled: true}),
       sundayClose:  new FormControl({value: '', disabled: true}),
     });
@@ -85,28 +86,28 @@ export class CbRestaurantsAddComponent implements OnInit {
     this.formData = new FormData() ;
   }
 
-  onPickImage(event : any){
+  onPickImage(event: any){
     this.imageChangedEvent = event;
   }
 
   imageCropped(event: ImageCroppedEvent) {
     // Preview
     this.croppedImage = event.base64;
-    let fileToReturn = Helpers.base64ToFile(
+    const fileToReturn = Helpers.base64ToFile(
       event.base64,
       this.imageChangedEvent.target.files[0].name,
-    )
+    );
     this.formData.append('image' ,   fileToReturn ) ;
   }
 
   handleDayChange(day: string , event) {
-    if(!event.checked) {
-      this.planningForm.get(day + "Open").disable()
-      this.planningForm.get(day + "Close").disable()
+    if (!event.checked) {
+      this.planningForm.get(day + 'Open').disable();
+      this.planningForm.get(day + 'Close').disable();
     }
     else {
-      this.planningForm.get(day + "Open").enable()
-      this.planningForm.get(day + "Close").enable()
+      this.planningForm.get(day + 'Open').enable();
+      this.planningForm.get(day + 'Close').enable();
     }
   }
 
@@ -118,12 +119,13 @@ export class CbRestaurantsAddComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        if(res) {
+        if (res) {
           this.menus.push({
             description: res.description ,
-            name: res.name
-          })
-          this.formData.append('menuImages' , res.image )
+            name: res.name,
+            image: res.image
+          });
+          this.formData.append('menuImages' , res.fileToReturn );
         }
       }
     );
@@ -135,16 +137,18 @@ export class CbRestaurantsAddComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(
       res => {
-        if(res) {
+        if (res) {
+          console.log(res)
           this.rooms.push({
             description: res.description ,
             name: res.name,
-            minPlace: res.description ,
-            maxPlace: res.name ,
-            packPrice: res.description ,
-            packChildrenPrice: res.name
-          })
-          this.formData.append('roomImages' , res.image )
+            minPlace: res.minPlace ,
+            maxPlace: res.maxPlace ,
+            packPrice: res.packPrice ,
+            packChildrenPrice: res.packChildrenPrice,
+            image: res.image
+          });
+          this.formData.append('roomImages' , res.fileToReturn );
         }
       }
     );
@@ -156,12 +160,18 @@ export class CbRestaurantsAddComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(
       res => {
+        if(res) {
+          this.images.push({
+            image: res.image
+          });
+          this.formData.append('images' , res.fileToReturn );
+        }
       }
     );
   }
 
   addRestaurant() {
-    let restaurant = {
+    const restaurant = {
       name: this.informationsForm.value.name ,
       description:  this.informationsForm.value.description ,
       phone:  this.informationsForm.value.phone,
@@ -191,19 +201,21 @@ export class CbRestaurantsAddComponent implements OnInit {
         sundayOpen:  this.planningForm.value.sundayOpen ,
         sundayClose:  this.planningForm.value.sundayClose ,
       },
-      image:'',
+      image: '',
       rooms: this.rooms,
-      menus: this.menus
-    }
+      menus: this.menus,
+      longitude: this.marker._latlng.lng ,
+      latitude: this.marker._latlng.lat
+    };
     this.formData.append('restaurant', JSON.stringify(restaurant));
     this.restaurantService.add(this.formData).subscribe(
       res => {
-        console.log(res)
+        console.log(res);
       },
       error => {
-        console.log(error)
+        console.log(error);
       },
-    )
+    );
   }
 
 
@@ -217,16 +229,16 @@ export class CbRestaurantsAddComponent implements OnInit {
 
   changeTab(event: number) {
     // if selected tab is localisation of index 5 create the map
-    if(event == 5 && !this.map) {
-      setTimeout(()=> {this.createMap()},500)
+    if (event === 5 && !this.map) {
+      setTimeout(() => {this.createMap(); }, 500);
     }
   }
 
   createMap() {
-    let coordinate = {
+    const coordinate = {
       lat: 36.786967,
       lng: 10.184326,
-    }
+    };
 
     const zoomLevel = 10;
     this.map = L.map('map', {
@@ -240,13 +252,13 @@ export class CbRestaurantsAddComponent implements OnInit {
     });
     mainLayer.addTo(this.map);
 
-    this.map.addEventListener('click' , (e) => this.setMarkerCoordinate(e))
+    this.map.addEventListener('click' , (e) => this.setMarkerCoordinate(e));
     this.marker = L.marker([coordinate.lat, coordinate.lng], { icon: this.smallIcon });
-    this.marker.addTo(this.map)
+    this.marker.addTo(this.map);
   }
 
-  setMarkerCoordinate(event :any){
-    this.marker.setLatLng([event.latlng.lat, event.latlng.lng])
+  setMarkerCoordinate(event: any){
+    this.marker.setLatLng([event.latlng.lat, event.latlng.lng]);
   }
 
 }

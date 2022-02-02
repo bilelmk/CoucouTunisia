@@ -45,7 +45,8 @@ export class CbRestaurantsAddRoomComponent implements OnInit {
   add() {
     let menu = {
       ...this.form.value ,
-      image: this.fileToReturn
+      image: this.croppedImage ,
+      fileToReturn: this.fileToReturn
     }
     this.matDialogRef.close(menu)
   }

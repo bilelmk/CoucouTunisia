@@ -22,5 +22,10 @@ const storage = multer.diskStorage({
     }
 });
 
-module.exports = multer({storage: storage}).fields([{ name: 'image', maxCount: 1 }, { name: 'menuImages' },{name:'roomImages'},{name:'restaurant'}])
+module.exports = multer({storage: storage}).fields([
+    { name: 'image', maxCount: 1 },
+    { name: 'menuImages' },
+    { name: 'roomImages' },
+    { name: 'restaurantImages' }
+])
 //module.exports = multer({storage:storage}).single('image')

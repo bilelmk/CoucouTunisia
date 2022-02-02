@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ImageCroppedEvent} from 'ngx-image-cropper';
-import {Helpers} from '../../../../../shared/helpers/helpers';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { Helpers } from '../../../../../shared/helpers/helpers';
+import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-cb-restaurants-add-image',
@@ -9,7 +10,7 @@ import {Helpers} from '../../../../../shared/helpers/helpers';
 })
 export class CbRestaurantsAddImageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public matDialogRef: MatDialogRef<CbRestaurantsAddImageComponent>) { }
 
   imageChangedEvent: any = '';
   croppedImage: any = null;
@@ -28,5 +29,13 @@ export class CbRestaurantsAddImageComponent implements OnInit {
       event.base64,
       this.imageChangedEvent.target.files[0].name,
     )
+  }
+
+  add(){
+    let image = {
+      image: this.croppedImage,
+      fileToReturn: this.fileToReturn,
+    }
+    this.matDialogRef.close(image)
   }
 }

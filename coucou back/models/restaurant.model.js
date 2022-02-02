@@ -43,24 +43,17 @@ const Restaurant = sequelize.define('restaurant', {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    // logitude : {
-    //     type : Sequelize.FLOAT ,
-    // },
-    // latitude : {
-    //     type : Sequelize.FLOAT ,
-    // }
+    logitude : {
+        type : Sequelize.FLOAT ,
+    },
+    latitude : {
+        type : Sequelize.FLOAT ,
+    }
 });
 
-// Restaurant.hasMany(Image , { as: "images" });
-// Image.belongsTo(Restaurant)
-
 Restaurant.hasMany(Room, { as: "rooms" })
-
-Restaurant.hasOne(Planning, { as: "planning" });
-
-// Planning.belongsTo(Restaurant);
-
 Restaurant.hasMany(Menu, { as: "menus" })
-// Menu.belongsTo(Restaurant);
+Restaurant.hasMany(Image, { as: "images" })
+Restaurant.hasOne(Planning, { as: "planning" });
 
 module.exports = Restaurant;

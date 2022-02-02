@@ -12,7 +12,10 @@ exports.add = async (req, res, next) => {
    req.body.restaurant.rooms =  req.body.restaurant.rooms.map((element, index) => {
      return { ...element, image: req.files.roomImages[index].filename }
    })
-  Restaurant.create(req.body.restaurant, { include: ['rooms', 'planning', 'menus'] })
+    req.body.restaurant.images = req.body.restaurant.images.map((element, index) => {
+        return { ...element, image: req.files.restaurantImages[index].filename }
+    })
+  Restaurant.create(req.body.restaurant, { include: ['rooms', 'planning', 'menus', 'images'] })
     .then((restaurent) => {
       res.status(201).json({
         message: 'done!'

@@ -223,8 +223,16 @@
               </i>
             </button>
           </div>
-          <div *ngFor="let menu of menus">
-            <p>{{menu.name}}</p>
+          <div class="row justify-content-center align-items-center" *ngFor="let menu of menus">
+            <div class="col-3 text-center">
+              <p>{{menu.name}}</p>
+            </div>
+            <div class="col-6 text-center">
+              <p>{{menu.description}}</p>
+            </div>
+            <div class="col-3">
+              <img class="img-fluid" src="{{menu.image}}" />
+            </div>
           </div>
         </div>
       </mat-tab>
@@ -239,8 +247,28 @@
               </i>
             </button>
           </div>
-          <div *ngFor="let room of rooms">
-            <p>{{room.name}}</p>
+          <div class="row justify-content-center align-items-center" *ngFor="let room of rooms">
+            <div class="col-2 text-center">
+              <p>{{room.name}}</p>
+            </div>
+            <div class="col-3 text-center">
+              <p>{{room.description}}</p>
+            </div>
+            <div class="col-1 text-center">
+              <p>{{room.maxPlace}}</p>
+            </div>
+            <div class="col-1 text-center">
+              <p>{{room.minPlace}}</p>
+            </div>
+            <div class="col-1 text-center">
+              <p>{{room.packPrice}}</p>
+            </div>
+            <div class="col-1 text-center">
+              <p>{{room.packChildrenPrice}}</p>
+            </div>
+            <div class="col-3">
+              <img class="img-fluid" src="{{room.image}}" />
+            </div>
           </div>
         </div>
       </mat-tab>
@@ -254,6 +282,11 @@
                 add
               </i>
             </button>
+          </div>
+          <div class="row justify-content-center align-items-center" >
+            <div class="col-3" *ngFor="let image of images">
+              <img class="img-fluid" src="{{image.image}}" />
+            </div>
           </div>
         </div>
       </mat-tab>

@@ -54,7 +54,9 @@ export class CbRestaurantsAddMenuComponent implements OnInit {
     let menu = {
       name: this.form.value.name ,
       description: this.description ,
-      image: this.fileToReturn
+      image: this.croppedImage,
+      fileToReturn: this.fileToReturn,
+
     }
     this.matDialogRef.close(menu)
   }

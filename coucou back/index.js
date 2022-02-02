@@ -52,7 +52,7 @@ app.use("/api/roles", roleRoutes);
 app.use("/api/reservations" , reservationRoutes);
 app.use("/api/coupons" , couponRoutes);
 
-init() ;
+// init() ;
 
 // app.use((req, res, next) => {
 //     res.sendFile(path.join(__dirname, "react app", "index.html"));
