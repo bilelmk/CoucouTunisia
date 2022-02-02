@@ -2,7 +2,7 @@ const multer = require('multer');
 const MIME_TYPE_MAP = require('../util/mime-type');
 const fs = require('fs') ;
 const uuid = require('uuid');
-
+const path=require('path')
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         const isValid = MIME_TYPE_MAP[file.mimetype];
@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
         if (isValid) {
             error = null;
         }
-        cb(error, "upload/");
+        cb(error, path.resolve(__dirname, "../upload/"));
     },
     filename: (req, file, cb) => {
         // const name = file.originalname

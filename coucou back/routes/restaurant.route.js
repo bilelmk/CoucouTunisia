@@ -2,7 +2,7 @@ const express = require("express");
 const restaurantService=require("../services/restaurant.service");
 const upload = require("../util/upload");
 const router = express.Router();
-
+const notification=require('../util/oneSignal')
 
 router.route('/')
     // .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
@@ -21,7 +21,6 @@ router.route('/:id')
     .put((req,res,next)=>{
         restaurantService.updateRestaurant(req,res,next)
     })
-
 // .delete((req, res, next) => {
 //     Favorites.findOneAndRemove({user :req.user._id})
 //         .then((resp) => {

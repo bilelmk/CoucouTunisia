@@ -8,17 +8,13 @@ const adminRoutes = require("./routes/admin.route");
 const messagingRoutes = require("./routes/messaging.route");
 const permissionRoutes = require("./routes/permission.route");
 const roleRoutes = require("./routes/role.route");
-
+const path=require('path')
 const init = require("./init/init");
-
 const app = express();
 
  sequelize
     .sync()
   .then(res => {
-      console.log('====================================');
-      console.log('yofkdfds');
-      console.log('====================================');
        console.log(res);
      })
    .catch(err => {
@@ -26,6 +22,7 @@ const app = express();
     });
 
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname,'upload')))
 app.get('/',(req,res,next)=>{
     res.send('yooooo')
 })
@@ -41,6 +38,7 @@ app.use((req, res, next) => {
     );
     next();
 });
+
 // app.use('/',(req,res)=> res.send('hhhhhh'))
 // app.use("/", express.static(path.join(__dirname, "public/app")));
 // app.use("/data", express.static(path.join(__dirname, "public/images")));
