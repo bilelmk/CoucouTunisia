@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize') ;
 const sequelize = require('../util/database-config') ;
 const PhoneConfirmationCode = require("../models/phone-confirmation-code.model");
-
 const Client = sequelize.define('client' , {
     id: {
         type : Sequelize.INTEGER ,
