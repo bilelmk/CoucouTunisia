@@ -14,11 +14,11 @@ const couponRoutes = require("./routes/coupon.route");
 const mailRoutes = require("./routes/mail.route");
 const menuRoutes = require("./routes/menu.route");
 // const roomRoutes = require("./routes/room.route");
+const planningRoutes = require("./routes/planning.route");
+
 
 const cron = require("./crons/cron");
-
 const init = require("./init/init");
-
 const app = express();
 
 sequelize.sync().then(res => {
@@ -29,7 +29,10 @@ sequelize.sync().then(res => {
 });
 
 app.use(bodyParser.json());
-
+app.use(express.static(path.join(__dirname,'upload')))
+app.get('/',(req,res,next)=>{
+    res.send('yooooo')
+})
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -46,6 +49,9 @@ app.use((req, res, next) => {
 cron.runCrons() ;
 
 app.use("/api/images", express.static(path.join(__dirname, "upload")));
+// app.use('/',(req,res)=> res.send('hhhhhh'))
+// app.use("/", express.static(path.join(__dirname, "public/app")));
+// app.use("/data", express.static(path.join(__dirname, "public/images")));
 app.use("/api/messaging", messagingRoutes) ;
 app.use("/api/clients", clientRoutes) ;
 app.use("/api/restaurants", restaurantRoutes) ;
@@ -56,6 +62,7 @@ app.use("/api/reservations" , reservationRoutes);
 app.use("/api/coupons" , couponRoutes);
 app.use("/api/mails" , mailRoutes)
 app.use("/api/menus" , menuRoutes)
+app.use("/api/planning" , planningRoutes)
 // app.use("/api/rooms" , roomRoutes)
 
 // init() ;
