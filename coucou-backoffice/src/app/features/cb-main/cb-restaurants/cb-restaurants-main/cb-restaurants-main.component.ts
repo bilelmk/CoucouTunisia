@@ -10,23 +10,12 @@ export class CbRestaurantsMainComponent implements OnInit {
   routes = [
     {
       route : "informations" ,
-      name : "Général" ,
+      name : "Informations Générales" ,
     },
-    {
-      route : "clients" ,
-      name : "Clients" ,
-    },
-    {
-      route : "images" ,
-      name : "Mes Images" ,
-    },
+
     {
       route : "planning" ,
-      name : "planning" ,
-    },
-    {
-      route : "avis" ,
-      name : "Avis",
+      name : "Planning" ,
     },
     {
       route : "menus" ,
@@ -37,11 +26,23 @@ export class CbRestaurantsMainComponent implements OnInit {
       name : "Rooms" ,
     },
     {
+      route : "images" ,
+      name : "Galerie" ,
+    },
+    {
       route : "reservations" ,
       name : "Réservations" ,
     },
-
+    {
+      route : "clients" ,
+      name : "Clients" ,
+    },
+    {
+      route : "avis" ,
+      name : "Avis",
+    }
   ]
+
   constructor() { }
 
   ngOnInit(): void {

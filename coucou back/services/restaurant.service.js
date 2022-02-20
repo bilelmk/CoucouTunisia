@@ -17,9 +17,7 @@ exports.add = async (req, res, next) => {
     })
   Restaurant.create(req.body.restaurant, { include: ['rooms', 'planning', 'menus', 'images'] })
     .then((restaurent) => {
-      res.status(201).json({
-        message: 'done!'
-      })
+      res.status(201).json({message: 'done!'})
     }).catch(err => {
       res.status(400).json({
         message: 'error',
@@ -29,7 +27,7 @@ exports.add = async (req, res, next) => {
 }
 
 exports.getAll = ( req, res , next ) => {
-    Restaurant.findAll({include: ['rooms', 'planning', 'menus']} ).then(result =>{
+    Restaurant.findAll({include: ['rooms', 'planning', 'menus' , 'images']} ).then(result =>{
         return res.status(200).json(result);
     }).catch(err => {
         return res.status(404).json({message: "no records"});
@@ -42,4 +40,14 @@ exports.getAllLite = ( req, res , next ) => {
     }).catch(err => {
         return res.status(404).json({message: "no records"});
     })
+}
+
+exports.getOne = async ( req, res , next, id ) => {
+    let restaurant = await Restaurant.findByPk(id , {include: ['rooms', 'planning', 'menus' , 'images']} )
+    if(restaurant) {
+        return res.status(200).json(restaurant);
+    }
+   else {
+        return res.status(404).json({message: "not found"});
+    }
 }

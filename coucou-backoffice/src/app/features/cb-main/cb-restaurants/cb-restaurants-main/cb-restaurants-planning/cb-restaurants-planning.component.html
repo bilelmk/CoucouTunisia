@@ -1,1 +1,158 @@
-<p>cb-restaurants-planning works!</p>
+<div class="small-page">
+  <div class="row justify-content-between align-items-center">
+    <div>
+      <p class="title">
+        <span class="material-icons title-icon">calendar_month</span>
+        Planning
+      </p>
+    </div>
+    <div>
+      <button class="square-btn ml-2" >
+        <i class="material-icons icon-blue" >
+          add
+        </i>
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="planningForm">
+    <div class="col-12 row no-padding no-margin justify-content-center mt-4">
+      <div class="col-2 full-width pt-3" >
+        <mat-slide-toggle formControlName="monday" (change)="handleDayChange('monday' ,$event)">Lundi</mat-slide-toggle>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Ouverture</mat-label>
+          <input  formControlName="mondayOpen" matInput type="text" [ngxTimepicker]="mondayOpen">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #mondayOpen></ngx-material-timepicker>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Fermeture</mat-label>
+          <input  formControlName="mondayClose" matInput type="text" [ngxTimepicker]="mondayClose">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #mondayClose></ngx-material-timepicker>
+      </div>
+    </div>
+
+    <div class="col-12 row no-padding no-margin justify-content-center">
+      <div class="col-2 full-width pt-3" >
+        <mat-slide-toggle formControlName="tuesday" (change)="handleDayChange('tuesday' ,$event)">Mardi</mat-slide-toggle>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Ouverture</mat-label>
+          <input  formControlName="tuesdayOpen" matInput type="text" [ngxTimepicker]="tuesdayOpen">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #tuesdayOpen></ngx-material-timepicker>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Fermeture</mat-label>
+          <input  formControlName="tuesdayClose" matInput type="text" [ngxTimepicker]="tuesdayClose">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #tuesdayClose></ngx-material-timepicker>
+      </div>
+    </div>
+
+    <div class="col-12 row no-padding no-margin justify-content-center">
+      <div class="col-2 full-width pt-3" >
+        <mat-slide-toggle formControlName="wednesday" (change)="handleDayChange('wednesday' ,$event)">Mercredi</mat-slide-toggle>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Ouverture</mat-label>
+          <input  formControlName="wednesdayOpen" matInput type="text" [ngxTimepicker]="wednesdayOpen">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #wednesdayOpen></ngx-material-timepicker>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Fermeture</mat-label>
+          <input  formControlName="wednesdayClose" matInput type="text" [ngxTimepicker]="wednesdayClose">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #wednesdayClose></ngx-material-timepicker>
+      </div>
+    </div>
+
+    <div class="col-12 row no-padding no-margin justify-content-center">
+      <div class="col-2 full-width pt-3" >
+        <mat-slide-toggle formControlName="thursday" (change)="handleDayChange('thursday' ,$event)" >Jeudi</mat-slide-toggle>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Ouverture</mat-label>
+          <input  formControlName="thursdayOpen" matInput type="text" [ngxTimepicker]="thursdayOpen">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #thursdayOpen></ngx-material-timepicker>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Fermeture</mat-label>
+          <input  formControlName="thursdayClose" matInput type="text" [ngxTimepicker]="thursdayClose">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #thursdayClose></ngx-material-timepicker>
+      </div>
+    </div>
+
+    <div class="col-12 row no-padding no-margin justify-content-center">
+      <div class="col-2 full-width pt-3" >
+        <mat-slide-toggle formControlName="friday" (change)="handleDayChange('friday' ,$event)">Vendredi</mat-slide-toggle>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Ouverture</mat-label>
+          <input  formControlName="fridayOpen" matInput type="text" [ngxTimepicker]="fridayOpen">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #fridayOpen></ngx-material-timepicker>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Fermeture</mat-label>
+          <input  formControlName="fridayClose" matInput type="text" [ngxTimepicker]="fridayClose">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #fridayClose></ngx-material-timepicker>
+      </div>
+    </div>
+    <div class="col-12 row no-padding no-margin justify-content-center">
+      <div class="col-2 full-width pt-3" >
+        <mat-slide-toggle formControlName="saturday" (change)="handleDayChange('saturday' ,$event)" >Samedi</mat-slide-toggle>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Ouverture</mat-label>
+          <input  formControlName="saturdayOpen" matInput type="text" [ngxTimepicker]="saturdayOpen">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #saturdayOpen></ngx-material-timepicker>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Fermeture</mat-label>
+          <input  formControlName="saturdayClose" matInput type="text" [ngxTimepicker]="saturdayClose">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #saturdayClose></ngx-material-timepicker>
+      </div>
+    </div>
+    <div class="col-12 row no-padding no-margin justify-content-center">
+      <div class="col-2 full-width pt-3" >
+        <mat-slide-toggle formControlName="sunday" (change)="handleDayChange('sunday' ,$event)" >Dimanche</mat-slide-toggle>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Ouverture</mat-label>
+          <input  formControlName="sundayOpen" matInput type="text" [ngxTimepicker]="sundayOpen">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #sundayOpen></ngx-material-timepicker>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Fermeture</mat-label>
+          <input  formControlName="sundayClose" matInput type="text" [ngxTimepicker]="sundayClose">
+        </mat-form-field>
+        <ngx-material-timepicker [timepickerClass]="'custome-class'" #sundayClose></ngx-material-timepicker>
+      </div>
+    </div>
+  </form>
+
+</div>

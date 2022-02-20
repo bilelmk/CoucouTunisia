@@ -23,4 +23,8 @@ export class RestaurantService {
     return this.http.get<any>(this.URL + "/lite")
   }
 
+  getOne(id):Observable<any> {
+    return this.http.get<any>(this.URL + "/" + id)
+  }
+
 }

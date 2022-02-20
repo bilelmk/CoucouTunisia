@@ -50,4 +50,22 @@ app.set("port", port);
 const server = http.createServer(app);
 server.on("error", onError);
 server.on("listening", onListening);
-server.listen(port,()=>console.log('hello ',port));
+
+const io = require("./util/socket").init(server ,
+    {
+        cors: {
+            origin: '*',
+            methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
+            allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization" ],
+        }
+    }
+);
+
+io.on('connection', (socket) => {
+    console.log('client Connected');
+    socket.on("tracking", data => {
+        socket.emit( 'restaurant' + data.id, data.user);
+    });
+});
+
+server.listen(port,() => console.log('server on ', port));

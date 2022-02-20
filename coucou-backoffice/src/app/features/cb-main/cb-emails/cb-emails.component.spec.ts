@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CbEmailsComponent } from '../../../core/services/http/cb-emails.component';
+import { CbEmailsComponent } from './cb-emails.component';
 
 describe('CbEmailsComponent', () => {
   let component: CbEmailsComponent;

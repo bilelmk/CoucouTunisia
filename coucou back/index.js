@@ -11,6 +11,9 @@ const permissionRoutes = require("./routes/permission.route");
 const roleRoutes = require("./routes/role.route");
 const reservationRoutes = require("./routes/reservation.route");
 const couponRoutes = require("./routes/coupon.route");
+const mailRoutes = require("./routes/mail.route");
+const menuRoutes = require("./routes/menu.route");
+// const roomRoutes = require("./routes/room.route");
 
 const cron = require("./crons/cron");
 
@@ -51,6 +54,9 @@ app.use("/api/permissions", permissionRoutes);
 app.use("/api/roles", roleRoutes);
 app.use("/api/reservations" , reservationRoutes);
 app.use("/api/coupons" , couponRoutes);
+app.use("/api/mails" , mailRoutes)
+app.use("/api/menus" , menuRoutes)
+// app.use("/api/rooms" , roomRoutes)
 
 // init() ;
 

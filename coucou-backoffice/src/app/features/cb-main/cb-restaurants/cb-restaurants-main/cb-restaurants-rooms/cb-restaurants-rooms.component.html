@@ -1,1 +1,30 @@
-<p>cb-restaurants-rooms works!</p>
+<div class="small-page">
+  <div class="row justify-content-between align-items-center">
+    <div>
+      <p class="title">
+        <span class="material-icons title-icon">cabin</span>
+        Rooms
+      </p>
+    </div>
+    <div>
+      <button class="square-btn ml-2" >
+        <i class="material-icons icon-blue" >
+          add
+        </i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row justify-content-center align-items-center" *ngFor="let menu of restaurant.menus">
+    <div class="col-3 text-center">
+      <p>{{menu.name}}</p>
+    </div>
+    <div class="col-6 text-center">
+      <p>{{menu.description}}</p>
+    </div>
+    <div class="col-3">
+      <img class="img-fluid" [src]="menu.image ? 'http://localhost:3006/api/images/' + menu.image : '/assets/img/no-record.png' ">
+    </div>
+  </div>
+
+</div>
