@@ -21,7 +21,9 @@ exports.signup = async (req, res, next) => {
             req.body.active = true
             req.body.signupSource = ''
             req.body.phoneConfirmationCode = {
-                code: helpers.random()
+                // code: helpers.random()
+                code: '0000'
+
             }
             Client.create(req.body ,
                 { include : [ PhoneConfirmationCode ]}).then( async result => {
@@ -30,16 +32,16 @@ exports.signup = async (req, res, next) => {
                 const senderName = "CocoBeach" ;
                 let content = "Your confirmation code: " + req.body.phoneConfirmationCode.code ;
 
-                let isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, req.body.phone , content)
-                if (isSmsSent) {
+                // let isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, req.body.phone , content)
+                // if (isSmsSent) {
                     res.status(200).json({
                         id: result,
                     });
-                } else {
-                    res.status(500).json({
-                        message: "user created and sms not sent"
-                    });
-                }
+                // } else {
+                //     res.status(500).json({
+                //         message: "user created and sms not sent"
+                //     });
+                // }
             }).catch(err => {
                 res.status(500).json({
                     message: "user not created"
@@ -87,7 +89,7 @@ exports.signin = async (req, res, next) => {
 
 exports.checkPhoneVerificationCode = async (req, res, next) => {
     let fetchedClient = await Client.findOne(
-        { where: {'$PhoneConfirmationCode.code$': req.body.verificationCode },
+        { where: {'$phoneConfirmationCode.code$': req.body.verificationCode,id:req.body.id },
         include: [{
             model: PhoneConfirmationCode,
             as: 'phoneConfirmationCode'
