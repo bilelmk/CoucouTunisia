@@ -11,11 +11,8 @@ const permissionRoutes = require("./routes/permission.route");
 const roleRoutes = require("./routes/role.route");
 const reservationRoutes = require("./routes/reservation.route");
 const couponRoutes = require("./routes/coupon.route");
-
 const cron = require("./crons/cron");
-
 const init = require("./init/init");
-
 const app = express();
 
 sequelize.sync().then(res => {
@@ -26,7 +23,10 @@ sequelize.sync().then(res => {
 });
 
 app.use(bodyParser.json());
-
+app.use(express.static(path.join(__dirname,'upload')))
+app.get('/',(req,res,next)=>{
+    res.send('yooooo')
+})
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -43,6 +43,9 @@ app.use((req, res, next) => {
 cron.runCrons() ;
 
 app.use("/api/images", express.static(path.join(__dirname, "upload")));
+// app.use('/',(req,res)=> res.send('hhhhhh'))
+// app.use("/", express.static(path.join(__dirname, "public/app")));
+// app.use("/data", express.static(path.join(__dirname, "public/images")));
 app.use("/api/messaging", messagingRoutes) ;
 app.use("/api/clients", clientRoutes) ;
 app.use("/api/restaurants", restaurantRoutes) ;
