@@ -1,0 +1,22 @@
+import { Injectable } from '@angular/core';
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { Menu } from "../../models/menu";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MenusService {
+
+  URL = "/api/menus" ;
+
+  constructor(private http: HttpClient) { }
+
+  add(menu: Menu): Observable<Menu> {
+    return this.http.post<Menu>(this.URL , menu);
+  }
+
+  delete(id: number) {
+    return this.http.delete(this.URL + "/" + id);
+  }
+}

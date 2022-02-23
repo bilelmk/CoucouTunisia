@@ -5,7 +5,7 @@ import { CbRestaurantsAddComponent } from './cb-restaurants-add/cb-restaurants-a
 import { RestaurantService } from '../../../core/services/http/restaurant.service';
 import { Restaurant } from '../../../core/models/restaurant';
 import { ActivatedRoute, Router } from '@angular/router';
-import {RestaurantShareService} from "../../../core/services/in-app/restaurant-share.service";
+import { RestaurantShareService } from "../../../core/services/in-app/restaurant-share.service";
 
 @Component({
   selector: 'app-cb-restaurants',

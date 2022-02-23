@@ -7,9 +7,14 @@
       </p>
     </div>
     <div>
-      <button class="square-btn ml-2" >
+      <button class="square-btn ml-2" *ngIf="!isEditMode" (click)="enableEdit()">
         <i class="material-icons icon-blue" >
-          add
+          edit
+        </i>
+      </button>
+      <button class="square-btn ml-2" *ngIf="isEditMode"  (click)="update()" >
+        <i class="material-icons icon-blue" >
+          save
         </i>
       </button>
     </div>

@@ -20,18 +20,12 @@ exports.signup = async (req, res, next) => {
             req.body.verified = false
             req.body.active = true
             req.body.signupSource = ''
-            req.body.phoneConfirmationCode = {
-                // code: helpers.random()
-                code: '0000'
-
-            }
+            req.body.phoneConfirmationCode = { code: helpers.random() }
             Client.create(req.body ,
                 { include : [ PhoneConfirmationCode ]}).then( async result => {
-
                 const senderNumber = 50109769;
                 const senderName = "CocoBeach" ;
                 let content = "Your confirmation code: " + req.body.phoneConfirmationCode.code ;
-
                 // let isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, req.body.phone , content)
                 // if (isSmsSent) {
                     res.status(200).json({
