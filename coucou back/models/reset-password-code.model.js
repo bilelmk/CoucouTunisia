@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database-config');
 const Client = require('./client.model');
+
 const ResetPasswordCode = sequelize.define('resetPasswordCode', {
     id: {
         type: Sequelize.INTEGER,

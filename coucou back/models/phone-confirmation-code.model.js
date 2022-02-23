@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database-config');
+const Client = require("./client.model");
 
 const PhoneConfirmationCode = sequelize.define('phoneConfirmationCode', {
     id: {
@@ -13,5 +14,7 @@ const PhoneConfirmationCode = sequelize.define('phoneConfirmationCode', {
         allowNull: false
     }
 });
+
+PhoneConfirmationCode.belongsTo(Client)
 
 module.exports = PhoneConfirmationCode;

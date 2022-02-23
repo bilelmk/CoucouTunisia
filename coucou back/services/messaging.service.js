@@ -7,7 +7,6 @@ exports.sendOneSms = async (req, res ,next) => {
         req.body.receiver,
         req.body.content
     )
-
     if (isSmsSent) {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');

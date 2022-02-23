@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize') ;
 const sequelize = require('../util/database-config') ;
-const PhoneConfirmationCode = require("../models/phone-confirmation-code.model");
+
 const Client = sequelize.define('client' , {
     id: {
         type : Sequelize.INTEGER ,
@@ -19,6 +19,10 @@ const Client = sequelize.define('client' , {
     password: {
         type : Sequelize.STRING ,
         allowNull : false ,
+    },
+    email: {
+        type : Sequelize.STRING ,
+        unique : true
     },
     phone: {
         type : Sequelize.STRING ,
@@ -39,8 +43,5 @@ const Client = sequelize.define('client' , {
         type : Sequelize.STRING ,
     }
 });
-
-Client.belongsTo(PhoneConfirmationCode );
-
 
 module.exports = Client ;
