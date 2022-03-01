@@ -1,0 +1,80 @@
+<ion-content>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button menu="custom">
+        </ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="client != null">
+    <div class="user-background">
+      <img [src]="image ? image : ( client?.image ? client.image : './../../../../assets/image/default-profile.png') " alt="image" />
+
+      <button *ngIf="!image" (click)="onPickImage()"  class="ion-activatable">
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        <ion-icon name="camera-outline" ></ion-icon>
+      </button>
+
+      <button *ngIf="image" (click)="onSaveImage()"  class="ion-activatable">
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        <ion-icon name="checkmark-circle-outline" ></ion-icon>
+      </button>
+
+      <button *ngIf="image" (click)="onCancelImage()"  class="ion-activatable" style="right: 40px">
+        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+        <ion-icon name="close-circle-outline" ></ion-icon>
+      </button>
+
+
+    </div>
+    <div>
+      <h5 class="user-name" > {{ client?.lastName }} {{ client?.firstName }} </h5>
+
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label> Profil </ion-label>
+        </ion-item-divider>
+        <ion-item>
+          <ion-icon slot="start" name="person-outline"></ion-icon>
+          <ion-label><h3>Editer le profil</h3></ion-label>
+        </ion-item>
+      </ion-item-group>
+
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label> Historique </ion-label>
+        </ion-item-divider>
+        <ion-item (click)="toReservations()">
+          <ion-icon slot="start" name="calendar-outline"></ion-icon>
+          <ion-label><h3>Réservations</h3></ion-label>
+        </ion-item>
+        <ion-item (click)="toFavoris()">
+          <ion-icon slot="start" name="heart-outline"></ion-icon>
+          <ion-label><h3>Favoris</h3></ion-label>
+        </ion-item>
+      </ion-item-group>
+
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label> Compte </ion-label>
+        </ion-item-divider>
+        <ion-item>
+          <ion-icon slot="start" name="help-buoy-outline"></ion-icon>
+          <ion-label><h3>Aide et assistance</h3></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon slot="start" name="newspaper-outline"></ion-icon>
+          <ion-label><h3>Termes et conditions</h3></ion-label>
+        </ion-item>
+        <ion-item (click)="logout()">
+          <ion-icon slot="start" name="log-out-outline"></ion-icon>
+          <ion-label><h3>Déconnexion</h3></ion-label>
+        </ion-item>
+      </ion-item-group>
+
+    </div>
+  </div>
+</ion-content>
+

@@ -1,0 +1,60 @@
+<ion-content fullscreen="true" class="auth">
+  <ion-grid >
+    <ion-row class="logo-row">
+      <ion-col size="8" size-sm="4" offset="2" offset-sm="4" >
+        <img src="../../../../assets/image/logo.png" alt="logo">
+      </ion-col>
+    </ion-row>
+
+
+    <form [formGroup]="form" >
+      <ion-row>
+
+        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
+          <label  class="login-label">Nom</label>
+        </ion-col>
+        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
+          <input formControlName="lastName" class="login-input" type="text" />
+        </ion-col>
+
+        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
+          <label  class="login-label">Prénom</label>
+        </ion-col>
+        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
+          <input formControlName="firstName" class="login-input" type="text" />
+        </ion-col>
+
+        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
+          <label  class="login-label">Numéro du téléphone</label>
+        </ion-col>
+        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
+          <input formControlName="phone" class="login-input" type="text" />
+        </ion-col>
+
+        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
+          <label  class="login-label">Email</label>
+        </ion-col>
+        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
+          <input formControlName="email" class="login-input" type="text" />
+        </ion-col>
+
+        <ion-col  size="10" size-sm="6" offset="1" offset-sm="3">
+          <label  class="login-label">Mot de passe</label>
+        </ion-col>
+        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
+          <input formControlName="password" class="login-input" type="password" />
+        </ion-col>
+
+        <ion-col  size="10" size-sm="6" offset="1" offset-sm="3">
+          <ion-button (click)="onRegister()" color="light" expand="full" [disabled]="!form.valid">Creer</ion-button>
+        </ion-col>
+
+        <ion-col class="ion-text-center signup_p" size="10" size-sm="6" offset="1" offset-sm="3">
+          <p>Vous avez un compte <a class="signup_link"  routerLink="/cb-login">Se connecter</a></p>
+        </ion-col>
+
+      </ion-row>
+    </form>
+  </ion-grid>
+
+</ion-content>
