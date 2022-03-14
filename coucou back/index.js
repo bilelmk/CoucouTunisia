@@ -30,9 +30,7 @@ sequelize.sync().then(res => {
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'upload')))
-app.get('/',(req,res,next)=>{
-    res.send('yooooo')
-})
+
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(

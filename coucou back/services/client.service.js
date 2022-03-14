@@ -100,18 +100,18 @@ exports.checkPhoneVerificationCode = async (req, res, next) => {
         const { code } = req.body
         const phoneConfirmationCode = await PhoneConfirmationCode.findOne({ where: { code: code } })
         if (!phoneConfirmationCode) return res.status(404).json({
-            message: 'code not found!'
+            message: 'code not found'
         })
         const isValidCode = new Date(Date.now()).getTime() - new Date(phoneConfirmationCode.createdAt).getTime() <= 7200000
         if (!isValidCode) return res.status(401).json({
-            message: 'code is expired!'
+            message: 'code is expired'
         })
         PhoneConfirmationCode.destroy({ where: { id: phoneConfirmationCode.id } })
         const updateResult = await  Client.update({ verified: true }, { where: { id: phoneConfirmationCode.clientId } })
         if(!updateResult) return res.status(500).json({
                 message: "can not update client"
         });
-        if (updateResult[0] === 1) return res.status(200).json({
+        if (updateResult[0]) return res.status(200).json({
                 clientId: phoneConfirmationCode.clientId,
                 message: 'code is verified'
         });
@@ -131,11 +131,11 @@ exports.checkResetPasswordCode = async (req, res, next) => {
         const { code } = req.body
         const resetPasswordCode = await ResetPasswordCode.findOne({ where: { code: code } })
         if (!resetPasswordCode) return res.status(404).json({
-            message: 'code not found!'
+            message: 'code not found'
         })
         const isValidCode = new Date(Date.now()).getTime() - new Date(resetPasswordCode.createdAt).getTime() <= 7200000
         if (!isValidCode) return res.status(401).json({
-            message: 'code is expired!'
+            message: 'code is expired'
         })
         ResetPasswordCode.destroy({ where: { id: resetPasswordCode.id } })
         return res.status(200).json({
@@ -153,12 +153,12 @@ exports.sendResetPasswordCode = async (req, res, next) => {
     try {
         const { phone } = req.body
         if (!phone) return res.status(400).json({
-            message: 'phone is required!'
+            message: 'phone is required'
         })
         const client = await Client.findOne({ where: { phone: phone } })
 
         if (!client) return res.status(405).json({
-            message: 'client not found!'
+            message: 'client not found'
         })
         const resetPasswordCode = await ResetPasswordCode.create({
             clientId: client.id,
@@ -171,11 +171,11 @@ exports.sendResetPasswordCode = async (req, res, next) => {
         const isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, phone, content)
         if (isSmsSent) {
             res.status(200).json({
-                message: 'reset password code has been sent!',
+                message: 'reset password code has been sent',
             });
         } else {
             res.status(500).json({
-                message: "user created and sms not sent"
+                message: "sms not sent"
             });
         }
     } catch (err) {
@@ -189,15 +189,15 @@ exports.resetPassowrd = async (req, res, next) => {
     try {
         const { password, clientId } = req.body
         if (!clientId) return res.status(400).json({
-            message: 'clientId is required!'
+            message: 'clientId is required'
         })
         const hashedPassword = await bcrypt.hash(password, 10)
         const client = await Client.update({ password: hashedPassword }, { where: { id: clientId } })
         if (client) return res.status(200).json({
-            message: 'password has been updated!'
+            message: 'password has been updated'
         })
         return res.status(404).json({
-            message: 'client not found!'
+            message: 'client not found'
         })
     } catch (err) {
         return res.status(500).json({
@@ -228,7 +228,7 @@ exports.getMany = (req, res, next) => {
 }
 
 exports.getOne = (req, res, next) => {
-    Client.findByPk({ where: { id: req.userData.userId }}).then(client => {
+    Client.findByPk(req.userData.userId).then(client => {
         return res.status(200).json(client);
     }).catch(err => {
         return res.status(500).json(err);

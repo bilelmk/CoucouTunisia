@@ -38,18 +38,19 @@ export class CbRegisterPage implements OnInit {
     this.authenticationService.signup(request).subscribe(
         res => {
           this.router.navigate(['/cb-verify-phone-code']);
+          this.toastService.show('Votre compte à été créé avec succès' ,'success') ;
           this.spinnerService.deactivate() ;
         }, error => {
           this.spinnerService.deactivate() ;
-          // if (error.error.message === 'wrong phone number') {
-          //   this.toastService.show('Numéro de téléphone incorrect' ,'danger');
+          if (error.error.message === 'existing user') {
+            this.toastService.show('Ce numéro de téléphone existe déjà' ,'danger');
           // } else if (error.error.message === 'wrong password') {
           //   this.toastService.show('Mot de passe incorrect' ,'danger');
           // } else if (error.error.message === 'phone not verified') {
           //   this.toastService.show('Numéro de téléphone n\'est pas verifié' ,'danger');
-          // } else {
-          //   this.toastService.show('Erreur du serveur' ,'danger');
-          // }
+          } else {
+            this.toastService.show('Erreur du serveur' ,'danger');
+          }
         });
   }
 }

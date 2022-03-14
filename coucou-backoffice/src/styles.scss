@@ -4,8 +4,8 @@
 //body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // custom scss
-@import "assets/styles/components/toolbar";
-@import "assets/styles/components/snackbar";
+//@import "assets/styles/components/toolbar";
+@import "./assets/styles/components/snackbar";
 @import "assets/styles/components/dialog";
 @import "assets/styles/components/card";
 @import "assets/styles/components/table";

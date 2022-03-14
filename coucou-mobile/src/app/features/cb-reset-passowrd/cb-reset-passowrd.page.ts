@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router} from '@angular/router';
 import { AuthenticationService } from '../../core/services/http/authentication.service';
 import { SpinnerService } from '../../core/services/in-app/spinner.service';
 import { ToastService } from '../../core/services/in-app/toast.service';
@@ -35,9 +35,11 @@ export class CbResetPassowrdPage {
     this.authenticationService.resetPassword(request).subscribe(
         res => {
           this.router.navigate(['cb-login']);
+          this.toastService.show('Mot de passe changé avec succès' ,'success') ;
           this.spinnerService.deactivate();
         },
         error => {
+          this.toastService.show('Erreur du serveur' ,'danger');
           this.spinnerService.deactivate();
         }
     );

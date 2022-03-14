@@ -1,8 +1,9 @@
 <ion-content fullscreen="true" class="auth">
-  <ion-grid >
-    <ion-row class="logo-row">
-      <ion-col size="8" size-sm="4" offset="2" offset-sm="4" >
-        <img src="../../../../assets/image/logo.png" alt="logo">
+  <ion-grid style="padding-top: calc((100vh - 500px) / 2)">
+
+    <ion-row class="ion-justify">
+      <ion-col class="ion-text-center" size="12">
+        <img class="auth-image" src="assets/image/logo.png" alt="logo">
       </ion-col>
     </ion-row>
 
@@ -10,17 +11,11 @@
       <ion-row>
 
         <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
-          <label  class="login-label">Mot de passe</label>
-        </ion-col>
-        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
-          <input formControlName="password" class="login-input" type="password" />
+          <input formControlName="password" class="login-input" type="password" placeholder="Nouveau mot de passe" />
         </ion-col>
 
         <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
-          <label  class="login-label">confirmer le mot de passe</label>
-        </ion-col>
-        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
-          <input formControlName="confirmPassword" class="login-input" type="password" />
+          <input formControlName="confirmPassword" class="login-input" type="password" placeholder="confimer le mot de passe" />
         </ion-col>
 
         <ion-col  size="10" size-sm="6" offset="1" offset-sm="3">
