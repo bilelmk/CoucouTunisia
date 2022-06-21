@@ -39,8 +39,13 @@ router.route('/')
     })
     .get(checkAuthentication ,(req, res, next) => {
             clientService.getOne(req, res, next);
+    })
+    // .put((req, res, next) => {
+    //         clientService.update(req, res, next);
+// })
+router.route('/:id').get((req,res,next)=>{
+    clientService.getOne(req, res, next);
 })
-
 router.route('/lower')
     .get((req, res, next) => {
         clientService.getAllLower(req, res, next);

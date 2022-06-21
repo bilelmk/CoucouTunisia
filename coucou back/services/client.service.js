@@ -9,36 +9,50 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 exports.signup = async (req, res, next) => {
-    try {
-        // verify if client is already exist
-        const client = await Client.findOne({ where: { phone: req.body.phone } })
-        if (client) {
-            return res.status(405).json({
-                message: "existing user"
-            });
-        }
-        // hash password
-        const hash = await bcrypt.hash(req.body.password, 10) ;
-        if(!hash){
-            return res.status(405).json({
-                message: "can not hash password"
-            });
-        }
-        // create client
-        req.body.password = hash
-        req.body.verified = false
-        req.body.active = true
-        req.body.signupSource = 'PHONE'
-        let newClient = await Client.create(req.body) ;
-        if(!newClient) {
-            return res.status(500).json({
-                message: "user not created"
-            });
-        }
-        // create confirmation code
-        const phoneConfirmationCode = await PhoneConfirmationCode.create({
-            clientId: newClient.id,
-            code: helpers.random()
+    let client = await Client.findOne({ where: { phone: req.body.phone } })
+    if (client) {
+        return res.status(405).json({
+            message: "existing user"
+        });
+    }
+    else {
+        bcrypt.hash(req.body.password, 10).then(hash => {
+            req.body.password = hash
+            req.body.verified = false
+            req.body.active = true
+            req.body.signupSource = ''
+            req.body.phoneConfirmationCode = {
+                code: helpers.random()
+                // code: '0000'
+            }
+            Client.create(req.body,
+                { include: [PhoneConfirmationCode] }).then(async result => {
+                    const senderNumber = 50109769;
+                    const senderName = "CocoBeach";
+                    let content = "Your confirmation code: " + req.body.phoneConfirmationCode.code;
+                    try {
+                        let isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, req.body.phone, content)
+                        if (isSmsSent) {
+                            res.status(201).json({
+                                user: result,
+                            });
+                        } else {
+                            res.status(500).json({
+                                message: "user created and sms not sent",
+                                user: result
+                            });
+                        }
+                    } catch (error) {
+                        res.status(500).json({
+                            message: "user created and sms not sent",
+                            user: result
+                        });
+                    }
+                }).catch(err => {
+                    res.status(500).json({
+                        message: "user not created"
+                    });
+                });
         })
         // send sms
         const senderNumber = 50109769;
@@ -53,9 +67,7 @@ exports.signup = async (req, res, next) => {
             });
         }
     }
-    catch (err) {
-        return res.status(500).json(err)
-    }
+
 }
 
 exports.signin = async (req, res, next) => {
@@ -72,22 +84,25 @@ exports.signin = async (req, res, next) => {
                 message: "wrong password"
             });
         }
-        const isVerified = await fetchedClient.verified;
-        if (isVerified) {
-            const token = await jwt.sign(
-                { phone: fetchedClient.phone, userId: fetchedClient.id },
-                "secret_this_should_be_longer",
-                { expiresIn: "5h" }
-            );
-            return res.status(200).json({
-                token: token,
-                expiresIn: 3600
-            });
-        } else {
-            return res.status(401).json({
-                message: "phone not verified",
-                userId: fetchedClient.id
-            });
+        else {
+            let isVerified = await fetchedClient.verified;
+            if (isVerified) {
+                const token = await jwt.sign(
+                    { phone: fetchedClient.phone, userId: fetchedClient.id },
+                    "secret_this_should_be_longer",
+                    { expiresIn: "5h" }
+                );
+                res.status(200).json({
+                    token: token,
+                    expiresIn: 3600,
+                    userId: fetchedClient.id
+                });
+            } else {
+                res.status(401).json({
+                    message: "phone not verified",
+                    userId: fetchedClient.id
+                });
+            }
         }
     }
     catch (err) {
@@ -228,10 +243,15 @@ exports.getMany = (req, res, next) => {
 }
 
 exports.getOne = (req, res, next) => {
-    Client.findByPk(req.userData.userId).then(client => {
-        return res.status(200).json(client);
-    }).catch(err => {
-        return res.status(500).json(err);
+    Client.findOne({ where: { id: req.params.id}})
+        .then(data => {
+            return res.status(200).json({
+                data
+            });
+        }).catch(err => {
+        return res.status(500).json({
+            message: "no row found"
+        });
     });
 }
 

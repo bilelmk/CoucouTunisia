@@ -4,21 +4,24 @@ const Op = Sequelize.Op;
 
 exports.add = async (req, res, next) => {
   req.body.restaurant = JSON.parse(req.body.restaurant)
-  const restaurant = await Restaurant.findOne({ where: { phone: req.body.restaurant.phone.toString() } })
+  try{
+    var restaurant = await Restaurant.findOne({ where: { phone: req.body.restaurant.phone.toString() } })
+  }catch(err){
+    console.log(err);
+  }
   if (restaurant) res.status(400).json({ message: 'phone exist!' })
-
   req.body.restaurant.image = req.files.image[0].filename
 
   req.body.restaurant.menus = req.body.restaurant.menus ? req.body.restaurant.menus.map((element, index) => {
     return { ...element, image: req.files.menuImages[index].filename }
   }) : []
 
-  req.body.restaurant.rooms = req.body.restaurant.rooms ? req.body.restaurant.rooms.map((element, index) => {
+  req.body.restaurant.rooms = req.body.restaurant.rooms!==undefined ? req.body.restaurant.rooms.map((element, index) => {
     return { ...element, image: req.files.roomImages[index].filename }
   }) : []
-  req.body.restaurant.images = req.body.restaurant.images.map((element, index) => {
+  req.body.restaurant.images =req.body.restaurant.images!==undefined ? req.body.restaurant.images.map((element, index) => {
     return { ...element, image: req.files.restaurantImages[index].filename }
-  })
+  }):[]
   Restaurant.create(req.body.restaurant, { include: ['rooms', 'planning', 'menus', 'images'] })
     .then((restaurent) => {
       res.status(201).json(restaurent)
@@ -44,7 +47,8 @@ exports.getAll = (req, res, next) => {
         { description: { [Op.like]: key } },
         { email: { [Op.like]: key } },
       ]
-    }
+    },
+    include: ['rooms', 'planning', 'menus','images']
   }).then(
     restaurants => {
       res.status(200).json({
