@@ -23,6 +23,18 @@ exports.add = async (req, res, next) => {
     //         error: err
     //     })
     // })
+    console.log(req.body)
+    Reservation.create(req.body.reservation)
+    .then((reservation) => {
+      res.status(201).json({
+        message: 'done!'
+      })
+    }).catch(err => {
+      res.status(400).json({
+        message: 'error',
+        error: err
+      })
+    })
 }
 
 

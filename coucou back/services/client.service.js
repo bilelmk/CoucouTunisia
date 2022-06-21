@@ -27,19 +27,25 @@ exports.signup = async (req, res, next) => {
             }
             Client.create(req.body,
                 { include: [PhoneConfirmationCode] }).then(async result => {
-
                     const senderNumber = 50109769;
                     const senderName = "CocoBeach";
                     let content = "Your confirmation code: " + req.body.phoneConfirmationCode.code;
-
-                    let isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, req.body.phone , content)
-                    if (isSmsSent) {
-                    res.status(200).json({
-                        id: result,
-                    });
-                    } else {
+                    try {
+                        let isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, req.body.phone, content)
+                        if (isSmsSent) {
+                            res.status(201).json({
+                                user: result,
+                            });
+                        } else {
+                            res.status(500).json({
+                                message: "user created and sms not sent",
+                                user: result
+                            });
+                        }
+                    } catch (error) {
                         res.status(500).json({
-                            message: "user created and sms not sent"
+                            message: "user created and sms not sent",
+                            user: result
                         });
                     }
                 }).catch(err => {
@@ -70,7 +76,8 @@ exports.signin = async (req, res, next) => {
                 );
                 res.status(200).json({
                     token: token,
-                    expiresIn: 3600
+                    expiresIn: 3600,
+                    userId: fetchedClient.id
                 });
             } else {
                 res.status(401).json({
@@ -226,16 +233,16 @@ exports.getMany = (req, res, next) => {
 }
 
 exports.getOne = (req, res, next) => {
-    // Client.findOne({ where: { id: req.userData.userId }})
-    //     .then(data => {
-    //         return res.status(200).json({
-    //             data
-    //         });
-    //     }).catch(err => {
-    //     return res.status(500).json({
-    //         message: "no row found"
-    //     });
-    // });
+    Client.findOne({ where: { id: req.params.id}})
+        .then(data => {
+            return res.status(200).json({
+                data
+            });
+        }).catch(err => {
+        return res.status(500).json({
+            message: "no row found"
+        });
+    });
 }
 
 exports.getAllLower = (req, res, next) => {

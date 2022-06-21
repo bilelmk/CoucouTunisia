@@ -16,10 +16,10 @@ const init = require("./init/init");
 const app = express();
 
 sequelize.sync().then(res => {
-   console.log(res);
+   console.log('database coonected!');
  })
  .catch(err => {
-    console.log(err);
+    console.log('database does not work!');
 });
 
 app.use(bodyParser.json());
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
     next();
 });
 
-cron.runCrons() ;
+// cron.runCrons() ;
 
 app.use("/api/images", express.static(path.join(__dirname, "upload")));
 // app.use('/',(req,res)=> res.send('hhhhhh'))

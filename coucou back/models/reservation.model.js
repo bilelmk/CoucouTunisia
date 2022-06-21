@@ -13,7 +13,7 @@ const Reservation = sequelize.define('reservation' , {
     },
     note: {
         type : Sequelize.STRING ,
-        allowNull : false ,
+        allowNull : true ,
     },
     date: {
         type : Sequelize.STRING ,
@@ -22,22 +22,27 @@ const Reservation = sequelize.define('reservation' , {
     time: {
         type : Sequelize.STRING ,
         allowNull : false ,
+        allowNull : true
     },
     checked: {
         type : Sequelize.BOOLEAN ,
         allowNull : false ,
+        default : false
     },
     confirmed: {
         type : Sequelize.BOOLEAN ,
         allowNull : false ,
+        default : false
     },
     arrived: {
         type : Sequelize.BOOLEAN ,
         allowNull : false ,
+        default : false
     },
     finished: {
         type : Sequelize.BOOLEAN ,
         allowNull : false ,
+        default : false
     },
     adultNumber: {
         type : Sequelize.INTEGER ,
@@ -51,9 +56,13 @@ const Reservation = sequelize.define('reservation' , {
         type : Sequelize.INTEGER ,
         allowNull : false ,
     },
+    carNumber:{
+        type : Sequelize.INTEGER ,
+        allowNull : false ,
+    },
     price: {
         type : Sequelize.FLOAT ,
-        allowNull : false ,
+        allowNull : true ,
     }
 });
 
