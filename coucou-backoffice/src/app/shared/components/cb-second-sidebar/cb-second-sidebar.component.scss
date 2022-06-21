@@ -27,13 +27,12 @@
   }
 
   .title-icon:hover {
-    //color: ;
     background-color: #3f72af;
     color : #f9f7f7 ;
   }
 
   mat-sidenav-container {
-    min-height: 90vh;
+    min-height: calc(100vh - 124px);
   }
 
   mat-sidenav {
@@ -74,8 +73,7 @@
   }
 
   mat-sidenav-content {
-    min-height: 90vh  ;
-    background-color: #f9f7f7;
+    min-height: calc(100vh - 124px);
   }
 
 

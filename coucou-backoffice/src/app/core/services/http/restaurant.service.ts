@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
 
-  URL = "/api/restaurants" ;
+  URL =  environment.url +  "/api/restaurants" ;
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +22,10 @@ export class RestaurantService {
 
   getAllLite():Observable<any> {
     return this.http.get<any>(this.URL + "/lite")
+  }
+
+  getOne(id):Observable<any> {
+    return this.http.get<any>(this.URL + "/" + id)
   }
 
 }

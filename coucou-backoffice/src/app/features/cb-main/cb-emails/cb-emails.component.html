@@ -10,12 +10,22 @@
   </div>
 
   <div class="row" >
-    <div class="col-12 col-sm-6 col-md-4" style="border:1px solid black">
-      sqdqsdqsdsqd
-    </div>
-    <div class="col-12 col-sm-6 col-md-8 " style="border:1px solid black">
-qsdqsdqsdqsd
+<!--    <div class="col-12 col-sm-6 col-md-4" style="border:1px solid black">-->
+<!--      sqdqsdqsdsqd-->
+<!--    </div>-->
+<!--    <div class="col-12 col-sm-6 col-md-8 " style="border:1px solid black">-->
+<!--qsdqsdqsdqsd-->
+<!--    </div>-->
+    <div class="col-12">
+      <ckeditor [(ngModel)]="content" [editor]="Editor" ></ckeditor>
     </div>
 
+    <div>
+      <button (click)="send()">
+        Test
+      </button>
+    </div>
+
+<!--    (ready)="onReady($event)"-->
   </div>
 </div>

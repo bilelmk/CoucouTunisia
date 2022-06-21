@@ -1,1 +1,25 @@
-<p>cb-restaurants-images works!</p>
+<div class="small-page">
+  <div class="row justify-content-between align-items-center">
+    <div>
+      <p class="title">
+        <span class="material-icons title-icon">photo_library</span>
+        Galerie
+      </p>
+    </div>
+    <div>
+      <button class="square-btn ml-2" >
+        <i class="material-icons icon-blue" >
+          add
+        </i>
+      </button>
+    </div>
+  </div>
+
+  <div *ngFor="let image of restaurant.images">
+    {{image}}
+    <img [src]="image ? 'http://localhost:3006/api/images/' + image : '/assets/img/no-record.png' ">
+  </div>
+
+</div>
+
+

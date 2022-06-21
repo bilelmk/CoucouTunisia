@@ -24,7 +24,8 @@ import { CbRestaurantsInformationsComponent } from './cb-restaurants-main/cb-res
 import { CbRestaurantsRoomsComponent } from './cb-restaurants-main/cb-restaurants-rooms/cb-restaurants-rooms.component';
 import { CbRestaurantsClientsComponent } from './cb-restaurants-main/cb-restaurants-clients/cb-restaurants-clients.component';
 import { MatCardModule } from '@angular/material/card';
-import {CbRestaurantsReservationsComponent} from './cb-restaurants-main/cb-restaurants-reservations/cb-restaurants-reservations.component';
+import { CbRestaurantsReservationsComponent } from './cb-restaurants-main/cb-restaurants-reservations/cb-restaurants-reservations.component';
+import { RestaurantGuard } from "../../../core/guards/restaurant.guard";
 
 const routes: Routes = [
   {
@@ -42,34 +43,42 @@ const routes: Routes = [
       {
         path: 'informations',
         component: CbRestaurantsInformationsComponent,
+        canActivate: [RestaurantGuard],
       },
       {
         path: 'menus',
         component: CbRestaurantsMenuComponent,
+        canActivate: [RestaurantGuard],
       },
       {
         path: 'images',
         component: CbRestaurantsImagesComponent,
+        canActivate: [RestaurantGuard],
       },
       {
         path: 'planning',
         component: CbRestaurantsPlanningComponent,
+        canActivate: [RestaurantGuard],
       },
       {
         path: 'avis',
         component: CbRestaurantsAvisComponent,
+        canActivate: [RestaurantGuard],
       },
       {
         path: 'rooms',
         component: CbRestaurantsRoomsComponent,
+        canActivate: [RestaurantGuard],
       },
       {
         path: 'clients',
         component: CbRestaurantsClientsComponent,
+        canActivate: [RestaurantGuard],
       },
       {
         path: 'reservations',
         component: CbRestaurantsReservationsComponent,
+        canActivate: [RestaurantGuard],
       },
     ]
   }

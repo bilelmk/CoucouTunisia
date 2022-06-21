@@ -5,6 +5,7 @@ import { CbRestaurantsAddComponent } from './cb-restaurants-add/cb-restaurants-a
 import { RestaurantService } from '../../../core/services/http/restaurant.service';
 import { Restaurant } from '../../../core/models/restaurant';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RestaurantShareService } from "../../../core/services/in-app/restaurant-share.service";
 
 @Component({
   selector: 'app-cb-restaurants',
@@ -21,14 +22,14 @@ export class CbRestaurantsComponent implements OnInit {
                private dialog: MatDialog ,
                private restaurantService: RestaurantService ,
                private router: Router ,
-               private route: ActivatedRoute) { }
+               private route: ActivatedRoute,
+               private restaurantShareService: RestaurantShareService) { }
 
   ngOnInit(): void {
     this.loading = true ;
     this.spinnerService.activate() ;
-    this.restaurantService.getAll().subscribe(
+    this.restaurantService.getAllLite().subscribe(
       res => {
-        console.log(res)
         this.loading = false ;
         this.restaurants = res ;
         this.spinnerService.deactivate() ;
@@ -54,6 +55,17 @@ export class CbRestaurantsComponent implements OnInit {
   }
 
   getRestaurantDetails(id: number) {
-    this.router.navigate([id] , {relativeTo : this.route})
+    this.spinnerService.activate() ;
+    this.restaurantService.getOne(id).subscribe(
+      res => {
+        this.restaurantShareService.setRestaurant(res) ;
+        this.spinnerService.deactivate()
+        this.router.navigate([id] , {relativeTo : this.route})
+      },
+      error => {
+        this.spinnerService.deactivate()
+        console.log(error)
+      }
+    )
   }
 }

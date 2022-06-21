@@ -18,19 +18,24 @@ import * as L from 'leaflet';
 })
 export class CbRestaurantsAddComponent implements OnInit {
 
+  // Informations
   informationsForm: FormGroup;
-  planningForm: FormGroup;
-
   imageChangedEvent: any = '';
   croppedImage: any = null;
 
-  formData;
+  // Planning
+  planningForm: FormGroup;
 
-  restaurants ;
+  // menus
   menus = [] ;
+
+  // rooms
   rooms = [] ;
+
+  // galerie
   images = [] ;
 
+  // Location
   map ;
   marker ;
   smallIcon = new L.Icon({
@@ -42,6 +47,10 @@ export class CbRestaurantsAddComponent implements OnInit {
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     shadowSize:  [41, 41]
   });
+
+
+  // restaurant to add
+  formData;
 
   constructor(private spinnerService: SpinnerService,
               public dialog: MatDialog,
@@ -86,6 +95,7 @@ export class CbRestaurantsAddComponent implements OnInit {
     this.formData = new FormData() ;
   }
 
+  // informations
   onPickImage(event: any){
     this.imageChangedEvent = event;
   }
@@ -100,6 +110,8 @@ export class CbRestaurantsAddComponent implements OnInit {
     this.formData.append('image' ,   fileToReturn ) ;
   }
 
+
+  // planning
   handleDayChange(day: string , event) {
     if (!event.checked) {
       this.planningForm.get(day + 'Open').disable();
@@ -112,7 +124,7 @@ export class CbRestaurantsAddComponent implements OnInit {
   }
 
 
-
+  // manus
   addMenu() {
     const dialogRef = this.dialog.open( CbRestaurantsAddMenuComponent, {
       panelClass: 'custom-dialog-container' , width: '800px' , height : '600px'
@@ -131,6 +143,8 @@ export class CbRestaurantsAddComponent implements OnInit {
     );
   }
 
+
+  // rooms
   addRoom() {
     const dialogRef = this.dialog.open( CbRestaurantsAddRoomComponent, {
       panelClass: 'custom-dialog-container' , width: '800px' , height : '500px'
@@ -154,6 +168,8 @@ export class CbRestaurantsAddComponent implements OnInit {
     );
   }
 
+
+  // galerie
   addImage() {
     const dialogRef = this.dialog.open( CbRestaurantsAddImageComponent, {
       panelClass: 'custom-dialog-container' , width: '800px' , height : '500px'
@@ -164,11 +180,44 @@ export class CbRestaurantsAddComponent implements OnInit {
           this.images.push({
             image: res.image
           });
-          this.formData.append('images' , res.fileToReturn );
+          this.formData.append('restaurantImages' , res.fileToReturn );
         }
       }
     );
   }
+
+
+  // location
+  createMap() {
+    const coordinate = { lat: 36.786967, lng: 10.184326 };
+    const zoomLevel = 10;
+    this.map = L.map('map', {
+      center: [coordinate.lat, coordinate.lng],
+      zoom: zoomLevel
+    });
+    const mainLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      minZoom: 0,
+      maxZoom: 20,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    mainLayer.addTo(this.map);
+    this.map.addEventListener('click' , (e) => this.setMarkerCoordinate(e));
+    this.marker = L.marker([coordinate.lat, coordinate.lng], { icon: this.smallIcon });
+    this.marker.addTo(this.map);
+  }
+
+  setMarkerCoordinate(event: any){
+    this.marker.setLatLng([event.latlng.lat, event.latlng.lng]);
+  }
+
+  handleTabChange(event: number) {
+    // if selected tab is localisation of index 5 create the map
+    if (event === 5 && !this.map) {
+      setTimeout(() => {this.createMap()}, 500);
+    }
+  }
+
+
 
   addRestaurant() {
     const restaurant = {
@@ -218,47 +267,5 @@ export class CbRestaurantsAddComponent implements OnInit {
     );
   }
 
-
-  saveInformation() {
-
-  }
-
-  savePlanning() {
-
-  }
-
-  changeTab(event: number) {
-    // if selected tab is localisation of index 5 create the map
-    if (event === 5 && !this.map) {
-      setTimeout(() => {this.createMap(); }, 500);
-    }
-  }
-
-  createMap() {
-    const coordinate = {
-      lat: 36.786967,
-      lng: 10.184326,
-    };
-
-    const zoomLevel = 10;
-    this.map = L.map('map', {
-      center: [coordinate.lat, coordinate.lng],
-      zoom: zoomLevel
-    });
-    const mainLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      minZoom: 0,
-      maxZoom: 20,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    });
-    mainLayer.addTo(this.map);
-
-    this.map.addEventListener('click' , (e) => this.setMarkerCoordinate(e));
-    this.marker = L.marker([coordinate.lat, coordinate.lng], { icon: this.smallIcon });
-    this.marker.addTo(this.map);
-  }
-
-  setMarkerCoordinate(event: any){
-    this.marker.setLatLng([event.latlng.lat, event.latlng.lng]);
-  }
 
 }

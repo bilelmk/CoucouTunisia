@@ -1,0 +1,33 @@
+@import "../variables" ;
+
+.small-page {
+  //overflow-y: scroll;
+  min-height: calc(100vh - 124px);
+  margin: 0 3% ;
+  padding-top: 25px;
+
+  .title {
+    font-weight: 400;
+    font-size: 130%;
+    color : $cb-navy;
+    text-transform: uppercase;
+    margin: 0;
+    display: block;
+  }
+
+  .title-icon {
+    padding: 14px 15px 12px 15px ;
+    border-radius: 5px ;
+    background-color: #dbe2ef ;
+    color: $cb-navy;
+    width: 55px;
+    height: 55px;
+    margin-right: 10px;
+  }
+
+  .server-error {
+    font-size: 120% !important;
+    font-weight: 500 !important;
+    color: $cb-navy;
+  }
+}

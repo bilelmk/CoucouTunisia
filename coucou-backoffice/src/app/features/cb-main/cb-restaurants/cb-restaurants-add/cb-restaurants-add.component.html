@@ -1,7 +1,7 @@
 <div class="dialog-container">
   <p class="dialog-title">Ajouter un restaurant</p>
 
-    <mat-tab-group mat-align-tabs="center" (selectedIndexChange)="changeTab($event)">
+    <mat-tab-group mat-align-tabs="center" (selectedIndexChange)="handleTabChange($event)">
 
       <mat-tab label="Informations et images">
         <form [formGroup]="informationsForm">
@@ -15,7 +15,7 @@
             <div class="col-12 col-md-6">
               <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Description</mat-label>
-                <input  formControlName="description" matInput type="text" required>
+                <input  formControlName="description" matInput type="text">
               </mat-form-field>
             </div>
             <div class="col-12 col-md-6">
@@ -57,11 +57,11 @@
                 </image-cropper>
               </div>
             </div>
-            <div class="col-12 mt-2">
-              <button class="submit-btn full-width" (click)="saveInformation()" [disabled]="!informationsForm.valid || !croppedImage" >
-                Next
-              </button>
-            </div>
+<!--            <div class="col-12 mt-2">-->
+<!--              <button class="submit-btn full-width" [disabled]="!informationsForm.valid || !croppedImage" >-->
+<!--                Next-->
+<!--              </button>-->
+<!--            </div>-->
           </div>
         </form>
       </mat-tab>
@@ -204,11 +204,11 @@
               </mat-form-field>
               <ngx-material-timepicker [timepickerClass]="'custome-class'" #sundayClose></ngx-material-timepicker>
             </div>
-            <div class="col-12 mt-3">
-              <button class="submit-btn full-width" (click)="savePlanning()" [disabled]="!planningForm.valid" >
-                Next
-              </button>
-            </div>
+<!--            <div class="col-12 mt-3">-->
+<!--              <button class="submit-btn full-width" (click)="savePlanning()" [disabled]="!planningForm.valid" >-->
+<!--                Next-->
+<!--              </button>-->
+<!--            </div>-->
           </div>
         </form>
       </mat-tab>

@@ -1,0 +1,44 @@
+.auth {
+
+  font-family: Roboto-Regular;
+  --background:  center / cover no-repeat url("assets/image/background.jpeg") #000;
+
+  &-image {
+    width: 300px;
+  }
+
+  &-text {
+    color: var(--ion-color-light);
+    width: 300px;
+  }
+
+  &-link {
+    font-weight: bold;
+    color: var(--ion-color-primary);
+    width: 300px;
+  }
+
+  ion-grid{
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+  }
+
+  .login-input{
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    height: 45px;
+    border-radius: 4px;
+    border : none;
+    color: var(--ion-color-dark);
+    font-size: 95% ;
+    outline : none ;
+  }
+
+}
+
+
+
+
+

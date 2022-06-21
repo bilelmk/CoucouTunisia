@@ -73,6 +73,13 @@ export class CbMainComponent implements OnInit {
     },
     {
       type: "route",
+      route : "map" ,
+      name : "Map" ,
+      icon : "public",
+      permission: "MAP"
+    },
+    {
+      type: "route",
       route : "dashboard" ,
       name : "Statistiques" ,
       icon : "equalizer",

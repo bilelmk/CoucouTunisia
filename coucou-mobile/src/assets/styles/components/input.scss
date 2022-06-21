@@ -1,0 +1,6 @@
+.custom-input {
+  border: .5px solid lightgray;
+  &.disabled {
+    --background: lightgray;
+  }
+}

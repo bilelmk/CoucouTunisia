@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantShareService } from "../../../../../core/services/in-app/restaurant-share.service";
 
 @Component({
   selector: 'app-cb-restaurants-images',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CbRestaurantsImagesComponent implements OnInit {
 
-  constructor() { }
+  restaurant ;
+
+  constructor(private restaurantShareService: RestaurantShareService) { }
 
   ngOnInit(): void {
+    this.restaurant = this.restaurantShareService.getRestaurant()
+    console.log(this.restaurant)
   }
 
 }

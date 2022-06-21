@@ -1,6 +1,7 @@
 const express = require("express");
 const clientService = require("../services/client.service")
 const router = express.Router();
+const checkAuthentication = require('../util/check-authentication')
 
 router.route('/signup')
     .post((req, res, next) => {
@@ -36,7 +37,7 @@ router.route('/')
     .post( (req, res, next) => {
             clientService.getMany(req, res, next);
     })
-    .get((req, res, next) => {
+    .get(checkAuthentication ,(req, res, next) => {
             clientService.getOne(req, res, next);
     })
     // .put((req, res, next) => {
@@ -48,6 +49,6 @@ router.route('/:id').get((req,res,next)=>{
 router.route('/lower')
     .get((req, res, next) => {
         clientService.getAllLower(req, res, next);
-    })
+})
 
 module.exports = router;

@@ -11,10 +11,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { CbRestaurantsRatingComponent } from './features/cb-main/cb-restaurants/cb-restaurants-main/cb-restaurants-rating/cb-restaurants-rating.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CbRestaurantsRatingComponent,
   ],
   imports: [
       BrowserModule,

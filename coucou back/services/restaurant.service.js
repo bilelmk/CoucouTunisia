@@ -1,6 +1,7 @@
 const Restaurant = require('../models/restaurant.model')
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+
 exports.add = async (req, res, next) => {
   req.body.restaurant = JSON.parse(req.body.restaurant)
   try{
@@ -23,9 +24,7 @@ exports.add = async (req, res, next) => {
   }):[]
   Restaurant.create(req.body.restaurant, { include: ['rooms', 'planning', 'menus', 'images'] })
     .then((restaurent) => {
-      res.status(201).json({
-        message: 'done!'
-      })
+      res.status(201).json(restaurent)
     }).catch(err => {
       res.status(400).json({
         message: 'error',
@@ -33,14 +32,12 @@ exports.add = async (req, res, next) => {
       })
     })
 }
+
 exports.getAll = (req, res, next) => {
   let key =req.body.key? "%" + req.body.key + "%":'%%'
   page = req.query.page ? parseInt(req.query.page) : 1
-
   perpage = req.query.perPage ? parseInt(req.query.perPage) : 10
-
   const offset = (page * perpage) - perpage
-
   Restaurant.findAll({
     limit: perpage,
     offset: offset,
@@ -65,18 +62,25 @@ exports.getAll = (req, res, next) => {
     })
   })
 }
-exports.getRestaurantById = (req, res, next) => {
-  Restaurant.findOne({
-    where: {
-      id: req.params.id
-    },
-    include: ['rooms', 'planning', 'menus']
-  }).then(restaurant => res.status(200).json({
-    restaurant: restaurant
-  })).catch(err => res.status(400).json({
-    message: 'bad request'
-  }))
+
+exports.getAllLite = ( req, res , next ) => {
+  Restaurant.findAll().then(result =>{
+    return res.status(200).json(result);
+  }).catch(err => {
+    return res.status(404).json({message: "no records"});
+  })
 }
+
+exports.getOne = async ( req, res , next, id ) => {
+    let restaurant = await Restaurant.findByPk(id , {include: ['rooms', 'planning', 'menus' , 'images']} )
+    if(restaurant) {
+        return res.status(200).json(restaurant);
+    }
+   else {
+        return res.status(404).json({message: "not found"});
+    }
+}
+
 exports.updateRestaurant = (req, res, next) => {
   Restaurant.update(req.body, { where: { id: req.params.id } }).then((restaurant) => {
     res.status(200).json({

@@ -65,6 +65,10 @@ const routes: Routes = [
       {
         path: 'importation',
         loadChildren: () => import('./cb-importation/cb-importation.module').then(m => m.CbImportationModule)
+      },
+      {
+        path: 'map',
+        loadChildren: () => import('./cb-map/cb-map.module').then(m => m.CbMapModule)
       }
     ]
   }
