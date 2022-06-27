@@ -21,4 +21,12 @@ export class ClientsService {
   getAllLower(): Observable<Client[]> {
     return this.http.get<Client[]>(this.URL + "lower");
   }
+
+  block(id: number) {
+    return this.http.put(this.URL + "/block/" + id , {});
+  }
+
+  deblock(id: number) {
+    return this.http.put(this.URL + "/deblock/" + id , {});
+  }
 }

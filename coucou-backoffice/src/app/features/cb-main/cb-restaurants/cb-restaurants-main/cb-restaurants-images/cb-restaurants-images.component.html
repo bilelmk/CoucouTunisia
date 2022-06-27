@@ -7,7 +7,7 @@
       </p>
     </div>
     <div>
-      <button class="square-btn ml-2" >
+      <button class="square-btn ml-2" (click)="openAddDialog()" >
         <i class="material-icons icon-blue" >
           add
         </i>
@@ -15,10 +15,15 @@
     </div>
   </div>
 
-  <div *ngFor="let image of restaurant.images">
-    {{image}}
-    <img [src]="image ? 'http://localhost:3006/api/images/' + image : '/assets/img/no-record.png' ">
+  <div class="row ">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 pl-2 pr-2  mt-4" *ngFor="let image of restaurant.images">
+        <img class="img-fluid" [src]="image.image ? url + image.image : '/assets/img/no-record.png' ">
+        <button class="img-btn" (click)="delete(image)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+    </div>
   </div>
+
 
 </div>
 

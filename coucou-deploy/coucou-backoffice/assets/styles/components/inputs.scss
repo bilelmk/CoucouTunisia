@@ -1,0 +1,42 @@
+@import "../variables";
+
+.ej-input {
+  color: $cb-grey;
+  outline: none;
+  height: 50px;
+  background: $cb-white;
+  font-size: 14px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  line-height: 18px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid $cb-grey;
+  text-transform: inherit;
+  transition: 0.4s;
+  font-family: "Sans Open" ,  Arial, Helvetica, sans-serif !important;;
+
+  &:focus {
+    border: 1px solid $cb-navy;
+  }
+}
+
+.ej-textarea {
+  height: auto !important;
+}
+
+.search {
+  padding: 15px 15px 16px 15px;
+  border-radius: 5px ;
+  background-color: #dbe2ef;
+  color : #112d4e ;
+  border: none;
+  outline: none;
+}
+
+input[type="file"] {
+  visibility: hidden !important;
+}
+

@@ -4,6 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { ClientsService } from '../../../core/services/http/clients.service';
 import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { SearchClientRequest } from '../../../core/dtos/search-client-request';
+import {Admin} from "../../../core/models/admin";
 
 @Component({
   selector: 'app-cb-clients',
@@ -64,33 +65,33 @@ export class CbClientsComponent implements OnInit {
     this.getRecords()
   }
 
-  toggleActiveStatus(client) {
-  //   if(admin.active == true) {
-  //     this.spinnerService.activate()
-  //     this.adminsService.block(admin.id).subscribe(
-  //       res => {
-  //         admin.active = false ;
-  //         this.spinnerService.deactivate()
-  //       },
-  //       error => {
-  //         this.spinnerService.deactivate()
-  //         console.log(error)
-  //       }
-  //     )
-  //   } else if(admin.active == false) {
-  //     this.spinnerService.activate()
-  //     this.adminsService.deblock(admin.id).subscribe(
-  //       res => {
-  //         admin.active = true ;
-  //         this.spinnerService.deactivate()
-  //       },
-  //       error => {
-  //         this.spinnerService.deactivate()
-  //         console.log(error)
-  //       }
-  //     )
-  //   }
+  toggleActiveStatus(client: Client) {
+    this.spinnerService.activate()
+    if(client.active == true) {
+      this.clientsService.block(client.id).subscribe(
+        res => {
+          client.active = false ;
+          this.spinnerService.deactivate()
+        },
+        error => {
+          this.spinnerService.deactivate()
+          console.log(error)
+        }
+      )
+    } else if(client.active == false) {
+      this.clientsService.deblock(client.id).subscribe(
+        res => {
+          client.active = true ;
+          this.spinnerService.deactivate()
+        },
+        error => {
+          this.spinnerService.deactivate()
+          console.log(error)
+        }
+      )
+    }
   }
+
 
   openDetailsDialog(client: any) {
 

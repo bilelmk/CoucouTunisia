@@ -1,0 +1,46 @@
+<ion-header class="ion-no-border" >
+  <ion-toolbar style="--background: transparent">
+    <ion-buttons slot="start">
+      <ion-button fill="solid" shape="round" color="light" routerLink="/cb-main-home">
+        <ion-icon slot="icon-only" name="arrow-back" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="solid" shape="round" color="light">
+        <ion-icon slot="icon-only" name="heart-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" [fullscreen]="true" [appParallax]="img" *ngIf="restaurant">
+  <div #img class="header-img" [style.background-image]="'url(' + url + restaurant?.image +')'"></div>
+
+  <p>{{restaurant?.name}}</p>
+  <p>{{restaurant?.description}}</p>
+  <p>{{restaurant?.responsable}}</p>
+  <p>{{restaurant?.phone}}</p>
+  <p>{{restaurant?.webSite}}</p>
+
+  <p>Menus</p>
+  <div *ngFor="let menu of restaurant?.menus">
+    <p>{{menu.name}}</p>
+    <img  [src]=" url + menu?.image " />
+
+  </div>
+
+  <p>Rooms</p>
+  <img *ngFor="let room of restaurant?.rooms" [src]=" url + room?.image " />
+
+  <p>Gallerie</p>
+  <app-cb-gallery [images]="restaurant?.images"></app-cb-gallery>
+
+  <p>Avis</p>
+
+  <div class="ion-margin">
+    <ion-button color="primary full-width" (click)="openReservationModal()">
+      Réserver
+    </ion-button>
+  </div>
+
+</ion-content>

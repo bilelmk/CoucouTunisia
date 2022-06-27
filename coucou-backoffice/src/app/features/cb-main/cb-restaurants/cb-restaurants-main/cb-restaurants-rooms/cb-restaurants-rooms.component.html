@@ -2,12 +2,12 @@
   <div class="row justify-content-between align-items-center">
     <div>
       <p class="title">
-        <span class="material-icons title-icon">cabin</span>
-        Rooms
+        <span class="material-icons title-icon" >cabin</span>
+        Mise en place
       </p>
     </div>
     <div>
-      <button class="square-btn ml-2" >
+      <button class="square-btn ml-2" (click)="openAddDialog()" >
         <i class="material-icons icon-blue" >
           add
         </i>
@@ -15,16 +15,35 @@
     </div>
   </div>
 
-  <div class="row justify-content-center align-items-center" *ngFor="let menu of restaurant.menus">
-    <div class="col-3 text-center">
-      <p>{{menu.name}}</p>
-    </div>
-    <div class="col-6 text-center">
-      <p>{{menu.description}}</p>
-    </div>
-    <div class="col-3">
-      <img class="img-fluid" [src]="menu.image ? 'http://localhost:3006/api/images/' + menu.image : '/assets/img/no-record.png' ">
-    </div>
+  <div class="restaurant-add-container">
+    <table >
+      <tr class="restaurant-add-tr" *ngIf="restaurant?.rooms.length != 0">
+        <th class="restaurant-add-th">Nom</th>
+        <th class="restaurant-add-th">Description</th>
+        <th class="restaurant-add-th">Max n° place</th>
+        <th class="restaurant-add-th">Min n° place</th>
+        <th class="restaurant-add-th">Prix adults</th>
+        <th class="restaurant-add-th">Prix enfants</th>
+        <th class="restaurant-add-th">Image</th>
+        <th class="restaurant-add-th">Actions</th>
+      </tr>
+      <tr *ngFor="let room of restaurant?.rooms" class="restaurant-add-tr" >
+        <td class="restaurant-add-td">{{room.name}}</td>
+        <td class="restaurant-add-td">{{room.description}}</td>
+        <td class="restaurant-add-td">{{room.maxPlace}}</td>
+        <td class="restaurant-add-td">{{room.minPlace}}</td>
+        <td class="restaurant-add-td">{{room.packPrice}}</td>
+        <td class="restaurant-add-td">{{room.packChildrenPrice}}</td>
+        <td class="restaurant-add-td">
+          <img class="restaurant-add-image" [src]="room.image ? url + room.image : '/assets/img/no-record.png'" />
+        </td>
+        <td class="restaurant-add-td">
+            <div class="restaurant-add-btn" (click)="delete(room)">
+              <mat-icon>delete_forever</mat-icon>
+            </div>
+        </td>
+      </tr>
+    </table>
   </div>
 
 </div>

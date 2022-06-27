@@ -47,7 +47,7 @@ app.use((req, res, next) => {
 cron.runCrons() ;
 
 app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, "public/coucou-backoffice", "index.html"));
+    res.sendFile(path.join(__dirname, "coucou-backoffice", "index.html"));
 });
 
 app.use("/api/images", express.static(path.join(__dirname, "upload")));

@@ -6,6 +6,8 @@ import { CbMessagingClientsComponent } from './cb-messaging-clients/cb-messaging
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import {MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from "@angular/material/select";
 
 
 const routes: Routes = [
@@ -27,6 +29,8 @@ const routes: Routes = [
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatIconModule,
+    MatSelectModule,
   ],
   entryComponents: [
     CbMessagingClientsComponent

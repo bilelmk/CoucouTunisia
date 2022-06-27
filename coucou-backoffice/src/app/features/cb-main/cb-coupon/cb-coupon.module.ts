@@ -48,7 +48,6 @@ const routes: Routes = [
   ],
   entryComponents: [
     CbCouponsModalComponent
-
   ]
 })
 export class CbCouponModule { }

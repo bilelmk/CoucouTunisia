@@ -7,7 +7,7 @@
       </p>
     </div>
     <div>
-      <button class="square-btn ml-2" >
+      <button class="square-btn ml-2" (click)="openAddDialog()">
         <i class="material-icons icon-blue" >
           add
         </i>
@@ -15,28 +15,27 @@
     </div>
   </div>
 
-  <div class="row justify-content-center align-items-center" *ngFor="let room of restaurant.rooms">
-    <div class="col-2 text-center">
-      <p>{{room.name}}</p>
-    </div>
-    <div class="col-3 text-center">
-      <p>{{room.description}}</p>
-    </div>
-    <div class="col-1 text-center">
-      <p>{{room.maxPlace}}</p>
-    </div>
-    <div class="col-1 text-center">
-      <p>{{room.minPlace}}</p>
-    </div>
-    <div class="col-1 text-center">
-      <p>{{room.packPrice}}</p>
-    </div>
-    <div class="col-1 text-center">
-      <p>{{room.packChildrenPrice}}</p>
-    </div>
-    <div class="col-3">
-      <img class="img-fluid" [src]="room.image ? 'http://localhost:3006/api/images/' + room.image : '/assets/img/no-record.png' ">
-    </div>
+  <div class="restaurant-add-container">
+    <table >
+      <tr class="restaurant-add-tr" *ngIf="restaurant?.menus.length != 0">
+        <th class="restaurant-add-th">Nom</th>
+        <th class="restaurant-add-th">Description</th>
+        <th class="restaurant-add-th">Image</th>
+        <th class="restaurant-add-th">Actions</th>
+      </tr>
+      <tr *ngFor="let menu of restaurant?.menus" class="restaurant-add-tr" >
+        <td class="restaurant-add-td">{{menu.name}}</td>
+        <td class="restaurant-add-td">{{menu.description}}</td>
+        <td class="restaurant-add-td">
+          <img class="restaurant-add-image" [src]="menu.image ? url + menu.image : '/assets/img/no-record.png'" />
+        </td>
+        <td class="restaurant-add-td">
+          <div class="restaurant-add-btn" (click)="delete(menu)">
+            <mat-icon>delete_forever</mat-icon>
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
 
 </div>

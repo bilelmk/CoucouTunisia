@@ -1,0 +1,48 @@
+@import "../variables" ;
+
+.restaurant {
+
+  &-add {
+
+    &-container {
+      min-height: 420px;
+    }
+
+    &-table {
+      overflow-x: scroll;
+    }
+
+    &-tr {
+      border-bottom: 1px solid rgba(0, 0, 0 ,.12) !important;;
+    }
+
+    &-th {
+      text-align: center;
+      color: #4a4a4a !important;
+      font-size: 12px;
+      font-weight: normal;
+      padding: 12px !important ;
+    }
+
+    &-td {
+      text-align: center;
+      padding: 12px !important ;
+      max-height: 85px !important;
+      color: $cb-dark;
+      margin: 0;
+      font-size: 13px !important;
+    }
+
+    &-image {
+      height: 60px !important;
+    }
+
+    &-btn {
+      cursor: pointer ;
+      color : $cb-navy;
+      border-radius: 10%;
+      transition: 0.4s;
+    }
+  }
+
+}

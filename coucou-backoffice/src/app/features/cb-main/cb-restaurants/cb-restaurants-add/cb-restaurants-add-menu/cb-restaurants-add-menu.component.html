@@ -11,11 +11,12 @@
           <input  formControlName="name" matInput type="text" required>
         </mat-form-field>
       </div>
-    </form>
 
-    <div class="col-12">
-      <ckeditor  [editor]="Editor" [config]="config" (change)="updateValue($event)" ></ckeditor>
-    </div>
+      <div class="col-12">
+        <ckeditor  [editor]="Editor" [config]="config" formControlName="description" ></ckeditor>
+      </div>
+
+    </form>
   </div>
 
   <div class="row">
@@ -37,7 +38,7 @@
   </div>
 
   <div class="col-12 mt-2" >
-    <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid" >
+    <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid  || !croppedImage" >
       Ajouter
     </button>
   </div>

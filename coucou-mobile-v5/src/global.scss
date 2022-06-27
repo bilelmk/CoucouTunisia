@@ -1,0 +1,151 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* Custom styles */
+@import "assets/styles/components/input";
+@import "assets/styles/components/toast";
+@import "assets/styles/components/scroll";
+@import "assets/styles/components/toolbar";
+@import "assets/styles/components/button";
+@import "assets/styles/components/card";
+
+
+@import "assets/styles/pages/auth.scss" ;
+//@import "assets/styles/pages/profile.scss";
+@import "assets/styles/pages/generic-page";
+@import "assets/styles/pages/product-details";
+
+@import "assets/styles/utilities";
+
+/* Font */
+@font-face {
+  font-family: "Poppins-Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-Thin";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Poppins-Thin.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Poppins-Bold.ttf");
+}
+
+
+// calendar design
+ion-slide {
+
+  .monthview-selected{
+    border-radius: 50%;
+    background-color: var(--ion-color-primary) !important;
+    color: var(--ion-color-light) !important;
+  }
+
+  .monthview-current{
+    border-radius: 50%;
+    color: var(--ion-color-dark) ;
+  }
+
+  table {
+    width: calc(50px * 7) !important;
+  }
+
+  td {
+    padding-top: 15px !important;
+    width: 50px !important;
+    height: 50px !important;
+    font-family: "Poppins-Medium" !important;
+    font-size: 12px !important;
+    border: none !important;
+    color: var(--ion-color-dark) !important;
+  }
+
+  .text-muted {
+    font-size: 8px !important;
+    color: var(--ion-color-dark-tint) !important;
+  }
+
+  th {
+    font-family: "Poppins-Medium" !important;
+    font-size: 15px !important;
+    border: none !important;
+    color: var(--ion-color-dark) !important;
+  }
+
+  .table-bordered {
+    border : none !important ;
+  }
+
+
+}
+
+.calendar-months-current {
+  font-size: 18px !important;
+  font-family: "Poppins-bold" !important;
+  color: var(--ion-color-dark) !important;
+}
+
+.calendar-months {
+  font-size: 12px !important;
+  font-family: "Poppins-Regular" !important;
+  color: var(--ion-color-dark-tint) !important;
+}
+
+
+.map-container {
+  margin: 16px;
+  border-radius: 20px ;
+  height: 30vh;
+}
+
+.map-frame {
+  border-radius: 20px ;
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  border-radius: 20px ;
+  height: 100%;
+}
+
+

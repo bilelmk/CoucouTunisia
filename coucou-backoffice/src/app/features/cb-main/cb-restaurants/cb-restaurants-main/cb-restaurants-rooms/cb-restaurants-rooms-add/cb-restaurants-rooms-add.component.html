@@ -1,0 +1,78 @@
+<div class="dialog-container">
+
+  <p class="dialog-title" >Ajouter un room</p>
+
+  <div class="row mt-4">
+
+    <form [formGroup]="form" class="full-width">
+
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input  formControlName="name" matInput type="text" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Description</mat-label>
+          <input  formControlName="description" matInput type="text" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Nombre de place maximal</mat-label>
+          <input  formControlName="minPlace" matInput type="number" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Nombre de place minimal</mat-label>
+          <input  formControlName="maxPlace" matInput type="number" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Prix pack adults</mat-label>
+          <input  formControlName="packPrice" matInput type="number" required>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Prix pack enfants</mat-label>
+          <input  formControlName="packChildrenPrice" matInput type="number" required>
+        </mat-form-field>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-6 dialog-image-preview mt-4" >
+        <img class="img-fluid" src="./assets/img/upload-image.png" (click)="filePicker.click()"/>
+        <input type="file" #filePicker (change)="onPickImage($event)">
+      </div>
+      <div class="col-6" [ngClass]="croppedImage ? '' : 'hide'">
+        <div class="image-preview">
+          <image-cropper
+            imageQuality="10"
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="5 / 3"
+            format="png "
+            (imageCropped)="imageCropped($event)">
+          </image-cropper>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-2">
+      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid || !croppedImage" >
+        Ajouter
+      </button>
+    </div>
+
+  </div>
+</div>

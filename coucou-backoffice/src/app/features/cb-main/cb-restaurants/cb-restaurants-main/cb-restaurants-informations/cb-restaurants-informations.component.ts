@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantShareService } from "../../../../../core/services/in-app/restaurant-share.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { SpinnerService } from "../../../../../core/services/in-app/spinner.service";
+import { SnackbarService } from "../../../../../core/services/in-app/snackbar.service";
+import { RestaurantService } from "../../../../../core/services/http/restaurant.service";
 
 @Component({
   selector: 'app-cb-restaurants-informations',
@@ -14,7 +17,10 @@ export class CbRestaurantsInformationsComponent implements OnInit {
 
   isEditMode = false ;
 
-  constructor(private restaurantShareService: RestaurantShareService) {
+  constructor(private restaurantShareService: RestaurantShareService,
+              private spinnerService: SpinnerService,
+              private snackbarService: SnackbarService,
+              private restaurantService: RestaurantService) {
     this.informationsForm = new FormGroup({
       name: new FormControl('', Validators.required ),
       description: new FormControl('', Validators.required),
@@ -44,11 +50,6 @@ export class CbRestaurantsInformationsComponent implements OnInit {
     this.enableFields()
   }
 
-  update() {
-    this.isEditMode = false ;
-
-  }
-
   disableFields() {
     this.informationsForm.get('name').disable()
     this.informationsForm.get('description').disable()
@@ -56,7 +57,6 @@ export class CbRestaurantsInformationsComponent implements OnInit {
     this.informationsForm.get('email').disable()
     this.informationsForm.get('webSite').disable()
     this.informationsForm.get('responsable').disable()
-
   }
 
   enableFields() {
@@ -66,5 +66,17 @@ export class CbRestaurantsInformationsComponent implements OnInit {
     this.informationsForm.get('email').enable()
     this.informationsForm.get('webSite').enable()
     this.informationsForm.get('responsable').enable()
+  }
+
+  update(){
+    // this.spinnerService.activate();
+    // let restaurant;
+    // this.restaurantService.update(restaurant).subscribe(
+    //   res => {
+    //   },
+    //   error => {
+    //   }
+    // )
+    // this.isEditMode = false ;
   }
 }

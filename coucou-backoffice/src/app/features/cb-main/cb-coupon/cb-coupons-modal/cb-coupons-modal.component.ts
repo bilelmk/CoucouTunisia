@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { RestaurantService } from '../../../../core/services/http/restaurant.service';
 import { CouponsService } from '../../../../core/services/http/coupons.service';
 import * as moment from 'moment';
+import { SpinnerService } from "../../../../core/services/in-app/spinner.service";
+import { SnackbarService } from "../../../../core/services/in-app/snackbar.service";
+import { MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-cb-coupons-modal',
@@ -15,7 +18,10 @@ export class CbCouponsModalComponent implements OnInit {
   restaurants = []
 
   constructor(private restaurantService: RestaurantService,
-              private couponsService: CouponsService) {
+              private couponsService: CouponsService,
+              private spinnerService: SpinnerService,
+              private snackbarService: SnackbarService,
+              public matDialogRef: MatDialogRef<CbCouponsModalComponent>) {
     this.form = new FormGroup({
       number: new FormControl("", Validators.required),
       expirationDate:  new FormControl("", Validators.required),
@@ -36,12 +42,17 @@ export class CbCouponsModalComponent implements OnInit {
   }
 
   generate() {
+    this.spinnerService.activate();
     // format the date ( pick only date )
     this.form.value.expirationDate = moment(this.form.value.expirationDate).format("DD-MM-YYYY");
     this.couponsService.generateCoupons(this.form.value).subscribe(
       res => {
-        console.log(res)
+        this.snackbarService.openSnackBar('Coupons ajouté avec succès', 'success');
+        this.spinnerService.deactivate()
+        this.matDialogRef.close()
       }, error => {
+        this.snackbarService.openSnackBar('Erreur lors de création des coupons', 'fail');
+        this.spinnerService.deactivate()
         console.log(error)
       }
     )

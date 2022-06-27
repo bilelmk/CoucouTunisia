@@ -1,0 +1,34 @@
+//.custom-input {
+//  border: .5px solid lightgray;
+//  &.disabled {
+//    --background: lightgray;
+//  }
+//}
+
+ion-datetime {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  font-family: "Poppins-Regular" !important;
+  font-size: 12px;
+  color: var(--ion-color-dark-tint)
+}
+
+.input{
+  height: 0;
+  padding: 0;
+}
+
+.search {
+  width: 100%;
+  border: none ;
+  border-radius: 20px;
+  box-shadow: 1px 0 5px 2px rgba(0,0,0,0.05);
+  height: 45px ;
+  font-size: 12px !important;
+  padding-left: 30px ;
+  font-family: "Poppins-Regular";
+  color: #b6b3b3;
+  background: white;
+}

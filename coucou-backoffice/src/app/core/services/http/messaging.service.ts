@@ -12,7 +12,11 @@ export class MessagingService {
 
   constructor(private http: HttpClient) { }
 
-  sendOne(value: any) : Observable<any> {
-    return this.http.post<any>(this.URL + "/one" , value);
+  sendOne(data: any) : Observable<any> {
+    return this.http.post<any>(this.URL + "/one" , data);
+  }
+
+  sendMulti(data: any) : Observable<any> {
+    return this.http.post<any>(this.URL + "/multi" , data);
   }
 }

@@ -1,0 +1,39 @@
+<ion-content fullscreen="true" class="auth">
+  <ion-grid style="padding-top: calc((100vh - 550px) / 2)">
+
+    <ion-row class="ion-justify">
+      <ion-col class="ion-text-center" size="12">
+        <img class="auth-image" src="../../../assets/image/logo.png" alt="logo">
+      </ion-col>
+    </ion-row>
+
+
+    <form [formGroup]="loginForm" >
+      <ion-row class="ion-justify-content-center">
+
+        <ion-col size="10" size-sm="7" >
+          <input formControlName="email" class="auth-input" type="number" placeholder="Numéro de téléphone" />
+        </ion-col>
+
+        <ion-col size="10" size-sm="7">
+          <input formControlName="password" class="auth-input" type="password" placeholder="Mot de passe" />
+        </ion-col>
+
+        <ion-col size="10" class="ion-no-padding mt-10">
+          <p class="full-width auth-forgot" routerLink="/cb-send-password-code">{{"FORGET PASSWORD"}}</p>
+        </ion-col>
+
+        <ion-col size="10" size-sm="7">
+          <ion-button (click)="onLogin()" class="btn-primary" expand="block" [disabled]="!loginForm.valid">Se Connecter</ion-button>
+        </ion-col>
+
+        <ion-col size="10" size-sm="7">
+          <ion-button  class="btn-light" expand="block" routerLink="/cb-register" >S'inscrire</ion-button>
+        </ion-col>
+
+      </ion-row>
+    </form>
+  </ion-grid>
+
+
+</ion-content>

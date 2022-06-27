@@ -19,6 +19,7 @@
 @import "assets/styles/pages/login";
 @import "assets/styles/pages/generic-page";
 @import "assets/styles/pages/small-page";
+@import "assets/styles/pages/restaurant";
 
 @import "assets/styles/animations.scss" ;
 @import "assets/styles/utilities.scss" ;
@@ -42,5 +43,5 @@ body {
 }
 
 .ck-editor__editable_inline {
-  min-height: 200px;
+  min-height: 120px;
 }

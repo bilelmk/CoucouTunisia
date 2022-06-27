@@ -73,3 +73,20 @@ button {
     background-color: $cb-navy;
   }
 }
+
+
+.img-btn {
+  position: absolute ;
+  top : 0 ;
+  right: 8px ;
+  border: none;
+  margin: 0 !important;
+  width: 35px;
+  height: 44px;
+  padding: 10px 0;
+  cursor: pointer ;
+  color : $cb-navy;
+  border-radius: 10%;
+  transition: 0.4s;
+  background: transparent;
+}

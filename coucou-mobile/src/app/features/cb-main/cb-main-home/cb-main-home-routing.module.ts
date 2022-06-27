@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'restaurants/:id',
-    loadChildren: () => import('./cb-main-restaurant/cb-main-restaurant.module').then(m => m.CbMainRestaurantPageModule)
+    loadChildren: () => import('../cb-main-restaurant/cb-main-restaurant.module').then(m => m.CbMainRestaurantPageModule)
   },
 ];
 

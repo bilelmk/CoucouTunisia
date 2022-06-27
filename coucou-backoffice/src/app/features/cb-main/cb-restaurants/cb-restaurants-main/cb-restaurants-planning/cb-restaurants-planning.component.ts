@@ -49,6 +49,7 @@ export class CbRestaurantsPlanningComponent implements OnInit {
   ngOnInit(): void {
     this.disableFields() ;
     this.restaurant = this.restaurantShareService.getRestaurant()
+    console.log(this.restaurant)
     this.planningForm.patchValue({
       monday: this.restaurant.planning.monday ,
       mondayOpen: this.restaurant.planning.mondayOpen ,
@@ -98,7 +99,6 @@ export class CbRestaurantsPlanningComponent implements OnInit {
         this.disableFields() ;
         this.isEditMode = false ;
         this.spinnerService.deactivate();
-        console.log(res)
       },
       error => {
         this.spinnerService.deactivate();

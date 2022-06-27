@@ -17,37 +17,34 @@
 
 <ion-content>
   <ion-card *ngFor="let restaurant of restaurants" >
-    <img mat-card-image (click)="getRestaurantDetails(restaurant.id)" class="pointer img-fluid no-margin"
-           [src]="restaurant.image ? 'http://localhost:3006/api/images/' + restaurant.image : '/assets/img/no-record.png' ">
+    <img mat-card-image (click)="getRestaurantDetails(restaurant.id)" class="pointer full-width no-margin"
+           [src]="restaurant.image ? url + restaurant.image : '/assets/img/no-record.png' ">
     <ion-card-header>
-      <ion-card-title>{{restaurant.name}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
-      Wisconsin Territory in 1836.
-    </ion-card-content>
-  </ion-card>
+      <ion-row class="ion-justify-content-between ion-align-items-center">
+        <ion-card-title >{{restaurant.name}}</ion-card-title>
+        <circle-progress
+                [percent]="3.9"
+                [backgroundColor]="'#FDB900'"
+                [backgroundGradientStopColor]="'#ffffff'"
+                [backgroundPadding]="10"
+                [radius]="10"
+                [toFixed]="1"
+                [maxPercent]="5"
+                [outerStrokeWidth]=0
+                [outerStrokeColor]="'#FFFFFF'"
+                [titleColor]="'#ffffff'"
+                [titleFontSize]="15"
+                [titleFontWeight]="500"
+                [animationDuration]="1500"
+                [showSubtitle]=false
+                [showUnits]=false
+                [showInnerStroke]=false
+                [startFromZero]=true
+        ></circle-progress>
+      </ion-row>
 
-  <ion-card *ngFor="let restaurant of restaurants" >
-    <img mat-card-image (click)="getRestaurantDetails(restaurant.id)" class="pointer img-fluid no-margin"
-         [src]="restaurant.image ? 'http://localhost:3006/api/images/' + restaurant.image : '/assets/img/no-record.png' ">
-    <ion-card-header>
-      <ion-card-title>{{restaurant.name}}</ion-card-title>
+
     </ion-card-header>
-    <ion-card-content>
-      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
-      Wisconsin Territory in 1836.
-    </ion-card-content>
-  </ion-card>
-  <ion-card *ngFor="let restaurant of restaurants" >
-    <img mat-card-image (click)="getRestaurantDetails(restaurant.id)" class="pointer img-fluid no-margin"
-         [src]="restaurant.image ? 'http://localhost:3006/api/images/' + restaurant.image : '/assets/img/no-record.png' ">
-    <ion-card-header>
-      <ion-card-title>{{restaurant.name}}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
-      Wisconsin Territory in 1836.
-    </ion-card-content>
+
   </ion-card>
 </ion-content>

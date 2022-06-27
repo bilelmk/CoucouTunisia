@@ -52,6 +52,7 @@ export class CbLoginComponent implements OnInit {
         this.router.navigate(['/main'])
       },
       error => {
+        console.log(error)
         this.spinnerService.deactivate()
         if(error.error.message == "wrong password") {
           this.snackbarService.openSnackBar("Mot de passe incorrect" , 'fail')

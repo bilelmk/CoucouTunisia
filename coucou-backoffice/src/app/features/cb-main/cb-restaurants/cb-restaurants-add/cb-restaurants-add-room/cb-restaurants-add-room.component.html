@@ -23,14 +23,14 @@
       <div class="col-12">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Nombre de place maximal</mat-label>
-          <input  formControlName="minPlace" matInput type="number" required>
+          <input  formControlName="maxPlace" matInput type="number" required>
         </mat-form-field>
       </div>
 
       <div class="col-12">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Nombre de place minimal</mat-label>
-          <input  formControlName="maxPlace" matInput type="number" required>
+          <input  formControlName="minPlace" matInput type="number" required>
         </mat-form-field>
       </div>
 
@@ -61,6 +61,7 @@
             [imageChangedEvent]="imageChangedEvent"
             [maintainAspectRatio]="true"
             [aspectRatio]="5 / 3"
+            format="png"
             (imageCropped)="imageCropped($event)">
           </image-cropper>
         </div>
@@ -68,7 +69,7 @@
     </div>
 
     <div class="col-12 mt-2">
-      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid" >
+      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid || !croppedImage" >
         Ajouter
       </button>
     </div>

@@ -57,7 +57,11 @@ export class CbPermissionsModalComponent implements OnInit {
   }
 
   update() {
-    this.permissionService.update(this.form.value , this.data.item.id).subscribe(
+    const permission = {
+      ...this.form.value ,
+      id: this.data.item.id
+    }
+    this.permissionService.update(permission).subscribe(
       (res) => {
         Helpers.updateFields(this.form.value ,this.data.item )
         this.snackbarService.openSnackBar('Permission modifier avec succès', 'success');

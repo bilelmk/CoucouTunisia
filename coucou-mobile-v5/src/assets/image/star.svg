@@ -1,0 +1,13 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+	<title>music-svg</title>
+	<defs>
+		<image  width="35" height="34" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAiCAMAAADiW5DOAAAAAXNSR0IB2cksfwAAAchQTFRF////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////IqesbAAAAJh0Uk5TAAQtSRVikDup43nf/CGv+P8MYdQvnupyzvcBLrz1BV/cCBASGK7z9LYNCQIDDlS6+oBaXoWjxtnn8v3228mkilLo/vlTHcwXWK3ru7Dxw2BVs+3BaRpct+7vvV0gBkfCSCKGiSMff4wkJ5SaKTKsOEPP2E7lB/tlD3HT0ex1GZlsCpLIHiraoSwmWaIxP7jXRD19Zyt8QiUwIcJGAAAB4ElEQVR4nGNgQAWMTMxMjAz4AQsrGysLATXsHJwc7ATUcHHzcHPhV8LLxy/Az8eLT4mgkLCAgICwkCAeNSKiYkA1YqIieIwRl5AEqpGUEMdpkJS0jKwACMjKiEjhUCMnr8ADVsOjICSHYQCjoqCSsoq0qpoABKhrSKsoK2lqMUKMk9LW0dGV1uMS1ec2EEAAA259UUMjaV0dHW0pBmMTUzNzC0tZfgMrAWRgZcBvbWlhY2tnL8TgoOrIz+MkgB048Tg78rkwuAq58eNQAQL8bkKuDIzuHp5eOJVYenu4g5KKErOPLw7LrP38lSBe1w0IDLLCosLJMjgkFBY+ymHhEVjUREaFuMLDUNvVSBXDOidf1egY5GQbGxdvgKbGwC8hFjU6EpPU0NSoJ6egRVlqmiW6OekZaGoyszCcnJ2DpiY3D0NNeD6amoJCDDVFCWhqiksw1Ig5oCbGUiFJsHgZd5RnFHcZmO1croWipqISFIRWEVXJxezFydU14DRbq4yipi4NGLD8hfUN0o3ajdIhTc38QD1JLShqWusF+NvaWTuUdIAcHd3OrvY2foHuHmQl2r0c5n3iddoIgTrx8H7VCTpIauQmTprMhCwANGyK0NRpishqYqYoMqADxumukFwGAGUQYOFutrurAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		.s0 { fill: #f88a33 } 
+	</style>
+	<g id="Layer_2">
+		<circle id="Shape 1" class="s0" cx="32" cy="32" r="31"/>
+		<use id="Layer 2" href="#img1" x="14" y="15"/>
+	</g>
+</svg>

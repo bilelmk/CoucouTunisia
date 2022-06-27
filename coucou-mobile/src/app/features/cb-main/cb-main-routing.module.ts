@@ -24,12 +24,12 @@ const routes: Routes = [
         loadChildren: () => import('../cb-main/cb-main-home/cb-main-home.module').then(m => m.CbMainHomePageModule)
       },
       {
-        path: 'cb-main-new-reservation',
-        loadChildren: () => import('../cb-main/cb-main-new-reservation/cb-main-new-reservation.module').then(m => m.CbMainNewReservationPageModule)
-      },
-      {
         path: 'cb-main-favoris',
         loadChildren: () => import('../cb-main/cb-main-favoris/cb-main-favoris.module').then(m => m.CbMainFavorisPageModule)
+      },
+      {
+        path: 'cb-main-restaurant/:id',
+        loadChildren: () => import('../cb-main/cb-main-restaurant/cb-main-restaurant.module').then(m => m.CbMainRestaurantPageModule)
       }
     ]
   }

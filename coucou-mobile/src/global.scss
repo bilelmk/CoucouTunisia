@@ -28,34 +28,33 @@
 
 //@import "~leaflet/dist/leaflet.css";
 
-
 /* Font */
 @font-face {
-  font-family: "Roboto-Medium";
+  font-family: "Poppins-Medium";
   font-style: normal;
   font-weight: normal;
-  src: url("./assets/fonts/Roboto-Medium.ttf");
+  src: url("./assets/fonts/Poppins-Medium.ttf");
 }
 
 @font-face {
-  font-family: "Roboto-Thin";
+  font-family: "Poppins-Thin";
   font-style: normal;
   font-weight: normal;
-  src: url("./assets/fonts/Roboto-Thin.ttf");
+  src: url("./assets/fonts/Poppins-Thin.ttf");
 }
 
 @font-face {
-  font-family: "Roboto-Regular";
+  font-family: "Poppins-Regular";
   font-style: normal;
   font-weight: normal;
-  src: url("./assets/fonts/Roboto-Regular.ttf");
+  src: url("./assets/fonts/Poppins-Regular.ttf");
 }
 
 @font-face {
-  font-family: "Roboto-Bold";
+  font-family: "Poppins-Bold";
   font-style: normal;
   font-weight: normal;
-  src: url("./assets/fonts/Roboto-Bold.ttf");
+  src: url("./assets/fonts/Poppins-Bold.ttf");
 }
 
 .leaflet-routing-container {

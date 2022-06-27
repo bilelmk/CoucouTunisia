@@ -13,7 +13,7 @@ export class RoomsService {
 
   constructor(private http: HttpClient) { }
 
-  add(room: Room): Observable<Room> {
+  add(room: any): Observable<Room> {
     return this.http.post<Room>(this.URL , room);
   }
 

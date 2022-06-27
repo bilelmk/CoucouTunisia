@@ -21,8 +21,8 @@ export class PermissionService {
     return this.http.post<Permission>(this.URL , permission);
   }
 
-  update(permission: Permission, id: number): Observable<Permission> {
-    return this.http.put<Permission>(this.URL + "/" + id , permission);
+  update(permission: Permission): Observable<Permission> {
+    return this.http.put<Permission>(this.URL , permission);
   }
 
   delete(id: number) {

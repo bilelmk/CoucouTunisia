@@ -28,4 +28,15 @@ export class RestaurantService {
     return this.http.get<any>(this.URL + "/" + id)
   }
 
+  update(restaurant: any): Observable<any> {
+    return this.http.put<any>(this.URL , restaurant);
+  }
+
+  block(id: number) {
+    return this.http.put(this.URL + "/block/" + id , {});
+  }
+
+  deblock(id: number) {
+    return this.http.put(this.URL + "/deblock/" + id , {});
+  }
 }

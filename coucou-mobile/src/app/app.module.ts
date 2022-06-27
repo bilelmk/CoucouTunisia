@@ -20,6 +20,7 @@ import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AuthenticationInterceptor } from './core/interceptors/authentication-interceptor';
+import { OneSignal } from '@awesome-cordova-plugins/onesignal/ngx';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http ,  'assets/i18n/' , '.json');
@@ -30,7 +31,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3006', options: {} };
 @NgModule({
   declarations: [
       AppComponent,
-      SpinnerComponent
+      SpinnerComponent,
   ],
   entryComponents: [],
   imports: [
@@ -53,6 +54,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3006', options: {} };
     LeafletModule
   ],
   providers: [
+    OneSignal,
     Geolocation,
     StatusBar,
     SplashScreen,

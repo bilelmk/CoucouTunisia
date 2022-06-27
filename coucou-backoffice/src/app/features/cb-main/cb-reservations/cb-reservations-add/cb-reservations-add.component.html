@@ -1,0 +1,61 @@
+<div class="dialog-container">
+
+  <p class="dialog-title">Ajouter une réservation</p>
+
+  <form [formGroup]="form" class="row justify-content-center align-items-center p-4 pt-3">
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Restaurant</mat-label>
+        <mat-select formControlName="restaurant" >
+          <mat-option *ngFor="let restaurant of restaurants" [value]="restaurant?.id">{{restaurant?.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Date</mat-label>
+        <input  formControlName="date" matInput type="date">
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Date</mat-label>
+        <input  formControlName="time" matInput type="time">
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Nombre d'adults</mat-label>
+        <input  formControlName="adultNumber" matInput type="text">
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Nombre d'enfants</mat-label>
+        <input  formControlName="childrenNumber" matInput type="text">
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Nombre des bébés</mat-label>
+        <input  formControlName="babeNumber" matInput type="text">
+      </mat-form-field>
+    </div>
+
+    <div class="col-12" >
+      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid">
+        Ajouter
+      </button>
+<!--      <button class="submit-btn full-width" (click)="update()" [disabled]="!form.valid" *ngIf="data.isEditMode">-->
+<!--        Sauvgarder-->
+<!--      </button>-->
+    </div>
+  </form>
+
+</div>

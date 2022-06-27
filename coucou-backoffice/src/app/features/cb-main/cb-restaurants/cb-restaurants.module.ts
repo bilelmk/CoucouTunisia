@@ -26,6 +26,11 @@ import { CbRestaurantsClientsComponent } from './cb-restaurants-main/cb-restaura
 import { MatCardModule } from '@angular/material/card';
 import { CbRestaurantsReservationsComponent } from './cb-restaurants-main/cb-restaurants-reservations/cb-restaurants-reservations.component';
 import { RestaurantGuard } from "../../../core/guards/restaurant.guard";
+import { MatIconModule } from "@angular/material/icon";
+import { CbRestaurantsRatingComponent } from "./cb-restaurants-main/cb-restaurants-rating/cb-restaurants-rating.component";
+import { CbRestaurantsRoomsAddComponent } from "./cb-restaurants-main/cb-restaurants-rooms/cb-restaurants-rooms-add/cb-restaurants-rooms-add.component";
+import { CbRestaurantsMenusAddComponent } from "./cb-restaurants-main/cb-restaurants-menu/cb-restaurants-menus-add/cb-restaurants-menus-add.component";
+import { CbRestaurantsImagesAddComponent } from "./cb-restaurants-main/cb-restaurants-images/cb-restaurants-images-add/cb-restaurants-images-add.component";
 
 const routes: Routes = [
   {
@@ -99,27 +104,35 @@ const routes: Routes = [
     CbRestaurantsInformationsComponent,
     CbRestaurantsRoomsComponent,
     CbRestaurantsClientsComponent,
-    CbRestaurantsReservationsComponent
+    CbRestaurantsReservationsComponent,
+    CbRestaurantsRatingComponent,
+    CbRestaurantsRoomsAddComponent,
+    CbRestaurantsMenusAddComponent,
+    CbRestaurantsImagesAddComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatDialogModule,
-    MatTabsModule,
-    ReactiveFormsModule,
-    NgxMaterialTimepickerModule.setLocale('en-US'),
-    MatInputModule,
-    MatSlideToggleModule,
-    ImageCropperModule,
-    CKEditorModule,
-    SharedModule,
-    MatCardModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        MatDialogModule,
+        MatTabsModule,
+        ReactiveFormsModule,
+        NgxMaterialTimepickerModule.setLocale('en-US'),
+        MatInputModule,
+        MatSlideToggleModule,
+        ImageCropperModule,
+        CKEditorModule,
+        SharedModule,
+        MatCardModule,
+        MatIconModule
+    ],
   entryComponents: [
     CbRestaurantsAddComponent,
     CbRestaurantsAddMenuComponent,
     CbRestaurantsAddRoomComponent,
     CbRestaurantsAddImageComponent,
+    CbRestaurantsRoomsAddComponent,
+    CbRestaurantsMenusAddComponent,
+    CbRestaurantsImagesAddComponent
   ]
 })
 export class CbRestaurantsModule { }

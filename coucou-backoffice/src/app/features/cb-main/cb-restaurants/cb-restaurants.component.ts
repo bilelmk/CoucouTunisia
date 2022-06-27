@@ -6,6 +6,7 @@ import { RestaurantService } from '../../../core/services/http/restaurant.servic
 import { Restaurant } from '../../../core/models/restaurant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantShareService } from "../../../core/services/in-app/restaurant-share.service";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: 'app-cb-restaurants',
@@ -13,6 +14,8 @@ import { RestaurantShareService } from "../../../core/services/in-app/restaurant
   styleUrls: ['./cb-restaurants.component.scss']
 })
 export class CbRestaurantsComponent implements OnInit {
+
+  url = environment.url + '/api/images/'
 
   error = false ;
   loading = false ;
@@ -44,14 +47,8 @@ export class CbRestaurantsComponent implements OnInit {
 
   openAddModal() {
     const dialogRef = this.dialog.open( CbRestaurantsAddComponent, {
-      panelClass: 'custom-dialog-container' , width: '1000px' , height : '700px'
+      panelClass: 'custom-dialog-container' , width: '1000px' , height : '700px' , data : { array : this.restaurants }
     });
-    dialogRef.afterClosed().subscribe(
-      res => {
-        // console.log(this.admins)
-        // this.dataSource = new MatTableDataSource<Admin>(this.admins);
-      }
-    );
   }
 
   getRestaurantDetails(id: number) {

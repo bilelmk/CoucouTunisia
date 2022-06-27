@@ -13,7 +13,7 @@ export class MenusService {
 
   constructor(private http: HttpClient) { }
 
-  add(menu: Menu): Observable<Menu> {
+  add(menu: any): Observable<Menu> {
     return this.http.post<Menu>(this.URL , menu);
   }
 

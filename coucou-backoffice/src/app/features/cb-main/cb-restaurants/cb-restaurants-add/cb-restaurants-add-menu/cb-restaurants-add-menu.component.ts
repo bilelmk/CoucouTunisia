@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { Helpers } from '../../../../../shared/helpers/helpers';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -31,11 +30,8 @@ export class CbRestaurantsAddMenuComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl("", Validators.required),
+      description: new FormControl(""),
     })
-  }
-
-  updateValue(event: ChangeEvent) {
-    this.description = event.editor.getData()
   }
 
   onPickImage(event : any){
@@ -53,10 +49,9 @@ export class CbRestaurantsAddMenuComponent implements OnInit {
   add(){
     let menu = {
       name: this.form.value.name ,
-      description: this.description ,
+      description: this.form.value.description ,
       image: this.croppedImage,
       fileToReturn: this.fileToReturn,
-
     }
     this.matDialogRef.close(menu)
   }

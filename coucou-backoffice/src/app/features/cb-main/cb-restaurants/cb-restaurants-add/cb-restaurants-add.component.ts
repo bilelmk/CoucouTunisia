@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SpinnerService } from '../../../../core/services/in-app/spinner.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { SnackbarService } from '../../../../core/services/in-app/snackbar.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { Helpers } from '../../../../shared/helpers/helpers';
@@ -22,6 +22,7 @@ export class CbRestaurantsAddComponent implements OnInit {
   informationsForm: FormGroup;
   imageChangedEvent: any = '';
   croppedImage: any = null;
+  image ;
 
   // Planning
   planningForm: FormGroup;
@@ -56,7 +57,8 @@ export class CbRestaurantsAddComponent implements OnInit {
               public dialog: MatDialog,
               public matDialogRef: MatDialogRef<CbRestaurantsAddComponent>,
               private snackbarService: SnackbarService ,
-              private restaurantService: RestaurantService) {
+              private restaurantService: RestaurantService ,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
     this.informationsForm = new FormGroup({
       name: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -107,7 +109,7 @@ export class CbRestaurantsAddComponent implements OnInit {
       event.base64,
       this.imageChangedEvent.target.files[0].name,
     );
-    this.formData.append('image' ,   fileToReturn ) ;
+    this.image = fileToReturn
   }
 
 
@@ -147,7 +149,7 @@ export class CbRestaurantsAddComponent implements OnInit {
   // rooms
   addRoom() {
     const dialogRef = this.dialog.open( CbRestaurantsAddRoomComponent, {
-      panelClass: 'custom-dialog-container' , width: '800px' , height : '500px'
+      panelClass: 'custom-dialog-container' , width: '800px' , height : '600px'
     });
     dialogRef.afterClosed().subscribe(
       res => {
@@ -218,8 +220,15 @@ export class CbRestaurantsAddComponent implements OnInit {
   }
 
 
-
+  // general
   addRestaurant() {
+    this.spinnerService.activate() ;
+
+    this.rooms.forEach(room => room.image = "");
+    this.menus.forEach(menu => menu.image = "");
+    this.images.forEach(image => image.image = "");
+    this.formData.append('image' ,   this.image ) ;
+
     const restaurant = {
       name: this.informationsForm.value.name ,
       description:  this.informationsForm.value.description ,
@@ -251,6 +260,7 @@ export class CbRestaurantsAddComponent implements OnInit {
         sundayClose:  this.planningForm.value.sundayClose ,
       },
       image: '',
+      images: this.images ,
       rooms: this.rooms,
       menus: this.menus,
       longitude: this.marker._latlng.lng ,
@@ -259,13 +269,21 @@ export class CbRestaurantsAddComponent implements OnInit {
     this.formData.append('restaurant', JSON.stringify(restaurant));
     this.restaurantService.add(this.formData).subscribe(
       res => {
-        console.log(res);
+        this.spinnerService.deactivate() ;
+        this.matDialogRef.close();
+        this.snackbarService.openSnackBar('Restaurant ajouté avec succès', 'success');
       },
       error => {
-        console.log(error);
+        this.snackbarService.openSnackBar('Erreur lors de l\'ajout de restaurant', 'fail');
+        this.spinnerService.deactivate() ;
+        this.formData = new FormData();
       },
     );
   }
 
-
+  toNextTab(tabGroup) {
+    const index = tabGroup.selectedIndex + 1
+    tabGroup.selectedIndex = index
+    tabGroup._tabs._results[index]._disabled = false
+  }
 }

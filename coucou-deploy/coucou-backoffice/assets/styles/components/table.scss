@@ -1,0 +1,46 @@
+@import "../variables";
+
+table {
+  min-width: 100%;
+  margin-top: 30px;
+  box-shadow: none !important;
+
+  .cell-text {
+    color: $cb-dark;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .cell-chips {
+    font-size: 11px;
+    background-color: $cb-blue;
+    color: $cb-white;
+    padding: 5px;
+    border-radius: 15px;
+    line-height: 25px;
+    margin: 5px;
+  }
+
+  mat-row {
+    padding: 3px 0;
+    &:hover {
+      background-color: #f8f8f8;
+    }
+  }
+
+  mat-cell {
+    justify-content: center;
+  }
+
+  mat-header-cell {
+    display:flex;
+    justify-content:center;
+    color: #4a4a4a !important;
+    padding: 8px 0;
+    text-align: end;
+    font-size: 14px;
+  }
+}
+

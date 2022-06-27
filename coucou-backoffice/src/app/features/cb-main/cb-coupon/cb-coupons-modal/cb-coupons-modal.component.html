@@ -47,7 +47,7 @@
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Restaurants</mat-label>
         <mat-select formControlName="restaurantId" [disabled]="general.checked" >
-          <mat-option *ngFor="let restaurant of restaurants" [value]="restaurant.id" >{{restaurant.name}}</mat-option>
+          <mat-option *ngFor="let restaurant of restaurants" [value]="!general.checked ? restaurant.id : null" >{{ !general.checked ? restaurant.id : null }}</mat-option>
         </mat-select>
       </mat-form-field>
   </div>

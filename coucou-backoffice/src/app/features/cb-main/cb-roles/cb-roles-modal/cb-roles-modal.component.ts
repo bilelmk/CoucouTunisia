@@ -58,7 +58,11 @@ export class CbRolesModalComponent implements OnInit {
   }
 
   update() {
-    this.roleService.update(this.form.value , this.data.item.id).subscribe(
+    const role = {
+      ...this.form.value ,
+      id: this.data.item.id
+    }
+    this.roleService.update(role).subscribe(
       (res) => {
         Helpers.updateFields(this.form.value ,this.data.item )
         this.snackbarService.openSnackBar('Role modifier avec succès', 'success');
