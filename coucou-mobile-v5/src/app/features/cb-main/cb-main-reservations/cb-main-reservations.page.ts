@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CbMainReservationsRdvComponent } from './cb-main-reservations-rdv/cb-main-reservations-rdv.component';
 import { RestaurantService } from '../../../core/services/http/restaurant.service';
@@ -44,9 +44,7 @@ export class CbMainReservationsPage {
 
   openListReservationPage() {
     this.router.navigate(['/main/reservations/my-reservations']) ;
-    // this.modalController.create({
-    //   component: GsmMainRequestsListComponent ,
-    // }).then(modal => modal.present());
   }
+
 
 }

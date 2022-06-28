@@ -72,6 +72,12 @@ exports.signin = async (req, res, next) => {
                 message: "wrong password"
             });
         }
+        const isActive = await fetchedClient.active;
+        if (!isActive) {
+            return res.status(401).json({
+                message: "account bloqued"
+            });
+        }
         const isVerified = await fetchedClient.verified;
         if (isVerified) {
             const token = await jwt.sign(
@@ -277,3 +283,37 @@ exports.deblock = ( req, res , next , id ) => {
         });
     })
 }
+
+exports.changeImage = ( req, res , next , id ) => {
+    let image = req.files.image[0].filename ;
+    Client.update({ image: image }, {where: { id: req.userData.userId }}).then(result => {
+        if(result[0] === 1){
+            return res.status(200).json({
+                image: image
+            });
+        }
+        return res.status(404).json({
+            message: "not found"
+        });
+    }).catch(err => {
+        return res.status(500).json({
+            message: "server error"
+        });
+    })
+}
+
+exports.update = ( req, res , next ) => {
+    Client.update(
+        {   firstName: req.body.firstName ,
+            lastName: req.body.lastName,
+            email: req.body.email ,
+        }, {where: { id: req.userData.userId }}).then(result => {
+        if(result[0] === 1){
+            return res.status(200).json(result);
+        }
+        return res.status(404).json({message: "not found"});
+    }).catch(err => {
+        return res.status(500).json({message: "server error"});
+    })
+}
+

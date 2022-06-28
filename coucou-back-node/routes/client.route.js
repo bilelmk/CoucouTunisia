@@ -2,6 +2,7 @@ const express = require("express");
 const clientService = require("../services/client.service")
 const router = express.Router();
 const checkAuthentication = require('../util/check-authentication')
+const upload = require("../util/upload");
 
 router.route('/signup')
     .post((req, res, next) => {
@@ -39,6 +40,9 @@ router.route('/')
     })
     .get(checkAuthentication ,(req, res, next) => {
             clientService.getOne(req, res, next);
+    })
+    .put(checkAuthentication ,(req, res, next) => {
+            clientService.update(req, res, next);
 })
 
 router.route('/lower')
@@ -56,5 +60,9 @@ router.route('/deblock/:id')
         clientService.deblock(req, res, next, req.params.id);
 })
 
+router.route('/image')
+    .put(checkAuthentication , upload,(req, res, next) => {
+            clientService.changeImage(req, res, next);
+})
 
 module.exports = router;

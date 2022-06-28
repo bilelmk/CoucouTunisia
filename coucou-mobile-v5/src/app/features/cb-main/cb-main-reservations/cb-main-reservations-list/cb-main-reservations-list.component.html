@@ -20,7 +20,7 @@
   <p class="page-title">de vos réservations</p>
 
   <ion-row>
-    <ion-col *ngFor="let reservation of reservations" size="12" class="form-card">
+    <ion-col *ngFor="let reservation of reservations" size="12" class="form-card" (click)="openDetailsModal(reservation)">
         <ion-row>
 
           <ion-col size="7">

@@ -8,7 +8,7 @@
   <ion-grid class="ion-margin-top">
 
     <div class="form-header ion-text-center">
-      <img (click)="onPickImageChoice()" [src]=" imageSrc ? imageSrc : ( client?.image ? URL + client.image : './../../../../assets/image/default-profile.png') " alt="image"  class="form-header-img" >
+      <img (click)="onPickImageChoice()" [src]=" imageSrc ? imageSrc : ( client?.image ? url + client.image : './../../../../assets/image/default-profile.png') " alt="image"  class="form-header-img" >
       <p class="form-header-name">{{client?.firstName + " " + client?.lastName}}</p>
     </div>
 
@@ -40,12 +40,12 @@
 
         <ion-col size="12" class="form-card">
           <p class="form-card-label">Numéro de Téléphone</p>
-          <input  class="form-card-input" formControlName="phone"  type="number"/>
+          <input  class="form-card-input" formControlName="phone"  type="number" disabled/>
         </ion-col>
 
         <ion-col size="12" class="form-card">
           <p class="form-card-label">E-mail</p>
-          <input class="form-card-input"  formControlName="email" type="text" disabled/>
+          <input class="form-card-input"  formControlName="email" type="email" />
         </ion-col>
 
         <ion-col size="12" size-sm="7" class="ion-no-padding ion-margin-top">
@@ -53,7 +53,7 @@
         </ion-col>
 
         <ion-col size="12" size-sm="7" class="ion-no-padding ion-margin-top">
-          <ion-button (click)="help()" class="btn-secondary"  expand="block" >
+          <ion-button (click)="call()" class="btn-secondary"  expand="block" >
             Assistance
             <ion-icon slot="start" name="help-circle"></ion-icon>
           </ion-button>

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservationService } from '../../../../core/services/http/reservation.service';
+import { ModalController } from '@ionic/angular';
+import {
+  CbMainReservationsDetailsComponent
+} from './cb-main-reservations-details/cb-main-reservations-details.component';
 
 @Component({
   selector: 'app-cb-main-reservations-list',
@@ -13,7 +17,8 @@ export class CbMainReservationsListComponent implements OnInit {
 
   reservations ;
 
-  constructor(private reservationsService: ReservationService) { }
+  constructor(private reservationsService: ReservationService,
+              private modalController: ModalController) { }
 
   ngOnInit() {
     const searchRequest = {
@@ -68,4 +73,14 @@ export class CbMainReservationsListComponent implements OnInit {
       return '' ;
     }
   }
+
+  openDetailsModal(reservation) {
+    this.modalController.create({
+      component: CbMainReservationsDetailsComponent ,
+      componentProps: {
+        reservation,
+      }
+    }).then(modal => modal.present());
+  }
+
 }

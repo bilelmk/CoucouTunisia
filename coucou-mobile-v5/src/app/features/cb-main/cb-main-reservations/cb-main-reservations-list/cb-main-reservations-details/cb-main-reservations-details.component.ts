@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cb-main-reservations-details',
@@ -7,8 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CbMainReservationsDetailsComponent implements OnInit {
 
-  constructor() { }
+  @Input() reservation ;
 
-  ngOnInit() {}
+  elementType = 'url';
+  value = '' ;
 
+  constructor(private modalController: ModalController) {
+  }
+
+  ngOnInit() {
+    this.value = JSON.stringify({text: 'qsàçqsdçà)qsd)àq;)àçsqdà)çq@@@@@@@@)àçqsàçdqsàd)', id: this.reservation.id});
+  }
+
+  close() {
+    this.modalController.dismiss();
+  }
 }

@@ -6,8 +6,8 @@ import * as L from 'leaflet';
 import { environment } from '../../../../../environments/environment';
 import {
     CbMainReservationsRdvComponent
-} from "../../cb-main-reservations/cb-main-reservations-rdv/cb-main-reservations-rdv.component";
-import {ModalController} from "@ionic/angular";
+} from '../../cb-main-reservations/cb-main-reservations-rdv/cb-main-reservations-rdv.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cb-main-home-restaurant-details',

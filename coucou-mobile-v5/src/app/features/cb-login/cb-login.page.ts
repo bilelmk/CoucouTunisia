@@ -51,6 +51,8 @@ export class CbLoginPage implements OnInit {
             this.toastService.show('Mot de passe incorrect' ,'danger');
           } else if (error.error.message === 'phone not verified') {
             this.toastService.show('Numéro de téléphone n\'est pas verifié' ,'danger');
+          } else if (error.error.message === 'account bloqued') {
+            this.toastService.show('Votre compte a été bloqué' ,'danger');
           } else {
             this.toastService.show('Erreur du serveur' ,'danger');
           }

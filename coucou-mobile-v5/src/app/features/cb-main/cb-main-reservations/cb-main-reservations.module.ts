@@ -8,6 +8,10 @@ import { CbMainReservationsAddComponent } from './cb-main-reservations-add/cb-ma
 import { CbMainReservationsRdvComponent } from './cb-main-reservations-rdv/cb-main-reservations-rdv.component';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { CbMainReservationsListComponent } from './cb-main-reservations-list/cb-main-reservations-list.component';
+import {
+  CbMainReservationsDetailsComponent
+} from './cb-main-reservations-list/cb-main-reservations-details/cb-main-reservations-details.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   imports: [
@@ -15,13 +19,15 @@ import { CbMainReservationsListComponent } from './cb-main-reservations-list/cb-
     FormsModule,
     IonicModule,
     CbMainReservationsPageRoutingModule,
-    NgCalendarModule
+    NgCalendarModule,
+    NgxQRCodeModule
   ],
   declarations: [
     CbMainReservationsPage ,
     CbMainReservationsAddComponent,
     CbMainReservationsRdvComponent,
-    CbMainReservationsListComponent
+    CbMainReservationsListComponent,
+    CbMainReservationsDetailsComponent
   ]
 })
 export class CbMainReservationsPageModule {}

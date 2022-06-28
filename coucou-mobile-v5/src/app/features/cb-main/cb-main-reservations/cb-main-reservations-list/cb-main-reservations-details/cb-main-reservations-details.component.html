@@ -1,3 +1,33 @@
-<p>
-  cb-main-reservations-details works!
-</p>
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" >
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon color="secondary" slot="icon-only" name="arrow-back" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center toolbar">Détails de réservation</ion-title>
+    <ion-buttons slot="end">
+      <ion-button disabled="true">
+        <ion-icon color="primary" slot="icon-only" name=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <p class="page-title">Informations relatives</p>
+  <p class="page-title">à la réservations</p>
+
+  <ion-row class="ion-justify-content-center">
+    <ion-col class="ion-text-center" size="12" size-md="7">
+      <ngx-qrcode
+              [elementType]="'url'"
+              [value]="value"
+              cssClass="aclass"
+              errorCorrectionLevel="L">
+      </ngx-qrcode>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

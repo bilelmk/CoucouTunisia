@@ -10,6 +10,8 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { File as NativeFile } from '@ionic-native/file/ngx';
 import { ClientService } from '../../../core/services/http/client.service';
 import { AuthenticationService } from '../../../core/services/http/authentication.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { Helpers } from '../../../core/helpers/helpers';
 
 @Component({
   selector: 'app-cb-main-profile',
@@ -20,7 +22,7 @@ export class CbMainProfilePage {
 
   client = null;
   language;
-  URL = environment.url;
+  url = environment.url + 'images/' ;
   form: FormGroup;
 
   // image ;
@@ -39,12 +41,13 @@ export class CbMainProfilePage {
               private camera: Camera,
               private formBuilder: FormBuilder,
               private actionSheetController: ActionSheetController,
-              private authenticationService: AuthenticationService
+              private authenticationService: AuthenticationService,
+              private callNumber: CallNumber,
   ) {
     this.form = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required , Validators.email]],
       phone: ['', [Validators.required]],
     });
   }
@@ -69,22 +72,18 @@ export class CbMainProfilePage {
   }
 
   update() {
-    // this.spinnerService.activate();
-    // const user = {
-    //   ...this.form.value,
-    //   id: sessionStorage.getItem('id')
-    // };
-    // this.clientService.update(user).subscribe(
-    //     res => {
-    //       this.client = res;
-    //       this.toastService.show('Modifications sauvgarder avec succès', 'success');
-    //       this.spinnerService.deactivate();
-    //     },
-    //     error => {
-    //       this.toastService.show('Erreur lors de la mise à jour', 'danger');
-    //       this.spinnerService.deactivate();
-    //     }
-    // );
+    this.spinnerService.activate();
+    this.clientService.update(this.form.value).subscribe(
+        res => {
+          Helpers.updateFields(this.form.value , this.client) ;
+          this.toastService.show('Modifications sauvgarder avec succès', 'success');
+          this.spinnerService.deactivate();
+        },
+        error => {
+          this.toastService.show('Erreur lors de la modifications', 'danger');
+          this.spinnerService.deactivate();
+        }
+    );
   }
 
   async onPickImageChoice() {
@@ -136,9 +135,9 @@ export class CbMainProfilePage {
                         base64 => {
                           this.imageSrc = base64;
                           this.data = new FormData();
-                          // this.data.append('image', this.dataURItoBlob(base64));
-                          console.log(base64);
+                          this.data.append('image', this.dataURItoBlob(base64));
                         }, error => {
+                          this.onCancelImage();
                           console.log(error);
                         });
                   },
@@ -168,26 +167,31 @@ export class CbMainProfilePage {
     return new Blob([ab], {type: mimeString});
   }
 
-  // onSaveImage() {
-  //   const user = {
-  //     id: sessionStorage.getItem('id')
-  //   };
-  //   this.data.append('user', new Blob([JSON.stringify(user)], {type: 'application/json'}));
-  //   this.spinnerService.activate();
-  //   this.userService.updateImage(this.data).subscribe(
-  //       res => {
-  //         this.client.image = res.image;
-  //         this.onCancelImage();
-  //         this.spinnerService.deactivate();
-  //       },
-  //       err => {
-  //         // this.toastService.presentToast(this.incompatible_image , 'fail-toast')
-  //         this.spinnerService.deactivate();
-  //       }
-  //   );
-  // }
+  onSaveImage() {
+    this.spinnerService.activate();
+    this.clientService.updateImage(this.data).subscribe(
+        res => {
+          this.toastService.show('Modifications sauvgarder avec succès', 'success');
+          this.client.image = res.image;
+          this.onCancelImage();
+          this.spinnerService.deactivate();
+        },
+        err => {
+            this.toastService.show('Erreur lors de la modifications', 'danger');
+          this.spinnerService.deactivate();
+        }
+    );
+  }
 
-  logout() {
+    call() {
+        this.callNumber.callNumber('50202125', true)
+            .then(res => console.log('Launched dialer!', res))
+            .catch(err => console.log('Error launching dialer', err));
+
+    }
+
+
+    logout() {
     this.authenticationService.logout() ;
   }
 }

@@ -75,7 +75,7 @@ export function createTranslateLoader(http: HttpClient){
         GooglePlus,
         Facebook,
         DatePicker,
-        {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
+        { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
         Network ,
         Crop ,
         File ,
