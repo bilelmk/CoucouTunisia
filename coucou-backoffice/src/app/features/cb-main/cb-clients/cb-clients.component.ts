@@ -4,7 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { ClientsService } from '../../../core/services/http/clients.service';
 import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { SearchClientRequest } from '../../../core/dtos/search-client-request';
-import {Admin} from "../../../core/models/admin";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: 'app-cb-clients',
@@ -14,7 +14,7 @@ import {Admin} from "../../../core/models/admin";
 export class CbClientsComponent implements OnInit {
 
   public dataSource: Client[];
-  displayedColumns = ['firstName', 'lastName' , 'phone', 'active' , 'buttons' ];
+  displayedColumns = ['image' , 'firstName', 'lastName' , 'phone', 'email' ,'active' , 'buttons' ];
   clients : Client[] = [] ;
 
   error = false ;
@@ -26,6 +26,8 @@ export class CbClientsComponent implements OnInit {
 
   recordsNumber ;
   pageEvent: PageEvent ;
+
+  url = environment.url + '/api/images/'
 
   constructor(private clientsService: ClientsService ,
               private spinnerService: SpinnerService ) { }

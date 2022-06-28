@@ -13,6 +13,12 @@ table {
     font-size: 13px;
   }
 
+  .cell-img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px ;
+  }
+
   .cell-chips {
     font-size: 11px;
     background-color: $cb-blue;

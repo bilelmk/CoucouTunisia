@@ -6,7 +6,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { CbClientsModalComponent } from './cb-clients-modal/cb-clients-modal.component';
-import { CbClientsDetailsComponent } from './cb-clients-details/cb-clients-details.component';
 
 const routes: Routes = [
   {
@@ -19,7 +18,6 @@ const routes: Routes = [
   declarations: [
     CbClientsComponent,
     CbClientsModalComponent,
-    CbClientsDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +28,6 @@ const routes: Routes = [
   ],
   entryComponents: [
     CbClientsModalComponent,
-    CbClientsDetailsComponent
   ]
 })
 export class CbClientsModule { }

@@ -16,6 +16,13 @@
   <div class="row"  *ngIf="clients?.length > 0">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
+      <ng-container matColumnDef="image" >
+        <mat-header-cell *matHeaderCellDef >Image</mat-header-cell>
+        <mat-cell *matCellDef="let client" >
+          <img [src]=" client?.image ? url + client.image : './../../../../assets/img/default-profile.png' " alt="image"  class="cell-img" >
+        </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="phone" >
         <mat-header-cell *matHeaderCellDef >Phone Number</mat-header-cell>
         <mat-cell *matCellDef="let client" >
@@ -37,6 +44,13 @@
         </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef >Email</mat-header-cell>
+        <mat-cell *matCellDef="let client" >
+          <p class="cell-text" > {{client.email}} </p>
+        </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="active">
         <mat-header-cell *matHeaderCellDef >Active</mat-header-cell>
         <mat-cell class="cell-text" *matCellDef="let client">
@@ -53,9 +67,9 @@
           <div class="cell-btn" (click)="toggleActiveStatus(client)">
             <mat-icon>flaky</mat-icon>
           </div>
-          <div class="cell-btn" (click)="openDetailsDialog(client)" >
-            <mat-icon>visibility</mat-icon>
-          </div>
+<!--          <div class="cell-btn" (click)="openDetailsDialog(client)" >-->
+<!--            <mat-icon>visibility</mat-icon>-->
+<!--          </div>-->
         </mat-cell>
       </ng-container>
 
