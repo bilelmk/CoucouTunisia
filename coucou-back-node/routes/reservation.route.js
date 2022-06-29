@@ -4,9 +4,9 @@ const checkAuthentication = require("../util/check-authentication");
 const router = express.Router();
 
 router.route('/')
-    .get((req, res, next) => {
-        reservationService.getAll(req, res, next);
-    })
+    // .get((req, res, next) => {
+    //     reservationService.getAll(req, res, next);
+    // })
     .post(checkAuthentication, (req, res, next) => {
         reservationService.add(req, res, next);
 })
@@ -14,6 +14,11 @@ router.route('/')
 router.route('/client')
     .post(checkAuthentication, (req, res, next) => {
         reservationService.getByClient(req, res, next);
+})
+
+router.route('/search')
+    .post((req, res, next) => {
+        reservationService.getAll(req, res, next);
     })
 
 // router.route('/:id')

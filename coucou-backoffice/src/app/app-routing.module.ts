@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthenticationGuard } from "./core/guards/authentication.guard";
 
 const routes: Routes = [
   {
@@ -13,7 +14,13 @@ const routes: Routes = [
   },
   {
     path: 'main',
-    loadChildren: () => import('./features/cb-main/cb-main.module').then(m => m.CbMainModule)
+    loadChildren: () => import('./features/cb-main/cb-main.module').then(m => m.CbMainModule),
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: '**',
+    redirectTo: 'login',
+    pathMatch: 'full'
   }
 ];
 

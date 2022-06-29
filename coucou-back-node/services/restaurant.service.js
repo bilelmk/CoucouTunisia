@@ -63,7 +63,15 @@ exports.getAll = (req, res, next) => {
 }
 
 exports.getAllLite = ( req, res , next ) => {
-  Restaurant.findAll( { include: ['rooms']}).then(result =>{
+  Restaurant.findAll().then(result =>{
+    return res.status(200).json(result);
+  }).catch(err => {
+    return res.status(404).json({message: "no records"});
+  })
+}
+
+exports.getAllActive = ( req, res , next ) => {
+  Restaurant.findAll( { where: { active : true} ,include: ['rooms']}).then(result =>{
     return res.status(200).json(result);
   }).catch(err => {
     return res.status(404).json({message: "no records"});

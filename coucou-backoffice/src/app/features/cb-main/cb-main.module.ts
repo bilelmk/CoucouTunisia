@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'clients',
-        loadChildren: () => import('./cb-clients/cb-clients.module').then(m => m.CbClientsModule)
+        loadChildren: () => import('./cb-clients/cb-clients.module').then(m => m.CbClientsModule),
       },
       {
         path: 'admins',

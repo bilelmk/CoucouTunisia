@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import {
   CbMainReservationsDetailsComponent
 } from './cb-main-reservations-details/cb-main-reservations-details.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cb-main-reservations-list',
@@ -18,7 +19,8 @@ export class CbMainReservationsListComponent implements OnInit {
   reservations ;
 
   constructor(private reservationsService: ReservationService,
-              private modalController: ModalController) { }
+              private modalController: ModalController,
+              private router: Router) { }
 
   ngOnInit() {
     const searchRequest = {
@@ -36,7 +38,7 @@ export class CbMainReservationsListComponent implements OnInit {
   }
 
   close() {
-    // this.modalController.dismiss();
+    this.router.navigate(['/main/reservations']);
   }
 
   loadData(event: any) {

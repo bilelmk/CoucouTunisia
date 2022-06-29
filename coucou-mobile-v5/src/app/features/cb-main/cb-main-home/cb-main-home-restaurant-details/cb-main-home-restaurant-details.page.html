@@ -26,17 +26,15 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-margin-top" *ngFor="let menu of restaurant?.menus">
+    <app-cb-pack-gallery [menus]="restaurant?.menus"></app-cb-pack-gallery>
+
+    <ion-row class="ion-margin-top">
       <ion-col size="12">
-        <p class="product-name">{{menu.name}}</p>
-      </ion-col>
-      <ion-col  size="12">
-        <p [innerHTML]="menu.description"></p>
-      </ion-col>
-      <ion-col  size="12">
-        <img src="{{url + menu.image}}" />
+        <p class="product-name">Nos Emplacements</p>
       </ion-col>
     </ion-row>
+
+    <app-cb-place-gallery [rooms]="restaurant?.rooms"></app-cb-place-gallery>
 
     <ion-row class="ion-margin-top">
       <ion-col size="12">

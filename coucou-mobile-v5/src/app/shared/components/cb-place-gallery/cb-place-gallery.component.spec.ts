@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CbGalleryModalComponent } from './cb-gallery-modal.component';
+import { CbPlaceGalleryComponent } from './cb-place-gallery.component';
 
-describe('CbGalleryModalComponent', () => {
-  let component: CbGalleryModalComponent;
-  let fixture: ComponentFixture<CbGalleryModalComponent>;
+describe('CbPlaceGalleryComponent', () => {
+  let component: CbPlaceGalleryComponent;
+  let fixture: ComponentFixture<CbPlaceGalleryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CbGalleryModalComponent ],
+      declarations: [ CbPlaceGalleryComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CbGalleryModalComponent);
+    fixture = TestBed.createComponent(CbPlaceGalleryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

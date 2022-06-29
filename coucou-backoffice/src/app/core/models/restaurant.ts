@@ -8,5 +8,7 @@ export class Restaurant {
   webSite: string ;
   logitude:  number ;
   responsable: string ;
-  latitude: number
+  latitude: number;
+  active: boolean;
+  smsMessage: string;
 }

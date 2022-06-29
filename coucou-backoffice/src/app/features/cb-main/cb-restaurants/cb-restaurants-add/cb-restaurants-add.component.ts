@@ -67,6 +67,7 @@ export class CbRestaurantsAddComponent implements OnInit {
       webSite: new FormControl('', [Validators.required,
         Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
       responsable: new FormControl('', Validators.required),
+      smsMessage: new FormControl('', Validators.required),
     });
     this.planningForm = new FormGroup({
       monday :  new FormControl(''),

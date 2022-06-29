@@ -7,6 +7,7 @@ import { Restaurant } from '../../../core/models/restaurant';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantShareService } from "../../../core/services/in-app/restaurant-share.service";
 import { environment } from "../../../../environments/environment";
+import {Client} from "../../../core/models/client";
 
 @Component({
   selector: 'app-cb-restaurants',
@@ -58,6 +59,33 @@ export class CbRestaurantsComponent implements OnInit {
         this.restaurantShareService.setRestaurant(res) ;
         this.spinnerService.deactivate()
         this.router.navigate([id] , {relativeTo : this.route})
+      },
+      error => {
+        this.spinnerService.deactivate()
+        console.log(error)
+      }
+    )
+  }
+
+  disable(restaurant) {
+    this.spinnerService.activate()
+      this.restaurantService.block(restaurant.id).subscribe(
+        res => {
+          restaurant.active = false ;
+          this.spinnerService.deactivate()
+        },
+        error => {
+          this.spinnerService.deactivate()
+          console.log(error)
+        }
+      )
+  }
+
+  enable(restaurant) {
+    this.restaurantService.deblock(restaurant.id).subscribe(
+      res => {
+        restaurant.active = true ;
+        this.spinnerService.deactivate()
       },
       error => {
         this.spinnerService.deactivate()

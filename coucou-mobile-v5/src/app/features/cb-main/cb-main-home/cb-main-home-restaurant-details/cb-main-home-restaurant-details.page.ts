@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SpinnerService } from '../../../../core/services/in-app/spinner.service';
 import { RestaurantService } from '../../../../core/services/http/restaurant.service';
 import * as L from 'leaflet';
@@ -35,7 +35,8 @@ export class CbMainHomeRestaurantDetailsPage {
   constructor(private route: ActivatedRoute,
               private spinnerService: SpinnerService,
               private restaurantService: RestaurantService,
-              private modalController: ModalController) {}
+              private modalController: ModalController,
+              private router: Router) {}
 
   ionViewWillEnter() {
        this.spinnerService.activate();
@@ -86,4 +87,7 @@ export class CbMainHomeRestaurantDetailsPage {
         }).then(modal => modal.present());
     }
 
+    close() {
+        this.router.navigate(['/main/home']);
+    }
 }

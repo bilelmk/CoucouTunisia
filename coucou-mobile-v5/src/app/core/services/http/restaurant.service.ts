@@ -11,7 +11,7 @@ export class RestaurantService {
   constructor(private http: HttpClient) {}
 
   getRestaurants(): Observable<any> {
-    return this.http.get<any>(environment.url + 'restaurants/lite');
+    return this.http.get<any>(environment.url + 'restaurants/active');
   }
 
   getRestaurant(id: number): Observable<any> {

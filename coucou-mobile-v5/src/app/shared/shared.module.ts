@@ -1,24 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { CbGalleryModalComponent } from './components/cb-gallery-modal/cb-gallery-modal.component';
 import { CbGalleryComponent } from './components/cb-gallery/cb-gallery.component';
+import { CbPlaceGalleryComponent } from './components/cb-place-gallery/cb-place-gallery.component';
+import { CbPackGalleryComponent } from './components/cb-pack-gallery/cb-pack-gallery.component';
 
 
 @NgModule({
   declarations: [
     CbGalleryComponent,
-    CbGalleryModalComponent
+    CbPlaceGalleryComponent,
+    CbPackGalleryComponent
   ],
   exports: [
-    CbGalleryComponent
+    CbGalleryComponent,
+    CbPlaceGalleryComponent,
+    CbPackGalleryComponent
   ],
   imports: [
     CommonModule,
     IonicModule
   ],
   entryComponents: [
-      CbGalleryModalComponent
   ]
 })
 export class SharedModule { }

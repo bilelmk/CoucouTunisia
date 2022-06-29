@@ -2,18 +2,17 @@ import { Component, Input, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 
 @Component({
-  selector: 'app-cb-gallery',
-  templateUrl: './cb-gallery.component.html',
-  styleUrls: ['./cb-gallery.component.scss'],
+  selector: 'app-cb-place-gallery',
+  templateUrl: './cb-place-gallery.component.html',
+  styleUrls: ['./cb-place-gallery.component.scss'],
 })
-export class CbGalleryComponent implements OnInit {
+export class CbPlaceGalleryComponent implements OnInit {
 
-  @Input() images: any ;
+  @Input() rooms: any ;
   url = environment.url + 'images/' ;
 
   slidesOpts = {
     zoom: false ,
-    slidesPerView: 1.5,
     centredSlides: true ,
     spaceBetween: 20
   };

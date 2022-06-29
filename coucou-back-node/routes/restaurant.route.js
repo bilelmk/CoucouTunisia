@@ -16,6 +16,11 @@ router.route('/lite')
         restaurantService.getAllLite(req, res, next)
 })
 
+router.route('/active')
+    .get((req, res, next) => {
+        restaurantService.getAllActive(req, res, next)
+})
+
 router.route('/:id')
     .get((req,res,next) => {
         restaurantService.getOne(req,res,next , req.params.id)

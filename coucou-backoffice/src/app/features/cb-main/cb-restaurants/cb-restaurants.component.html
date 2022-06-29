@@ -24,6 +24,12 @@
         <mat-card-content class="p-3">
           <h2>{{item.name}}</h2>
           <p>{{item.description}}</p>
+          <button *ngIf="item.active" class="danger-btn full-width" (click)="disable(item)" >
+            Bloquer
+          </button>
+          <button *ngIf="!item.active"  class="submit-btn full-width" (click)="enable(item)" >
+            Débloquer
+          </button>
         </mat-card-content>
       </mat-card>
     </div>

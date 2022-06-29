@@ -3,7 +3,9 @@ import { CbReservationsAddComponent } from "./cb-reservations-add/cb-reservation
 import { SpinnerService } from "../../../core/services/in-app/spinner.service";
 import { MatDialog } from "@angular/material/dialog";
 import { ReservationsService } from "../../../core/services/http/reservations.service";
-import { RestaurantService } from "../../../core/services/http/restaurant.service";
+import { PageEvent } from "@angular/material/paginator";
+import { Reservation } from "../../../core/models/reservation";
+import { SearchClientRequest } from "../../../core/dtos/search-client-request";
 
 @Component({
   selector: 'app-cb-reservations',
@@ -12,11 +14,52 @@ import { RestaurantService } from "../../../core/services/http/restaurant.servic
 })
 export class CbReservationsComponent implements OnInit {
 
+  public dataSource: Reservation[];
+  displayedColumns = ['restaurant','client','date','time','adultNumber','childrenNumber','babeNumber','carNumber','state','canceled', 'buttons' ];
+  reservations : Reservation[] = [] ;
+
+  error = false ;
+  loading = false ;
+
+  limit = 10 ;
+  offset = 0 ;
+  key = "" ;
+
+  recordsNumber ;
+  pageEvent: PageEvent ;
+
   constructor(private spinnerService: SpinnerService ,
               private dialog: MatDialog,
               private reservationService: ReservationsService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.getRecords()
+  }
+
+  onPaginationChange(event){
+    this.offset = this.limit * event.pageIndex
+    this.getRecords()
+  }
+
+  getRecords(){
+    this.loading = true ;
+    this.spinnerService.activate()
+    let searchClientRequest = new SearchClientRequest(this.offset, this.limit , null)
+    this.reservationService.getAll(searchClientRequest).subscribe(
+      (res :any) => {
+        this.loading = false ;
+        this.recordsNumber = res.count ;
+        this.reservations = res.rows ;
+        this.dataSource = this.reservations
+        this.spinnerService.deactivate()
+        console.log(res)
+      },
+      error => {
+        this.loading = false ;
+        this.error = true ;
+        this.spinnerService.deactivate()
+      }
+    )
   }
 
   openModal() {

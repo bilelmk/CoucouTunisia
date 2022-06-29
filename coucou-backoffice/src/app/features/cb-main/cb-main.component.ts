@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from "../../core/services/http/authentication.service";
 
 @Component({
   selector: 'app-cb-main',
@@ -100,12 +101,12 @@ export class CbMainComponent implements OnInit {
       icon : "percent",
       permission: "ADMIN"
     },
-    {
-      type: "button",
-      handler : this.logout.bind(this) ,
-      name : "Se déconnecter" ,
-      icon : "logout"
-    },
+    // {
+    //   type: "button",
+    //   handler : this.logout.bind(this) ,
+    //   name : "Se déconnecter" ,
+    //   icon : "logout"
+    // },
   ];
 
   constructor() { }
@@ -126,8 +127,5 @@ export class CbMainComponent implements OnInit {
     return false ;
   }
 
-  logout() {
-    console.log("test")
-    // this.authenticationService.logout()
-  }
+
 }

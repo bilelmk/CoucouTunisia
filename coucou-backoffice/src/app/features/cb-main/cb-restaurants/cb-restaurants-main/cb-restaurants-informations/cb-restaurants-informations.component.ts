@@ -29,6 +29,7 @@ export class CbRestaurantsInformationsComponent implements OnInit {
       webSite: new FormControl('', [Validators.required,
         Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]),
       responsable: new FormControl('', Validators.required),
+      smsMessage: new FormControl('', Validators.required),
     });
   }
 
@@ -42,6 +43,7 @@ export class CbRestaurantsInformationsComponent implements OnInit {
       email: this.restaurant.email,
       webSite: this.restaurant.webSite ,
       responsable: this.restaurant.responsable,
+      smsMessage: this.restaurant.smsMessage,
     });
   }
 
@@ -57,6 +59,7 @@ export class CbRestaurantsInformationsComponent implements OnInit {
     this.informationsForm.get('email').disable()
     this.informationsForm.get('webSite').disable()
     this.informationsForm.get('responsable').disable()
+    this.informationsForm.get('smsMessage').disable()
   }
 
   enableFields() {
@@ -66,6 +69,7 @@ export class CbRestaurantsInformationsComponent implements OnInit {
     this.informationsForm.get('email').enable()
     this.informationsForm.get('webSite').enable()
     this.informationsForm.get('responsable').enable()
+    this.informationsForm.get('smsMessage').enable()
   }
 
   update(){

@@ -3,7 +3,8 @@ const couponService = require("../services/coupon.service")
 
 exports.runCrons = () => {
     cron.schedule('00 00 * * *', () => {
-        couponService.deleteExpiredCoupon() ;
+        console.log('nos elil');
+        // couponService.deleteExpiredCoupon() ;
     });
 
     // just for test

@@ -25,7 +25,6 @@ export class CbMainHomePage {
         res => {
           this.spinnerService.deactivate();
           this.restaurants = res ;
-          console.log(res);
         },
         error => {
           this.spinnerService.deactivate();

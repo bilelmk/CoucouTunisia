@@ -10,6 +10,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { CbReservationAddClientsComponent } from "./cb-reservations-add/cb-reservation-add-clients/cb-reservation-add-clients.component";
+import {MatTableModule} from "@angular/material/table";
+import {MatIconModule} from "@angular/material/icon";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 const routes: Routes = [
   {
@@ -32,7 +35,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule,
+    MatIconModule,
+    MatPaginatorModule
   ],
   entryComponents: [
     CbReservationsDetailsComponent,
