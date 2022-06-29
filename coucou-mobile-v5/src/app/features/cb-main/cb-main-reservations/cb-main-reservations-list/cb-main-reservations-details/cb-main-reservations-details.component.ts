@@ -23,4 +23,30 @@ export class CbMainReservationsDetailsComponent implements OnInit {
   close() {
     this.modalController.dismiss();
   }
+
+  getSateColor(state: string) {
+    if (state === 'checking') {
+      return 'state-info' ;
+    }
+    else {
+      return 'state-success' ;
+    }
+  }
+
+  getSateName(state: string) {
+    switch (state) {
+      case 'checking':
+        return 'En cours' ;
+      case 'checked':
+        return 'Validée' ;
+      case 'confirmed':
+        return 'Confirmée' ;
+      case 'arrived':
+        return 'Arrivée' ;
+      case 'finished':
+        return 'Finis' ;
+      default:
+        return '' ;
+    }
+  }
 }

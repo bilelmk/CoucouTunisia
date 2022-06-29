@@ -128,7 +128,7 @@ export class CbMainReservationsAddComponent {
     this.reservationService.add(reservation).subscribe(
         res => {
           this.spinnerService.deactivate();
-          console.log(res);
+          this.modalController.dismiss();
         },
         error => {
           this.spinnerService.deactivate();

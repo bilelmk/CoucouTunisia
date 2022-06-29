@@ -61,18 +61,29 @@ export class CbMainReservationsListComponent implements OnInit {
     );
   }
 
-  getSateColor(state: any) {
-    if (state === 'IN_PROGRESS' || state === 'WAITING_FOR_PART') {
+  getSateColor(state: string) {
+    if (state === 'checking') {
       return 'state-info' ;
     }
-    else if (state === 'REPARED') {
+    else {
       return 'state-success' ;
     }
-    else if (state === 'PART_UNAVAILABLE' || state === 'NON_REPARABLE') {
-      return 'state-danger' ;
-    }
-    else {
-      return '' ;
+  }
+
+  getSateName(state: string) {
+    switch (state) {
+      case 'checking':
+        return 'En cours' ;
+      case 'checked':
+        return 'Validée' ;
+      case 'confirmed':
+        return 'Confirmée' ;
+      case 'arrived':
+        return 'Arrivée' ;
+      case 'finished':
+        return 'Finis' ;
+      default:
+        return '' ;
     }
   }
 

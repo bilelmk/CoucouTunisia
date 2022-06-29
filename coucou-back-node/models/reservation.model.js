@@ -22,6 +22,10 @@ const Reservation = sequelize.define('reservation' , {
         type : Sequelize.STRING ,
         allowNull : false ,
     },
+    room: {
+        type : Sequelize.STRING ,
+        allowNull : false ,
+    },
     adultNumber: {
         type : Sequelize.INTEGER ,
         allowNull : false ,
