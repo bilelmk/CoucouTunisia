@@ -3,39 +3,39 @@
 
     <ion-row class="ion-justify">
       <ion-col class="ion-text-center" size="12">
-        <img class="auth-image" src="assets/image/logo.png" alt="logo">
+        <img class="auth-image" src="../../../assets/image/logo.png" alt="logo">
       </ion-col>
     </ion-row>
 
     <form [formGroup]="form" >
-      <ion-row>
+      <ion-row class="ion-justify-content-center">
 
-        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
-          <input formControlName="lastName" class="login-input" type="text" placeholder="Nom" />
+        <ion-col size="10" size-sm="7">
+          <input formControlName="lastName" class="auth-input" type="text" placeholder="Nom" />
         </ion-col>
 
-        <ion-col  class="mt-10" size="10" size-sm="6" offset="1" offset-sm="3">
-          <input formControlName="firstName" class="login-input" type="text" placeholder="Prénom"/>
+        <ion-col  size="10" size-sm="7">
+          <input formControlName="firstName" class="auth-input" type="text" placeholder="Prénom"/>
         </ion-col>
 
-        <ion-col class="mt-10"  size="10" size-sm="6" offset="1" offset-sm="3">
-          <input formControlName="phone" class="login-input" type="text" placeholder="Numéro de téléphone" />
+        <ion-col  size="10" size-sm="7">
+          <input formControlName="phone" class="auth-input" type="text" placeholder="Numéro de téléphone" />
         </ion-col>
 
-        <ion-col class="mt-10" size="10" size-sm="6" offset="1" offset-sm="3">
-          <input formControlName="email" class="login-input" type="text" placeholder="Email" />
+        <ion-col  size="10" size-sm="7">
+          <input formControlName="email" class="auth-input" type="text" placeholder="Email" />
         </ion-col>
 
-        <ion-col class="mt-10" size="10" size-sm="6" offset="1" offset-sm="3">
-          <input formControlName="password" class="login-input" type="password" placeholder="Mot de passe"  />
+        <ion-col  size="10" size-sm="7">
+          <input formControlName="password" class="auth-input" type="password" placeholder="Mot de passe"  />
         </ion-col>
 
-        <ion-col class="mt-15"  size="10" size-sm="6" offset="1" offset-sm="3">
-          <ion-button (click)="onRegister()" color="primary" expand="full" [disabled]="!form.valid">Créer le compte</ion-button>
+        <ion-col class="mt-15"  size="10" size-sm="7">
+          <ion-button (click)="onRegister()" class="btn-primary" expand="block" [disabled]="!form.valid">Créer le compte</ion-button>
         </ion-col>
 
-        <ion-col  size="10" size-sm="6" offset="1" offset-sm="3">
-          <ion-button  routerLink="/cb-login" color="light" expand="full" >Se Connecter</ion-button>
+        <ion-col  size="10" size-sm="7">
+          <ion-button  routerLink="/cb-login" class="btn-light" expand="block" >Se Connecter</ion-button>
         </ion-col>
 
       </ion-row>

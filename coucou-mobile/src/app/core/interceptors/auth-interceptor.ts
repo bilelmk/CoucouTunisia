@@ -1,12 +1,27 @@
 // import { Injectable } from '@angular/core';
 // import { from, Observable } from 'rxjs';
+// import { environment } from '../../../environments/environment';
+// import { Platform } from '@ionic/angular';
+// import { HTTP } from '@ionic-native/http/ngx';
+//
 // import {
-//   HttpInterceptor,
 //   HttpRequest,
-//   HttpHandler, HttpEvent
+//   HttpHandler,
+//   HttpEvent,
+//   HttpInterceptor,
+//   HttpResponse,
 // } from '@angular/common/http';
 //
 //
+// type HttpMethod =
+//   | 'get'
+//   | 'post'
+//   | 'put'
+//   | 'patch'
+//   | 'head'
+//   | 'delete'
+//   | 'upload'
+//   | 'download';
 //
 // @Injectable({
 //   providedIn: 'root'
@@ -15,14 +30,14 @@
 //
 //   apiUrl = environment.url;
 //
-//   urlsToNotUse= [
-//     'auth-client',
-//     'sell-points/group' ,
+//   urlsToNotUse = [
+//     'clients',
+//     'products',
 //   ];
 //
-//   constructor(private nativeHTTP: HTTP, private platform: Platform ,  private storage: Storage) {}
+//   constructor(private nativeHTTP: HTTP, private platform: Platform) {}
 //
-//   intercept( request : HttpRequest<any>, next: HttpHandler ): Observable<HttpEvent<any>> {
+//   intercept( request: HttpRequest<any>, next: HttpHandler ): Observable<HttpEvent<any>> {
 //     if (request.url.startsWith(this.apiUrl)) {
 //       return from(this.handleNativeRequest(request));
 //     } else {
@@ -37,18 +52,14 @@
 //   private async handleNativeRequest(request: HttpRequest<any>): Promise<HttpResponse<any>> {
 //
 //     let headers ;
-//     let token = await this.storage.get("token").then(
-//         data => { return data },
-//         err => { return err }
-//     )
+//     const token = sessionStorage.getItem('token') ;
 //
 //     if (token && this.isValidRequestForInterceptor(request.url)) {
 //       // console.log("interceptor with token request")
-//       headers = { Authorization : 'Bearer '+ token.token}
-//     }
-//     else {
+//       headers = { Authorization : 'Bearer ' + token};
+//     } else {
 //       // console.log("interceptor without token request")
-//       headers = {}
+//       headers = {};
 //     }
 //
 //     // const headerKeys = request.headers.keys();
@@ -60,7 +71,7 @@
 //
 //     try {
 //       await this.platform.ready();
-//       const method = <HttpMethod>request.method.toLowerCase();
+//       const method = request.method.toLowerCase() as HttpMethod;
 //       const nativeHttpResponse = await this.nativeHTTP.sendRequest(
 //           request.url,
 //           {
@@ -84,7 +95,6 @@
 //       return Promise.resolve(response);
 //
 //     } catch (error) {
-//       console.log("4")
 //       if (!error.status) {
 //         return Promise.reject(error);
 //       }
@@ -102,11 +112,11 @@
 //   }
 //
 //   private isValidRequestForInterceptor(requestUrl: string): boolean {
-//     let positionIndicator: string = 'api/';
-//     let position = requestUrl.indexOf(positionIndicator);
+//     const positionIndicator = 'api/';
+//     const position = requestUrl.indexOf(positionIndicator);
 //     if (position > 0) {
-//       let destination: string = requestUrl.substr(position + positionIndicator.length);
-//       for (let address of this.urlsToNotUse) {
+//       const destination: string = requestUrl.substr(position + positionIndicator.length);
+//       for (const address of this.urlsToNotUse) {
 //         if (new RegExp(address).test(destination)) {
 //           return false;
 //         }

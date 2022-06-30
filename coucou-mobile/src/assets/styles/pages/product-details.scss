@@ -1,0 +1,28 @@
+.product {
+
+  &-img {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 20vh;
+    border-bottom-left-radius: 20px ;
+    border-bottom-right-radius: 20px ;
+  }
+
+  &-name {
+    margin-bottom: 0 !important;
+    font-size: 17px;
+    color: var(--ion-color-secondary);
+    font-family: "Poppins-bold" ;
+  }
+
+  &-description {
+    font-size: 14px;
+    color: var(--ion-color-medium-shade);
+    font-family: "Poppins-Regular" ;
+  }
+
+}
+
+

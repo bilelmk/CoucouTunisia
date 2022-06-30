@@ -7,13 +7,13 @@ import { CbMainHomePage } from './cb-main-home.page';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    CbMainHomePageRoutingModule,
-    NgCircleProgressModule.forRoot()
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        CbMainHomePageRoutingModule,
+        NgCircleProgressModule,
+    ],
   declarations: [CbMainHomePage]
 })
 export class CbMainHomePageModule {}

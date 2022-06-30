@@ -1,50 +1,48 @@
-<ion-header >
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button>
-        <ion-icon color="primary" slot="icon-only" name="menu"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon color="primary" slot="icon-only" name="search"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title class="ion-text-center toolbar">Nos Restaurants</ion-title>
+<ion-header  class="ion-no-border">
+  <ion-toolbar color="transparent">
+    <ion-title class="ion-text-center toolbar">Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<div class="ion-padding">
+  <div class="ion-padding-end ion-padding-start">
+    <p class="page-title">Avec Coco Tunisia </p>
+    <p class="page-title">choisissez votre meilleure</p>
+    <p class="page-title page-title-primary">destination pour cet été !</p>
+  </div>
+</div>
+
 <ion-content>
-  <ion-card *ngFor="let restaurant of restaurants" >
-    <img mat-card-image (click)="getRestaurantDetails(restaurant.id)" class="pointer full-width no-margin"
-           [src]="restaurant.image ? url + restaurant.image : '/assets/img/no-record.png' ">
-    <ion-card-header>
-      <ion-row class="ion-justify-content-between ion-align-items-center">
-        <ion-card-title >{{restaurant.name}}</ion-card-title>
-        <circle-progress
-                [percent]="3.9"
-                [backgroundColor]="'#FDB900'"
-                [backgroundGradientStopColor]="'#ffffff'"
-                [backgroundPadding]="10"
-                [radius]="10"
-                [toFixed]="1"
-                [maxPercent]="5"
-                [outerStrokeWidth]=0
-                [outerStrokeColor]="'#FFFFFF'"
-                [titleColor]="'#ffffff'"
-                [titleFontSize]="15"
-                [titleFontWeight]="500"
-                [animationDuration]="1500"
-                [showSubtitle]=false
-                [showUnits]=false
-                [showInnerStroke]=false
-                [startFromZero]=true
-        ></circle-progress>
-      </ion-row>
-
-
-    </ion-card-header>
-
-  </ion-card>
+  <ion-row style="height: calc(100vh - 240px ) ;" class="ion-padding-start ion-padding-end">
+    <ion-col size="12" *ngFor="let restaurant of restaurants" class="ion-no-padding">
+      <ion-card class="card">
+        <img mat-card-image (click)="getRestaurantDetails(restaurant.id)" class="pointer full-width no-margin"
+               [src]="restaurant.image ? url + restaurant.image : '/assets/img/no-record.png' ">
+        <ion-card-header>
+          <ion-row class="ion-justify-content-between ion-align-items-center">
+            <ion-card-title >{{restaurant.name}}</ion-card-title>
+            <circle-progress
+                    [percent]="5.0"
+                    [backgroundColor]="'#F15412'"
+                    [backgroundGradientStopColor]="'#ffffff'"
+                    [backgroundPadding]="10"
+                    [radius]="10"
+                    [toFixed]="1"
+                    [maxPercent]="5"
+                    [outerStrokeWidth]=0
+                    [outerStrokeColor]="'#FFFFFF'"
+                    [titleColor]="'#ffffff'"
+                    [titleFontSize]="15"
+                    [titleFontWeight]="500"
+                    [animationDuration]="1500"
+                    [showSubtitle]=false
+                    [showUnits]=false
+                    [showInnerStroke]=false
+                    [startFromZero]=true
+            ></circle-progress>
+          </ion-row>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

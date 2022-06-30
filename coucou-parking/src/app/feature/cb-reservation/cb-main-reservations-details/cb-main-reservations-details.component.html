@@ -1,0 +1,87 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" >
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon color="primary" slot="icon-only" name="arrow-back" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center toolbar">Détails de réservation</ion-title>
+    <ion-buttons slot="end">
+      <ion-button disabled="true">
+        <ion-icon color="primary" slot="icon-only" name=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <p class="title">Informations relatives</p>
+  <p class="title">à la réservation</p>
+
+  <ion-row class="ion-justify-content-center">
+
+    <ion-row class="ion-margin-top">
+
+      <ion-col size="6">
+        <p class="label m-0">
+          <ion-icon class="icon" name="person"></ion-icon><span class="icon-text">{{ reservation?.client.lastName  + " " + reservation?.client.firstName}}</span>
+        </p>
+      </ion-col>
+
+      <ion-col size="6">
+        <p class="label m-0">
+          <ion-icon class="icon" name="call"></ion-icon><span class="icon-text">{{ reservation?.client.phone }}</span>
+        </p>
+      </ion-col>
+
+      <ion-col size="8">
+        <p class="label m-0">
+          <ion-icon class="icon" name="fast-food"></ion-icon><span class="icon-text">{{ reservation.restaurant.name}}</span>
+        </p>
+      </ion-col>
+
+      <ion-col size="4" class="ion-align-self-center" [ngClass]="getSateColor(reservation?.state)">
+        <p class="label m-0">{{ getSateName(reservation?.state)}}</p>
+      </ion-col>
+
+      <ion-col size="6">
+        <p class="label m-0">
+          <ion-icon class="icon" name="calendar"></ion-icon><span class="icon-text">{{ reservation?.date | date}}</span>
+        </p>
+      </ion-col>
+
+      <ion-col size="6">
+        <p class="label m-0">
+          <ion-icon class="icon" name="alarm"></ion-icon><span class="icon-text">{{ reservation?.time + " H"}}</span>
+        </p>
+      </ion-col>
+
+      <ion-col size="6">
+        <p class="label m-0">
+          <ion-icon class="icon" name="cash"></ion-icon>
+          <span class="icon-text">{{ "Prix: " +  reservation?.price + " DT" }}</span>
+        </p>
+      </ion-col>
+
+      <ion-col size="6">
+        <p class="label m-0">
+          <ion-icon class="icon" name="navigate-circle"></ion-icon>
+          <span class="icon-text">{{ reservation?.room }}</span>
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-col size="12">
+      <p class="label m-0">
+        <ion-icon class="icon" name="people"></ion-icon>
+        <span class="icon-text">{{ reservation.adultNumber + " adulte(s)  " +
+        reservation.childrenNumber + " enfant(s)  " +
+        reservation.babeNumber + " bébé(s)  " +
+        reservation.carNumber + " voiture(s)"  }}</span>
+      </p>
+    </ion-col>
+
+  </ion-row>
+
+</ion-content>

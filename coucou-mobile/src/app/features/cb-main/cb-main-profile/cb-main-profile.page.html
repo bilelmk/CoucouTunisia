@@ -1,80 +1,73 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" >
+    <ion-title class="ion-text-center toolbar">Mon profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <ion-header class="ion-no-border">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button menu="custom">
-        </ion-menu-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+<!--  <ion-grid class="ion-margin-top">-->
 
-  <div *ngIf="client != null">
-    <div class="user-background">
-      <img [src]="image ? image : ( client?.image ? client.image : './../../../../assets/image/default-profile.png') " alt="image" />
+<!--    <div class="form-header ion-text-center">-->
+<!--      <img (click)="onPickImageChoice()" [src]=" imageSrc ? imageSrc : ( client?.image ? url + client.image : './../../../../assets/image/default-profile.png') " alt="image"  class="form-header-img" >-->
+<!--      <p class="form-header-name">{{client?.firstName + " " + client?.lastName}}</p>-->
+<!--    </div>-->
 
-      <button *ngIf="!image" (click)="onPickImage()"  class="ion-activatable">
-        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-        <ion-icon name="camera-outline" ></ion-icon>
-      </button>
+<!--    <ion-row *ngIf="imageSrc">-->
+<!--      <ion-col size="6">-->
+<!--        <ion-button (click)="onSaveImage()" class="btn-primary" expand="block" >-->
+<!--          Sauvgarder-->
+<!--        </ion-button>-->
+<!--      </ion-col>-->
+<!--      <ion-col size="6" >-->
+<!--        <ion-button (click)="onCancelImage()" class="btn-secondary" expand="block">-->
+<!--          Annuler-->
+<!--        </ion-button>-->
+<!--      </ion-col>-->
+<!--    </ion-row>-->
 
-      <button *ngIf="image" (click)="onSaveImage()"  class="ion-activatable">
-        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-        <ion-icon name="checkmark-circle-outline" ></ion-icon>
-      </button>
+<!--    <form [formGroup]="form" class="ion-margin-top">-->
+<!--      <ion-row class="ion-justify-content-center ion-padding">-->
 
-      <button *ngIf="image" (click)="onCancelImage()"  class="ion-activatable" style="right: 40px">
-        <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-        <ion-icon name="close-circle-outline" ></ion-icon>
-      </button>
+<!--        <ion-col size="12" class="form-card">-->
+<!--          <p class="form-card-label">Nom</p>-->
+<!--          <input class="form-card-input"  formControlName="lastName" type="text"/>-->
+<!--        </ion-col>-->
 
+<!--        <ion-col size="12" class="form-card">-->
+<!--          <p class="form-card-label">Prénom</p>-->
+<!--          <input class="form-card-input"  formControlName="firstName" type="text"/>-->
+<!--        </ion-col>-->
 
-    </div>
-    <div>
-      <h5 class="user-name" > {{ client?.lastName }} {{ client?.firstName }} </h5>
+<!--        <ion-col size="12" class="form-card">-->
+<!--          <p class="form-card-label">Numéro de Téléphone</p>-->
+<!--          <input  class="form-card-input" formControlName="phone"  type="number" disabled/>-->
+<!--        </ion-col>-->
 
-      <ion-item-group>
-        <ion-item-divider>
-          <ion-label> Profil </ion-label>
-        </ion-item-divider>
-        <ion-item>
-          <ion-icon slot="start" name="person-outline"></ion-icon>
-          <ion-label><h3>Editer le profil</h3></ion-label>
-        </ion-item>
-      </ion-item-group>
+<!--        <ion-col size="12" class="form-card">-->
+<!--          <p class="form-card-label">E-mail</p>-->
+<!--          <input class="form-card-input"  formControlName="email" type="email" />-->
+<!--        </ion-col>-->
 
-      <ion-item-group>
-        <ion-item-divider>
-          <ion-label> Historique </ion-label>
-        </ion-item-divider>
-        <ion-item (click)="toReservations()">
-          <ion-icon slot="start" name="calendar-outline"></ion-icon>
-          <ion-label><h3>Réservations</h3></ion-label>
-        </ion-item>
-        <ion-item (click)="toFavoris()">
-          <ion-icon slot="start" name="heart-outline"></ion-icon>
-          <ion-label><h3>Favoris</h3></ion-label>
-        </ion-item>
-      </ion-item-group>
+<!--        <ion-col size="12" size-sm="7" class="ion-no-padding ion-margin-top">-->
+<!--          <ion-button (click)="update()" class="btn-primary"  expand="block" [disabled]="!form.valid">Sauvgarder</ion-button>-->
+<!--        </ion-col>-->
 
-      <ion-item-group>
-        <ion-item-divider>
-          <ion-label> Compte </ion-label>
-        </ion-item-divider>
-        <ion-item>
-          <ion-icon slot="start" name="help-buoy-outline"></ion-icon>
-          <ion-label><h3>Aide et assistance</h3></ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-icon slot="start" name="newspaper-outline"></ion-icon>
-          <ion-label><h3>Termes et conditions</h3></ion-label>
-        </ion-item>
-        <ion-item (click)="logout()">
-          <ion-icon slot="start" name="log-out-outline"></ion-icon>
-          <ion-label><h3>Déconnexion</h3></ion-label>
-        </ion-item>
-      </ion-item-group>
+<!--        <ion-col size="12" size-sm="7" class="ion-no-padding ion-margin-top">-->
+<!--          <ion-button (click)="call()" class="btn-secondary"  expand="block" >-->
+<!--            Assistance-->
+<!--            <ion-icon slot="start" name="help-circle"></ion-icon>-->
+<!--          </ion-button>-->
+<!--        </ion-col>-->
 
-    </div>
-  </div>
+<!--        <ion-col size="12" size-sm="7" class="ion-no-padding ">-->
+<!--          <ion-button (click)="logout()" class="btn-secondary"  expand="block" >-->
+<!--            Se déconnecter-->
+<!--            <ion-icon slot="start" name="log-out"></ion-icon>-->
+<!--          </ion-button>-->
+<!--        </ion-col>-->
+
+<!--      </ion-row>-->
+<!--    </form>-->
+<!--  </ion-grid>-->
+
 </ion-content>
-

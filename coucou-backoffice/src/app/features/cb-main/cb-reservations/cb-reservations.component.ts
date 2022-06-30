@@ -52,7 +52,6 @@ export class CbReservationsComponent implements OnInit {
         this.reservations = res.rows ;
         this.dataSource = this.reservations
         this.spinnerService.deactivate()
-        console.log(res)
       },
       error => {
         this.loading = false ;
@@ -73,5 +72,22 @@ export class CbReservationsComponent implements OnInit {
     //     this.dataSource.data = this.admins;
     //   }
     // );
+  }
+
+  confirm(reservation) {
+    this.spinnerService.activate()
+    const state = {
+      id: reservation.id ,
+      state: 'checked'
+    }
+    this.reservationService.updateState(state).subscribe(
+      res => {
+        reservation.state = 'checked'
+        this.spinnerService.deactivate()
+      },
+      error => {
+        this.spinnerService.deactivate()
+      }
+    )
   }
 }

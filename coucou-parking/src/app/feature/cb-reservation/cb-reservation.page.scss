@@ -1,0 +1,25 @@
+.qr-logo {
+  font-size: 80px;
+  background-color: var(--ion-color-medium);
+  padding: 35px;
+  border-radius: 50%;
+  color: black;
+}
+
+.qr {
+  text-align: center;
+}
+
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+}
+
+.qr-button {
+  background-color: var(--ion-color-medium);
+  border-radius: 50%;
+}
+
+.qr-row {
+  height: 70vh !important;
+}

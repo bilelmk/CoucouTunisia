@@ -1,181 +1,198 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../../core/services/http/authentication.service';
-import { SpinnerService } from '../../../core/services/in-app/spinner.service';
-import { ToastService } from '../../../core/services/in-app/toast.service';
-import { AlertController, ModalController, Platform } from '@ionic/angular';
-import { environment } from '../../../../environments/environment';
-import { ClientService } from '../../../core/services/http/client.service';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+// import { SpinnerService } from '../../../core/services/in-app/spinner.service';
+// import { ToastService } from '../../../core/services/in-app/toast.service';
+// import { ActionSheetController, AlertController, ModalController, Platform} from '@ionic/angular';
+// import { environment } from '../../../../environments/environment';
+// import { Router } from '@angular/router';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { Crop } from '@ionic-native/crop/ngx';
+// import { Camera } from '@ionic-native/camera/ngx';
+// import { File as NativeFile } from '@ionic-native/file/ngx';
+// import { ClientService } from '../../../core/services/http/client.service';
+// import { AuthenticationService } from '../../../core/services/http/authentication.service';
+// import { CallNumber } from '@ionic-native/call-number/ngx';
+// import { Helpers } from '../../../core/helpers/helpers';
 
 @Component({
   selector: 'app-cb-main-profile',
   templateUrl: './cb-main-profile.page.html',
   styleUrls: ['./cb-main-profile.page.scss'],
 })
-export class CbMainProfilePage implements OnInit {
+export class CbMainProfilePage {
 
-  client = null;
-  language ;
-  image ;
-  url = environment.url;
+  // client = null;
+  // language;
+  // url = environment.url + 'images/' ;
+  // form: FormGroup;
+  //
+  // // image ;
+  // imageSrc;
+  // data: FormData;
 
-  constructor(private authenticationService: AuthenticationService ,
-              private clientService: ClientService ,
-              private spinnerService: SpinnerService ,
-              private toastService: ToastService ,
-              private alertController: AlertController ,
-              private modalController: ModalController ,
-              private platform: Platform ,
-              // private camera: Camera,
-              private router: Router ,
-              // private crop: Crop ,
-              // private file: File
-  ) {}
-
-
-  ngOnInit() {
-    this.spinnerService.activate();
-    this.clientService.getCurrent().subscribe(
-        res => {
-          this.client = res ;
-          this.spinnerService.deactivate();
-        },
-        error => {
-          this.spinnerService.deactivate();
-          console.log(error);
-        }
-    );
+  constructor(
+      // private clientService: ClientService,
+      //         private spinnerService: SpinnerService,
+      //         private toastService: ToastService,
+      //         private alertController: AlertController,
+      //         private modalController: ModalController,
+      //         private platform: Platform,
+      //         private file: NativeFile,
+      //         private router: Router,
+      //         private crop: Crop,
+      //         private camera: Camera,
+      //         private formBuilder: FormBuilder,
+      //         private actionSheetController: ActionSheetController,
+      //         private authenticationService: AuthenticationService,
+      //         private callNumber: CallNumber,
+  ) {
+    // this.form = this.formBuilder.group({
+    //   firstName: ['', [Validators.required]],
+    //   lastName: ['', Validators.required],
+    //   email: ['', [Validators.required , Validators.email]],
+    //   phone: ['', [Validators.required]],
+    // });
   }
 
-  // async openGeneralInformationModal() {
-  //   const modal = await this.modalController.create({
-  //     component: ProfileGeneralInformationsPage,
-  //     componentProps: {
-  //       client : this.client
-  //     }
-  //   });
-  //   modal.onDidDismiss().then(
-  //       client => {
-  //         if (client) {
-  //           this.client = client.data.client ;
+
+  // ionViewWillEnter() {
+  //   this.spinnerService.activate();
+  //   this.clientService.getCurrent().subscribe(
+  //       res => {
+  //         this.client = res;
+  //         this.form.controls.firstName.setValue(this.client.firstName);
+  //         this.form.controls.lastName.setValue(this.client.lastName);
+  //         this.form.controls.email.setValue(this.client.email);
+  //         this.form.controls.phone.setValue(this.client.phone);
+  //         this.spinnerService.deactivate();
+  //       },
+  //       error => {
+  //         this.spinnerService.deactivate();
+  //         console.log(error);
+  //       }
+  //   );
+  // }
+  //
+  // update() {
+  //   this.spinnerService.activate();
+  //   this.clientService.update(this.form.value).subscribe(
+  //       res => {
+  //         Helpers.updateFields(this.form.value , this.client) ;
+  //         this.toastService.show('Modifications sauvgarder avec succès', 'success');
+  //         this.spinnerService.deactivate();
+  //       },
+  //       error => {
+  //         this.toastService.show('Erreur lors de la modifications', 'danger');
+  //         this.spinnerService.deactivate();
+  //       }
+  //   );
+  // }
+  //
+  // async onPickImageChoice() {
+  //   const actionSheet = await this.actionSheetController.create({
+  //     header: 'Source de l\'image',
+  //     buttons: [
+  //       {
+  //         text: 'Prendre une photo',
+  //         icon: 'camera-outline',
+  //         handler: () => {
+  //           this.onPickImage(this.camera.PictureSourceType.CAMERA);
+  //         }
+  //       }, {
+  //         text: 'Choisir une image de la galerie',
+  //         icon: 'image-outline',
+  //         handler: () => {
+  //           this.onPickImage(this.camera.PictureSourceType.PHOTOLIBRARY);
   //         }
   //       }
-  //   ).catch(
-  //       err => console.log(err)
-  //   );
-  //   return await modal.present();
+  //     ]
+  //   });
+  //   await actionSheet.present();
   // }
-
-
+  //
   // // Change Profile Photo
-  // onPickImage(){
+  // onPickImage(source) {
   //   const cameraOptions = {
-  //     sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-  //     destinationType: this.camera.DestinationType.FILE_URI ,
-  //     allowEdit : false ,
+  //     sourceType: source,
+  //     destinationType: this.camera.DestinationType.FILE_URI,
+  //     quality: 70,
+  //     allowEdit: false,
+  //     targetWidth: 600,
+  //     targetHeight: 600,
   //     encodingType: this.camera.EncodingType.JPEG,
-  //     correctOrientation: true ,
+  //     correctOrientation: true,
   //     mediaType: this.camera.MediaType.PICTURE,
   //   };
   //
   //   this.camera.getPicture(cameraOptions)
   //       .then((fileUri) => {
-  //         this.crop.crop(fileUri , { quality: 5 })
+  //         this.crop.crop(fileUri, {quality: 5})
   //             .then(
   //                 newImage => {
-  //                   let image = newImage.split('?')[0]
-  //                   let splitPath = image.split('/');
-  //                   let imageName = splitPath[splitPath.length - 1];
-  //                   let filePath = image.split(imageName)[0];
+  //                   const image = newImage.split('?')[0];
+  //                   const splitPath = image.split('/');
+  //                   const imageName = splitPath[splitPath.length - 1];
+  //                   const filePath = image.split(imageName)[0];
   //                   this.file.readAsDataURL(filePath, imageName).then(
   //                       base64 => {
-  //                         this.image =  base64 ;
-  //                         this.profile_image = base64
+  //                         this.imageSrc = base64;
+  //                         this.data = new FormData();
+  //                         this.data.append('image', this.dataURItoBlob(base64));
   //                       }, error => {
-  //                         console.log(error) ;
-  //
+  //                         this.onCancelImage();
+  //                         console.log(error);
   //                       });
-  //                 } ,
+  //                 },
   //                 error => {
-  //                   this.onCancelImage()
-  //                   console.log(error)
+  //                   this.onCancelImage();
+  //                   console.log(error);
   //                 }
   //             );
   //       }, (error) => {
-  //         this.onCancelImage()
-  //         console.log(error)
+  //         this.onCancelImage();
+  //         console.log(error);
   //       });
   // }
   //
-  // onSaveImage(){
-  //   this.loadingService.activate() ;
-  //   this.clientService.editImage( this.profile_image , this.client.seq ).subscribe(
+  // onCancelImage() {
+  //   this.imageSrc = null;
+  // }
+  //
+  // dataURItoBlob(dataURI) {
+  //   const byteString = atob(dataURI.split(',')[1]);
+  //   const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+  //   const ab = new ArrayBuffer(byteString.length);
+  //   const ia = new Uint8Array(ab);
+  //   for (let i = 0; i < byteString.length; i++) {
+  //     ia[i] = byteString.charCodeAt(i);
+  //   }
+  //   return new Blob([ab], {type: mimeString});
+  // }
+  //
+  // onSaveImage() {
+  //   this.spinnerService.activate();
+  //   this.clientService.updateImage(this.data).subscribe(
   //       res => {
-  //         this.client.image = this.profile_image ;
-  //         this.image = null ;
-  //         this.loadingService.deactivate();
-  //       } ,
+  //         this.toastService.show('Modifications sauvgarder avec succès', 'success');
+  //         this.client.image = res.image;
+  //         this.onCancelImage();
+  //         this.spinnerService.deactivate();
+  //       },
   //       err => {
-  //         console.log(err)
-  //         this.toastService.presentToast(this.incompatible_image , 'fail-toast')
-  //         this.loadingService.deactivate();
+  //           this.toastService.show('Erreur lors de la modifications', 'danger');
+  //         this.spinnerService.deactivate();
   //       }
   //   );
   // }
   //
-  // onCancelImage() {
-  //   this.image =  null ;
+  //   call() {
+  //       this.callNumber.callNumber('50202125', true)
+  //           .then(res => console.log('Launched dialer!', res))
+  //           .catch(err => console.log('Error launching dialer', err));
+  //
+  //   }
+  //
+  //
+  //   logout() {
+  //   this.authenticationService.logout() ;
   // }
-
-  onSetMode() {
-    // this.themeService.toggleAppTheme() ;
-  }
-
-  async onDeleteAccount() {
-    // const alert = await this.alertController.create({
-    //   header: this.attention ,
-    //   message: this.confirm_account_delete ,
-    //   cssClass: 'custom-alert',
-    //   buttons: [
-    //     {
-    //       text: this.cancel,
-    //       role: 'cancel',
-    //     },
-    //     {
-    //       text: this.confirm,
-    //       handler: () => {
-    //         this.deleteAccount() ;
-    //       }
-    //     }
-    //   ]
-    // });
-    // await alert.present();
-  }
-
-  deleteAccount() {
-    // this.loadingService.activate() ;
-    // this.clientService.deleteAccount().subscribe(
-    //     res => {
-    //       this.loadingService.deactivate() ;
-    //
-    //       this.authService.logout()
-    //     },
-    //     err => {
-    //       this.loadingService.deactivate() ;
-    //       console.log(err)
-    //     }
-    // )
-  }
-
-  logout() {
-    this.router.navigate(['/cb-login']);
-  }
-
-  toReservations() {
-    this.router.navigate(['/cb-main/cb-main-reservations']);
-  }
-
-  toFavoris() {
-    this.router.navigate(['/cb-main/cb-main-favoris']);
-  }
 }

@@ -1,0 +1,17 @@
+<ion-slides [options]="slidesOpts">
+  <ion-slide  *ngFor="let menu of menus">
+    <ion-row class="ion-margin-top" >
+      <ion-col size="12">
+        <p class="pack-name">{{menu.name}}</p>
+      </ion-col>
+      <ion-col  size="12">
+        <p class="pack-description" [innerHTML]="menu.description"></p>
+      </ion-col>
+      <ion-col size="12" >
+        <img class="pack-img"  src="{{url + menu.image}}" />
+      </ion-col>
+    </ion-row>
+  </ion-slide>
+</ion-slides>
+
+

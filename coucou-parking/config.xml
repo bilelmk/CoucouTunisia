@@ -3,7 +3,7 @@
     <name>Vanity</name>
     <description>Mobile application for vanity software.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Mss Vanity Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8102" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -102,4 +102,5 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <allow-navigation href="http://localhost:8101" sessionid="6458d29f" />
     <allow-navigation href="http://localhost:8100" sessionid="85b90776" />
+    <allow-navigation href="http://localhost:8102" sessionid="fafe2099" />
 </widget>

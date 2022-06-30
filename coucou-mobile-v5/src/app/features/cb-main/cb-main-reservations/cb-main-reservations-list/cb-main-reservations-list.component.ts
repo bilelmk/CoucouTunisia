@@ -1,38 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ReservationService } from '../../../../core/services/http/reservation.service';
 import { ModalController } from '@ionic/angular';
 import {
   CbMainReservationsDetailsComponent
 } from './cb-main-reservations-details/cb-main-reservations-details.component';
 import { Router } from '@angular/router';
+import {Spinner} from "ngx-spinner/lib/ngx-spinner.enum";
+import {SpinnerService} from "../../../../core/services/in-app/spinner.service";
 
 @Component({
   selector: 'app-cb-main-reservations-list',
   templateUrl: './cb-main-reservations-list.component.html',
   styleUrls: ['./cb-main-reservations-list.component.scss'],
 })
-export class CbMainReservationsListComponent implements OnInit {
+export class CbMainReservationsListComponent {
 
-  limit = 10 ;
-  offset = 0 ;
+  limit ;
+  offset ;
 
   reservations ;
 
   constructor(private reservationsService: ReservationService,
               private modalController: ModalController,
-              private router: Router) { }
+              private router: Router ,
+              private spinnerService: SpinnerService) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    this.loadData() ;
+  }
+
+  loadData() {
+    this.limit = 10 ; this.offset = 0 ;
     const searchRequest = {
       offset: this.offset ,
       limit : this.limit ,
     };
+    this.spinnerService.activate();
     this.reservationsService.getAllByClient(searchRequest).subscribe(
         (res: any) => {
+          this.spinnerService.deactivate();
           this.reservations = res.rows;
-          console.log(this.reservations);
         }, error => {
-          console.log(error) ;
+          this.spinnerService.deactivate();
         }
     );
   }
@@ -41,7 +50,7 @@ export class CbMainReservationsListComponent implements OnInit {
     this.router.navigate(['/main/reservations']);
   }
 
-  loadData(event: any) {
+  loadMoreData(event: any) {
     this.offset ++ ;
     const searchRequest = {
       offset: this.offset ,
@@ -93,7 +102,14 @@ export class CbMainReservationsListComponent implements OnInit {
       componentProps: {
         reservation,
       }
-    }).then(modal => modal.present());
+    }).then(modal => {
+      modal.present() ;
+      modal.onWillDismiss().then(
+          id => {
+            if (id) { this.loadData(); }
+          }
+      );
+    });
   }
 
 }

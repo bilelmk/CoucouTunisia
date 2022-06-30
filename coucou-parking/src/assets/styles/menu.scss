@@ -1,30 +1,30 @@
 .menu-container {
   min-height: calc(100% - 131px) ;
-  background-color: var(--cb-secondary) !important;
+  background-color: var(--ion-color-primary) !important;
 }
 
 .menu-header {
-  background-color: var(--cb-secondary) !important;
+  background-color: var(--ion-color-primary) !important;
   border-bottom: 1px solid var(--cb-light-contrast);
 }
 
 ion-item{
   --padding-start : 30px ;
-  --background :  var(--cb-secondary) ;
-  --color: var(--cb-light) ;
-  --color-focused: var(--cb-light) ;
+  --background : var(--ion-color-primary) ;
+  --color: var(--ion-color-light) ;
+  --color-focused: var(--ion-color-light) ;
 
   ion-icon {
     color: #fff !important;
   }
 
   ion-label {
-    font-family: Poppins-Light, serif !important;
+    font-family: "Poppins-Regular", serif !important;
     font-size: 13px;
   }
 
 }
 
 ion-menu.md ion-item.selected {
-  --background:  var(--cb-primary) ;
+  --background:  var(--ion-color-primary) ;
 }

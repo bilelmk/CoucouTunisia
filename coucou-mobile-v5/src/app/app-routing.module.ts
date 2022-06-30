@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from './core/guards/authentication.guard';
 
 const routes: Routes = [
   {
@@ -29,17 +30,13 @@ const routes: Routes = [
   },
   {
     path: 'main',
-    loadChildren: () => import('./features/cb-main/cb-main.module').then(m => m.CbMainPageModule)
+    loadChildren: () => import('./features/cb-main/cb-main.module').then(m => m.CbMainPageModule),
+    canActivate: [AuthenticationGuard],
   },
   {
     path: 'cb-send-password-code',
     loadChildren: () => import('./features/cb-send-password-code/cb-send-password-code.module').then(m => m.CbSendPasswordCodePageModule)
-  },
-  {
-    path: 'cb-main-home-restaurant-details',
-    loadChildren: () => import('./features/cb-main/cb-main-home/cb-main-home-restaurant-details/cb-main-home-restaurant-details.module').then(m => m.CbMainHomeRestaurantDetailsPageModule)
-  },
-
+  }
 ];
 
 @NgModule({

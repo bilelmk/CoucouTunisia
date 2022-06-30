@@ -53,11 +53,12 @@ export class CbMainReservationsAddComponent {
   async showAlert() {
     let message = '' ;
     if (!(this.adultNumber != null && this.childrenNumber != null && this.babeNumber != null)) {
-      message = 'Il faut choisir le nombre ........ avant de choisir l\'emplacement';
+      message = 'Merci d\'indiquer le nombre d\'adultes, enfants et bébés avant de sélectionner votre mise en place.';
     }
     else {
       const roomsList = this.checkPerfectRoom();
-      message = 'Votre emplacement ......... ' + roomsList;
+      message = 'La mise en place convenable à votre nombre est ' + roomsList + '\n' +
+          'Sélectionner une autre mise en place peut vous engendrer des coûts supplémentaires. [Détails]';
     }
     setTimeout(() => {
       this.alertController.create({
@@ -81,6 +82,7 @@ export class CbMainReservationsAddComponent {
   }
 
   recap() {
+    console.log();
     const total = this.adultNumber + this.childrenNumber ;
     let price = 0 ;
     if (total >= this.selectedRoom.minPlace) {
@@ -96,7 +98,7 @@ export class CbMainReservationsAddComponent {
       childrenNumber: this.childrenNumber ,
       carNumber: this.carNumber ,
       babeNumber: this.babeNumber ,
-      time: this.time ,
+      time: this.time.split('T')[1].substring(0, 5) , // get only time
       room: this.selectedRoomName ,
       note: this.note ,
       price,

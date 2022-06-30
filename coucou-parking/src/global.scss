@@ -27,56 +27,12 @@
 
 /* Custom Css Classes */
 @import "assets/styles/menu" ;
-@import "assets/styles/toast" ;
 @import "assets/styles/utilities" ;
+@import "assets/styles/state";
 @import "assets/styles/toolbar" ;
-@import "assets/styles/button" ;
-@import "assets/styles/tables";
 
 
 /* Font */
-@font-face {
-  font-family: "Roboto-Medium";
-  font-style: normal;
-  font-weight: normal;
-  src: url("./assets/fonts/Roboto-Medium.ttf");
-}
-
-@font-face {
-  font-family: "Roboto-Thin";
-  font-style: normal;
-  font-weight: normal;
-  src: url("./assets/fonts/Roboto-Thin.ttf");
-}
-
-@font-face {
-  font-family: "Roboto-Regular";
-  font-style: normal;
-  font-weight: normal;
-  src: url("./assets/fonts/Roboto-Regular.ttf");
-}
-
-@font-face {
-  font-family: "Roboto-Bold";
-  font-style: normal;
-  font-weight: normal;
-  src: url("./assets/fonts/Roboto-Bold.ttf");
-}
-
-@font-face {
-  font-family: "Poppins-Black";
-  font-style: normal;
-  font-weight: normal;
-  src: url("./assets/fonts/Poppins-Black.ttf");
-}
-
-@font-face {
-  font-family: "Poppins-Bold";
-  font-style: normal;
-  font-weight: normal;
-  src: url("./assets/fonts/Poppins-Bold.ttf");
-}
-
 @font-face {
   font-family: "Poppins-Medium";
   font-style: normal;
@@ -85,9 +41,22 @@
 }
 
 @font-face {
-  font-family: "Poppins-Light";
+  font-family: "Poppins-Thin";
   font-style: normal;
   font-weight: normal;
-  src: url("./assets/fonts/Poppins-Light.ttf");
+  src: url("./assets/fonts/Poppins-Thin.ttf");
 }
 
+@font-face {
+  font-family: "Poppins-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Poppins-Bold.ttf");
+}

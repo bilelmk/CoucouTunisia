@@ -8,8 +8,8 @@ const routes: Routes = [
     component: CbMainHomePage,
   },
   {
-    path: 'restaurants/:id',
-    loadChildren: () => import('../cb-main-restaurant/cb-main-restaurant.module').then(m => m.CbMainRestaurantPageModule)
+    path: 'restaurant/:id',
+    loadChildren: () => import('./cb-main-home-restaurant-details/cb-main-home-restaurant-details.module').then(m => m.CbMainHomeRestaurantDetailsPageModule)
   },
 ];
 

@@ -19,7 +19,22 @@ router.route('/client')
 router.route('/search')
     .post((req, res, next) => {
         reservationService.getAll(req, res, next);
+})
+
+router.route('/state')
+    .put((req, res, next) => {
+        reservationService.updateState(req, res, next);
+})
+
+router.route('/canceled')
+    .put((req, res, next) => {
+        reservationService.updateCanceled(req, res, next);
     })
+
+router.route('/:id')
+    .get((req, res, next) => {
+        reservationService.getOne(req, res, next, req.params.id);
+})
 
 // router.route('/:id')
 //     .put((req, res, next) => {

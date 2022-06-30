@@ -1,13 +1,13 @@
-.button-primary {
+.btn-primary {
   --border-radius: 20px;
   --box-shadow: none ;
   height: 40px ;
-  font-size: 15px !important;
+  font-size: 14px !important;
   font-weight: normal;
   font-family: "Poppins-Regular" !important;
 }
 
-.button-secondary {
+.btn-secondary {
   --border-radius: 20px;
   --box-shadow: none ;
   height: 40px ;
@@ -18,25 +18,14 @@
   color: var(--ion-color-light);
 }
 
-.button-secondary-tint {
-  --border-radius: 20px;
-  --box-shadow: none ;
-  height: 40px ;
-  font-size: 15px !important;
-  font-weight: normal;
-  font-family: "Poppins-Regular" !important;
-  --background: var(--ion-color-secondary-tint);
-  color: var(--ion-color-light);
-}
 
-.button-light {
+.btn-light {
   --border-radius: 20px;
-  --box-shadow: 1px 0px 5px 2px rgba(0,0,0,0.05);
-  height: 45px ;
-  font-size: 15px !important;
-  text-transform: none;
+  height: 40px ;
+  font-size: 14px !important;
+  //text-transform: none;
   color: var(--ion-color-secondary);
   --background: white;
+  font-weight: normal;
   font-family: "Poppins-Regular" !important;
-
 }

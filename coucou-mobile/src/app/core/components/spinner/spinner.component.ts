@@ -1,6 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { NgxSpinnerService} from "ngx-spinner";
-import { SpinnerService} from "../../services/in-app/spinner.service";
+import { NgxSpinnerService} from 'ngx-spinner';
+import { SpinnerService} from '../../services/in-app/spinner.service';
 
 @Component({
   selector: 'app-spinner',

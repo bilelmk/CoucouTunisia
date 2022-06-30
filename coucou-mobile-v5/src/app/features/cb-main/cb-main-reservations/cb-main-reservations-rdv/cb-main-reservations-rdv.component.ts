@@ -69,7 +69,12 @@ export class CbMainReservationsRdvComponent implements OnInit {
         date: this.date,
         restaurant: this.selectedRestaurant
       }
-    }).then(modal => modal.present());
+    }).then(modal => {
+      modal.present() ;
+      modal.onDidDismiss().then(
+          res => { setTimeout(() => this.modalController.dismiss() , 100) }
+      );
+    });
   }
 
   onRestaurantSelect() {

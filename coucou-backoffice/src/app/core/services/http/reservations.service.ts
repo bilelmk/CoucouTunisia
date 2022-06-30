@@ -16,4 +16,7 @@ export class ReservationsService {
     return this.http.post<any>(this.URL + '/search' , request);
   }
 
+  updateState(state): Observable<any> {
+    return this.http.put<any>(this.URL + '/state' , state);
+  }
 }

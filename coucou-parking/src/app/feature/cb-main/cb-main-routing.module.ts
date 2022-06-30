@@ -7,19 +7,15 @@ const routes: Routes = [
   {
     path: '',
     component: CbMainPage,
-    children:[
+    children: [
       {
-        path: ' ',
-        redirectTo: 'qr',
+        path: '',
+        redirectTo: 'reservation',
         pathMatch: 'full'
       },
       {
         path: 'reservation',
         loadChildren: () => import('../cb-reservation/cb-reservation.module').then(m => m.CbReservationPageModule)
-      },
-      {
-        path: 'qr',
-        loadChildren: () => import('../cb-qr/cb-qr.module').then(m => m.CbQrPageModule)
       },
     ]
   },

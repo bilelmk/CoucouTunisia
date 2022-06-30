@@ -44,10 +44,6 @@ export class AuthenticationService {
   }
 
   logout() {
-    // this.token = null;
-    // this.isAuthenticated = false;
-    // this.authStatusListener.next(false);
-    // clearTimeout(this.tokenTimer);
     this.storage.clear() ;
     this.router.navigate(['/']);
   }

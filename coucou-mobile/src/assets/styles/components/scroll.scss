@@ -4,11 +4,10 @@
 
 /* width */
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 0;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--ion-color-primary);
-  border-radius: 30px;
+  background: transparent;
 }
