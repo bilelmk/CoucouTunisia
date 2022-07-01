@@ -41,7 +41,7 @@
 
           <ion-col size="6">
             <p class="form-card-label m-0">
-              <ion-icon class="form-card-icon" name="alarm"></ion-icon><span class="form-card-icon-text">20:00 H</span>
+              <ion-icon class="form-card-icon" name="alarm"></ion-icon><span class="form-card-icon-text">{{ reservation.time + " H"}}</span>
             </p>
           </ion-col>
 
@@ -51,8 +51,6 @@
 
   <ion-row class="ion-justify-content-center" *ngIf="!reservations || reservations?.length == 0">
     Aucune Réservations
-<!--    qsdqsdqsdqsdqsdqsd-->
-<!--    <ion-icon class="form-card-icon" name="alarm"></ion-icon>-->
   </ion-row>
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">

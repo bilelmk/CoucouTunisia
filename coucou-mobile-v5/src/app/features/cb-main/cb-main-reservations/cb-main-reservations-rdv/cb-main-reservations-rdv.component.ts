@@ -21,7 +21,6 @@ export class CbMainReservationsRdvComponent implements OnInit {
     mode: 'month' as CalendarMode,
     step: 30 as Step,
     currentDate: new Date() ,
-    locale: 'en-US'
   };
 
   date = '';
@@ -43,7 +42,6 @@ export class CbMainReservationsRdvComponent implements OnInit {
       this.selectedRestaurant = this.restaurant ;
     }
     const date = new Date ;
-    console.log(date)
     this.months = {
       previous: date.getMonth() === 0 ? this.monthEn[11] : this.monthEn[date.getMonth() - 1] || '',
       current: this.monthEn[date.getMonth()] || '',
@@ -56,7 +54,15 @@ export class CbMainReservationsRdvComponent implements OnInit {
   }
 
   onDateChanged(event: Date) {
-    this.date = event.toString();
+    const selectedDate = (event.setHours(0, 0, 0, 0));
+    const currentDate = (new Date()).setHours(0, 0, 0, 0) ;
+    if (selectedDate < currentDate) {
+      // console.log('select valid date') ;
+      this.date = null;
+    }
+    else {
+      this.date = event.toString();
+    }
     const date = new Date(event);
     this.months = {
       previous: date.getMonth() === 0 ? this.monthEn[11] : this.monthEn[date.getMonth() - 1] || '',
@@ -75,7 +81,7 @@ export class CbMainReservationsRdvComponent implements OnInit {
     }).then(modal => {
       modal.present() ;
       modal.onDidDismiss().then(
-          res => { setTimeout(() => this.modalController.dismiss() , 100) }
+          res => { setTimeout(() => this.modalController.dismiss() , 100); }
       );
     });
   }

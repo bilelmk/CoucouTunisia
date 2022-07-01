@@ -31,7 +31,7 @@ import { NgxTrimModule } from 'ngx-trim';
 import { SpinnerComponent } from './core/components/spinner/spinner.component';
 import { AuthenticationInterceptor } from './core/interceptors/authentication-interceptor';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import {NetworkErrorComponent} from "./core/components/network-error/network-error.component";
+import { NetworkErrorComponent } from './core/components/network-error/network-error.component';
 
 // import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 

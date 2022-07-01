@@ -82,7 +82,6 @@ export class CbMainReservationsAddComponent {
   }
 
   recap() {
-    console.log();
     const total = this.adultNumber + this.childrenNumber ;
     let price = 0 ;
     if (total >= this.selectedRoom.minPlace) {
@@ -129,10 +128,12 @@ export class CbMainReservationsAddComponent {
     this.spinnerService.activate();
     this.reservationService.add(reservation).subscribe(
         res => {
+          this.toastService.show('Votre réservation a été enregister', 'success');
           this.spinnerService.deactivate();
           this.modalController.dismiss();
         },
         error => {
+          this.toastService.show('Erreur lors de la réservation', 'danger');
           this.spinnerService.deactivate();
           console.log(error);
         }

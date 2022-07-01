@@ -7,6 +7,20 @@ ion-slides {
     border-radius: 20px ;
     padding: 0 ;
   }
+
+  div {
+    margin: 10px ;
+    padding : 10px ;
+    border-radius: 12px ;
+    background: white ;
+    position:absolute ;
+    bottom :0
+  }
+
+  p {
+    font-size: 12px ;
+    font-family: 'Poppins-Medium' ; margin: 0
+  }
 }
 
 ion-slide {

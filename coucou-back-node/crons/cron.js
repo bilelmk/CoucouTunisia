@@ -4,7 +4,7 @@ const reservationService = require("../services/reservation.service")
 const smsUtil = require("../util/sms")
 
 exports.runCrons = () => {
-    cron.schedule('54 02 * * *', async () => {
+    cron.schedule('00 08 * * *', async () => {
         const reservations = await reservationService.getTodayReservations();
         if(reservations !== null) {
             for(let reservation of reservations){

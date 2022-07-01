@@ -13,6 +13,7 @@ import { RegisterRequest } from '../../dtos/register-request';
 export class AuthenticationService {
 
   private token = new BehaviorSubject(null);
+  private tokenTimer: any ;
 
   constructor(private http: HttpClient ,
               private router: Router ,
@@ -49,27 +50,26 @@ export class AuthenticationService {
   }
 
 
-  // async autoAuthUser() {
-  //     const authInformation = await this.getAuthData();
-  //     if (!authInformation) {
+  // autoAuthUser() {
+  //     alert('sd')
+  //     const expiresDate =  sessionStorage.getItem('expiresIn');
+  //     if (!expiresDate) {
   //         return;
   //     }
   //     const now = new Date();
-  //     const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
+  //     const expiresIn = new Date(expiresDate).getTime() - now.getTime();
   //     if (expiresIn > 0) {
-  //         this.router.navigate(['/home']);
-  //         this.token = authInformation.token;
-  //         this.isAuthenticated = true;
+  //         this.router.navigate(['/main']);
   //         this.setAuthTimer(expiresIn / 1000);
   //     }
   // }
 
 
-  // setAuthTimer(duration: number) {
-  //     this.tokenTimer = setTimeout(() => {
-  //         this.logout();
-  //     }, duration * 1000);
-  // }
+  setAuthTimer(duration: number) {
+      this.tokenTimer = setTimeout(() => {
+          this.logout();
+      }, duration * 1000 );
+  }
 
   // save(token: string, expiration: Date) {
   //   this.token.next(token) ;

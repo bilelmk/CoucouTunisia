@@ -31,13 +31,13 @@
               [currentDate]="calendar.currentDate"
               [step]="calendar.step"
               (onCurrentDateChanged)="onDateChanged($event)"
-              [locale]="calendar.locale">
+              [startingDayMonth]="1">
     </calendar>
 
     <ion-row class="ion-margin-top ion-justify-content-center">
       <ion-col size="12" class="form-card">
         <p class="form-card-label">Restaurants</p>
-        <input [disabled]="restaurant != null" [value]="selectedRestaurantName" (click)="modelRef.open()" placeholder="Choisir un restaurant" class="form-card-input"  type="text"/>
+        <input onfocus="blur();" [disabled]="restaurant != null" [value]="selectedRestaurantName" (click)="modelRef.open()" placeholder="Choisir un restaurant" class="form-card-input"  type="text"/>
 
         <ion-select [disabled]="restaurant != null" [(ngModel)]="selectedRestaurantId" class="input" #modelRef  (ionChange)="onRestaurantSelect()">
           <ion-select-option   *ngFor="let restaurantItem of restaurants" value="{{restaurantItem.id}}">{{restaurantItem.name}}</ion-select-option>
@@ -47,7 +47,7 @@
 
     <ion-row>
       <ion-col size="12" size-sm="7" class="ion-no-padding ion-margin-top">
-        <ion-button [disabled]="!(selectedRestaurantName && selectedRestaurantId)" (click)="next()" class="btn-primary"  expand="block">Suivant</ion-button>
+        <ion-button [disabled]="!(selectedRestaurantName && selectedRestaurantId && date)" (click)="next()" class="btn-primary"  expand="block">Suivant</ion-button>
       </ion-col>
     </ion-row>
 

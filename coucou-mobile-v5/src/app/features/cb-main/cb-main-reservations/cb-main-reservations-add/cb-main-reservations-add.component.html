@@ -43,12 +43,12 @@
 
     <ion-col size="12" class="form-card">
       <p class="form-card-label">Heure approximative d'arrivée</p>
-      <ion-datetime placeholder="Mentionner l'heure approximative d'arrivée" pickerFormat="HH:mm" displayFormat="HH:mm" [(ngModel)]="time"></ion-datetime>
+      <ion-datetime placeholder="Mentionner l'heure approximative d'arrivée" min="09:00" max="19:00" pickerFormat="HH:mm" displayFormat="HH:mm" [(ngModel)]="time"></ion-datetime>
     </ion-col>
 
     <ion-col size="12" class="form-card">
       <p class="form-card-label">Emplacement</p>
-      <input  [value]="selectedRoomName" (click)="roomRef.open() && showAlert()" placeholder="Choisir un emplacement: Paillote, Cabane, Parasol... " class="form-card-input"  type="text"/>
+      <input onfocus="blur();" [value]="selectedRoomName" (click)="roomRef.open() && showAlert()" placeholder="Choisir un emplacement: Paillote, Cabane, Parasol... " class="form-card-input"  type="text"/>
 
       <ion-select [(ngModel)]="selectedRoomId" class="input" #roomRef  (ionChange)="onRoomSelect()">
         <ion-select-option   *ngFor="let room of restaurant?.rooms" value="{{room.id}}">{{room.name}}</ion-select-option>

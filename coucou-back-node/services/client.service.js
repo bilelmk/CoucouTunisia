@@ -83,7 +83,7 @@ exports.signin = async (req, res, next) => {
             const token = await jwt.sign(
                 { phone: fetchedClient.phone, userId: fetchedClient.id },
                 "secret_this_should_be_longer",
-                { expiresIn: "5h" }
+                { expiresIn: "1h" }
             );
             return res.status(200).json({
                 token: token,

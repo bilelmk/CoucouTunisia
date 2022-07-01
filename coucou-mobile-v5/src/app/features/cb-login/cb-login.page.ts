@@ -35,11 +35,13 @@ export class CbLoginPage implements OnInit {
       phone: this.loginForm.value.email ,
       password: this.loginForm.value.password
     };
-
     this.authenticationService.signin(request).subscribe(
         res => {
+            const expirationDate = new Date((new Date()).getTime() + res.expiresIn * 1000) ;
             sessionStorage.setItem('token' , res.token);
-            sessionStorage.setItem('expiresIn' , res.expiresIn);
+            sessionStorage.setItem('expiresIn' , expirationDate.toISOString());
+
+            this.authenticationService.setAuthTimer(res.expiresIn) ;
             this.toastService.show('Vous êtes connecté avec succès' ,'success') ;
             this.spinnerService.deactivate() ;
             this.router.navigate(['/main']);
