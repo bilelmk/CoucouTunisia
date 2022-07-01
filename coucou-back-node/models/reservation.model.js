@@ -15,7 +15,7 @@ const Reservation = sequelize.define('reservation' , {
         type : Sequelize.STRING ,
     },
     date: {
-        type : Sequelize.DATE ,
+        type : Sequelize.DATEONLY ,
         allowNull : false ,
     },
     time: {

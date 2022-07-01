@@ -2,6 +2,7 @@ const Reservation = require('../models/reservation.model')
 const Restaurant = require('../models/restaurant.model')
 const Client = require('../models/client.model')
 const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 exports.add = async (req, res, next) => {
     try {
@@ -113,9 +114,25 @@ exports.getOne = (req, res, next , id) => {
             { model: Restaurant, as: 'restaurant' },
             { model: Client, as: 'client' },
         ],
-    }).then(client => {
-        return res.status(200).json(client);
+    }).then(reservation => {
+        return res.status(200).json(reservation);
     }).catch(err => {
         return res.status(500).json(err);
     });
+};
+
+// used for cron
+exports.getTodayReservations = async () => {
+    const date = new Date();date.setHours(0, 0, 0, 0);
+    const reservations = await Reservation.findAll({
+        where: {date: {[Op.eq]: date}},
+        include: [
+            {model: Restaurant, as: 'restaurant'},
+            {model: Client, as: 'client'},
+        ],
+    })
+    if (reservations) {
+        return reservations;
+    }
+    return null ;
 }

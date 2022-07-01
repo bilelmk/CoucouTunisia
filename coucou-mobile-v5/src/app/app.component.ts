@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { OneSignal } from '@ionic-native/onesignal/ngx';
-import { Storage } from '@ionic/storage';
 import { Subscription } from 'rxjs';
 import { Network } from '@ionic-native/network/ngx';
 import { TraductionService } from './core/services/in-app/traduction.service';
+import { NetworkErrorService } from './core/services/in-app/network-error.service';
 
 @Component({
   selector: 'app-root',
@@ -23,25 +22,22 @@ export class AppComponent {
       private splashScreen: SplashScreen,
       private statusBar: StatusBar,
       private traductionService: TraductionService, // required for translation init
-      // private themeService: ThemeService,
       // private oneSignal : OneSignal ,
-      // private storage: Storage,
-      // private networkErrorService: NetworkErrorService,
-      // private network: Network
+      private networkErrorService: NetworkErrorService,
+      private network: Network
   ) {
     this.platform.ready().then(() => {
       // this.userService.role.next(sessionStorage.getItem('role'));
       // this.userService.token.next(sessionStorage.getItem('token'));
-      // this.disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-      //   this.networkErrorService.present();
-      // });
-      // this.connectSubscription = this.network.onConnect().subscribe(() => {
-      //   this.networkErrorService.dismiss();
-      // });
+      this.disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+        this.networkErrorService.present();
+      });
+      this.connectSubscription = this.network.onConnect().subscribe(() => {
+        this.networkErrorService.dismiss();
+      });
 
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      // this.themeService.initTheme();
     });
   }
 

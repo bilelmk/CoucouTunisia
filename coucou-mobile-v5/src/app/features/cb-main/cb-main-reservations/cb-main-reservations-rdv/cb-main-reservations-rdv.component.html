@@ -30,7 +30,8 @@
               [calendarMode]="calendar.mode"
               [currentDate]="calendar.currentDate"
               [step]="calendar.step"
-              (onCurrentDateChanged)="onDateChanged($event)">
+              (onCurrentDateChanged)="onDateChanged($event)"
+              [locale]="calendar.locale">
     </calendar>
 
     <ion-row class="ion-margin-top ion-justify-content-center">

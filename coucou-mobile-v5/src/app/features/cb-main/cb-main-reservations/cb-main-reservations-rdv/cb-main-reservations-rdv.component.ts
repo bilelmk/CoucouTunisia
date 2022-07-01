@@ -15,12 +15,13 @@ export class CbMainReservationsRdvComponent implements OnInit {
   @Input() restaurants ;
   @Input() restaurant ;
 
-  monthEn = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  monthEn = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November' , 'December'];
   months: any;
   calendar = {
     mode: 'month' as CalendarMode,
     step: 30 as Step,
-    currentDate: new Date()
+    currentDate: new Date() ,
+    locale: 'en-US'
   };
 
   date = '';
@@ -41,10 +42,12 @@ export class CbMainReservationsRdvComponent implements OnInit {
       this.selectedRestaurantName = this.restaurant.name ;
       this.selectedRestaurant = this.restaurant ;
     }
+    const date = new Date ;
+    console.log(date)
     this.months = {
-      previous: this.monthEn[(new Date).getMonth() - 2],
-      current: this.monthEn[(new Date).getMonth() - 1],
-      next: this.monthEn[(new Date).getMonth()],
+      previous: date.getMonth() === 0 ? this.monthEn[11] : this.monthEn[date.getMonth() - 1] || '',
+      current: this.monthEn[date.getMonth()] || '',
+      next: date.getMonth() === 11 ? this.monthEn[0] : this.monthEn[date.getMonth() + 1] || '',
     };
   }
 
@@ -56,9 +59,9 @@ export class CbMainReservationsRdvComponent implements OnInit {
     this.date = event.toString();
     const date = new Date(event);
     this.months = {
-      previous: this.monthEn[date.getMonth() - 2] || '',
-      current: this.monthEn[date.getMonth() - 1] || '',
-      next: this.monthEn[date.getMonth()] || '',
+      previous: date.getMonth() === 0 ? this.monthEn[11] : this.monthEn[date.getMonth() - 1] || '',
+      current: this.monthEn[date.getMonth()] || '',
+      next: date.getMonth() === 11 ? this.monthEn[0] : this.monthEn[date.getMonth() + 1] || '',
     };
   }
 

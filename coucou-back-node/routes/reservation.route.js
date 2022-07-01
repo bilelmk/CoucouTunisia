@@ -36,12 +36,11 @@ router.route('/:id')
         reservationService.getOne(req, res, next, req.params.id);
 })
 
-// router.route('/:id')
-//     .put((req, res, next) => {
-//         permissionService.update(req, res, next , req.params.id);
+//
+// router.route('/today')
+//     .get((req, res, next) => {
+//             reservationService.getTodayReservations(req, res, next);
 //     })
-//     .delete((req, res, next) => {
-//         permissionService.delete(req, res, next, req.params.id);
-//     })
+
 
 module.exports = router;
