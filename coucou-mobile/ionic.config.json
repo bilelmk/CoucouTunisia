@@ -1,7 +1,0 @@
-{
-  "name": "event-manager-mobile",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
