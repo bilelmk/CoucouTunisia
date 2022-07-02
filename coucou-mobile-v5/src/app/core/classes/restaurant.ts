@@ -16,6 +16,6 @@ export class Restaurant {
     latitude: number ;
     rooms: Room[];
     menus: Menu[];
-    palnning: Planning;
+    planning: Planning;
     images: Image;
 }

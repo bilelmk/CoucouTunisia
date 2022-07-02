@@ -4,17 +4,17 @@
   </ion-toolbar>
 </ion-header>
 
-<div class="ion-padding" *ngIf="!loading && restaurants?.length > 0" >
-  <div >
+<ion-row class="ion-padding ion-justify-content-center" style="background-color: white !important;" *ngIf="!loading && restaurants?.length > 0" >
+  <ion-col size="12" size-sm="7" >
     <p class="page-title">Avec Coco Tunisia </p>
     <p class="page-title">choisissez votre meilleure</p>
     <p class="page-title page-title-primary">destination pour cet été !</p>
-  </div>
-</div>
+  </ion-col>
+</ion-row>
 
 <ion-content *ngIf="!loading">
-  <ion-row style="height: calc(100vh - 240px ) ;" class="ion-padding-start ion-padding-end" *ngIf="restaurants?.length > 0">
-    <ion-col size="12" *ngFor="let restaurant of restaurants" class="ion-no-padding">
+  <ion-row style="height: calc(100vh - 240px ) ;" class="ion-padding-start ion-padding-end ion-justify-content-center" *ngIf="restaurants?.length > 0">
+    <ion-col size="12" size-sm="7" *ngFor="let restaurant of restaurants" class="ion-no-padding">
       <ion-card class="card">
         <img mat-card-image (click)="getRestaurantDetails(restaurant.id)" class="pointer full-width no-margin"
                [src]="restaurant.image ? url + restaurant.image : '/assets/img/no-record.png' ">

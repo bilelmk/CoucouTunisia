@@ -12,13 +12,13 @@
       <p class="form-header-name">{{client?.firstName + " " + client?.lastName}}</p>
     </div>
 
-    <ion-row *ngIf="imageSrc">
-      <ion-col size="6">
+    <ion-row *ngIf="imageSrc" class="ion-justify-content-center">
+      <ion-col size="6" size-sm="3">
         <ion-button (click)="onSaveImage()" class="btn-primary" expand="block" >
           Sauvgarder
         </ion-button>
       </ion-col>
-      <ion-col size="6" >
+      <ion-col size="6" size-sm="3" >
         <ion-button (click)="onCancelImage()" class="btn-secondary" expand="block">
           Annuler
         </ion-button>
@@ -28,22 +28,22 @@
     <form [formGroup]="form" class="ion-margin-top">
       <ion-row class="ion-justify-content-center ion-padding">
 
-        <ion-col size="12" class="form-card">
+        <ion-col size="12" size-sm="7" class="form-card">
           <p class="form-card-label">Nom</p>
           <input class="form-card-input"  formControlName="lastName" type="text"/>
         </ion-col>
 
-        <ion-col size="12" class="form-card">
+        <ion-col size="12" size-sm="7" class="form-card">
           <p class="form-card-label">Prénom</p>
           <input class="form-card-input"  formControlName="firstName" type="text"/>
         </ion-col>
 
-        <ion-col size="12" class="form-card">
+        <ion-col size="12" size-sm="7" class="form-card">
           <p class="form-card-label">Numéro de Téléphone</p>
           <input  class="form-card-input" formControlName="phone"  type="number" disabled/>
         </ion-col>
 
-        <ion-col size="12" class="form-card">
+        <ion-col size="12" size-sm="7" class="form-card">
           <p class="form-card-label">E-mail</p>
           <input class="form-card-input"  formControlName="email" type="email" />
         </ion-col>
