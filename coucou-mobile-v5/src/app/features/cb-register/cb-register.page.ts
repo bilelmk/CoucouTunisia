@@ -44,10 +44,8 @@ export class CbRegisterPage implements OnInit {
           this.spinnerService.deactivate() ;
           if (error.error.message === 'existing user') {
             this.toastService.show('Ce numéro de téléphone existe déjà' ,'danger');
-          // } else if (error.error.message === 'wrong password') {
-          //   this.toastService.show('Mot de passe incorrect' ,'danger');
-          // } else if (error.error.message === 'phone not verified') {
-          //   this.toastService.show('Numéro de téléphone n\'est pas verifié' ,'danger');
+          } else if (error.error.message === 'sms not sent') {
+            this.toastService.show('Sms n\'est pas envoyé verifier votre numéro de téléphone' ,'danger');
           } else {
             this.toastService.show('Erreur du serveur' ,'danger');
           }

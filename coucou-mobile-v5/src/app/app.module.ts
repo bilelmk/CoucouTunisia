@@ -32,7 +32,6 @@ import { SpinnerComponent } from './core/components/spinner/spinner.component';
 import { AuthenticationInterceptor } from './core/interceptors/authentication-interceptor';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NetworkErrorComponent } from './core/components/network-error/network-error.component';
-
 // import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 
 // fuction needed for traduction
@@ -45,7 +44,6 @@ export function createTranslateLoader(http: HttpClient){
         AppComponent,
         SpinnerComponent,
         NetworkErrorComponent
-        // NoConnectionPage,
     ],
     entryComponents: [],
     imports: [
@@ -86,7 +84,6 @@ export function createTranslateLoader(http: HttpClient){
         EmailComposer,
         OneSignal,
         BarcodeScanner,
-        // { provide: LOCALE_ID, useValue: "it_IT" }
     ],
     bootstrap: [AppComponent]
 })

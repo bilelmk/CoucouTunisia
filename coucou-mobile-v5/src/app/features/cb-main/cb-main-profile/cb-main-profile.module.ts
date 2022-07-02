@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CbMainProfilePageRoutingModule } from './cb-main-profile-routing.module';
 import { CbMainProfilePage } from './cb-main-profile.page';
+import {SharedModule} from "../../../shared/shared.module";
 
 @NgModule({
     imports: [
@@ -11,7 +12,8 @@ import { CbMainProfilePage } from './cb-main-profile.page';
         FormsModule,
         IonicModule,
         CbMainProfilePageRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SharedModule
     ],
   declarations: [CbMainProfilePage]
 })

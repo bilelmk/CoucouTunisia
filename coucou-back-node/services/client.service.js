@@ -5,8 +5,10 @@ const Client = require("../models/client.model");
 const PhoneConfirmationCode = require("../models/phone-confirmation-code.model");
 const ResetPasswordCode = require('../models/reset-password-code.model');
 const smsUtil = require("../util/sms")
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+const sequelizeObject = require('sequelize');
+const Op = sequelizeObject.Op;
+const sequelize = require("../util/database-config");
+
 
 exports.signup = async (req, res, next) => {
     try {
@@ -24,12 +26,15 @@ exports.signup = async (req, res, next) => {
                 message: "can not hash password"
             });
         }
+
+        const transaction = await sequelize.transaction();
+
         // create client
         req.body.password = hash
         req.body.verified = false
         req.body.active = true
         req.body.signupSource = 'PHONE'
-        let newClient = await Client.create(req.body) ;
+        let newClient = await Client.create(req.body , { transaction }) ;
         if(!newClient) {
             return res.status(500).json({
                 message: "user not created"
@@ -39,17 +44,19 @@ exports.signup = async (req, res, next) => {
         const phoneConfirmationCode = await PhoneConfirmationCode.create({
             clientId: newClient.id,
             code: helpers.random()
-        })
+        } , { transaction })
         // send sms
         const senderNumber = 50109769;
-        const senderName = "CocoBeach" ;
+        const senderName = "CocoTunisia" ;
         let content = "Your confirmation code: " + phoneConfirmationCode.code ;
         let isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, req.body.phone , content)
         if (isSmsSent) {
+            await transaction.commit();
             return res.status(200).json(newClient);
         } else {
+            await transaction.rollback();
             return res.status(500).json({
-                message: "user created and sms not sent"
+                message: "sms not sent"
             });
         }
     }
@@ -172,7 +179,7 @@ exports.sendResetPasswordCode = async (req, res, next) => {
         })
 
         const senderNumber = 50109769;
-        const senderName = "CocoBeach";
+        const senderName = "CocoTunisia";
         let content = "Your reset password code: " + resetPasswordCode.code;
         const isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, phone, content)
         if (isSmsSent) {
@@ -199,7 +206,7 @@ exports.resetPassowrd = async (req, res, next) => {
         })
         const hashedPassword = await bcrypt.hash(password, 10)
         const client = await Client.update({ password: hashedPassword }, { where: { id: clientId } })
-        if (client) return res.status(200).json({
+        if (client[0] === 1) return res.status(200).json({
             message: 'password has been updated'
         })
         return res.status(404).json({
@@ -212,43 +219,46 @@ exports.resetPassowrd = async (req, res, next) => {
     }
 }
 
-exports.getMany = (req, res, next) => {
-    let key = "%" + req.body.key + "%"
-    Client.findAndCountAll({
-        limit: req.body.limit,
-        offset: req.body.offset,
-        where: {
-            [Op.or]: [
-                { phone: { [Op.like]: key } },
-                { firstName: { [Op.like]: key } },
-                { lastName: { [Op.like]: key } },
-            ]
-        }
-    }).then(data => {
-        return res.status(200).json({
-            data
-        });
-    }).catch(err => {
-        return res.status(500).json(err);
-    });
-}
-
-exports.getOne = (req, res, next) => {
-    Client.findByPk(req.userData.userId).then(client => {
-        return res.status(200).json(client);
-    }).catch(err => {
-        return res.status(500).json(err);
-    });
-}
-
-exports.getAllLower = (req, res, next) => {
-    Client.findAll({ attributes: ['id', 'firstName', 'lastName', 'phone'] }).then(clients => {
+exports.getMany = async (req, res, next) => {
+    try {
+        let key = "%" + req.body.key + "%"
+        const clients = await Client.findAndCountAll({
+            limit: req.body.limit,
+            offset: req.body.offset,
+            where: {
+                [Op.or]: [
+                    {phone: {[Op.like]: key}},
+                    {firstName: {[Op.like]: key}},
+                    {lastName: {[Op.like]: key}},
+                ]
+            }
+        })
         return res.status(200).json(clients);
-    }).catch(err => {
+
+    } catch (err) {
         return res.status(500).json(err);
-    });
+    }
 }
 
+exports.getOne = async (req, res, next) => {
+    try {
+        const client = await Client.findByPk(req.userData.userId) ;
+        if(client) return res.status(200).json(client);
+        else return res.status(404).json({message: 'client not found'})
+    }
+    catch(err) {
+        return res.status(500).json(err);
+    }
+}
+
+exports.getAllLower = async (req, res, next) => {
+    try {
+        const clients = await Client.findAll({attributes: ['id', 'firstName', 'lastName', 'phone']})
+        return res.status(200).json(clients);
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+}
 
 exports.block = ( req, res , next , id ) => {
     Client.update({ active: false }, {where: { id: id }}).then(result => {
@@ -307,7 +317,7 @@ exports.update = ( req, res , next ) => {
         {   firstName: req.body.firstName ,
             lastName: req.body.lastName,
             email: req.body.email ,
-        }, {where: { id: req.userData.userId }}).then(result => {
+        }, { where: { id: req.userData.userId }}).then(result => {
         if(result[0] === 1){
             return res.status(200).json(result);
         }

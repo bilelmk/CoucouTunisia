@@ -27,9 +27,6 @@ export class AppComponent {
       private network: Network ,
   ) {
     this.platform.ready().then(() => {
-      // this.userService.role.next(sessionStorage.getItem('role'));
-      // this.userService.token.next(sessionStorage.getItem('token'));
-      // this.authenticationService.autoAuthUser() ;
       this.disconnectSubscription = this.network.onDisconnect().subscribe(() => {
         this.networkErrorService.present();
       });

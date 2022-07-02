@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RestaurantService } from '../../../core/services/http/restaurant.service';
 import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { Restaurant } from '../../../core/classes/restaurant';
@@ -15,20 +15,26 @@ export class CbMainHomePage {
   restaurants: Restaurant[] ;
   url = environment.url + 'images/' ;
 
+  loading = false ;
+  error = false ;
+
   constructor(private restaurantsService: RestaurantService,
               private spinnerService: SpinnerService,
               private router: Router) { }
 
   ionViewWillEnter() {
+    this.loading = true ;
     this.spinnerService.activate();
     this.restaurantsService.getRestaurants().subscribe(
         res => {
+          this.loading = false ;
           this.spinnerService.deactivate();
           this.restaurants = res ;
         },
         error => {
+          this.loading = false ;
+          this.error = true ;
           this.spinnerService.deactivate();
-          console.log(error);
         }
     );
   }

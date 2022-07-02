@@ -8,14 +8,14 @@
     </ion-row>
 
     <form [formGroup]="form" >
-      <ion-row>
+      <ion-row class="ion-justify-content-center">
 
-        <ion-col size="10" size-sm="6" offset="1" offset-sm="3">
+        <ion-col size="10" size-sm="7">
           <input formControlName="code" class="auth-input" type="text" placeholder="Entrez le code" />
         </ion-col>
 
-        <ion-col class="mt-15" size="10" size-sm="6" offset="1" offset-sm="3">
-          <ion-button (click)="onVerifyCode()" class="auth-light" expand="block" [disabled]="!form.valid">Confirmer</ion-button>
+        <ion-col size="10" size-sm="7">
+          <ion-button (click)="onVerifyCode()" class="btn-light" expand="block" [disabled]="!form.valid">Confirmer</ion-button>
         </ion-col>
 
       </ion-row>

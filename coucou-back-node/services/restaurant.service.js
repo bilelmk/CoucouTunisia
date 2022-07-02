@@ -79,13 +79,17 @@ exports.getAllActive = ( req, res , next ) => {
 }
 
 exports.getOne = async ( req, res , next, id ) => {
+  try {
     let restaurant = await Restaurant.findByPk(id , {include: ['rooms', 'planning', 'menus' , 'images']} )
     if(restaurant) {
-        return res.status(200).json(restaurant);
+      return res.status(200).json(restaurant);
     }
-   else {
-        return res.status(404).json({message: "not found"});
+    else {
+      return res.status(404).json({message: "not found"});
     }
+  } catch (err) {
+    return res.status(500).json(err);
+  }
 }
 
 exports.updateRestaurant = (req, res, next) => {

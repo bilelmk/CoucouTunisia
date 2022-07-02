@@ -1,0 +1,58 @@
+// calendar design
+ion-slide {
+
+  .monthview-selected{
+    border-radius: 50%;
+    background-color: var(--ion-color-primary) !important;
+    color: var(--ion-color-light) !important;
+  }
+
+  .monthview-current{
+    border-radius: 50%;
+    color: var(--ion-color-dark) ;
+  }
+
+  table {
+    width: calc(50px * 7) !important;
+  }
+
+  td {
+    padding-top: 15px !important;
+    width: 50px !important;
+    height: 50px !important;
+    font-family: "Poppins-Medium" !important;
+    font-size: 12px !important;
+    border: none !important;
+    color: var(--ion-color-dark) !important;
+  }
+
+  .text-muted {
+    font-size: 8px !important;
+    color: var(--ion-color-dark-tint) !important;
+  }
+
+  th {
+    font-family: "Poppins-Medium" !important;
+    font-size: 15px !important;
+    border: none !important;
+    color: var(--ion-color-dark) !important;
+  }
+
+  .table-bordered {
+    border : none !important ;
+  }
+
+
+}
+
+.calendar-months-current {
+  font-size: 18px !important;
+  font-family: "Poppins-bold" !important;
+  color: var(--ion-color-dark) !important;
+}
+
+.calendar-months {
+  font-size: 12px !important;
+  font-family: "Poppins-Regular" !important;
+  color: var(--ion-color-dark-tint) !important;
+}

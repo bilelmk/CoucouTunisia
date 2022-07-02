@@ -1,0 +1,18 @@
+.error {
+
+  &-container {
+     height: calc(100vh - 114px ) ;
+  }
+
+  &-icon {
+    font-size: 70px;
+    color: var(--ion-color-light-shade);
+  }
+
+  &-text {
+    font-size: 13px;
+    color: var(--ion-color-light-shade);
+    font-family: "Poppins-Medium";
+  }
+
+}

@@ -12,16 +12,18 @@ import {
   CbMainReservationsDetailsComponent
 } from './cb-main-reservations-list/cb-main-reservations-details/cb-main-reservations-details.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import {SharedModule} from "../../../shared/shared.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    CbMainReservationsPageRoutingModule,
-    NgCalendarModule,
-    NgxQRCodeModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        CbMainReservationsPageRoutingModule,
+        NgCalendarModule,
+        NgxQRCodeModule,
+        SharedModule
+    ],
   declarations: [
     CbMainReservationsPage ,
     CbMainReservationsAddComponent,

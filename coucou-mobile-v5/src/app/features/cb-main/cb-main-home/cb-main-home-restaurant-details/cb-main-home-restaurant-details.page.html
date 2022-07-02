@@ -1,4 +1,4 @@
-<ion-header class="ion-no-border" *ngIf="restaurant">
+<ion-header class="ion-no-border" *ngIf="!error && !loading">
   <ion-toolbar color="transparent" mode="md">
     <ion-buttons slot="start">
       <ion-button (click)="close()">
@@ -8,13 +8,13 @@
   </ion-toolbar>
 </ion-header>
 
-<div style="position:absolute;" *ngIf="restaurant">
+<div style="position:absolute;" *ngIf="!error && !loading" >
   <div class="product-img" [style.background-image]="'url(' + url + restaurant?.image +')'"></div>
 </div>
 
 <div style="overflow-y: scroll !important; margin-top : calc(20vh - 30px )"  >
 
-  <div class="ion-padding-start ion-padding-end" *ngIf="restaurant">
+  <div class="ion-padding-start ion-padding-end"  *ngIf="!error && !loading" >
 
     <ion-row class="ion-margin-top">
       <ion-col size="12">
@@ -58,10 +58,13 @@
         </div>
   </div>
 
-  <div class="ion-padding-start ion-padding-end" *ngIf="restaurant">
+  <div class="ion-padding-start ion-padding-end" *ngIf="!error && !loading">
       <ion-button (click)="openAddReservationModal()" class="btn-primary"  expand="block" >
         Réserver
       </ion-button>
   </div>
 
 </div>
+
+<app-cb-errors [exist]="error && !loading" [message]="'Un erreur est servenue essayé plus tard'" [icon]="'bug-outline'"></app-cb-errors>
+

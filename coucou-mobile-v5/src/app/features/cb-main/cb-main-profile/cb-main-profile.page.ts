@@ -20,7 +20,7 @@ import { Helpers } from '../../../core/helpers/helpers';
 })
 export class CbMainProfilePage {
 
-  client = null;
+  client;
   language;
   url = environment.url + 'images/' ;
   form: FormGroup;
@@ -28,6 +28,9 @@ export class CbMainProfilePage {
   // image ;
   imageSrc;
   data: FormData;
+
+  loading = false ;
+  error = false ;
 
   constructor(private clientService: ClientService,
               private spinnerService: SpinnerService,
@@ -54,6 +57,7 @@ export class CbMainProfilePage {
 
 
   ionViewWillEnter() {
+    this.loading = true ;
     this.spinnerService.activate();
     this.clientService.getCurrent().subscribe(
         res => {
@@ -62,11 +66,13 @@ export class CbMainProfilePage {
           this.form.controls.lastName.setValue(this.client.lastName);
           this.form.controls.email.setValue(this.client.email);
           this.form.controls.phone.setValue(this.client.phone);
+          this.loading = false ;
           this.spinnerService.deactivate();
         },
         error => {
+          this.loading = false ;
+          this.error = true ;
           this.spinnerService.deactivate();
-          console.log(error);
         }
     );
   }
@@ -177,7 +183,7 @@ export class CbMainProfilePage {
           this.spinnerService.deactivate();
         },
         err => {
-            this.toastService.show('Erreur lors de la modifications', 'danger');
+          this.toastService.show('Erreur lors de la modifications', 'danger');
           this.spinnerService.deactivate();
         }
     );
@@ -190,8 +196,7 @@ export class CbMainProfilePage {
 
     }
 
-
-    logout() {
+  logout() {
     this.authenticationService.logout() ;
   }
 }

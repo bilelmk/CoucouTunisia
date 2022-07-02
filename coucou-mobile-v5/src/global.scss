@@ -33,6 +33,8 @@
 @import "assets/styles/components/button";
 @import "assets/styles/components/card";
 @import "assets/styles/components/state";
+@import "assets/styles/components/datepicker";
+@import "assets/styles/components/map";
 
 @import "assets/styles/pages/auth.scss" ;
 @import "assets/styles/pages/generic-page";
@@ -68,83 +70,3 @@
   font-weight: normal;
   src: url("./assets/fonts/Poppins-Bold.ttf");
 }
-
-
-// calendar design
-ion-slide {
-
-  .monthview-selected{
-    border-radius: 50%;
-    background-color: var(--ion-color-primary) !important;
-    color: var(--ion-color-light) !important;
-  }
-
-  .monthview-current{
-    border-radius: 50%;
-    color: var(--ion-color-dark) ;
-  }
-
-  table {
-    width: calc(50px * 7) !important;
-  }
-
-  td {
-    padding-top: 15px !important;
-    width: 50px !important;
-    height: 50px !important;
-    font-family: "Poppins-Medium" !important;
-    font-size: 12px !important;
-    border: none !important;
-    color: var(--ion-color-dark) !important;
-  }
-
-  .text-muted {
-    font-size: 8px !important;
-    color: var(--ion-color-dark-tint) !important;
-  }
-
-  th {
-    font-family: "Poppins-Medium" !important;
-    font-size: 15px !important;
-    border: none !important;
-    color: var(--ion-color-dark) !important;
-  }
-
-  .table-bordered {
-    border : none !important ;
-  }
-
-
-}
-
-.calendar-months-current {
-  font-size: 18px !important;
-  font-family: "Poppins-bold" !important;
-  color: var(--ion-color-dark) !important;
-}
-
-.calendar-months {
-  font-size: 12px !important;
-  font-family: "Poppins-Regular" !important;
-  color: var(--ion-color-dark-tint) !important;
-}
-
-
-.map-container {
-  margin: 16px;
-  border-radius: 20px ;
-  height: 30vh;
-}
-
-.map-frame {
-  border-radius: 20px ;
-  width: 100%;
-  height: 100%;
-}
-
-#map {
-  border-radius: 20px ;
-  height: 100%;
-}
-
-

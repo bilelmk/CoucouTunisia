@@ -5,8 +5,7 @@ import {
   CbMainReservationsDetailsComponent
 } from './cb-main-reservations-details/cb-main-reservations-details.component';
 import { Router } from '@angular/router';
-import {Spinner} from "ngx-spinner/lib/ngx-spinner.enum";
-import {SpinnerService} from "../../../../core/services/in-app/spinner.service";
+import { SpinnerService } from '../../../../core/services/in-app/spinner.service';
 
 @Component({
   selector: 'app-cb-main-reservations-list',
@@ -18,7 +17,10 @@ export class CbMainReservationsListComponent {
   limit ;
   offset ;
 
-  reservations ;
+  reservations;
+
+  loading = false ;
+  error = false ;
 
   constructor(private reservationsService: ReservationService,
               private modalController: ModalController,
@@ -35,12 +37,16 @@ export class CbMainReservationsListComponent {
       offset: this.offset ,
       limit : this.limit ,
     };
+    this.loading = true ;
     this.spinnerService.activate();
     this.reservationsService.getAllByClient(searchRequest).subscribe(
         (res: any) => {
+          this.loading = false ;
           this.spinnerService.deactivate();
           this.reservations = res.rows;
         }, error => {
+          this.loading = false ;
+          this.error = true ;
           this.spinnerService.deactivate();
         }
     );

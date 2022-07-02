@@ -40,7 +40,6 @@ export class CbLoginPage implements OnInit {
             const expirationDate = new Date((new Date()).getTime() + res.expiresIn * 1000) ;
             sessionStorage.setItem('token' , res.token);
             sessionStorage.setItem('expiresIn' , expirationDate.toISOString());
-
             this.authenticationService.setAuthTimer(res.expiresIn) ;
             this.toastService.show('Vous êtes connecté avec succès' ,'success') ;
             this.spinnerService.deactivate() ;

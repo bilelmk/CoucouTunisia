@@ -14,49 +14,52 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content *ngIf="!loading" >
 
-  <p class="page-title">Faire le suivie</p>
-  <p class="page-title">de vos réservations</p>
+  <div class="ion-padding"  *ngIf="reservations?.length > 0">
+    <p class="page-title">Faire le suivie</p>
+    <p class="page-title">de vos réservations</p>
 
-  <ion-row>
-    <ion-col *ngFor="let reservation of reservations" size="12" class="form-card" (click)="openDetailsModal(reservation)">
-        <ion-row>
+    <ion-row >
+      <ion-col *ngFor="let reservation of reservations" size="12" class="form-card" (click)="openDetailsModal(reservation)">
+          <ion-row>
 
-          <ion-col size="8">
-            <p class="form-card-label m-0">
-              <ion-icon class="form-card-icon" name="fast-food"></ion-icon><span class="form-card-icon-text">{{ reservation.restaurant.name}}</span>
-            </p>
-          </ion-col>
+            <ion-col size="8">
+              <p class="form-card-label m-0">
+                <ion-icon class="form-card-icon" name="fast-food"></ion-icon><span class="form-card-icon-text">{{ reservation.restaurant.name}}</span>
+              </p>
+            </ion-col>
 
-          <ion-col size="4" class="ion-align-self-center" [ngClass]="getSateColor(reservation.state)">
-            <p class="form-card-label m-0">{{ getSateName(reservation.state)}}</p>
-          </ion-col>
+            <ion-col size="4" class="ion-align-self-center" [ngClass]="getSateColor(reservation.state)">
+              <p class="form-card-label m-0">{{ getSateName(reservation.state)}}</p>
+            </ion-col>
 
-          <ion-col size="6">
-            <p class="form-card-label m-0">
-              <ion-icon class="form-card-icon" name="calendar"></ion-icon><span class="form-card-icon-text">{{ reservation.date | date}}</span>
-            </p>
-          </ion-col>
+            <ion-col size="6">
+              <p class="form-card-label m-0">
+                <ion-icon class="form-card-icon" name="calendar"></ion-icon><span class="form-card-icon-text">{{ reservation.date | date}}</span>
+              </p>
+            </ion-col>
 
-          <ion-col size="6">
-            <p class="form-card-label m-0">
-              <ion-icon class="form-card-icon" name="alarm"></ion-icon><span class="form-card-icon-text">{{ reservation.time + " H"}}</span>
-            </p>
-          </ion-col>
+            <ion-col size="6">
+              <p class="form-card-label m-0">
+                <ion-icon class="form-card-icon" name="alarm"></ion-icon><span class="form-card-icon-text">{{ reservation.time + " H"}}</span>
+              </p>
+            </ion-col>
 
-        </ion-row>
-    </ion-col>
-  </ion-row>
+          </ion-row>
+      </ion-col>
 
-  <ion-row class="ion-justify-content-center" *ngIf="!reservations || reservations?.length == 0">
-    Aucune Réservations
-  </ion-row>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
 
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    </ion-row>
+  </div>
 
+
+
+  <app-cb-errors [exist]="reservations?.length == 0" [message]="'Aucune reservation trouvée'" [icon]="'calendar-outline'"></app-cb-errors>
+  <app-cb-errors [exist]="error" [message]="'Un erreur est servenue essayé plus tard'" [icon]="'bug-outline'"></app-cb-errors>
 
 </ion-content>

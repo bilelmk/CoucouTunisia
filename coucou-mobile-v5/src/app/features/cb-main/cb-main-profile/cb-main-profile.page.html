@@ -4,8 +4,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-grid class="ion-margin-top">
+<ion-content *ngIf="!loading">
+  <ion-grid class="ion-margin-top" *ngIf="client">
 
     <div class="form-header ion-text-center">
       <img (click)="onPickImageChoice()" [src]=" imageSrc ? imageSrc : ( client?.image ? url + client.image : './../../../../assets/image/default-profile.png') " alt="image"  class="form-header-img" >
@@ -69,5 +69,7 @@
       </ion-row>
     </form>
   </ion-grid>
+
+  <app-cb-errors [exist]="error" [message]="'Un erreur est servenue essayé plus tard'" [icon]="'bug-outline'"></app-cb-errors>
 
 </ion-content>

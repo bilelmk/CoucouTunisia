@@ -48,8 +48,8 @@ export class CbClientsComponent implements OnInit {
     this.clientsService.getAll(searchClientRequest).subscribe(
       (res :any) => {
         this.loading = false ;
-        this.recordsNumber = res.data.count ;
-        this.clients = res.data.rows ;
+        this.recordsNumber = res.count ;
+        this.clients = res.rows ;
         this.dataSource = this.clients
         this.spinnerService.deactivate()
       },

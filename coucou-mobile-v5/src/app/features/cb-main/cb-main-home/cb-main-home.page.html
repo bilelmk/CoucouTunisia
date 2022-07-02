@@ -1,19 +1,19 @@
 <ion-header  class="ion-no-border">
-  <ion-toolbar color="transparent">
+  <ion-toolbar mode="md">
     <ion-title class="ion-text-center toolbar">Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<div class="ion-padding">
-  <div>
+<div class="ion-padding" *ngIf="!loading && restaurants?.length > 0" >
+  <div >
     <p class="page-title">Avec Coco Tunisia </p>
     <p class="page-title">choisissez votre meilleure</p>
     <p class="page-title page-title-primary">destination pour cet été !</p>
   </div>
 </div>
 
-<ion-content>
-  <ion-row style="height: calc(100vh - 240px ) ;" class="ion-padding-start ion-padding-end">
+<ion-content *ngIf="!loading">
+  <ion-row style="height: calc(100vh - 240px ) ;" class="ion-padding-start ion-padding-end" *ngIf="restaurants?.length > 0">
     <ion-col size="12" *ngFor="let restaurant of restaurants" class="ion-no-padding">
       <ion-card class="card">
         <img mat-card-image (click)="getRestaurantDetails(restaurant.id)" class="pointer full-width no-margin"
@@ -45,4 +45,8 @@
       </ion-card>
     </ion-col>
   </ion-row>
+
+  <app-cb-errors [exist]="restaurants?.length == 0" [message]="'Aucun restaurant trouvé'" [icon]="'storefront-outline'"></app-cb-errors>
+  <app-cb-errors [exist]="error" [message]="'Un erreur est servenue essayé plus tard'" [icon]="'bug-outline'"></app-cb-errors>
+
 </ion-content>

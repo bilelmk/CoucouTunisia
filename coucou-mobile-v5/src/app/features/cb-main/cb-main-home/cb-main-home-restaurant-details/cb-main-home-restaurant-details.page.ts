@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpinnerService } from '../../../../core/services/in-app/spinner.service';
 import { RestaurantService } from '../../../../core/services/http/restaurant.service';
@@ -32,6 +32,9 @@ export class CbMainHomeRestaurantDetailsPage {
        shadowSize:  [41, 41]
     });
 
+    loading = false ;
+    error = false ;
+
   constructor(private route: ActivatedRoute,
               private spinnerService: SpinnerService,
               private restaurantService: RestaurantService,
@@ -39,20 +42,22 @@ export class CbMainHomeRestaurantDetailsPage {
               private router: Router) {}
 
   ionViewWillEnter() {
+       this.loading = true ;
        this.spinnerService.activate();
        this.restaurantService.getRestaurant(Number (this.route.snapshot.paramMap.get('id'))).subscribe(
            res => {
+             this.loading = false ;
              this.spinnerService.deactivate();
              this.restaurant = res ;
              this.createMap() ;
            },
            error => {
+             this.loading = false ;
+             this.error = true ;
              this.spinnerService.deactivate();
-             console.log(error);
            }
        );
   }
-
 
      // location
      createMap() {

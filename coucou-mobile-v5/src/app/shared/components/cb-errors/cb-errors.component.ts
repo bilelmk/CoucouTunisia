@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cb-errors',
@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cb-errors.component.scss'],
 })
 export class CbErrorsComponent implements OnInit {
+
+
+  @Input() exist: boolean;
+  @Input() icon: string  ;
+  @Input() message: string  ;
 
   constructor() { }
 
