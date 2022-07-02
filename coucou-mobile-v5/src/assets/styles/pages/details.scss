@@ -1,4 +1,4 @@
-.product {
+.details {
 
   &-img {
     background-repeat: no-repeat;
@@ -21,6 +21,29 @@
     font-size: 14px;
     color: var(--ion-color-medium-shade);
     font-family: "Poppins-Regular" ;
+  }
+
+}
+
+@media (min-width: 576px) {
+
+  .details {
+
+    &-img {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      width: 60vw;
+      height: 20vh;
+      margin-left: 20vw;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    &-container {
+      width: 60vw;
+      margin-left: 20vw;
+    }
   }
 
 }

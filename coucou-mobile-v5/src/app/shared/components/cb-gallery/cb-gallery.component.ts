@@ -13,9 +13,9 @@ export class CbGalleryComponent implements OnInit {
 
   slidesOpts = {
     zoom: false ,
-    slidesPerView: 1.5,
+    slidesPerView: 1.7,
     centredSlides: true ,
-    spaceBetween: 20
+    spaceBetween: 30
   };
 
   constructor() { }

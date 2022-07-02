@@ -190,7 +190,7 @@ export class CbMainProfilePage {
   }
 
     call() {
-        this.callNumber.callNumber('50202125', true)
+        this.callNumber.callNumber('50117077', true)
             .then(res => console.log('Launched dialer!', res))
             .catch(err => console.log('Error launching dialer', err));
 

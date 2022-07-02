@@ -8,21 +8,21 @@
   </ion-toolbar>
 </ion-header>
 
-<div style="position:absolute;" *ngIf="!error && !loading" >
-  <div class="product-img" [style.background-image]="'url(' + url + restaurant?.image +')'"></div>
+<div style="position:absolute; text-align: center ; width: 100%" *ngIf="!error && !loading" >
+  <div class="details-img" [style.background-image]="'url(' + url + restaurant?.image +')'"></div>
 </div>
 
-<div style="overflow-y: scroll !important; margin-top : calc(20vh - 30px )"  >
+<div class="details-container" style="overflow-y: scroll !important; margin-top : calc(20vh - 30px )"  >
 
   <div class="ion-padding-start ion-padding-end"  *ngIf="!error && !loading" >
 
     <ion-row class="ion-margin-top">
       <ion-col size="12">
-        <p class="product-name">{{restaurant?.name}}</p>
+        <p class="details-name">{{restaurant?.name}}</p>
       </ion-col>
 
       <ion-col size="12">
-        <p class="product-description">{{restaurant?.description}}</p>
+        <p class="details-description">{{restaurant?.description}}</p>
       </ion-col>
     </ion-row>
 
@@ -30,7 +30,7 @@
 
     <ion-row class="ion-margin-top">
       <ion-col size="12">
-        <p class="product-name">Nos Emplacements</p>
+        <p class="details-name">Nos Emplacements</p>
       </ion-col>
     </ion-row>
 
@@ -38,7 +38,7 @@
 
     <ion-row class="ion-margin-top">
       <ion-col size="12">
-        <p class="product-name">Notre Galerie</p>
+        <p class="details-name">Notre Galerie</p>
       </ion-col>
     </ion-row>
 
@@ -46,25 +46,27 @@
 
     <ion-row class="ion-margin-top">
       <ion-col size="12">
-        <p class="product-name">Localisation</p>
+        <p class="details-name">Localisation</p>
       </ion-col>
     </ion-row>
 
   </div>
 
   <div class="map-container ">
-        <div class="map-frame">
-          <div id="map"></div>
-        </div>
+    <div class="map-frame">
+      <div id="map"></div>
+    </div>
   </div>
 
   <div class="ion-padding-start ion-padding-end" *ngIf="!error && !loading">
-      <ion-button (click)="openAddReservationModal()" class="btn-primary"  expand="block" >
-        Réserver
-      </ion-button>
+    <ion-button (click)="openAddReservationModal()" class="btn-primary"  expand="block" >
+      Réserver
+    </ion-button>
   </div>
 
 </div>
+
+
 
 <app-cb-errors [exist]="error && !loading" [message]="'Un erreur est servenue essayé plus tard'" [icon]="'bug-outline'"></app-cb-errors>
 

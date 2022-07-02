@@ -1,7 +1,7 @@
 .auth {
 
   font-family: "Poppins-Regular";
-  --background:  center / cover no-repeat url("../../image/background.jpeg") #000;
+  --background:  center / cover no-repeat url("../../image/background.jpg") #000;
 
   &-image {
     width: 300px;
@@ -16,11 +16,6 @@
     font-weight: bold;
     color: var(--ion-color-primary);
     width: 300px;
-  }
-
-  ion-grid {
-    height: 100%;
-    background: rgba(0,0,0,0.5);
   }
 
   &-input {

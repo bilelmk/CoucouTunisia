@@ -38,7 +38,7 @@
 
 @import "assets/styles/pages/auth.scss" ;
 @import "assets/styles/pages/generic-page";
-@import "assets/styles/pages/product-details";
+@import "assets/styles/pages/details";
 
 @import "assets/styles/utilities";
 
@@ -70,7 +70,3 @@
   font-weight: normal;
   src: url("./assets/fonts/Poppins-Bold.ttf");
 }
-
-//ion-col {
-//  padding: 0 !important;
-//}
