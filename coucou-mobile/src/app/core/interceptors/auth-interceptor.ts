@@ -26,13 +26,13 @@ type HttpMethod =
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthInterceptor implements HttpInterceptor {
 
   apiUrl = environment.url;
 
   urlsToNotUse = [
     'clients',
-    'products',
   ];
 
   constructor(private nativeHTTP: HTTP, private platform: Platform) {}

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Admin } from '../../models/admin';
 import { LoginRequest } from '../../dtos/login-request';
 import { environment } from "../../../../environments/environment";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,10 @@ import { environment } from "../../../../environments/environment";
 export class AdminsService {
 
   URL = environment.url + "/api/admins" ;
+  private tokenTimer: any ;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router ) { }
 
   getAll(): Observable<Admin[]> {
     return this.http.get<Admin[]>(this.URL);
@@ -42,4 +45,14 @@ export class AdminsService {
     return this.http.post<any>(this.URL + '/signin' , loginRequest);
   }
 
+  setAuthTimer(duration: number) {
+    this.tokenTimer = setTimeout(() => {
+      this.logout();
+    }, duration * 1000 );
+  }
+
+  logout() {
+    sessionStorage.clear() ;
+    this.router.navigate(['/'])
+  }
 }

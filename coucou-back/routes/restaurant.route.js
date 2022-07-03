@@ -4,9 +4,9 @@ const upload = require("../util/upload");
 const router = express.Router();
 
 router.route('/')
-    .get((req, res, next) => {
-        restaurantService.getAll(req, res, next)
-    })
+    // .get((req, res, next) => {
+    //     restaurantService.getAll(req, res, next)
+    // })
     .post(upload,(req, res, next) => {
         restaurantService.add(req,res,next)
 })

@@ -6,7 +6,7 @@ import { CbMainHomePageRoutingModule } from './cb-main-home-routing.module';
 import { CbMainHomePage } from './cb-main-home.page';
 import { MatCardModule } from '@angular/material/card';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import {SharedModule} from "../../../shared/shared.module";
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
     imports: [

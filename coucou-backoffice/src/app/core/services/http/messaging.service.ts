@@ -19,4 +19,8 @@ export class MessagingService {
   sendMulti(data: any) : Observable<any> {
     return this.http.post<any>(this.URL + "/multi" , data);
   }
+
+  getUsage() : Observable<any> {
+    return this.http.get<any>(this.URL + "/usage");
+  }
 }

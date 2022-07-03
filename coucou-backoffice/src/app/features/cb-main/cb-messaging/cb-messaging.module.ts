@@ -6,9 +6,9 @@ import { CbMessagingClientsComponent } from './cb-messaging-clients/cb-messaging
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import {MatIconModule} from "@angular/material/icon";
-import {MatSelectModule} from "@angular/material/select";
-
+import { MatIconModule } from "@angular/material/icon";
+import { MatSelectModule } from "@angular/material/select";
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 const routes: Routes = [
   {
@@ -23,15 +23,16 @@ const routes: Routes = [
     CbMessagingComponent,
     CbMessagingClientsComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatIconModule,
-    MatSelectModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatIconModule,
+        MatSelectModule,
+        NgCircleProgressModule,
+    ],
   entryComponents: [
     CbMessagingClientsComponent
   ]

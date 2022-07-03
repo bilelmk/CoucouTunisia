@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import {AuthenticationService} from "../../../core/services/http/authentication.service";
+import { AdminsService } from "../../../core/services/http/admins.service";
 
 @Component({
   selector: 'app-cb-sidebar',
@@ -22,7 +22,7 @@ export class CbSidebarComponent implements OnInit {
     this.toggleMode() ;
   }
 
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private adminsService: AdminsService) {}
 
   ngOnInit() {
     this.admin = JSON.parse(sessionStorage.getItem('admin'))
@@ -40,7 +40,7 @@ export class CbSidebarComponent implements OnInit {
   }
 
   logout() {
-    this.authenticationService.logout()
+    this.adminsService.logout()
   }
 }
 

@@ -7,7 +7,7 @@
     <div class="col-12 mt-1">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Restaurant</mat-label>
-        <mat-select formControlName="restaurant" >
+        <mat-select formControlName="restaurantId" >
           <mat-option *ngFor="let restaurant of restaurants" [value]="restaurant?.id">{{restaurant?.name}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -30,31 +30,84 @@
     <div class="col-12 mt-1">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Nombre d'adults</mat-label>
-        <input  formControlName="adultNumber" matInput type="text">
+        <input  formControlName="adultNumber" matInput type="number">
       </mat-form-field>
     </div>
 
     <div class="col-12 mt-1">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Nombre d'enfants</mat-label>
-        <input  formControlName="childrenNumber" matInput type="text">
+        <input  formControlName="childrenNumber" matInput type="number">
       </mat-form-field>
     </div>
 
     <div class="col-12 mt-1">
       <mat-form-field class="full-width" appearance="outline">
         <mat-label>Nombre des bébés</mat-label>
-        <input  formControlName="babeNumber" matInput type="text">
+        <input  formControlName="babeNumber" matInput type="number">
       </mat-form-field>
     </div>
 
-    <div class="col-12" >
-      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid">
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Nombre des voitures</mat-label>
+        <input  formControlName="carNumber" matInput type="number">
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Mise en place</mat-label>
+        <input  formControlName="room" matInput type="text">
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Prix</mat-label>
+        <input  formControlName="price" matInput type="number">
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Prix finale</mat-label>
+        <input  formControlName="finalPrice" matInput type="number">
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Etat</mat-label>
+
+        <mat-select formControlName="state" >
+          <mat-option [value]="'checking'">En cours</mat-option>
+          <mat-option [value]="'checked'">Validée</mat-option>
+          <mat-option [value]="'confirmed'">Confirmée</mat-option>
+          <mat-option [value]="'arrived'">Arrivée</mat-option>
+          <mat-option [value]="'finished'">Finis</mat-option>
+        </mat-select>
+
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Annulée</mat-label>
+        <mat-select formControlName="canceled" >
+          <mat-option [value]="true">Oui</mat-option>
+          <mat-option [value]="false">Non</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="col-12 mt-1" >
+      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid" *ngIf="!data.isEditMode">
         Ajouter
       </button>
-<!--      <button class="submit-btn full-width" (click)="update()" [disabled]="!form.valid" *ngIf="data.isEditMode">-->
-<!--        Sauvgarder-->
-<!--      </button>-->
+      <button class="submit-btn full-width" (click)="update()" [disabled]="!form.valid" *ngIf="data.isEditMode">
+        Sauvgarder
+      </button>
     </div>
   </form>
 

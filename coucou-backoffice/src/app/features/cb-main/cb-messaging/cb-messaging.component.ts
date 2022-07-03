@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { ClientsService } from '../../../core/services/http/clients.service';
 import { MessagingService } from '../../../core/services/http/messaging.service';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cb-messaging',
@@ -12,32 +11,36 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators
 })
 export class CbMessagingComponent implements OnInit {
 
-  clients = [] ;
   error = false ;
   loading = false ;
 
   form: FormGroup;
 
+  stats ;
+
   constructor(private spinnerService: SpinnerService ,
               private messagingService: MessagingService,
               private clientService: ClientsService ,
-              private formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
+              private formBuilder: FormBuilder) {
     this.form = new FormGroup({
       content: new FormControl("", Validators.required),
-      // number:  new FormControl("", Validators.required),
       sender: new FormControl("", Validators.required),
       numbers: this.formBuilder.array([])
     });
+  }
 
+  ngOnInit(): void {
+    this.getUsage()
+  }
+
+  getUsage() {
     this.loading = true ;
     this.spinnerService.activate()
-    this.clientService.getAllLower().subscribe(
+    this.messagingService.getUsage().subscribe(
       res => {
         this.loading = false ;
-        this.clients = res ;
         this.spinnerService.deactivate()
+        this.stats = res?.partnerContracts?.contracts[0]?.serviceContracts[0]?.availableUnits
       },
       error => {
         this.loading = false ;
@@ -73,6 +76,7 @@ export class CbMessagingComponent implements OnInit {
     this.messagingService.sendMulti(smss).subscribe(
       res => {
         this.spinnerService.deactivate();
+        this.getUsage()
       },
       err => {
         this.spinnerService.deactivate();

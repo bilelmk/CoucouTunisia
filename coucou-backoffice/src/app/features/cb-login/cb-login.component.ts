@@ -46,7 +46,8 @@ export class CbLoginComponent implements OnInit {
         sessionStorage.setItem('permissions' , JSON.stringify(res.admin.role.permissions))
         sessionStorage.setItem('token' , res.token) ;
         sessionStorage.setItem('admin' , JSON.stringify({firstname : res.admin.firstname , lastname : res.admin.lastname }));
-
+        sessionStorage.setItem('expiresIn' , res.expiresIn);
+        this.adminsService.setAuthTimer(res.expiresIn) ;
         this.spinnerService.deactivate() ;
         this.snackbarService.openSnackBar("Connecté avec succès" , 'success')
         this.router.navigate(['/main'])

@@ -61,17 +61,17 @@ export class CbReservationsComponent implements OnInit {
     )
   }
 
-  openModal() {
+  openModal(isEditMode , item) {
     const dialogRef = this.dialog.open( CbReservationsAddComponent, {
       panelClass: 'custom-dialog-container' ,
-      width: '600px' ,
-      // data : { item: item , array : this.admins , isEditMode: isEditMode}
+      width: '600px' , height : "600px" ,
+      data : { item: item , array : this.reservations , isEditMode: isEditMode}
     });
-    // dialogRef.afterClosed().subscribe(
-    //   res => {
-    //     this.dataSource.data = this.admins;
-    //   }
-    // );
+    dialogRef.afterClosed().subscribe(
+      res => {
+        this.dataSource = this.reservations;
+      }
+    );
   }
 
   confirm(reservation) {

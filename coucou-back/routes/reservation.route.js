@@ -9,6 +9,9 @@ router.route('/')
     // })
     .post(checkAuthentication, (req, res, next) => {
         reservationService.add(req, res, next);
+    })
+    .put((req, res, next) => {
+        reservationService.update(req, res, next);
 })
 
 router.route('/client')

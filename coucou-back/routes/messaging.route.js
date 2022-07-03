@@ -12,4 +12,9 @@ router.route('/multi')
         messagingService.sendMultiSms(req, res, next)
 })
 
+router.route('/usage')
+    .get( (req, res, next) => {
+        messagingService.getUsage(req, res, next)
+    })
+
 module.exports = router;

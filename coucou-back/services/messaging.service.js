@@ -8,13 +8,9 @@ exports.sendOneSms = async (req, res ,next) => {
         req.body.content
     )
     if (isSmsSent) {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json('sms sent');
+        res.status(500).json({message : 'error when sending sms'});
     } else {
-        res.statusCode = 500;
-        res.setHeader('Content-Type', 'application/json');
-        res.json('error when sending sms');
+        res.status(200).json({message : "sms sent"});
     }
 }
 
@@ -28,12 +24,17 @@ exports.sendMultiSms = async (req, res ,next) => {
             req.body.content
         )
         if (!isSmsSent) {
-            res.statusCode = 500;
-            res.setHeader('Content-Type', 'application/json');
-            res.json('error when sending sms');
+            res.status(500).json({message : 'error when sending sms'});
         }
     }
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
-    res.json('sms sent');
+    res.status(200).json({message : "sms sent"});
+}
+
+exports.getUsage = async (req, res ,next) => {
+    const usage = await smsUtil.getUsage() ;
+    if(usage) {
+        res.status(200).json(usage);
+    } else {
+        res.status(500).json({message : 'internal erreur'});
+    }
 }

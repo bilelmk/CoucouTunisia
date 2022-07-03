@@ -18,9 +18,9 @@ exports.signin = async ( req, res , next ) => {
                 const token = await jwt.sign(
                     { username: admin.username, id: admin.id , role: admin.role},
                     "secret_this_should_be_longer",
-                    { expiresIn: "1h" }
+                    { expiresIn: "10h" }
                 );
-                return res.status(200).json({token: token, expiresIn: 3600 , admin: admin});
+                return res.status(200).json({token: token, expiresIn: 36000 , admin: admin});
             }
             else return res.status(401).json({message: "account deactivated" ,});
         }

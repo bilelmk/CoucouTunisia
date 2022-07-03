@@ -19,4 +19,8 @@ export class ReservationsService {
   updateState(state): Observable<any> {
     return this.http.put<any>(this.URL + '/state' , state);
   }
+
+  update(value: any): Observable<any> {
+    return this.http.put<any>(this.URL  , value);
+  }
 }

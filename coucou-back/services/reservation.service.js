@@ -2,6 +2,7 @@ const Reservation = require('../models/reservation.model')
 const Restaurant = require('../models/restaurant.model')
 const Client = require('../models/client.model')
 const Sequelize = require("sequelize");
+const Admin = require("../models/admin.model");
 const Op = Sequelize.Op;
 
 exports.add = async (req, res, next) => {
@@ -120,6 +121,35 @@ exports.getOne = (req, res, next , id) => {
         return res.status(500).json(err);
     });
 };
+
+exports.update = async (req, res, next, id) => {
+    try {
+        const reservation = await Reservation.update({
+                restaurantId: req.body.restaurantId,
+                note: req.body.note,
+                date: req.body.date,
+                time: req.body.time,
+                adultNumber: req.body.adultNumber,
+                childrenNumber: req.body.childrenNumber,
+                babeNumber: req.body.babeNumber,
+                room: req.body.room,
+                carNumber: req.body.carNumber,
+                price: req.body.price,
+                finalPrice: req.body.finalPrice,
+                state: req.body.state,
+                canceled: req.body.canceled,
+            },
+            { where: {id: req.body.id}
+            })
+        if(reservation[0] === 1){
+            return res.status(200).json(reservation);
+        }
+        return res.status(404).json({message: "not found"});
+    }
+    catch (error) {
+        return res.status(500).json(error);
+    }
+}
 
 // used for cron
 exports.getTodayReservations = async () => {
