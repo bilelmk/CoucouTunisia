@@ -13,6 +13,8 @@ import { RestaurantService } from "../../../../../core/services/http/restaurant.
 export class CbRestaurantsInformationsComponent implements OnInit {
 
   restaurant ;
+  initialRestaurant ;
+
   informationsForm: FormGroup;
 
   isEditMode = false ;
@@ -35,7 +37,9 @@ export class CbRestaurantsInformationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.disableFields() ;
-    this.restaurant = this.restaurantShareService.getRestaurant()
+    this.restaurant = {...this.restaurantShareService.getRestaurant()}
+    this.initialRestaurant = {...this.restaurantShareService.getRestaurant()}
+
     this.informationsForm.patchValue({
       name: this.restaurant.name ,
       description: this.restaurant.description,
@@ -73,14 +77,36 @@ export class CbRestaurantsInformationsComponent implements OnInit {
   }
 
   update(){
-    // this.spinnerService.activate();
-    // let restaurant;
-    // this.restaurantService.update(restaurant).subscribe(
-    //   res => {
-    //   },
-    //   error => {
-    //   }
-    // )
-    // this.isEditMode = false ;
+    this.spinnerService.activate();
+    let restaurant = {
+      ...this.informationsForm.value ,
+      id: this.restaurant.id
+    }
+    this.restaurantService.update(restaurant).subscribe(
+      res => {
+        this.initialRestaurant = { ...restaurant , image:this.restaurant.image } ;
+        this.spinnerService.deactivate();
+        this.isEditMode = false ;
+        this.disableFields();
+      },
+      error => {
+        this.spinnerService.deactivate();
+      }
+    )
+  }
+
+  cancel() {
+    this.isEditMode = false ;
+    this.disableFields();
+    this.restaurant = {...this.initialRestaurant}
+    this.informationsForm.patchValue({
+      name: this.restaurant.name ,
+      description: this.restaurant.description,
+      phone: this.restaurant.phone ,
+      email: this.restaurant.email,
+      webSite: this.restaurant.webSite ,
+      responsable: this.restaurant.responsable,
+      smsMessage: this.restaurant.smsMessage,
+    });
   }
 }

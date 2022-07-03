@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from "../../core/services/http/authentication.service";
 
 @Component({
   selector: 'app-cb-main',

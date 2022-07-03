@@ -1,5 +1,6 @@
 const Restaurant = require('../models/restaurant.model')
 const Sequelize = require('sequelize');
+const Reservation = require("../models/reservation.model");
 // const Client = require("../models/client.model");
 // const Op = Sequelize.Op;
 
@@ -100,16 +101,25 @@ exports.getOne = async ( req, res , next, id ) => {
   }
 }
 
-exports.updateRestaurant = (req, res, next) => {
-  Restaurant.update(req.body, { where: { id: req.params.id } }).then((restaurant) => {
-    return res.status(200).json({
-      restaurant: restaurant
-    })
-  }).catch(err => {
-    return res.status(400).json({
-      message: 'bad request'
-    })
-  })
+exports.update = async (req, res, next) => {
+  try {
+    const restaurant = await Restaurant.update({
+          name: req.body.name,
+          description: req.body.description,
+          email: req.body.email,
+          phone: req.body.phone,
+          webSite: req.body.webSite,
+          responsable: req.body.responsable,
+          smsMessage: req.body.smsMessage,
+        },
+        { where: {id: req.body.id}
+        })
+    if(restaurant[0] === 1) return res.status(200).json(restaurant);
+    else return res.status(404).json({message: "not found"});
+  }
+  catch (error) {
+    return res.status(500).json(error);
+  }
 }
 
 

@@ -2,7 +2,6 @@ const Reservation = require('../models/reservation.model')
 const Restaurant = require('../models/restaurant.model')
 const Client = require('../models/client.model')
 const Sequelize = require("sequelize");
-const Admin = require("../models/admin.model");
 const Op = Sequelize.Op;
 
 exports.add = async (req, res, next) => {
@@ -18,12 +17,8 @@ exports.add = async (req, res, next) => {
             canceled: false ,
         }
         const savedReservation = await Reservation.create(reservation) ;
-        if(savedReservation) {
-            return res.status(200).json(savedReservation);
-        }
-        else {
-            return res.status(500).json({message : "error adding reservation"});
-        }
+        if(savedReservation) return res.status(200).json(savedReservation);
+        else return res.status(500).json({message : "error adding reservation"});
     }
     catch(err)  {
         return res.status(500).json(err);
@@ -42,12 +37,8 @@ exports.getByClient = async (req, res, next) => {
                 {model: Restaurant, as: 'restaurant'},
             ],
         });
-        if(reservations) {
-            return res.status(200).json(reservations);
-        }
-        else {
-            return res.status(404).json({message: "no records"});
-        }
+        if(reservations) return res.status(200).json(reservations);
+        else return res.status(404).json({message: "no records"});
     }
     catch (err) {
         return res.status(500).json(err);
@@ -67,12 +58,8 @@ exports.getAll = async (req, res, next) => {
                 { model: Client, as: 'client' },
             ],
         });
-        if(reservations) {
-            return res.status(200).json(reservations);
-        }
-        else {
-            return res.status(404).json({message: "no records"});
-        }
+        if(reservations) return res.status(200).json(reservations);
+        else return res.status(404).json({message: "no records"});
     }
     catch (err) {
         return res.status(500).json(err);
@@ -82,12 +69,8 @@ exports.getAll = async (req, res, next) => {
 exports.updateState = async (req, res, next) => {
     try {
         const result = await Reservation.update({ state: req.body.state}, {where: { id: req.body.id }});
-        if(result[0] === 1){
-            return res.status(200).json({message: "success"});
-        }
-        else {
-            return res.status(404).json({message: "not found"});
-        }
+        if(result[0] === 1) return res.status(200).json({message: "success"});
+        else return res.status(404).json({message: "not found"});
     }
     catch (err) {
         return res.status(500).json(err);
@@ -97,12 +80,8 @@ exports.updateState = async (req, res, next) => {
 exports.updateCanceled = async (req, res, next) => {
     try {
         const result = await Reservation.update({ canceled: req.body.canceled}, {where: { id: req.body.id }});
-        if(result[0] === 1){
-            return res.status(200).json({message: "success"});
-        }
-        else {
-            return res.status(404).json({message: "not found"});
-        }
+        if(result[0] === 1) return res.status(200).json({message: "success"});
+        else return res.status(404).json({message: "not found"});
     }
     catch (err) {
         return res.status(500).json(err);
@@ -141,10 +120,8 @@ exports.update = async (req, res, next, id) => {
             },
             { where: {id: req.body.id}
             })
-        if(reservation[0] === 1){
-            return res.status(200).json(reservation);
-        }
-        return res.status(404).json({message: "not found"});
+        if(reservation[0] === 1) return res.status(200).json(reservation);
+        else return res.status(404).json({message: "not found"});
     }
     catch (error) {
         return res.status(500).json(error);
@@ -153,16 +130,18 @@ exports.update = async (req, res, next, id) => {
 
 // used for cron
 exports.getTodayReservations = async () => {
-    const date = new Date();date.setHours(0, 0, 0, 0);
-    const reservations = await Reservation.findAll({
-        where: {date: {[Op.eq]: date}},
-        include: [
-            {model: Restaurant, as: 'restaurant'},
-            {model: Client, as: 'client'},
-        ],
-    })
-    if (reservations) {
-        return reservations;
+    try {
+        const date = new Date();date.setHours(0, 0, 0, 0);
+        const reservations = await Reservation.findAll({
+            where: {date: {[Op.eq]: date}},
+            include: [
+                {model: Restaurant, as: 'restaurant'},
+                {model: Client, as: 'client'},
+            ],
+        })
+        if (reservations) return reservations;
+        else return null ;
+    } catch (e) {
+        return null;
     }
-    return null ;
 }

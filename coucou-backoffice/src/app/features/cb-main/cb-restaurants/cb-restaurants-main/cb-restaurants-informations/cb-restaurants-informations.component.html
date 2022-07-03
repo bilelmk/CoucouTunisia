@@ -12,6 +12,11 @@
           edit
         </i>
       </button>
+      <button class="square-btn ml-2" *ngIf="isEditMode" (click)="cancel()">
+        <i class="material-icons icon-blue"  >
+          not_interested
+        </i>
+      </button>
       <button class="square-btn ml-2" *ngIf="isEditMode" (click)="update()">
         <i class="material-icons icon-blue"  >
           save

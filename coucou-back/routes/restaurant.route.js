@@ -9,6 +9,9 @@ router.route('/')
     // })
     .post(upload,(req, res, next) => {
         restaurantService.add(req,res,next)
+    })
+    .put((req, res, next) => {
+        restaurantService.update(req, res, next)
 })
 
 router.route('/lite')
@@ -24,19 +27,17 @@ router.route('/active')
 router.route('/:id')
     .get((req,res,next) => {
         restaurantService.getOne(req,res,next , req.params.id)
-    })
-    .put((req, res, next) => {
-        restaurantService.updateRestaurant(req, res, next)
 })
+
 
 router.route('/block/:id')
     .put((req, res, next) => {
         restaurantService.block(req, res, next , req.params.id);
-    })
+})
 
 router.route('/deblock/:id')
     .put((req, res, next) => {
         restaurantService.deblock(req, res, next , req.params.id);
-    })
+})
 
 module.exports = router;
