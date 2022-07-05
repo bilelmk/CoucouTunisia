@@ -90,4 +90,21 @@ export class CbReservationsComponent implements OnInit {
       }
     )
   }
+
+  getSateName(state: string) {
+    switch (state) {
+      case 'checking':
+        return 'En cours' ;
+      case 'checked':
+        return 'Validée' ;
+      case 'confirmed':
+        return 'Confirmée' ;
+      case 'arrived':
+        return 'Arrivée' ;
+      case 'finished':
+        return 'Finis' ;
+      default:
+        return '' ;
+    }
+  }
 }

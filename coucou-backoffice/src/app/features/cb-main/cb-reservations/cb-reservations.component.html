@@ -76,7 +76,7 @@
       <ng-container matColumnDef="state">
         <mat-header-cell *matHeaderCellDef >Etat</mat-header-cell>
         <mat-cell *matCellDef="let reservation" >
-          <p class="cell-text" > {{reservation.state}} </p>
+          <p class="cell-text" > {{getSateName(reservation.state)}} </p>
         </mat-cell>
       </ng-container>
 

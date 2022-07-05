@@ -1,8 +1,5 @@
 const Restaurant = require('../models/restaurant.model')
-const Sequelize = require('sequelize');
-const Reservation = require("../models/reservation.model");
-// const Client = require("../models/client.model");
-// const Op = Sequelize.Op;
+
 
 exports.add = async (req, res, next) => {
   try {
@@ -33,11 +30,6 @@ exports.add = async (req, res, next) => {
   } catch(error) {
     return res.status(500).json(error)
   }
-
-
-    // .then((restaurent) => {
-    //   return res.status(201).json(restaurent)
-    // }).
 }
 
 // exports.getAll = (req, res, next) => {
