@@ -1,4 +1,4 @@
 export const environment = {
   production: false ,
-  url: "http://localhost:3006" ,
+  url: "https://www.coco.backoffice.cocotunisia.tn" ,
 };
