@@ -31,7 +31,8 @@
               [currentDate]="calendar.currentDate"
               [step]="calendar.step"
               (onCurrentDateChanged)="onDateChanged($event)"
-              [startingDayMonth]="1">
+              [startingDayMonth]="1"
+              [dateFormatter]="calendar.dateFormatter">
     </calendar>
 
     <ion-row class="ion-margin-top ion-justify-content-center">

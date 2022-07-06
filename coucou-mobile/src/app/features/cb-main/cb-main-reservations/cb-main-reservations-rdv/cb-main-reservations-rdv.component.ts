@@ -15,12 +15,18 @@ export class CbMainReservationsRdvComponent implements OnInit {
   @Input() restaurants ;
   @Input() restaurant ;
 
-  monthEn = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November' , 'December'];
+  monthFr = [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre' , 'Décembre'];
   months: any;
   calendar = {
     mode: 'month' as CalendarMode,
     step: 30 as Step,
     currentDate: new Date() ,
+    dateFormatter: {
+      formatMonthViewDayHeader(date:Date) {
+        const dayFr = [ 'Dim' , 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+        return dayFr[date.getDay()];
+      },
+    }
   };
 
   date = '';
@@ -43,9 +49,9 @@ export class CbMainReservationsRdvComponent implements OnInit {
     }
     const date = new Date ;
     this.months = {
-      previous: date.getMonth() === 0 ? this.monthEn[11] : this.monthEn[date.getMonth() - 1] || '',
-      current: this.monthEn[date.getMonth()] || '',
-      next: date.getMonth() === 11 ? this.monthEn[0] : this.monthEn[date.getMonth() + 1] || '',
+      previous: date.getMonth() === 0 ? this.monthFr[11] : this.monthFr[date.getMonth() - 1] || '',
+      current: this.monthFr[date.getMonth()] || '',
+      next: date.getMonth() === 11 ? this.monthFr[0] : this.monthFr[date.getMonth() + 1] || '',
     };
   }
 
@@ -65,9 +71,9 @@ export class CbMainReservationsRdvComponent implements OnInit {
     }
     const date = new Date(event);
     this.months = {
-      previous: date.getMonth() === 0 ? this.monthEn[11] : this.monthEn[date.getMonth() - 1] || '',
-      current: this.monthEn[date.getMonth()] || '',
-      next: date.getMonth() === 11 ? this.monthEn[0] : this.monthEn[date.getMonth() + 1] || '',
+      previous: date.getMonth() === 0 ? this.monthFr[11] : this.monthFr[date.getMonth() - 1] || '',
+      current: this.monthFr[date.getMonth()] || '',
+      next: date.getMonth() === 11 ? this.monthFr[0] : this.monthFr[date.getMonth() + 1] || '',
     };
   }
 
