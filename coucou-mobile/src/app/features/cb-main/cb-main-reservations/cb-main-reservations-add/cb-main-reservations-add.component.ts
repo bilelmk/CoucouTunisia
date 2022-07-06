@@ -104,13 +104,13 @@ export class CbMainReservationsAddComponent {
       finalPrice: price
     };
     this.alertController.create({
-        header: 'Récapitulation',
+        header: 'récapitulatif',
         message: '<p><b>Nombre d\'adultes</b> ' + this.adultNumber + '</p>' +
                  '<p><b>Nombre d\'enfants</b> ' + this.childrenNumber + '</p>' +
                  '<p><b>Nombre de bébé</b> ' + this.babeNumber + '</p>' +
                  '<p><b>Nombre de voitures</b> ' + this.carNumber + '</p>' +
                  '<p><b>Mise en place</b> ' + this.selectedRoomName + '</p>' +
-                 '<p><b>Prix finale ( Aproximative )</b> ' + price + '</p>',
+                 '<p><b>Estimation de prix</b> ' + price + '</p>',
       buttons: [
         {
           text: 'Annuler',

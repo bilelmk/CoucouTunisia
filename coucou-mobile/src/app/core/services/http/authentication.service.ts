@@ -36,6 +36,10 @@ export class AuthenticationService {
     return this.http.post<any>(environment.url + 'clients/send-reset-password-code', request);
   }
 
+  sendPhoneCode(request: any): Observable<any> {
+    return this.http.post<any>(environment.url + 'clients/send-phone-verification-code', request);
+  }
+
   verifyPassowrdCode(request: any): Observable<any> {
     return this.http.post<any>(environment.url + 'clients/check-reset-password-code', request);
   }

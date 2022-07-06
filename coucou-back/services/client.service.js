@@ -162,6 +162,37 @@ exports.checkResetPasswordCode = async (req, res, next) => {
     }
 }
 
+exports.sendPhoneVerificationCode = async (req, res, next) => {
+    try {
+        const client = await Client.findByPk(req.body.id)
+        if (!client) return res.status(405).json({
+            message: 'client not found'
+        })
+        const phoneVerificationCode = await PhoneConfirmationCode.create({
+            clientId: client.id,
+            code: helpers.random()
+        })
+
+        const senderNumber = 50109769;
+        const senderName = "CocoTunisia";
+        let content = "Your confirmation code: " + phoneVerificationCode.code;
+        const isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, client.phone, content)
+        if (isSmsSent) {
+            res.status(200).json({
+                message: 'phone confirmation code has been sent',
+            });
+        } else {
+            res.status(500).json({
+                message: "sms not sent"
+            });
+        }
+    } catch (err) {
+        return res.status(500).json({
+            message: err
+        })
+    }
+}
+
 exports.sendResetPasswordCode = async (req, res, next) => {
     try {
         const { phone } = req.body

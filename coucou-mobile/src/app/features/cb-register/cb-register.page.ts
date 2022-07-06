@@ -37,7 +37,7 @@ export class CbRegisterPage implements OnInit {
     const request: RegisterRequest = { ...this.form.value };
     this.authenticationService.signup(request).subscribe(
         res => {
-          this.router.navigate(['/cb-verify-phone-code']);
+          this.router.navigate(['/cb-verify-phone-code' , res.id]);
           this.toastService.show('Votre compte à été créé avec succès' ,'success') ;
           this.spinnerService.deactivate() ;
         }, error => {

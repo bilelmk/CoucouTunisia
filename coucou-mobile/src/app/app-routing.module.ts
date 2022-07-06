@@ -25,7 +25,7 @@ const routes: Routes = [
     loadChildren: () => import('./features/cb-verify-password-code/cb-verify-password-code.module').then(m => m.CbVerifyPasswordCodePageModule)
   },
   {
-    path: 'cb-verify-phone-code',
+    path: 'cb-verify-phone-code/:id',
     loadChildren: () => import('./features/cb-verify-phone-code/cb-verify-phone-code.module').then(m => m.CbVerifyPhoneCodePageModule)
   },
   {

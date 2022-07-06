@@ -19,6 +19,11 @@ router.route('/check-phone-verification-code')
         clientService.checkPhoneVerificationCode(req, res, next);
 })
 
+router.route('/send-phone-verification-code')
+    .post((req, res, next) => {
+        clientService.sendPhoneVerificationCode(req, res, next);
+    })
+
 router.route('/check-reset-password-code')
     .post((req, res, next) => {
         clientService.checkResetPasswordCode(req, res, next);

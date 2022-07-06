@@ -15,7 +15,11 @@
         </ion-col>
 
         <ion-col size="10" size-sm="7">
-          <ion-button (click)="onVerifyCode()" class="btn-light" expand="block" [disabled]="!form.valid">Confirmer</ion-button>
+          <ion-button (click)="onVerifyCode()" class="btn-primary" expand="block" [disabled]="!form.valid">Confirmer</ion-button>
+        </ion-col>
+
+        <ion-col size="10" size-sm="7">
+          <ion-button (click)="sendCode()" class="btn-light" expand="block" >Envoyer un nouveau code</ion-button>
         </ion-col>
 
       </ion-row>
