@@ -9,7 +9,7 @@ exports.add = async (req, res, next) => {
       active: true
     }
     console.log(req.body)
-    const existRestaurant = await Restaurant.findOne({ where: { phone: req.body.restaurant.phone.toString() } })
+    const existRestaurant = await Restaurant.findOne({ where: { phone: restaurant.phone.toString() } })
     if (existRestaurant) res.status(405).json({ message: 'phone exist!' })
     console.log("2")
     restaurant.image = req.files.image[0].filename
