@@ -110,7 +110,7 @@ export class CbMainReservationsAddComponent {
                  '<p><b>Nombre de bébé</b> ' + this.babeNumber + '</p>' +
                  '<p><b>Nombre de voitures</b> ' + this.carNumber + '</p>' +
                  '<p><b>Mise en place</b> ' + this.selectedRoomName + '</p>' +
-                 '<p><b>Estimation de prix</b> ' + price + '</p>',
+                 '<p><b>Estimation de prix</b> ' + price + 'DT</p>',
       buttons: [
         {
           text: 'Annuler',

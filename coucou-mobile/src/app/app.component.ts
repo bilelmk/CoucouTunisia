@@ -28,7 +28,7 @@ export class AppComponent {
   ) {
     this.platform.ready().then(() => {
       this.disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-        this.networkErrorService.present();
+        this.networkErrorService?.present();
       });
       this.connectSubscription = this.network.onConnect().subscribe(() => {
         this.networkErrorService.dismiss();
@@ -38,6 +38,7 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
 
   // setupPush(){
   //   this.oneSignal.startInit('4b37f1c2-3dfe-4df3-a3fc-edd7b81a175c', '522769664239');

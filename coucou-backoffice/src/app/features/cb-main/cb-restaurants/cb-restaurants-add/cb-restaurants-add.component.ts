@@ -278,6 +278,7 @@ export class CbRestaurantsAddComponent implements OnInit {
         this.snackbarService.openSnackBar('Erreur lors de l\'ajout de restaurant', 'fail');
         this.spinnerService.deactivate() ;
         this.formData = new FormData();
+        console.log(error)
       },
     );
   }
