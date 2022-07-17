@@ -231,6 +231,7 @@ export class CbRestaurantsAddComponent implements OnInit {
     this.formData.append('image' ,   this.image ) ;
 
     const restaurant = {
+      smsMessage: this.informationsForm.value.smsMessage ,
       name: this.informationsForm.value.name ,
       description:  this.informationsForm.value.description ,
       phone:  this.informationsForm.value.phone,
