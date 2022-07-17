@@ -10,25 +10,26 @@ exports.add = async (req, res, next) => {
     }
     const existRestaurant = await Restaurant.findOne({ where: { phone: req.body.restaurant.phone.toString() } })
     if (existRestaurant) res.status(405).json({ message: 'phone exist!' })
-
+    console.log("2")
     restaurant.image = req.files.image[0].filename
 
     restaurant.menus =  restaurant.menus ? restaurant.menus.map((element, index) => {
       return { ...element, image: req.files.menuImages[index].filename }
     }) : []
-
+    console.log("3")
     restaurant.rooms = restaurant.rooms ? restaurant.rooms.map((element, index) => {
       return { ...element, image: req.files.roomImages[index].filename }
     }) : []
-
+    console.log("4")
     restaurant.images = restaurant.images.map((element, index) => {
       return { ...element, image: req.files.restaurantImages[index].filename }
     })
-
+    console.log("5")
     const addedRestaurant = await Restaurant.create(restaurant, { include: ['rooms', 'planning', 'menus', 'images'] }) ;
     return res.status(200).json(addedRestaurant);
 
   } catch(error) {
+    console.log(error)
     return res.status(500).json(error)
   }
 }
