@@ -223,6 +223,7 @@ export class CbRestaurantsAddComponent implements OnInit {
 
   // general
   addRestaurant() {
+
     this.spinnerService.activate() ;
 
     this.rooms.forEach(room => room.image = "");
@@ -268,6 +269,7 @@ export class CbRestaurantsAddComponent implements OnInit {
       longitude: this.marker._latlng.lng ,
       latitude: this.marker._latlng.lat
     };
+    console.log(restaurant)
     this.formData.append('restaurant', JSON.stringify(restaurant));
     this.restaurantService.add(this.formData).subscribe(
       res => {
