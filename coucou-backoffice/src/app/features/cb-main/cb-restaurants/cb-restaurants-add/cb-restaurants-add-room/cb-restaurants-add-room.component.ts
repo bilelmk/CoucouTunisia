@@ -36,7 +36,6 @@ export class CbRestaurantsAddRoomComponent implements OnInit {
 
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
-    alert(JSON.stringify(event.base64))
     this.fileToReturn = Helpers.base64ToFile(
       event.base64,
       this.imageChangedEvent.target.files[0].name,
@@ -45,7 +44,6 @@ export class CbRestaurantsAddRoomComponent implements OnInit {
   }
 
   add() {
-    alert(JSON.stringify(this.fileToReturn ))
     let menu = {
       ...this.form.value ,
       image: this.croppedImage ,
