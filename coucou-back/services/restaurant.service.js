@@ -2,6 +2,7 @@ const Restaurant = require('../models/restaurant.model')
 
 
 exports.add = async (req, res, next) => {
+  console.log("*****************************************************************")
   try {
     const restaurant = {
       ...JSON.parse(req.body.restaurant),
