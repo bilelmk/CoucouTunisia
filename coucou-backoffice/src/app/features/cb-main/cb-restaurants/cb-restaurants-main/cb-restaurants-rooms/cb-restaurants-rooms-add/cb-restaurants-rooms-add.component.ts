@@ -70,7 +70,6 @@ export class CbRestaurantsRoomsAddComponent implements OnInit {
       error => {
         this.snackbarService.openSnackBar('Erreur lors de l\'ajout', 'fail');
         this.spinnerService.deactivate() ;
-        console.log(error)
       }
     )
   }
