@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpinnerService } from '../../../../core/services/in-app/spinner.service';
 import { RestaurantService } from '../../../../core/services/http/restaurant.service';
@@ -8,6 +8,7 @@ import {
     CbMainReservationsRdvComponent
 } from '../../cb-main-reservations/cb-main-reservations-rdv/cb-main-reservations-rdv.component';
 import { ModalController } from '@ionic/angular';
+import {CallNumber} from "@ionic-native/call-number/ngx";
 
 @Component({
   selector: 'app-cb-main-home-restaurant-details',
@@ -39,7 +40,8 @@ export class CbMainHomeRestaurantDetailsPage {
               private spinnerService: SpinnerService,
               private restaurantService: RestaurantService,
               private modalController: ModalController,
-              private router: Router) {}
+              private router: Router,
+              private callNumber: CallNumber) {}
 
   ionViewWillEnter() {
        this.loading = true ;
@@ -61,8 +63,9 @@ export class CbMainHomeRestaurantDetailsPage {
 
      // location
      createMap() {
+      console.log(this.restaurant)
         if (!this.map) {
-            const coordinate = {lat: 36.786967, lng: 10.184326};
+            const coordinate = {lat: this.restaurant.latitude, lng: this.restaurant.longitude};
             const zoomLevel = 10;
             this.map = L.map('map', {
                 center: [coordinate.lat, coordinate.lng],
@@ -79,9 +82,9 @@ export class CbMainHomeRestaurantDetailsPage {
         }
      }
 
-     setMarkerCoordinate(event: any){
-         this.marker.setLatLng([event.latlng.lat, event.latlng.lng]);
-     }
+     // setMarkerCoordinate(event: any){
+     //     this.marker.setLatLng([event.latlng.lat, event.latlng.latitude]);
+     // }
 
     openAddReservationModal() {
         this.modalController.create({
@@ -94,5 +97,12 @@ export class CbMainHomeRestaurantDetailsPage {
 
     close() {
         this.router.navigate(['/main/home']);
+    }
+
+    call() {
+        this.callNumber.callNumber('50117077', true)
+            .then(res => console.log('Launched dialer!', res))
+            .catch(err => console.log('Error launching dialer', err));
+
     }
 }

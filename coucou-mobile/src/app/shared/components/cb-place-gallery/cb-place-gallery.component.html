@@ -2,7 +2,7 @@
   <ion-slide  *ngFor="let room of rooms">
     <img src="{{url + room?.image}}" tappable >
     <div>
-      <p>{{room.name + " : " + room.packPrice + "dt pour adultes et " + room.packChildrenPrice+ "dt pour enfants "}}</p>
+      <p>{{room.name + " : " + room.packPrice + "dt/adulte - " + room.packChildrenPrice+ "dt/enfant "}}</p>
     </div>
   </ion-slide>
 </ion-slides>

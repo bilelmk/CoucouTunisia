@@ -57,7 +57,7 @@ export class CbMainReservationsListComponent {
   }
 
   loadMoreData(event: any) {
-    this.offset ++ ;
+    this.offset += 10 ;
     const searchRequest = {
       offset: this.offset ,
       limit : this.limit ,

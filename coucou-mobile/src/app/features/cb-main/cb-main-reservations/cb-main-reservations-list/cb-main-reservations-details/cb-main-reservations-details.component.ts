@@ -64,7 +64,7 @@ export class CbMainReservationsDetailsComponent implements OnInit {
     };
     this.reservationService.updateCanceled(canceled).subscribe(
         res => {
-          this.toastService.show('Votre réservation a été annuler', 'success');
+          this.toastService.show('Votre réservation est annulée', 'success');
           this.modalController.dismiss({id: reservation.id});
           this.spinnerService.deactivate() ;
         },
@@ -83,7 +83,7 @@ export class CbMainReservationsDetailsComponent implements OnInit {
     };
     this.reservationService.updateState(state).subscribe(
         res => {
-          this.toastService.show('Votre réservation a été confimer', 'success');
+          this.toastService.show('Votre réservation est confirmée', 'success');
           this.modalController.dismiss();
           reservation.state = 'confirmed' ;
           this.spinnerService.deactivate() ;

@@ -30,7 +30,7 @@
 
     <ion-row class="ion-margin-top">
       <ion-col size="12">
-        <p class="details-name">Nos Emplacements</p>
+        <p class="details-name">Nos mises en place</p>
       </ion-col>
     </ion-row>
 
@@ -38,7 +38,7 @@
 
     <ion-row class="ion-margin-top">
       <ion-col size="12">
-        <p class="details-name">Notre Galerie</p>
+        <p class="details-name">Photos</p>
       </ion-col>
     </ion-row>
 
@@ -64,9 +64,16 @@
     </ion-button>
   </div>
 
+  <div class="ion-padding-start ion-padding-end mb-10 mt-10"  *ngIf="!error && !loading">
+    <ion-button (click)="call()" class="btn-secondary"  expand="block" >
+      Assistance
+      <ion-icon slot="start" name="help-circle"></ion-icon>
+    </ion-button>
+  </div>
+
 </div>
 
 
 
-<app-cb-errors [exist]="error && !loading" [message]="'Un erreur est servenue essayé plus tard'" [icon]="'bug-outline'"></app-cb-errors>
+<app-cb-errors [exist]="error && !loading" [message]="'Une erreur est survenue essayer plus tard'" [icon]="'bug-outline'"></app-cb-errors>
 

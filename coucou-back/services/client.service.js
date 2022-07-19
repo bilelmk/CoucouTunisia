@@ -48,7 +48,7 @@ exports.signup = async (req, res, next) => {
         // send sms
         const senderNumber = 50109769;
         const senderName = "CocoTunisia" ;
-        let content = "Your confirmation code: " + phoneConfirmationCode.code ;
+        let content = "Votre code de confirmation est : " + phoneConfirmationCode.code ;
         let isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, req.body.phone , content)
         if (isSmsSent) {
             await transaction.commit();
@@ -175,7 +175,7 @@ exports.sendPhoneVerificationCode = async (req, res, next) => {
 
         const senderNumber = 50109769;
         const senderName = "CocoTunisia";
-        let content = "Your confirmation code: " + phoneVerificationCode.code;
+        let content = "Votre code de confirmation est : " + phoneVerificationCode.code;
         const isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, client.phone, content)
         if (isSmsSent) {
             res.status(200).json({
@@ -211,7 +211,7 @@ exports.sendResetPasswordCode = async (req, res, next) => {
 
         const senderNumber = 50109769;
         const senderName = "CocoTunisia";
-        let content = "Your reset password code: " + resetPasswordCode.code;
+        let content = "Votre code de réinitialisation est : " + resetPasswordCode.code;
         const isSmsSent = await smsUtil.sendOneSms(senderName, senderNumber, phone, content)
         if (isSmsSent) {
             res.status(200).json({
