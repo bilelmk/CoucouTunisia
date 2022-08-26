@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthenticationGuard } from './core/guards/authentication.guard';
+import { AuthenticationGuard } from '../../../coucou-mobile-v6/src/app/core/guards/authentication.guard';
 
 const routes: Routes = [
   {

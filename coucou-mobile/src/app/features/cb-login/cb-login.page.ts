@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SpinnerService } from '../../core/services/in-app/spinner.service';
-import { ToastService } from '../../core/services/in-app/toast.service';
-import { LoginRequest } from '../../core/dtos/login-request';
-import { AuthenticationService } from '../../core/services/http/authentication.service';
+import { SpinnerService } from '../../../../../coucou-mobile-v6/src/app/core/services/in-app/spinner.service';
+import { ToastService } from '../../../../../coucou-mobile-v6/src/app/core/services/in-app/toast.service';
+import { LoginRequest } from '../../../../../coucou-mobile-v6/src/app/core/dtos/login-request';
+import { AuthenticationService } from '../../../../../coucou-mobile-v6/src/app/core/services/http/authentication.service';
 
 @Component({
   selector: 'app-cb-login',

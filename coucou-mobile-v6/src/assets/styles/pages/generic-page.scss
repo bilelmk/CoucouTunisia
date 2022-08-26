@@ -1,0 +1,16 @@
+.page {
+
+    &-title {
+        font-size: 22px;
+        font-family: "Poppins-Bold" ;
+        line-height: 24px;
+
+        &-primary {
+          color: var(--ion-color-primary);
+        }
+
+        &-light {
+            color: var(--ion-color-light);
+        }
+    }
+}

@@ -1,0 +1,70 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" >
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon color="secondary" slot="icon-only" name="arrow-back" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center toolbar">Nouvelle réservation</ion-title>
+    <ion-buttons slot="end">
+      <ion-button disabled="true">
+        <ion-icon color="primary" slot="icon-only" name=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <p class="page-title mt-15">Informations </p>
+  <p class="page-title">relatives à la réservation</p>
+
+  <ion-row class="ion-justify-content-center mt-50 ">
+
+    <ion-col size="12" class="form-card">
+      <p class="form-card-label">Nombre d'adultes</p>
+      <input placeholder="Mentionner le nombre d'adultes" class="form-card-input"  [(ngModel)]="adultNumber" type="number"/>
+    </ion-col>
+
+    <ion-col size="12" class="form-card">
+      <p class="form-card-label">Nombre d'enfants</p>
+      <input placeholder="Mentionner le nombre d'enfants" class="form-card-input" [(ngModel)]="childrenNumber" type="number"/>
+    </ion-col>
+
+    <ion-col size="12" class="form-card">
+      <p class="form-card-label">Nombre de bébé</p>
+      <input placeholder="Mentionner le nombre de bébé" class="form-card-input"  [(ngModel)]="babeNumber" type="number"/>
+    </ion-col>
+
+    <ion-col size="12" class="form-card">
+      <p class="form-card-label">Nombre de voitures</p>
+      <input placeholder="Mentionner le nombre de voitures" class="form-card-input" [(ngModel)]="carNumber" type="number"/>
+    </ion-col>
+
+    <ion-col size="12" class="form-card">
+      <p class="form-card-label">Heure approximative d'arrivée</p>
+      <ion-datetime placeholder="Mentionner l'heure approximative d'arrivée" min="09:00" max="19:00" pickerFormat="HH:mm" displayFormat="HH:mm" [(ngModel)]="time"></ion-datetime>
+    </ion-col>
+
+    <ion-col size="12" class="form-card">
+      <p class="form-card-label">Emplacement</p>
+      <input onfocus="blur();" [value]="selectedRoomName" (click)="roomRef.open() && showAlert()" placeholder="Choisir un emplacement: Paillote, Cabane, Parasol... " class="form-card-input"  type="text"/>
+
+      <ion-select [(ngModel)]="selectedRoomId" class="input" #roomRef  (ionChange)="onRoomSelect()">
+        <ion-select-option   *ngFor="let room of restaurant?.rooms" value="{{room.id}}">{{room.name}}</ion-select-option>
+      </ion-select>
+
+    </ion-col>
+
+    <ion-col size="12" class="form-card">
+      <p class="form-card-label">Note</p>
+      <input placeholder="Si vous avez des demandes ou des remarques" class="form-card-input" [(ngModel)]="note" type="text"/>
+    </ion-col>
+
+    <ion-col size="12" size-sm="7" class="ion-no-padding ion-margin-top">
+       <ion-button [disabled]="!checkFields()" (click)="recap()" class="btn-primary"  expand="block" >confirmer la demande</ion-button>
+    </ion-col>
+
+  </ion-row>
+
+</ion-content>

@@ -1,0 +1,16 @@
+{
+    "menu" : {
+        "logout": "Se déconnecter"
+    },
+    "home" : {
+        "welcome": "Bienvenu"
+    },
+    "requests" : {
+        "IN_PROGRESS": "En cours" ,
+        "PART_UNAVAILABLE": "Piéce introuvable" ,
+        "WAITING_FOR_PART": "En attente de piéce" ,
+        "NON_REPARABLE": "Non réparable" ,
+        "REPARED": "Réparé"
+    }
+}
+

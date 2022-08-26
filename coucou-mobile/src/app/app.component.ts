@@ -4,8 +4,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Subscription } from 'rxjs';
 import { Network } from '@ionic-native/network/ngx';
-import { TraductionService } from './core/services/in-app/traduction.service';
-import { NetworkErrorService } from './core/services/in-app/network-error.service';
+import { TraductionService } from '../../../coucou-mobile-v6/src/app/core/services/in-app/traduction.service';
+import { NetworkErrorService } from '../../../coucou-mobile-v6/src/app/core/services/in-app/network-error.service';
 
 @Component({
   selector: 'app-root',

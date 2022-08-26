@@ -28,10 +28,10 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx' ;
 import { NgxTrimModule } from 'ngx-trim';
-import { SpinnerComponent } from './core/components/spinner/spinner.component';
-import { AuthenticationInterceptor } from './core/interceptors/authentication-interceptor';
+import { SpinnerComponent } from '../../../coucou-mobile-v6/src/app/core/components/spinner/spinner.component';
+import { AuthenticationInterceptor } from '../../../coucou-mobile-v6/src/app/core/interceptors/authentication-interceptor';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { NetworkErrorComponent } from './core/components/network-error/network-error.component';
+import { NetworkErrorComponent } from '../../../coucou-mobile-v6/src/app/core/components/network-error/network-error.component';
 // import { AuthInterceptor } from './core/interceptors/auth-interceptor';
 
 // fuction needed for traduction

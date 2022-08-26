@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { SpinnerService } from '../../../../core/services/in-app/spinner.service';
-import { ToastService } from '../../../../core/services/in-app/toast.service';
+import { SpinnerService } from '../../../../../../../coucou-mobile-v6/src/app/core/services/in-app/spinner.service';
+import { ToastService } from '../../../../../../../coucou-mobile-v6/src/app/core/services/in-app/toast.service';
 import { CalendarMode, Step } from 'ionic2-calendar/calendar';
 import { CbMainReservationsAddComponent } from '../cb-main-reservations-add/cb-main-reservations-add.component';
 

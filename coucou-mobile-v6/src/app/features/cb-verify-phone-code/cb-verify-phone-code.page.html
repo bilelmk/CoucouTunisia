@@ -1,0 +1,29 @@
+<ion-content fullscreen="true" class="auth">
+  <ion-grid style="padding-top: calc((100vh - 500px) / 2)">
+
+    <ion-row class="ion-justify">
+      <ion-col class="ion-text-center" size="12">
+        <img class="auth-image" src="../../../assets/image/logo.png" alt="logo">
+      </ion-col>
+    </ion-row>
+
+    <form [formGroup]="form" >
+      <ion-row class="ion-justify-content-center">
+
+        <ion-col size="10" size-sm="7">
+          <input formControlName="code" class="auth-input" type="text" placeholder="Entrez le code" />
+        </ion-col>
+
+        <ion-col size="10" size-sm="7">
+          <ion-button (click)="onVerifyCode()" class="btn-primary" expand="block" [disabled]="!form.valid">Confirmer</ion-button>
+        </ion-col>
+
+        <ion-col size="10" size-sm="7">
+          <ion-button (click)="sendCode()" class="btn-light" expand="block" >Envoyer un nouveau code</ion-button>
+        </ion-col>
+
+      </ion-row>
+    </form>
+  </ion-grid>
+
+</ion-content>

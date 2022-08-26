@@ -1,0 +1,104 @@
+.card {
+    border-radius: 20px ;
+
+    box-shadow: -1px 33px 50px -10px rgba(0,0,0,0.2);
+}
+
+.card-title {
+    font-size: 12px !important;
+    --color	: var(--ion-color-secondary)
+}
+
+
+
+.section-card {
+
+    margin-top: 50px;
+    box-shadow: -1px 33px 50px -10px rgba(0,0,0,0.1);
+    border-radius: 20px ;
+
+    &-title {
+        font-size: 16px !important;
+        font-family: "Poppins-Bold" !important;
+    }
+
+    &-text {
+        font-size: 12px !important;
+        font-family: "Poppins-Regular" !important;
+    }
+}
+
+
+.form-card {
+    border-radius: 20px ;
+    background: white;
+    padding: 15px;
+    margin: 5px 0;
+    box-shadow: -1px 26px 86px -28px rgba(0,0,0,0.57);
+
+    &-label {
+        font-size: 14px;
+        font-family: "Poppins-bold" !important;
+    }
+
+    &-text {
+        font-size: 12px;
+        font-family: "Poppins-Regular" !important;
+        margin: 0 !important ;
+    }
+
+    &-input {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 12px;
+        font-family: "Poppins-Regular" !important;
+        background: white;
+    }
+
+    &-img {
+
+        &-logo {
+            font-size: 30px;
+        }
+
+        &-text {
+            font-size: 13px;
+            font-family: "Poppins-Regular" !important;
+        }
+    }
+
+    &-number {
+        font-size: 13px;
+        margin-bottom: 0 !important;
+    }
+
+    &-icon {
+        border-radius: 8px;
+        font-size: 20px;
+        padding: 7px;
+        color: var(--ion-color-light);
+        background: var(--ion-color-primary);
+    }
+
+    &-icon-text {
+        position: relative;
+        bottom: 10px;
+        left: 7px;
+    }
+}
+
+.form-header{
+
+    &-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+
+    &-name {
+        margin-top: 10px !important;
+        font-size: 18px;
+        font-family: "Poppins-Regular" !important;
+    }
+}

@@ -1,0 +1,57 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md" >
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon color="secondary" slot="icon-only" name="arrow-back" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center toolbar">Nouvelle réservation</ion-title>
+    <ion-buttons slot="end">
+      <ion-button disabled="true">
+        <ion-icon color="primary" slot="icon-only" name=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div>
+    <p class="page-title">Sélectionner la date</p>
+    <p class="page-title">de réservation</p>
+
+    <ion-row class="ion-margin-bottom mt-50">
+<!--      <ion-col class="calendar-months ion-text-center" size="4">{{months?.previous}}</ion-col>-->
+<!--      <ion-col class="calendar-months-current ion-text-center" size="4">{{months?.current}}</ion-col>-->
+<!--      <ion-col class="calendar-months ion-text-center" size="4">{{months?.next}}</ion-col>-->
+    </ion-row>
+
+<!--    <calendar [showEventDetail] = "false"-->
+<!--              [calendarMode]="calendar.mode"-->
+<!--              [currentDate]="calendar.currentDate"-->
+<!--              [step]="calendar.step"-->
+<!--              (onCurrentDateChanged)="onDateChanged($event)"-->
+<!--              [startingDayMonth]="1"-->
+<!--              [dateFormatter]="calendar.dateFormatter">-->
+<!--    </calendar>-->
+
+    <ion-row class="ion-margin-top ion-justify-content-center">
+      <ion-col size="12" class="form-card">
+        <p class="form-card-label">Restaurants</p>
+        <input onfocus="blur();" [disabled]="restaurant != null" [value]="selectedRestaurantName" (click)="modelRef.open()" placeholder="Choisir un restaurant" class="form-card-input"  type="text"/>
+
+        <ion-select [disabled]="restaurant != null" [(ngModel)]="selectedRestaurantId" class="input" #modelRef  (ionChange)="onRestaurantSelect()">
+          <ion-select-option   *ngFor="let restaurantItem of restaurants" value="{{restaurantItem.id}}">{{restaurantItem.name}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+<!--    <ion-row class="ion-justify-content-center">-->
+<!--      <ion-col size="12" size-sm="7" class="ion-no-padding ion-margin-top">-->
+<!--        <ion-button [disabled]="!(selectedRestaurantName && selectedRestaurantId && date)" (click)="next()" class="btn-primary"  expand="block">Suivant</ion-button>-->
+<!--      </ion-col>-->
+<!--    </ion-row>-->
+
+  </div>
+
+</ion-content>

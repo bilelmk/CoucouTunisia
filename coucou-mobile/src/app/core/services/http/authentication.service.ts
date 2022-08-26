@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import { LoginRequest } from '../../dtos/login-request';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../../coucou-mobile/src/environments/environment';
 import { RegisterRequest } from '../../dtos/register-request';
 
 @Injectable({

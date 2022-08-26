@@ -1,0 +1,17 @@
+.cnx-container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.cnx-icon {
+		font-size: 100px;
+		color: var(--ion-color-medium-shade);
+	}
+
+	.cnx-text {
+		font-size: 15px;
+		color: var(--ion-color-medium-shade);
+		font-family: "Poppins-Medium";
+	}
+}

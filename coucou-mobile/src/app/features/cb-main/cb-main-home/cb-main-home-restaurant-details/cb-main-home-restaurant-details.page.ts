@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SpinnerService } from '../../../../core/services/in-app/spinner.service';
-import { RestaurantService } from '../../../../core/services/http/restaurant.service';
+import { SpinnerService } from '../../../../../../../coucou-mobile-v6/src/app/core/services/in-app/spinner.service';
+import { RestaurantService } from '../../../../../../../coucou-mobile-v6/src/app/core/services/http/restaurant.service';
 import * as L from 'leaflet';
 import { environment } from '../../../../../environments/environment';
 import {

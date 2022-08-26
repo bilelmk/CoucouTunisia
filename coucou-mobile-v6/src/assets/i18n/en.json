@@ -1,0 +1,8 @@
+{
+    "menu" : {
+        "logout": "Logout"
+    },
+    "home" : {
+        "welcome": "Welcome"
+    }
+}

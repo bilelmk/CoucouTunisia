@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border" *ngIf="!error && !loading">
+  <ion-toolbar color="transparent" mode="md">
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon color="light" slot="icon-only" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div style="position:absolute; text-align: center ; width: 100%" *ngIf="!error && !loading" >
+  <div class="details-img" [style.background-image]="'url(' + url + restaurant?.image +')'"></div>
+</div>
+
+<div class="details-container" style="overflow-y: scroll !important; margin-top : calc(20vh - 30px )"  >
+
+  <div class="ion-padding-start ion-padding-end"  *ngIf="!error && !loading" >
+
+    <ion-row class="ion-margin-top">
+      <ion-col size="12">
+        <p class="details-name">{{restaurant?.name}}</p>
+      </ion-col>
+
+      <ion-col size="12">
+        <p class="details-description">{{restaurant?.description}}</p>
+      </ion-col>
+    </ion-row>
+
+    <app-cb-pack-gallery [menus]="restaurant?.menus"></app-cb-pack-gallery>
+
+    <ion-row class="ion-margin-top">
+      <ion-col size="12">
+        <p class="details-name">Nos mises en place</p>
+      </ion-col>
+    </ion-row>
+
+    <app-cb-place-gallery [rooms]="restaurant?.rooms"></app-cb-place-gallery>
+
+    <ion-row class="ion-margin-top">
+      <ion-col size="12">
+        <p class="details-name">Photos</p>
+      </ion-col>
+    </ion-row>
+
+    <app-cb-gallery [images]="restaurant?.images"></app-cb-gallery>
+
+    <ion-row class="ion-margin-top">
+      <ion-col size="12">
+        <p class="details-name">Localisation</p>
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+  <div class="map-container ">
+    <div class="map-frame">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <div class="ion-padding-start ion-padding-end" *ngIf="!error && !loading">
+    <ion-button (click)="openAddReservationModal()" class="btn-primary"  expand="block" >
+      Réserver
+    </ion-button>
+  </div>
+
+  <div class="ion-padding-start ion-padding-end mb-10 mt-10"  *ngIf="!error && !loading">
+    <ion-button (click)="call()" class="btn-secondary"  expand="block" >
+      Assistance
+      <ion-icon slot="start" name="help-circle"></ion-icon>
+    </ion-button>
+  </div>
+
+</div>
+
+
+
+<app-cb-errors [exist]="error && !loading" [message]="'Une erreur est survenue essayer plus tard'" [icon]="'bug-outline'"></app-cb-errors>
+

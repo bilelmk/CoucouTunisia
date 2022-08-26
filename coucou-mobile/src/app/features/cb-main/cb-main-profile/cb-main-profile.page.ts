@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SpinnerService } from '../../../core/services/in-app/spinner.service';
-import { ToastService } from '../../../core/services/in-app/toast.service';
+import { SpinnerService } from '../../../../../../coucou-mobile-v6/src/app/core/services/in-app/spinner.service';
+import { ToastService } from '../../../../../../coucou-mobile-v6/src/app/core/services/in-app/toast.service';
 import { ActionSheetController, AlertController, ModalController, Platform} from '@ionic/angular';
 import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
@@ -8,10 +8,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File as NativeFile } from '@ionic-native/file/ngx';
-import { ClientService } from '../../../core/services/http/client.service';
-import { AuthenticationService } from '../../../core/services/http/authentication.service';
+import { ClientService } from '../../../../../../coucou-mobile-v6/src/app/core/services/http/client.service';
+import { AuthenticationService } from '../../../../../../coucou-mobile-v6/src/app/core/services/http/authentication.service';
 import { CallNumber } from '@ionic-native/call-number/ngx';
-import { Helpers } from '../../../core/helpers/helpers';
+import { Helpers } from '../../../../../../coucou-mobile-v6/src/app/core/helpers/helpers';
 
 @Component({
   selector: 'app-cb-main-profile',
@@ -82,11 +82,11 @@ export class CbMainProfilePage {
     this.clientService.update(this.form.value).subscribe(
         res => {
           Helpers.updateFields(this.form.value , this.client) ;
-          this.toastService.show('Modifications sauvgarder avec succès', 'success');
+          this.toastService.show('Modifications sauvegardées avec succès', 'success');
           this.spinnerService.deactivate();
         },
         error => {
-          this.toastService.show('Erreur lors de la modifications', 'danger');
+          this.toastService.show('Erreur lors de la modification', 'danger');
           this.spinnerService.deactivate();
         }
     );
@@ -177,13 +177,13 @@ export class CbMainProfilePage {
     this.spinnerService.activate();
     this.clientService.updateImage(this.data).subscribe(
         res => {
-          this.toastService.show('Modifications sauvgarder avec succès', 'success');
+          this.toastService.show('Modifications sauvegardées avec succès', 'success');
           this.client.image = res.image;
           this.onCancelImage();
           this.spinnerService.deactivate();
         },
         err => {
-          this.toastService.show('Erreur lors de la modifications', 'danger');
+          this.toastService.show('Erreur lors de la modification', 'danger');
           this.spinnerService.deactivate();
         }
     );
