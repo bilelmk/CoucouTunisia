@@ -9,6 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'restaurant/:id',
+    // eslint-disable-next-line max-len
     loadChildren: () => import('./cb-main-home-restaurant-details/cb-main-home-restaurant-details.module').then(m => m.CbMainHomeRestaurantDetailsPageModule)
   },
 ];

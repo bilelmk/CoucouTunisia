@@ -21,32 +21,32 @@
         <ion-card-header>
           <ion-row class="ion-justify-content-between ion-align-items-center">
             <ion-card-title >{{restaurant.name}}</ion-card-title>
-<!--            <circle-progress-->
-<!--                    [percent]="5.0"-->
-<!--                    [backgroundColor]="'#F15412'"-->
-<!--                    [backgroundGradientStopColor]="'#ffffff'"-->
-<!--                    [backgroundPadding]="10"-->
-<!--                    [radius]="10"-->
-<!--                    [toFixed]="1"-->
-<!--                    [maxPercent]="5"-->
-<!--                    [outerStrokeWidth]=0-->
-<!--                    [outerStrokeColor]="'#FFFFFF'"-->
-<!--                    [titleColor]="'#ffffff'"-->
-<!--                    [titleFontSize]="15"-->
-<!--                    [titleFontWeight]="500"-->
-<!--                    [animationDuration]="1500"-->
-<!--                    [showSubtitle]=false-->
-<!--                    [showUnits]=false-->
-<!--                    [showInnerStroke]=false-->
-<!--                    [startFromZero]=true-->
-<!--            ></circle-progress>-->
+            <circle-progress
+                    [percent]="5.0"
+                    [backgroundColor]="'#F15412'"
+                    [backgroundGradientStopColor]="'#ffffff'"
+                    [backgroundPadding]="10"
+                    [radius]="10"
+                    [toFixed]="1"
+                    [maxPercent]="5"
+                    [outerStrokeWidth]=0
+                    [outerStrokeColor]="'#FFFFFF'"
+                    [titleColor]="'#ffffff'"
+                    [titleFontSize]="15"
+                    [titleFontWeight]="500"
+                    [animationDuration]="1500"
+                    [showSubtitle]=false
+                    [showUnits]=false
+                    [showInnerStroke]=false
+                    [startFromZero]=true
+            ></circle-progress>
           </ion-row>
         </ion-card-header>
       </ion-card>
     </ion-col>
   </ion-row>
 
-  <app-cb-errors [exist]="restaurants?.length == 0" [message]="'Aucun restaurant trouvé'" [icon]="'storefront-outline'"></app-cb-errors>
+  <app-cb-errors [exist]="restaurants?.length === 0" [message]="'Aucun restaurant trouvé'" [icon]="'storefront-outline'"></app-cb-errors>
   <app-cb-errors [exist]="error" [message]="'Une erreur est survenue essayer plus tard'" [icon]="'bug-outline'"></app-cb-errors>
 
 </ion-content>

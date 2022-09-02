@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../../../../../coucou-mobile-v6/src/app/core/services/http/authentication.service';
-import { SpinnerService } from '../../../../../coucou-mobile-v6/src/app/core/services/in-app/spinner.service';
-import { ToastService } from '../../../../../coucou-mobile-v6/src/app/core/services/in-app/toast.service';
+import { AuthenticationService } from '../../core/services/http/authentication.service';
+import { SpinnerService } from '../../core/services/in-app/spinner.service';
+import { ToastService } from '../../core/services/in-app/toast.service';
 
 @Component({
   selector: 'app-cb-verify-password-code',
@@ -36,7 +36,6 @@ export class CbVerifyPasswordCodePage implements OnInit {
           this.toastService.show('Code vérifié avec succès' ,'success') ;
           this.spinnerService.deactivate() ;
         }, error => {
-          console.log(error);
           this.spinnerService.deactivate() ;
           if (error.error.message === 'code not found') {
             this.toastService.show('Le code est incorrect' ,'danger');

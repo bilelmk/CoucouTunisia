@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CbMainHomePageRoutingModule } from './cb-main-home-routing.module';
 import { CbMainHomePage } from './cb-main-home.page';
-// import { MatCardModule } from '@angular/material/card';
-// import { NgCircleProgressModule } from 'ng-circle-progress';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
@@ -14,8 +13,7 @@ import { SharedModule } from '../../../shared/shared.module';
         FormsModule,
         IonicModule,
         CbMainHomePageRoutingModule,
-        // MatCardModule,
-        // NgCircleProgressModule,
+        NgCircleProgressModule,
         SharedModule,
     ],
   declarations: [CbMainHomePage]

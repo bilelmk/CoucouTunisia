@@ -15,8 +15,8 @@ export class CbMainReservationsRdvComponent implements OnInit {
   @Input() restaurants ;
   @Input() restaurant ;
 
-  // monthFr = [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre' , 'Décembre'];
-  // months: any;
+  monthFr = [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre' , 'Décembre'];
+  months: any;
   // calendar = {
   //   mode: 'month' as CalendarMode,
   //   step: 30 as Step,
@@ -29,11 +29,13 @@ export class CbMainReservationsRdvComponent implements OnInit {
   //   }
   // };
 
-  // date = '';
+  date = '';
+  currentDate: any;
 
   selectedRestaurant ;
   selectedRestaurantName = '';
   selectedRestaurantId: any;
+
 
   constructor(private modalController: ModalController,
               private spinnerService: SpinnerService,
@@ -41,18 +43,20 @@ export class CbMainReservationsRdvComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentDate = new Date ;
+    const date = new Date ;
     if (this.restaurant) {
       this.restaurants = [] ;
       this.selectedRestaurantId = this.restaurant.id ;
       this.selectedRestaurantName = this.restaurant.name ;
       this.selectedRestaurant = this.restaurant ;
     }
-    // const date = new Date ;
-    // this.months = {
-    //   previous: date.getMonth() === 0 ? this.monthFr[11] : this.monthFr[date.getMonth() - 1] || '',
-    //   current: this.monthFr[date.getMonth()] || '',
-    //   next: date.getMonth() === 11 ? this.monthFr[0] : this.monthFr[date.getMonth() + 1] || '',
-    // };
+
+    this.months = {
+      previous: date.getMonth() === 0 ? this.monthFr[11] : this.monthFr[date.getMonth() - 1] || '',
+      current: this.monthFr[date.getMonth()] || '',
+      next: date.getMonth() === 11 ? this.monthFr[0] : this.monthFr[date.getMonth() + 1] || '',
+    };
   }
 
   close() {
@@ -60,22 +64,22 @@ export class CbMainReservationsRdvComponent implements OnInit {
   }
 
   onDateChanged(event: Date) {
-    // =
+
   }
 
   next() {
-    // this.modalController.create({
-    //   component: CbMainReservationsAddComponent ,
-    //   componentProps: {
-    //     date: this.date,
-    //     restaurant: this.selectedRestaurant
-    //   }
-    // }).then(modal => {
-    //   modal.present() ;
-    //   modal.onDidDismiss().then(
-    //       res => { setTimeout(() => this.modalController.dismiss() , 100); }
-    //   );
-    // });
+    this.modalController.create({
+      component: CbMainReservationsAddComponent ,
+      componentProps: {
+        date: this.date,
+        restaurant: this.selectedRestaurant
+      }
+    }).then(modal => {
+      modal.present() ;
+      modal.onDidDismiss().then(
+          res => { setTimeout(() => this.modalController.dismiss() , 100); }
+      );
+    });
   }
 
   onRestaurantSelect() {
@@ -86,5 +90,9 @@ export class CbMainReservationsRdvComponent implements OnInit {
         this.selectedRestaurant = restaurant;
       }
     }
+  }
+
+  test() {
+    console.log("sdasq")
   }
 }

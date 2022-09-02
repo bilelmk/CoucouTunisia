@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { RestaurantService } from '../../../../../../coucou-mobile-v6/src/app/core/services/http/restaurant.service';
-import { SpinnerService } from '../../../../../../coucou-mobile-v6/src/app/core/services/in-app/spinner.service';
-import { Restaurant } from '../../../../../../coucou-mobile-v6/src/app/core/classes/restaurant';
+import { RestaurantService } from '../../../core/services/http/restaurant.service';
+import { SpinnerService } from '../../../core/services/in-app/spinner.service';
+import { Restaurant } from '../../../core/classes/restaurant';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 

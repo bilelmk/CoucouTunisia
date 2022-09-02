@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../core/services/http/authentication.service';
 import { SpinnerService } from '../../core/services/in-app/spinner.service';
-import { ToastService } from '../../../../../coucou-mobile-v6/src/app/core/services/in-app/toast.service';
+import { ToastService } from '../../core/services/in-app/toast.service';
 import { RegisterRequest } from '../../core/dtos/register-request';
 
 @Component({

@@ -21,20 +21,13 @@
     <p class="page-title">de réservation</p>
 
     <ion-row class="ion-margin-bottom mt-50">
-<!--      <ion-col class="calendar-months ion-text-center" size="4">{{months?.previous}}</ion-col>-->
-<!--      <ion-col class="calendar-months-current ion-text-center" size="4">{{months?.current}}</ion-col>-->
-<!--      <ion-col class="calendar-months ion-text-center" size="4">{{months?.next}}</ion-col>-->
+      <ion-col class="calendar-months ion-text-center" size="4">{{months?.previous}}</ion-col>
+      <ion-col class="calendar-months-current ion-text-center" size="4">{{months?.current}}</ion-col>
+      <ion-col class="calendar-months ion-text-center" size="4">{{months?.next}}</ion-col>
     </ion-row>
 
-<!--    <calendar [showEventDetail] = "false"-->
-<!--              [calendarMode]="calendar.mode"-->
-<!--              [currentDate]="calendar.currentDate"-->
-<!--              [step]="calendar.step"-->
-<!--              (onCurrentDateChanged)="onDateChanged($event)"-->
-<!--              [startingDayMonth]="1"-->
-<!--              [dateFormatter]="calendar.dateFormatter">-->
-<!--    </calendar>-->
-
+    <ion-datetime mode="md" locale="fr-FR" presentation="date" (ionBlur)="test()"></ion-datetime>
+<!--    [min]="currentDate"-->
     <ion-row class="ion-margin-top ion-justify-content-center">
       <ion-col size="12" class="form-card">
         <p class="form-card-label">Restaurants</p>
@@ -46,11 +39,11 @@
       </ion-col>
     </ion-row>
 
-<!--    <ion-row class="ion-justify-content-center">-->
-<!--      <ion-col size="12" size-sm="7" class="ion-no-padding ion-margin-top">-->
-<!--        <ion-button [disabled]="!(selectedRestaurantName && selectedRestaurantId && date)" (click)="next()" class="btn-primary"  expand="block">Suivant</ion-button>-->
-<!--      </ion-col>-->
-<!--    </ion-row>-->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-sm="7" class="ion-no-padding ion-margin-top">
+        <ion-button [disabled]="!(selectedRestaurantName && selectedRestaurantId && date)" (click)="next()" class="btn-primary"  expand="block">Suivant</ion-button>
+      </ion-col>
+    </ion-row>
 
   </div>
 
