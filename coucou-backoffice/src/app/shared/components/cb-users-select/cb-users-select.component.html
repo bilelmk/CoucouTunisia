@@ -1,0 +1,76 @@
+<div class="row justify-content-end mb-3">
+  <input #key class="search" (input)="search(key.value)">
+  <button class="square-btn ml-2"  (click)="selectActive()">
+    <i class="material-icons icon-blue" >
+      check_circle
+    </i>
+  </button>
+  <button class="square-btn ml-2"  (click)="deselectAll()">
+    <i class="material-icons icon-blue" >
+      clear
+    </i>
+  </button>
+  <button class="square-btn ml-2"  (click)="selectAll()">
+    <i class="material-icons icon-blue" >
+      done_all
+    </i>
+  </button>
+</div>
+<div style="height: calc(100vh - 351px) ;overflow-y: scroll ; padding-bottom: 20px; ">
+
+  <div class="row"  *ngIf="clients?.length > 0">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-0" >
+
+
+      <ng-container matColumnDef="checkbox" >
+        <mat-header-cell *matHeaderCellDef >Selected</mat-header-cell>
+        <mat-cell *matCellDef="let client" >
+          <mat-checkbox [(ngModel)]="client.selected" class="mt-2" color="primary" ></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phone" >
+        <mat-header-cell *matHeaderCellDef >Phone Number</mat-header-cell>
+        <mat-cell *matCellDef="let client" >
+          <p class="cell-text"  > {{client.phone}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName" >
+        <mat-header-cell *matHeaderCellDef >First name</mat-header-cell>
+        <mat-cell *matCellDef="let client" >
+          <p class="cell-text"  > {{client.firstName}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef >Last name</mat-header-cell>
+        <mat-cell *matCellDef="let client" >
+          <p class="cell-text" > {{client.lastName}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef >Email</mat-header-cell>
+        <mat-cell *matCellDef="let client" >
+          <p class="cell-text" > {{client.email}} </p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <mat-header-cell *matHeaderCellDef >Active</mat-header-cell>
+        <mat-cell class="cell-text" *matCellDef="let client">
+          <div class="cell-text">
+            <mat-icon *ngIf="!client.active" class="icon-danger">remove_circle</mat-icon>
+            <mat-icon  *ngIf="client.active" class="icon-success">check_circle</mat-icon>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row class="text-center" *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row class="contact" *matRowDef="let type; columns: displayedColumns;" ></mat-row>
+
+    </table>
+  </div>
+</div>
+

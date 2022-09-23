@@ -46,5 +46,6 @@ export class AppComponent {
       console.log('User accepted notifications: ' + accepted);
     });
 
+    OneSignal.setExternalUserId('8' , (res) => console.log(res));
   }
 }

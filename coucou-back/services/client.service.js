@@ -284,7 +284,7 @@ exports.getOne = async (req, res, next) => {
 
 exports.getAllLower = async (req, res, next) => {
     try {
-        const clients = await Client.findAll({attributes: ['id', 'firstName', 'lastName', 'phone']})
+        const clients = await Client.findAll({attributes: ['id', 'firstName', 'lastName', 'phone', 'active']})
         return res.status(200).json(clients);
     } catch (err) {
         return res.status(500).json(err);

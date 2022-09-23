@@ -12,6 +12,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule} from "@angular/material/form-field";
+import { MatSelectModule } from "@angular/material/select";
+import { MatInputModule } from "@angular/material/input";
+import { CbUsersSelectComponent } from "./components/cb-users-select/cb-users-select.component";
+import {MatTableModule} from "@angular/material/table";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,10 +26,35 @@ import { MatListModule } from '@angular/material/list';
     CbSidebarComponent,
     CbNavbarComponent,
     CbErrorsComponent,
-    CbSecondSidebarComponent
+    CbSecondSidebarComponent,
+    CbUsersSelectComponent
   ],
-  imports: [
-    CommonModule,
+    imports: [
+        CommonModule,
+        MatSidenavModule,
+        MatListModule,
+        MatIconModule,
+        MatToolbarModule,
+        RouterModule,
+        MatButtonModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatListModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        MatTableModule,
+        MatCheckboxModule,
+        FormsModule
+    ],
+  exports: [
+    CbCopyrightComponent,
+    CbSidebarComponent,
+    CbNavbarComponent,
+    CbErrorsComponent,
+    CbSecondSidebarComponent,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
@@ -34,13 +66,10 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatIconModule,
     MatListModule,
-  ],
-  exports: [
-    CbCopyrightComponent,
-    CbSidebarComponent,
-    CbNavbarComponent,
-    CbErrorsComponent,
-    CbSecondSidebarComponent
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    CbUsersSelectComponent
   ],
 })
 export class SharedModule { }

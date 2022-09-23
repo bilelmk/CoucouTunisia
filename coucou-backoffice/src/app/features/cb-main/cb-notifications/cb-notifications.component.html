@@ -9,4 +9,37 @@
     </div>
   </div>
 
+  <div>
+    <form [formGroup]="form" class="row justify-content-center">
+
+      <div class="col-12 col-sm-6 no-padding">
+        <app-cb-users-select [clients]="clients"></app-cb-users-select>
+      </div>
+
+      <div class="col-12 col-sm-6" >
+        <div class="col-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Titre</mat-label>
+           <input matInput formControlName="title" placeholder="Titre de notification" type="text">
+
+          </mat-form-field>
+        </div>
+
+        <div class="col-12">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Contenu</mat-label>
+            <textarea  formControlName="content" matInput type="text" required rows="6"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="col-12">
+          <button class="submit-btn full-width"  (click)="sendMulti()">
+            Envoyer
+          </button>
+        </div>
+
+
+      </div>
+    </form>
+  </div>
 </div>
