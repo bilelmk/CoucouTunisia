@@ -3,6 +3,7 @@ import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { ClientsService } from '../../../core/services/http/clients.service';
 import { MessagingService } from '../../../core/services/http/messaging.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: 'app-cb-messaging',
@@ -14,23 +15,43 @@ export class CbMessagingComponent implements OnInit {
   error = false ;
   loading = false ;
 
-  form: FormGroup;
+  smsForm: FormGroup;
+  numbersForm: FormGroup;
 
   stats ;
+  clients ;
+  mode: string = 'list';
 
   constructor(private spinnerService: SpinnerService ,
               private messagingService: MessagingService,
               private clientService: ClientsService ,
               private formBuilder: FormBuilder) {
-    this.form = new FormGroup({
-      content: new FormControl("", Validators.required),
-      sender: new FormControl("", Validators.required),
+    this.smsForm = new FormGroup({
+      content: new FormControl(''),
+      sender: new FormControl(''),
+    });
+
+    this.numbersForm = new FormGroup({
       numbers: this.formBuilder.array([])
     });
   }
 
   ngOnInit(): void {
-    this.getUsage()
+    this.loading = true ;
+    this.spinnerService.activate()
+    forkJoin(this.clientService.getAllLower(),this.messagingService.getUsage()).subscribe(
+      (res: any) => {
+        this.loading = false ;
+        this.spinnerService.deactivate() ;
+        this.clients = res[0];
+        this.stats = res[1]?.partnerContracts?.contracts[0]?.serviceContracts[0]?.availableUnits
+      },
+      error => {
+        this.loading = false ;
+        this.error = true ;
+        this.spinnerService.deactivate()
+      }
+    )
   }
 
   getUsage() {
@@ -51,7 +72,7 @@ export class CbMessagingComponent implements OnInit {
   }
 
   get numbers() {
-    return this.form.controls["numbers"] as FormArray;
+    return this.numbersForm.controls["numbers"] as FormArray;
   }
 
   deleteNumber(lessonIndex: number) {
@@ -66,12 +87,18 @@ export class CbMessagingComponent implements OnInit {
   }
 
   sendMulti(){
-    this.spinnerService.activate();
+    let numbers = [];
+    if(this.mode == 'list') {
+      numbers = this.clients.filter(client => { return client.selected == true}).map(client => { return client.phone})
+    } else if(this.mode == 'typing') {
+      numbers = this.numbersForm.value.numbers
+    }
+    // this.spinnerService.activate();
     let smss = {
-      senderName: this.form.value.sender,
+      senderName: this.smsForm.value.sender,
       senderNumber: 50109769,
-      numbers: this.form.value.numbers,
-      content: this.form.value.content
+      numbers: numbers,
+      content: this.smsForm.value.content
     }
     this.messagingService.sendMulti(smss).subscribe(
       res => {

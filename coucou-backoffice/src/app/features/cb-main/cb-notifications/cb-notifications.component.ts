@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { PushNotificationService } from '../../../core/services/http/push-notification.service';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import {ClientsService} from "../../../core/services/http/clients.service";
+import { FormControl, FormGroup } from "@angular/forms";
+import { ClientsService } from "../../../core/services/http/clients.service";
 
 @Component({
   selector: 'app-cb-notifications',
@@ -21,8 +21,8 @@ export class CbNotificationsComponent implements OnInit {
               private spinnerService: SpinnerService ,
               private pushNotificationService: PushNotificationService) {
     this.form = new FormGroup({
-      content: new FormControl("", Validators.required),
-      title: new FormControl("", Validators.required)
+      content: new FormControl(''),
+      title: new FormControl('')
     });
   }
 
@@ -43,27 +43,24 @@ export class CbNotificationsComponent implements OnInit {
     )
   }
 
-  selectClients() {
-
-  }
 
   sendMulti() {
-    console.log(this.clients)
-    // const request = {
-    //   content: this.form.value.content ,
-    //   title: this.form.value.title,
-    //   ids: ["5" , "1"]
-    // }
-    // this.spinnerService.activate() ;
-    // this.pushNotificationService.sendMulti(request).subscribe(
-    //   res => {
-    //     this.spinnerService.activate()
-    //     console.log(res)
-    //   },
-    //   error => {
-    //     this.spinnerService.activate()
-    //     console.log(error)
-    //   }
-    // )
+    const selectedIds = this.clients.filter(client => { return client.selected == true}).map(client => { return client.id})
+    const request = {
+      content: this.form.value.content ,
+      title: this.form.value.title,
+      ids: selectedIds
+    }
+    this.spinnerService.activate() ;
+    this.pushNotificationService.sendMulti(request).subscribe(
+      res => {
+        this.spinnerService.activate()
+        console.log(res)
+      },
+      error => {
+        this.spinnerService.activate()
+        console.log(error)
+      }
+    )
   }
 }

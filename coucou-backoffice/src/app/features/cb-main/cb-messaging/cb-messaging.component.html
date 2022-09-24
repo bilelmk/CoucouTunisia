@@ -9,113 +9,131 @@
     </div>
   </div>
 
-  <div style="height: calc(100vh - 251px) ; overflow-y: scroll">
-    <form [formGroup]="form" class="row justify-content-center">
 
-      <div class="row col-12 justify-content-end mb-4 mr-4">
-        <button class="square-btn ml-2"  (click)="addNumber()">
-          <i class="material-icons icon-blue" >
-            add
-          </i>
-        </button>
+  <div class="row justify-content-center" >
 
-        <button class="square-btn ml-2"  (click)="deleteNumber(0)">
-          <i class="material-icons icon-blue" >
-            remove
-          </i>
-        </button>
-      </div>
+    <div class="col-12 col-sm-6 no-padding">
 
-      <div class="col-12 col-sm-6 no-padding">
+      <app-cb-users-select *ngIf="mode == 'list'" [clients]="clients"></app-cb-users-select>
+
+      <form   *ngIf="mode == 'typing'" [formGroup]="numbersForm">
         <ng-container formArrayName="numbers">
           <ng-container *ngFor="let numberForm of numbers.controls; let i = index">
             <div class="lesson-form-row" [formGroup]="numberForm">
               <mat-form-field class="full-width" appearance="outline">
-                <input matInput formControlName="number" placeholder="{{i}}">
+                <input matInput formControlName="number" type="number" placeholder="{{i}}">
               </mat-form-field>
             </div>
           </ng-container>
         </ng-container>
-      </div>
+      </form>
+    </div>
 
-      <div class="col-12 col-sm-6" >
-        <div class="col-12">
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Sender</mat-label>
-            <mat-select formControlName="sender">
-              <mat-option [value]="'CocoTunisia'">CocoTunisia</mat-option>
-              <mat-option [value]="'CocoBeach'">CocoBeach</mat-option>
-              <mat-option [value]="'CasaDeCoco'">CasaDeCoco</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+    <div class="col-12 col-sm-6">
+      <div class="row justify-content-between" style="padding: 0 30px 15px 30px">
 
-        <div class="col-12">
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Contenu</mat-label>
-            <textarea  formControlName="content" matInput type="text" required rows="6"></textarea>
-          </mat-form-field>
-        </div>
+        <mat-button-toggle-group [(ngModel)]="mode">
+          <mat-button-toggle value="typing" class="toggle-btn">SAISIR</mat-button-toggle>
+          <mat-button-toggle value="list" class="toggle-btn">LISTE CLIENT </mat-button-toggle>
+<!--          <mat-button-toggle value="underline">Clients externe</mat-button-toggle>-->
+        </mat-button-toggle-group>
 
-        <div class="col-12">
-          <button class="submit-btn full-width" [disabled]="!form.valid" (click)="sendMulti()">
-            Envoyer
+        <div class="row" *ngIf="mode == 'typing'">
+          <button class="square-btn ml-2"  (click)="addNumber()">
+            <i class="material-icons icon-blue" >
+              add
+            </i>
+          </button>
+          <button class="square-btn ml-2"  (click)="deleteNumber(0)">
+            <i class="material-icons icon-blue" >
+              remove
+            </i>
           </button>
         </div>
-
-        <div class="col-12 text-center" >
-          <circle-progress
-            [percent]="stats"
-            [backgroundStrokeWidth]="5"
-            [radius] = 60
-            [space]="-17"
-            [unitsFontWeight]="400"
-            [outerStrokeGradient]="true"
-            [outerStrokeWidth]="19"
-            [outerStrokeColor]="'#112d4e'"
-            [outerStrokeGradientStopColor]="'#3f72af'"
-            [innerStrokeColor]="'#e7e8ea'"
-            [innerStrokeWidth]= "14"
-            [subtitleColor]= "'#8f8f8f'"
-            [subtitleFontSize]="15"
-            [title]="'Country'"
-            [subtitle]="'TUN'"
-            [maxPercent]="2000"
-            [titleColor]="'#787878'"
-            [titleFontSize]="18"
-            [titleFontWeight]="500"
-            [animationDuration]="1500"
-            [showUnits]=false
-            [startFromZero]=true
-          ></circle-progress>
-
-          <circle-progress
-            [percent]="stats"
-            [backgroundStrokeWidth]="5"
-            [radius] = 60
-            [space]="-17"
-            [unitsFontWeight]="400"
-            [outerStrokeGradient]="true"
-            [outerStrokeWidth]="19"
-            [outerStrokeColor]="'#112d4e'"
-            [outerStrokeGradientStopColor]="'#3f72af'"
-            [innerStrokeColor]="'#e7e8ea'"
-            [innerStrokeWidth]= "14"
-            [subtitleColor]= "'#8f8f8f'"
-            [subtitleFontSize]="15"
-            [subtitle]="'Messages'"
-            [maxPercent]="2000"
-            [titleColor]="'#787878'"
-            [titleFontSize]="18"
-            [titleFontWeight]="500"
-            [animationDuration]="1500"
-            [showUnits]=false
-            [startFromZero]=true
-          ></circle-progress>
-        </div>
-
-
       </div>
-    </form>
+
+      <form [formGroup]="smsForm" class="row justify-content-center">
+
+        <div class="col-12 ">
+
+          <div class="col-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Sender</mat-label>
+              <mat-select formControlName="sender">
+                <mat-option [value]="'CocoTunisia'">CocoTunisia</mat-option>
+                <mat-option [value]="'CocoBeach'">CocoBeach</mat-option>
+                <mat-option [value]="'CasaDeCoco'">CasaDeCoco</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Contenu</mat-label>
+              <textarea  formControlName="content" matInput type="text" rows="6"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12">
+            <button class="submit-btn full-width" [disabled]="smsForm.get('sender').value == ''
+                                                || smsForm.get('content').value == '' " (click)="sendMulti()">
+              Envoyer
+            </button>
+          </div>
+
+          <div class="col-12 text-center" >
+            <circle-progress
+              [percent]="stats"
+              [backgroundStrokeWidth]="5"
+              [radius] = 60
+              [space]="-17"
+              [unitsFontWeight]="400"
+              [outerStrokeGradient]="true"
+              [outerStrokeWidth]="19"
+              [outerStrokeColor]="'#112d4e'"
+              [outerStrokeGradientStopColor]="'#3f72af'"
+              [innerStrokeColor]="'#e7e8ea'"
+              [innerStrokeWidth]= "14"
+              [subtitleColor]= "'#8f8f8f'"
+              [subtitleFontSize]="15"
+              [title]="'Country'"
+              [subtitle]="'TUN'"
+              [maxPercent]="2000"
+              [titleColor]="'#787878'"
+              [titleFontSize]="18"
+              [titleFontWeight]="500"
+              [animationDuration]="1500"
+              [showUnits]=false
+              [startFromZero]=true
+            ></circle-progress>
+
+            <circle-progress
+              [percent]="stats"
+              [backgroundStrokeWidth]="5"
+              [radius] = 60
+              [space]="-17"
+              [unitsFontWeight]="400"
+              [outerStrokeGradient]="true"
+              [outerStrokeWidth]="19"
+              [outerStrokeColor]="'#112d4e'"
+              [outerStrokeGradientStopColor]="'#3f72af'"
+              [innerStrokeColor]="'#e7e8ea'"
+              [innerStrokeWidth]= "14"
+              [subtitleColor]= "'#8f8f8f'"
+              [subtitleFontSize]="15"
+              [subtitle]="'Messages'"
+              [maxPercent]="2000"
+              [titleColor]="'#787878'"
+              [titleFontSize]="18"
+              [titleFontWeight]="500"
+              [animationDuration]="1500"
+              [showUnits]=false
+              [startFromZero]=true
+            ></circle-progress>
+          </div>
+        </div>
+      </form>
+    </div>
+
   </div>
 </div>

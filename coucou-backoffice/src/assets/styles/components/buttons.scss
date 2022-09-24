@@ -44,7 +44,7 @@ button {
 .square-btn {
   padding: 12px 15px 12px 15px;
   border-radius: 5px;
-  background-color: #dbe2ef;
+  background-color:$cb-white-blue ;
   color : $cb-navy;
   border: none;
   transition: 0.4s ;
@@ -107,4 +107,18 @@ button {
   border-radius: 10%;
   transition: 0.4s;
   background: transparent;
+}
+
+
+.toggle-btn {
+  padding-top: 3px !important;
+  width: 120px;
+  height: 54px;
+  color: $cb-navy;
+  background: $cb-white-blue;
+}
+
+.mat-button-toggle-checked {
+  color: $cb-white-blue !important;
+  background: $cb-navy !important;
 }
