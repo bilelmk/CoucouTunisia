@@ -6,7 +6,6 @@ import { CbNavbarComponent } from './components/cb-navbar/cb-navbar.component';
 import { RouterModule } from '@angular/router';
 import { CbErrorsComponent } from './components/cb-errors/cb-errors.component';
 import { CbSecondSidebarComponent } from './components/cb-second-sidebar/cb-second-sidebar.component';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -16,9 +15,11 @@ import { MatFormFieldModule} from "@angular/material/form-field";
 import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from "@angular/material/input";
 import { CbUsersSelectComponent } from "./components/cb-users-select/cb-users-select.component";
-import {MatTableModule} from "@angular/material/table";
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {FormsModule} from "@angular/forms";
+import { MatTableModule } from "@angular/material/table";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -29,26 +30,29 @@ import {FormsModule} from "@angular/forms";
     CbSecondSidebarComponent,
     CbUsersSelectComponent
   ],
-    imports: [
-        CommonModule,
-        MatSidenavModule,
-        MatListModule,
-        MatIconModule,
-        MatToolbarModule,
-        RouterModule,
-        MatButtonModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatListModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatInputModule,
-        MatTableModule,
-        MatCheckboxModule,
-        FormsModule
-    ],
+  imports: [
+    CommonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatToolbarModule,
+    RouterModule,
+    MatButtonModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatTableModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    ReactiveFormsModule
+  ],
   exports: [
     CbCopyrightComponent,
     CbSidebarComponent,
@@ -69,7 +73,12 @@ import {FormsModule} from "@angular/forms";
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    CbUsersSelectComponent
+    CbUsersSelectComponent,
+    MatTableModule,
+    MatCheckboxModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    ReactiveFormsModule
   ],
 })
 export class SharedModule { }

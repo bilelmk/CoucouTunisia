@@ -5,6 +5,8 @@ import { ClientsService } from '../../../core/services/http/clients.service';
 import { SpinnerService } from '../../../core/services/in-app/spinner.service';
 import { SearchClientRequest } from '../../../core/dtos/search-client-request';
 import { environment } from "../../../../environments/environment";
+import { MatDialog } from "@angular/material/dialog";
+import { CbClientsModalComponent } from "./cb-clients-modal/cb-clients-modal.component";
 
 @Component({
   selector: 'app-cb-clients',
@@ -30,7 +32,8 @@ export class CbClientsComponent implements OnInit {
   url = environment.url + '/api/images/'
 
   constructor(private clientsService: ClientsService ,
-              private spinnerService: SpinnerService ) { }
+              private spinnerService: SpinnerService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getRecords()
@@ -95,8 +98,17 @@ export class CbClientsComponent implements OnInit {
   }
 
 
-  openDetailsDialog(client: any) {
-
+  openModal(isEditMode , item) {
+    const dialogRef = this.dialog.open( CbClientsModalComponent, {
+      panelClass: 'custom-dialog-container' ,
+      width: '600px' ,
+      data : { item: item , array : this.clients , isEditMode: isEditMode}
+    });
+    dialogRef.afterClosed().subscribe(
+      res => {
+        this.dataSource = this.clients;
+      }
+    );
   }
 
 }
