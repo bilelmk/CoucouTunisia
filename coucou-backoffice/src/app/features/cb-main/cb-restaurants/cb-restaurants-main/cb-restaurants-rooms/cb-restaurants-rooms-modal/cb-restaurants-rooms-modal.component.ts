@@ -1,18 +1,18 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { ImageCroppedEvent } from "ngx-image-cropper";
-import { Helpers } from "../../../../../../shared/helpers/helpers";
 import { RoomsService } from "../../../../../../core/services/http/rooms.service";
 import { SnackbarService } from "../../../../../../core/services/in-app/snackbar.service";
 import { SpinnerService } from "../../../../../../core/services/in-app/spinner.service";
+import { ImageCroppedEvent } from "ngx-image-cropper";
+import { Helpers } from "../../../../../../shared/helpers/helpers";
 
 @Component({
-  selector: 'app-cb-restaurants-rooms-add',
-  templateUrl: './cb-restaurants-rooms-add.component.html',
-  styleUrls: ['./cb-restaurants-rooms-add.component.scss']
+  selector: 'app-cb-restaurants-rooms-modal',
+  templateUrl: './cb-restaurants-rooms-modal.component.html',
+  styleUrls: ['./cb-restaurants-rooms-modal.component.scss']
 })
-export class CbRestaurantsRoomsAddComponent implements OnInit {
+export class CbRestaurantsRoomsModalComponent implements OnInit {
 
   form: FormGroup;
 
@@ -20,22 +20,35 @@ export class CbRestaurantsRoomsAddComponent implements OnInit {
   croppedImage: any = null ;
   fileToReturn ;
 
-  constructor(public matDialogRef: MatDialogRef<CbRestaurantsRoomsAddComponent>,
+  constructor(public matDialogRef: MatDialogRef<CbRestaurantsRoomsModalComponent>,
               private roomsService: RoomsService,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private snackbarService: SnackbarService,
               private spinnerService: SpinnerService
-  ) { }
+  ) {
+    if(!data.isEditMode){
+      this.form = new FormGroup({
+        name: new FormControl("", Validators.required),
+        description: new FormControl("", Validators.required),
+        minPlace: new FormControl("", Validators.required),
+        maxPlace: new FormControl("", Validators.required),
+        packPrice: new FormControl("", Validators.required),
+        packChildrenPrice: new FormControl("", Validators.required),
+      })
+    }
+    else {
+      this.form = new FormGroup({
+        name: new FormControl(this.data.item?.name, Validators.required),
+        description: new FormControl(this.data.item?.description, Validators.required),
+        minPlace: new FormControl(this.data.item?.minPlace, Validators.required),
+        maxPlace: new FormControl(this.data.item?.maxPlace, Validators.required),
+        packPrice: new FormControl(this.data.item?.packPrice, Validators.required),
+        packChildrenPrice: new FormControl(this.data.item?.packChildrenPrice, Validators.required),
+      })
+    }
+  }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      name: new FormControl("", Validators.required),
-      description: new FormControl("", Validators.required),
-      minPlace: new FormControl("", Validators.required),
-      maxPlace: new FormControl("", Validators.required),
-      packPrice: new FormControl("", Validators.required),
-      packChildrenPrice: new FormControl("", Validators.required),
-    })
   }
 
   onPickImage(event : any) {
@@ -74,4 +87,7 @@ export class CbRestaurantsRoomsAddComponent implements OnInit {
     )
   }
 
+  update() {
+
+  }
 }

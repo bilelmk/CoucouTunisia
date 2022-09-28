@@ -7,7 +7,7 @@
       </p>
     </div>
     <div>
-      <button class="square-btn ml-2" (click)="openAddDialog()" >
+      <button class="square-btn ml-2" (click)="openModal(null , false)" >
         <i class="material-icons icon-blue" >
           add
         </i>
@@ -40,6 +40,10 @@
         <td class="restaurant-add-td">
             <div class="restaurant-add-btn" (click)="delete(room)">
               <mat-icon>delete_forever</mat-icon>
+            </div>
+
+            <div class="restaurant-add-btn" (click)="openModal(room, true)">
+              <mat-icon>edit</mat-icon>
             </div>
         </td>
       </tr>

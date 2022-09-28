@@ -1,6 +1,7 @@
 <div class="dialog-container">
 
-  <p class="dialog-title" >Ajouter un room</p>
+  <p class="dialog-title"  *ngIf="!data.isEditMode">Ajouter une mise en place</p>
+  <p class="dialog-title"  *ngIf="data.isEditMode" >Modifier la mise en place</p>
 
   <div class="row mt-4">
 
@@ -61,7 +62,7 @@
             [imageChangedEvent]="imageChangedEvent"
             [maintainAspectRatio]="true"
             [aspectRatio]="5 / 3"
-            format="png "
+            format="png"
             (imageCropped)="imageCropped($event)">
           </image-cropper>
         </div>
@@ -69,8 +70,11 @@
     </div>
 
     <div class="col-12 mt-2">
-      <button class="submit-btn full-width" (click)="add()" [disabled]="!form.valid || !croppedImage" >
+      <button  *ngIf="!data.isEditMode" class="submit-btn full-width" (click)="add()" [disabled]="!form.valid || !croppedImage" >
         Ajouter
+      </button>
+      <button  *ngIf="data.isEditMode" class="submit-btn full-width" (click)="update()"  >
+        Sauvgarder
       </button>
     </div>
 

@@ -6,7 +6,7 @@ import { AlertService } from "../../../../../core/services/in-app/alert.service"
 import { SnackbarService } from "../../../../../core/services/in-app/snackbar.service";
 import { RoomsService } from "../../../../../core/services/http/rooms.service";
 import { MatDialog } from "@angular/material/dialog";
-import { CbRestaurantsRoomsAddComponent } from "./cb-restaurants-rooms-add/cb-restaurants-rooms-add.component";
+import {CbRestaurantsRoomsModalComponent} from "./cb-restaurants-rooms-modal/cb-restaurants-rooms-modal.component";
 
 @Component({
   selector: 'app-cb-restaurants-rooms',
@@ -44,9 +44,17 @@ export class CbRestaurantsRoomsComponent implements OnInit {
     )
   }
 
-  openAddDialog() {
-    const dialogRef = this.dialog.open( CbRestaurantsRoomsAddComponent, {
-      panelClass: 'custom-dialog-container' , width: '800px' , height : '600px', data : { array : this.restaurant.rooms , id : this.restaurant.id }
+  openModal(item, isEditMode) {
+    const dialogRef = this.dialog.open( CbRestaurantsRoomsModalComponent, {
+      panelClass: 'custom-dialog-container' ,
+      width: '800px' ,
+      height : '600px',
+      data : {
+        array : this.restaurant.rooms ,
+        id : this.restaurant.id ,
+        item: item ,
+        isEditMode: isEditMode
+      }
     });
   }
 
