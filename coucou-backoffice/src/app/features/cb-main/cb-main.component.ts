@@ -85,6 +85,13 @@ export class CbMainComponent implements OnInit {
       icon : "equalizer",
       permission: "DASHBOARD"
     },
+    {
+      type: "route",
+      route : "importation" ,
+      name : "Module d'importation" ,
+      icon : "equalizer",
+      permission: "ADMIN"
+    },
     // {
     //   type: "route",
     //   route : "parking" ,
