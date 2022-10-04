@@ -11,7 +11,7 @@ router.route( '/')
         menuService.update(req,res,next)
 })
 
-router.route('/:id/image')
+router.route('/image/:id')
     .put(upload,(req,res,next)=> {
         menuService.changeImage(req,res,next, req.params.id)
 })

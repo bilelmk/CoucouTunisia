@@ -40,4 +40,9 @@ router.route('/deblock/:id')
         restaurantService.deblock(req,res,next,req.params.id);
 })
 
+router.route('/image/:id')
+    .put(upload,(req, res, next) => {
+        restaurantService.changeImage(req, res, next, req.params.id);
+})
+
 module.exports = router ;

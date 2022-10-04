@@ -44,19 +44,4 @@ exports.changeImage = async ( req, res , next , id ) => {
     catch (error) {
         return res.status(500).json(error);
     }
-    //
-    // .then(result => {
-    //     if(result[0] === 1){
-    //         return res.status(200).json({
-    //             image: image
-    //         });
-    //     }
-    //     return res.status(404).json({
-    //         message: "not found"
-    //     });
-    // }).catch(err => {
-    //     return res.status(500).json({
-    //         message: "server error"
-    //     });
-    // })
 }

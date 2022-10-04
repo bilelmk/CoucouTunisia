@@ -12,7 +12,7 @@ router.route('/')
         roomService.update(req,res,next)
 })
 
-router.route('/:id/image')
+router.route('/image/:id')
     .put(upload,(req,res,next)=> {
         roomService.changeImage(req,res,next, req.params.id)
 })
