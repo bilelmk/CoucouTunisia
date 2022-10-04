@@ -6,7 +6,7 @@ import { AlertService } from "../../../../../core/services/in-app/alert.service"
 import { SnackbarService } from "../../../../../core/services/in-app/snackbar.service";
 import { RoomsService } from "../../../../../core/services/http/rooms.service";
 import { MatDialog } from "@angular/material/dialog";
-import {CbRestaurantsRoomsModalComponent} from "./cb-restaurants-rooms-modal/cb-restaurants-rooms-modal.component";
+import { CbRestaurantsRoomsModalComponent } from "./cb-restaurants-rooms-modal/cb-restaurants-rooms-modal.component";
 
 @Component({
   selector: 'app-cb-restaurants-rooms',

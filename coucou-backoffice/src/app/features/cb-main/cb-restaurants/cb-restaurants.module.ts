@@ -33,6 +33,9 @@ import { CbRestaurantsImagesAddComponent } from "./cb-restaurants-main/cb-restau
 import {
   CbRestaurantsRoomsModalComponent
 } from "./cb-restaurants-main/cb-restaurants-rooms/cb-restaurants-rooms-modal/cb-restaurants-rooms-modal.component";
+import {
+  CbRestaurantsInformationsImageComponent
+} from "./cb-restaurants-main/cb-restaurants-informations/cb-restaurants-informations-image/cb-restaurants-informations-image.component";
 
 const routes: Routes = [
   {
@@ -110,7 +113,8 @@ const routes: Routes = [
     CbRestaurantsRatingComponent,
     CbRestaurantsRoomsModalComponent,
     CbRestaurantsMenusAddComponent,
-    CbRestaurantsImagesAddComponent
+    CbRestaurantsImagesAddComponent,
+    CbRestaurantsInformationsImageComponent
   ],
     imports: [
         CommonModule,
@@ -134,7 +138,8 @@ const routes: Routes = [
     CbRestaurantsAddImageComponent,
     CbRestaurantsRoomsModalComponent,
     CbRestaurantsMenusAddComponent,
-    CbRestaurantsImagesAddComponent
+    CbRestaurantsImagesAddComponent,
+    CbRestaurantsInformationsImageComponent
   ]
 })
 export class CbRestaurantsModule { }

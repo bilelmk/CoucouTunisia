@@ -75,6 +75,9 @@
   <div class="row justify-content-center mt-4">
     <div class="col-4">
       <img class="img-fluid" [src]="restaurant.image ? 'http://localhost:3006/api/images/' + restaurant.image : '/assets/img/no-record.png' ">
+      <button class="img-btn"*ngIf="isEditMode" (click)="openImageModal()">
+        <mat-icon>image</mat-icon>
+      </button>
     </div>
   </div>
 

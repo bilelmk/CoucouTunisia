@@ -39,4 +39,8 @@ export class RestaurantService {
   deblock(id: number) {
     return this.http.put(this.URL + "/deblock/" + id , {});
   }
+
+  changeImage(data: FormData, id: number): Observable<any> {
+    return this.http.put(this.URL + "/image/" + id  , data);
+  }
 }

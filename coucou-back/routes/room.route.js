@@ -1,7 +1,6 @@
 const express = require("express");
 const roomService = require("../services/room.service");
 const upload = require("../util/upload");
-const menuService = require("../services/menu.service");
 const router = express.Router();
 
 router.route('/')

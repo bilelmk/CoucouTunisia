@@ -1,0 +1,30 @@
+<div class="dialog-container">
+
+  <p class="dialog-title" >Modifier l'image</p>
+
+  <div class="row mt-4">
+    <div class="col-6 dialog-image-preview mt-4" >
+      <img class="img-fluid" src="./assets/img/upload-image.png" (click)="filePicker.click()"/>
+      <input type="file" #filePicker (change)="onPickImage($event)">
+    </div>
+    <div class="col-6" [ngClass]="croppedImage ? '' : 'hide'">
+      <div class="image-preview">
+        <image-cropper
+          imageQuality="10"
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="5 / 2"
+          format="png"
+          (imageCropped)="imageCropped($event)">
+        </image-cropper>
+      </div>
+    </div>
+
+    <div class="col-12 mt-2">
+      <button  class="submit-btn full-width" (click)="changeImage()"  >
+        Sauvgarder
+      </button>
+    </div>
+
+  </div>
+</div>

@@ -4,6 +4,10 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { SpinnerService } from "../../../../../core/services/in-app/spinner.service";
 import { SnackbarService } from "../../../../../core/services/in-app/snackbar.service";
 import { RestaurantService } from "../../../../../core/services/http/restaurant.service";
+import { MatDialog } from "@angular/material/dialog";
+import {
+  CbRestaurantsInformationsImageComponent
+} from "./cb-restaurants-informations-image/cb-restaurants-informations-image.component";
 
 @Component({
   selector: 'app-cb-restaurants-informations',
@@ -14,15 +18,14 @@ export class CbRestaurantsInformationsComponent implements OnInit {
 
   restaurant ;
   initialRestaurant ;
-
   informationsForm: FormGroup;
-
   isEditMode = false ;
 
   constructor(private restaurantShareService: RestaurantShareService,
               private spinnerService: SpinnerService,
               private snackbarService: SnackbarService,
-              private restaurantService: RestaurantService) {
+              private restaurantService: RestaurantService,
+              private dialog: MatDialog) {
     this.informationsForm = new FormGroup({
       name: new FormControl('', Validators.required ),
       description: new FormControl('', Validators.required),
@@ -107,6 +110,16 @@ export class CbRestaurantsInformationsComponent implements OnInit {
       webSite: this.restaurant.webSite ,
       responsable: this.restaurant.responsable,
       smsMessage: this.restaurant.smsMessage,
+    });
+  }
+
+  openImageModal() {
+    const dialogRef = this.dialog.open( CbRestaurantsInformationsImageComponent, {
+      panelClass: 'custom-dialog-container' ,
+      width: '600px' ,
+      data : {
+        item: this.restaurant ,
+      }
     });
   }
 }

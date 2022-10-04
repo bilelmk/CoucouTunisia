@@ -145,13 +145,14 @@ exports.deblock = ( req, res , next , id ) => {
   })
 }
 
-exports.changeImage = async ( req, res , next , id ) => {
+exports.changeImage = async ( req, res , next, id ) => {
   try {
     const image = req.files.image[0].filename;
     const restaurant = await Restaurant.update({image: image}, {where: {id: id}});
     if (restaurant[0] === 1) return res.status(200).json({image: image});
     return res.status(404).json({message: "not found"});
-  } catch (error) {
+  }
+  catch (error) {
     return res.status(500).json(error);
   }
 }
