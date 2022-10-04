@@ -24,7 +24,6 @@ exports.add = async (req, res, next) => {
     return res.status(200).json(addedRestaurant);
 
   } catch(error) {
-    console.log(error)
     return res.status(500).json(error)
   }
 }

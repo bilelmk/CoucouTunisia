@@ -325,7 +325,7 @@ exports.deblock = ( req, res , next , id ) => {
     })
 }
 
-exports.changeImage = ( req, res , next , id ) => {
+exports.changeImage = ( req, res , next ) => {
     let image = req.files.image[0].filename ;
     Client.update({ image: image }, {where: { id: req.userData.userId }}).then(result => {
         if(result[0] === 1){

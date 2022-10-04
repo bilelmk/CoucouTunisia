@@ -10,8 +10,7 @@ const ExternalClient = sequelize.define('externalClient' , {
     },
     name: {
         type : Sequelize.STRING ,
-        allowNull : false ,
-
+        allowNull : true ,
     },
     phone: {
         type : Sequelize.STRING ,

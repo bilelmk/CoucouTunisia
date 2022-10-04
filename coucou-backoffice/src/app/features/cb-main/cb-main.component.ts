@@ -89,7 +89,7 @@ export class CbMainComponent implements OnInit {
       type: "route",
       route : "importation" ,
       name : "Module d'importation" ,
-      icon : "equalizer",
+      icon : "storage",
       permission: "ADMIN"
     },
     // {

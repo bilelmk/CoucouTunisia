@@ -1,12 +1,10 @@
-
-
 <div class="page">
 
   <div class="row mt-3 mb-3 justify-content-between align-items-center">
     <div>
       <p class="title">
-        <span class="material-icons title-icon">chat</span>
-        service de messagerie
+        <span class="material-icons title-icon">storage</span>
+        Module importation
       </p>
     </div>
   </div>
@@ -14,21 +12,28 @@
 
   <div class="row justify-content-center" >
 
+    <div class="col-12 col-sm-6">
 
-    <input type="file" #filePicker (change)="onFileChange($event)" multiple="false" />
+    </div>
 
-    <img class="img-fluid" src="./assets/img/upload-image.png" (click)="filePicker.click()"/>
+    <div class="col-12 col-sm-6 row justify-content-center">
 
+      <div class="col-6">
+        <input type="file" #filePicker (change)="onFileChange($event)" multiple="false" />
+        <img class="img-fluid" src="./assets/img/upload-image.png" (click)="filePicker.click()"/>
+      </div>
 
-    <table class="sjs-table">
-  <tbody>
-  <tr *ngFor="let row of data">
-    <td *ngFor="let val of row">
-      {{val}}
-    </td>
-  </tr>
-  </tbody>
-</table>
+      <table class="sjs-table">
+        <tbody>
+        <tr *ngFor="let row of data">
+          <td *ngFor="let val of row">
+            {{val}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <button (click)="addBulk()"> Ajouter </button>
+    </div>
 
   </div>
 </div>

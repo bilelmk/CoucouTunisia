@@ -17,6 +17,7 @@ const menuRoutes = require("./routes/menu.route");
 const roomRoutes = require("./routes/room.route");
 const planningRoutes = require("./routes/planning.route");
 const galleryRoutes = require("./routes/gallery.route");
+const externalClientRouted = require("./routes/external-client.route");
 
 const cron = require("./crons/cron");
 const init = require("./init/init");
@@ -30,10 +31,7 @@ sequelize.sync().then(res => {
 });
 
 app.use(bodyParser.json());
-
-
-app.options('*', cors())
-
+app.options('*', cors());
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -67,7 +65,7 @@ app.use("/api/menus" , menuRoutes)
 app.use("/api/planning" , planningRoutes)
 app.use("/api/rooms" , roomRoutes)
 app.use("/api/gallery" , galleryRoutes)
-
+app.use("/api/external-clients" , externalClientRouted)
 
 // init() ;
 // app.use(express.static(path.join(__dirname,'public')))
