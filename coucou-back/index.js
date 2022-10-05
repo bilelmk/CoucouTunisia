@@ -17,7 +17,8 @@ const menuRoutes = require("./routes/menu.route");
 const roomRoutes = require("./routes/room.route");
 const planningRoutes = require("./routes/planning.route");
 const galleryRoutes = require("./routes/gallery.route");
-const externalClientRouted = require("./routes/external-client.route");
+const externalClientRoutes = require("./routes/external-client.route");
+const rateRoutes = require("./routes/rate.route");
 
 const cron = require("./crons/cron");
 const init = require("./init/init");
@@ -65,7 +66,8 @@ app.use("/api/menus" , menuRoutes)
 app.use("/api/planning" , planningRoutes)
 app.use("/api/rooms" , roomRoutes)
 app.use("/api/gallery" , galleryRoutes)
-app.use("/api/external-clients" , externalClientRouted)
+app.use("/api/external-clients" , externalClientRoutes)
+app.use("/api/rates" , rateRoutes)
 
 // init() ;
 // app.use(express.static(path.join(__dirname,'public')))
